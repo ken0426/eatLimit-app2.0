@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
+import { color } from '../../styles';
 import HomeScreen from '../components/HomeScreen';
 import { StackPramList } from '../types';
 
@@ -13,6 +14,12 @@ const RootStackScreen = () => {
         component={HomeScreen}
         options={{
           title: 'ホーム',
+          headerStyle: {
+            backgroundColor: color.rightBlue,
+          },
+          headerTitleStyle: {
+            fontSize: 24, // 仮実装
+          },
         }}
       />
     </Stack.Navigator>
