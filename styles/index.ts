@@ -1,4 +1,5 @@
 /** グローバルで使用する色 */
 export const color = {
-  rightBlue: '#94DFF5',
+  rightBlue: '#d9b89b',
+  // rightBlue: '#f08b52',
 };

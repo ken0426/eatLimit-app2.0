@@ -14,6 +14,6 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   topBar: {
     height: 30,
-    backgroundColor: 'red',
+    backgroundColor: '#ffffff',
   },
 });
