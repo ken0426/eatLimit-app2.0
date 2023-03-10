@@ -1,12 +1,19 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 const HomeScreen = () => {
   return (
     <>
-      <Text>HomeScreen</Text>
+      <View style={styles.topBar}></View>
     </>
   );
 };
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  topBar: {
+    height: 30,
+    backgroundColor: 'red',
+  },
+});
