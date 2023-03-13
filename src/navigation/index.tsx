@@ -7,8 +7,6 @@ import { StackPramList } from '../types';
 const Stack = createNativeStackNavigator<StackPramList>();
 
 const RootStackScreen = () => {
-  const [text, setText] = useState('');
-  console.log(text);
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -23,7 +21,6 @@ const RootStackScreen = () => {
             hideNavigationBar: true,
             placeholder: '検索',
             cancelButtonText: 'キャンセル',
-            onChangeText: (event) => setText(event.nativeEvent.text),
           },
           headerTintColor: '#efefef',
           headerTitleStyle: {

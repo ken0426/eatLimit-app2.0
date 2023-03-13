@@ -1,8 +1,21 @@
-import React from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { color } from '../../styles';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }: any) => {
+  const [text, setText] = useState('');
+  console.log(text);
+  const handleEndReached = () => {
+    // 末尾に到達したときにナビゲーションバーを非表示にする
+    return navigation.setOptions({
+      headerSearchBarOptions: {
+        placeholder: '検索',
+        hideWhenScrolling: true,
+        onChangeText: (event: any) => setText(event.nativeEvent.text),
+      },
+    });
+  };
+
   const aaa = [
     { name: 'スタート' },
     { name: 'aaa' },
@@ -27,10 +40,14 @@ const HomeScreen = () => {
     );
   };
   return (
-    // <View style={styles.contents}>
-    //   <View style={styles.topBar}>{/* <Text>aaa</Text> */}</View>
-    // </View>
-    <FlatList data={aaa} renderItem={renderItem}></FlatList>
+    <SafeAreaView style={{ flex: 1 }}>
+      <FlatList
+        data={aaa}
+        renderItem={renderItem}
+        onEndReached={handleEndReached}
+        onEndReachedThreshold={0.5}
+      />
+    </SafeAreaView>
   );
 };
 
