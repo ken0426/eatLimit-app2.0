@@ -15,7 +15,7 @@ const RootStackScreen = () => {
         options={{
           title: 'ホーム',
           headerStyle: {
-            backgroundColor: color.rightBlue,
+            backgroundColor: color.mainColor,
           },
           headerSearchBarOptions: {
             hideNavigationBar: true,
