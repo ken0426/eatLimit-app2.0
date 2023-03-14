@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import { color } from '../../styles';
 
 const HomeScreen = ({ navigation }: any) => {
   const [text, setText] = useState('');
