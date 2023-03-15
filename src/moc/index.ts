@@ -1,0 +1,15 @@
+export const aaa = [
+  { name: 'スタート' },
+  { name: 'aaa' },
+  { name: 'aaa' },
+  { name: 'aaa' },
+  { name: 'aaa' },
+  { name: 'aaa' },
+  { name: 'aaa' },
+  { name: 'aaa' },
+  { name: 'aaa' },
+  { name: 'aaa' },
+  { name: 'aaa' },
+  { name: 'aaa' },
+  { name: 'aaa' },
+];

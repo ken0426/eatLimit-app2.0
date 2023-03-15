@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { aaa } from '../moc';
 
 const HomeScreen = ({ navigation }: any) => {
   const [text, setText] = useState('');
@@ -14,22 +15,6 @@ const HomeScreen = ({ navigation }: any) => {
       },
     });
   };
-
-  const aaa = [
-    { name: 'スタート' },
-    { name: 'aaa' },
-    { name: 'aaa' },
-    { name: 'aaa' },
-    { name: 'aaa' },
-    { name: 'aaa' },
-    { name: 'aaa' },
-    { name: 'aaa' },
-    { name: 'aaa' },
-    { name: 'aaa' },
-    { name: 'aaa' },
-    { name: 'aaa' },
-    { name: 'aaa' },
-  ];
 
   const renderItem = ({ item }: any) => {
     return (
