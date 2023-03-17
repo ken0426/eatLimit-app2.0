@@ -3,7 +3,7 @@ import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { aaa } from '../moc';
 
 const HomeScreen = ({ navigation }: any) => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState<string>('');
   console.log(text);
   const handleEndReached = () => {
     // 末尾に到達したときにナビゲーションバーを非表示にする
