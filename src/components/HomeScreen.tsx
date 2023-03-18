@@ -4,6 +4,7 @@ import { aaa } from '../moc';
 
 const HomeScreen = ({ navigation }: any) => {
   const [text, setText] = useState<string>('');
+
   const handleEndReached = () => {
     // 末尾に到達したときにナビゲーションバーを非表示にする
     return navigation.setOptions({
@@ -30,7 +31,7 @@ const HomeScreen = ({ navigation }: any) => {
       <FlatList
         data={aaa}
         renderItem={renderItem}
-        onEndReached={handleEndReached}
+        // onEndReached={handleEndReached}
         onEndReachedThreshold={0.5}
       />
     </SafeAreaView>
