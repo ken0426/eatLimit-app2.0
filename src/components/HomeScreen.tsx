@@ -4,7 +4,6 @@ import { aaa } from '../moc';
 
 const HomeScreen = ({ navigation }: any) => {
   const [text, setText] = useState<string>('');
-  console.log(text);
   const handleEndReached = () => {
     // 末尾に到達したときにナビゲーションバーを非表示にする
     return navigation.setOptions({
@@ -19,7 +18,10 @@ const HomeScreen = ({ navigation }: any) => {
   const renderItem = ({ item }: any) => {
     return (
       <View style={styles.contents}>
-        <Text>{item.name}</Text>
+        <View style={styles.imageArea}></View>
+        <View>
+          <Text>{item.eatName}</Text>
+        </View>
       </View>
     );
   };
@@ -40,6 +42,13 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   contents: {
     height: 100,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+  },
+  imageArea: {
+    width: 130,
+    height: '100%',
+    backgroundColor: 'red',
   },
   topBar: {
     height: 180,
