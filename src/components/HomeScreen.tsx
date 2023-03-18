@@ -40,7 +40,6 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   contents: {
     height: 100,
-    backgroundColor: 'red',
   },
   topBar: {
     height: 180,
