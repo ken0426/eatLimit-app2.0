@@ -26,8 +26,10 @@ const HomeScreen = ({ navigation }: any) => {
       </View>
     );
   };
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      {/* ここに本来なら日付項目がほしい */}
       <FlatList
         data={aaa}
         renderItem={renderItem}
@@ -57,8 +59,8 @@ const styles = StyleSheet.create({
     // backgroundColor: color.rightBlue,
   },
   searchArea: {
-    height: 100,
-    backgroundColor: 'red',
+    height: 40,
+    backgroundColor: 'blue',
     // backgroundColor: 'red',
     // borderColor: color.rightBlue,
     // borderWidth: 0,
