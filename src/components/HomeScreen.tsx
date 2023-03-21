@@ -30,6 +30,7 @@ const HomeScreen = ({ navigation }: any) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {/* ここに本来なら日付項目がほしい */}
+      {/* <View style={styles.searchArea}></View> */}
       <FlatList
         data={aaa}
         renderItem={renderItem}
