@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import {
+  FlatList,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { aaa } from '../moc';
 
 const HomeScreen = ({ navigation }: any) => {
@@ -16,7 +23,19 @@ const HomeScreen = ({ navigation }: any) => {
     });
   };
 
-  const renderItem = ({ item }: any) => {
+  const renderItem = ({ item, keyExtractor }: any) => {
+    if (keyExtractor === 0) {
+      return (
+        <View style={styles.contents}>
+          <ScrollView style={styles.searchArea}></ScrollView>
+
+          <View style={styles.imageArea}></View>
+          <View>
+            <Text>{item.eatName}</Text>
+          </View>
+        </View>
+      );
+    }
     return (
       <View style={styles.contents}>
         <View style={styles.imageArea}></View>
@@ -30,10 +49,10 @@ const HomeScreen = ({ navigation }: any) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {/* ここに本来なら日付項目がほしい */}
-      {/* <View style={styles.searchArea}></View> */}
       <FlatList
         data={aaa}
         renderItem={renderItem}
+        keyExtractor={(_: any, index: any) => index}
         // onEndReached={handleEndReached}
         onEndReachedThreshold={0.5}
       />
