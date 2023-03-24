@@ -37,14 +37,12 @@ const HomeScreen = ({ navigation }: any) => {
     );
   };
 
-  const keyExtractor = (_: any, index: any) => index;
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <FlatList
         data={aaa}
         renderItem={renderItem}
-        keyExtractor={keyExtractor}
+        keyExtractor={(_: any, index: any) => index}
         // onEndReached={handleEndReached}
         onEndReachedThreshold={0.5}
       />
