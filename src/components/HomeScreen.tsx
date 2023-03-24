@@ -23,12 +23,22 @@ const HomeScreen = ({ navigation }: any) => {
     });
   };
 
-  const renderItem = ({ item, keyExtractor }: any) => {
-    if (keyExtractor === 0) {
+  const renderItem = ({ item, index }: any) => {
+    if (index === 0) {
+      return (
+        <View>
+          <View style={styles.searchArea}></View>
+          <View style={styles.contents}>
+            <View style={styles.imageArea}></View>
+            <View>
+              <Text>{item.eatName}</Text>
+            </View>
+          </View>
+        </View>
+      );
+    } else {
       return (
         <View style={styles.contents}>
-          <ScrollView style={styles.searchArea}></ScrollView>
-
           <View style={styles.imageArea}></View>
           <View>
             <Text>{item.eatName}</Text>
@@ -36,15 +46,9 @@ const HomeScreen = ({ navigation }: any) => {
         </View>
       );
     }
-    return (
-      <View style={styles.contents}>
-        <View style={styles.imageArea}></View>
-        <View>
-          <Text>{item.eatName}</Text>
-        </View>
-      </View>
-    );
   };
+
+  const keyExtractor = (_: any, index: any) => index;
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -52,7 +56,7 @@ const HomeScreen = ({ navigation }: any) => {
       <FlatList
         data={aaa}
         renderItem={renderItem}
-        keyExtractor={(_: any, index: any) => index}
+        keyExtractor={keyExtractor}
         // onEndReached={handleEndReached}
         onEndReachedThreshold={0.5}
       />
