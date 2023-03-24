@@ -24,28 +24,17 @@ const HomeScreen = ({ navigation }: any) => {
   };
 
   const renderItem = ({ item, index }: any) => {
-    if (index === 0) {
-      return (
-        <View>
-          <View style={styles.searchArea}></View>
-          <View style={styles.contents}>
-            <View style={styles.imageArea}></View>
-            <View>
-              <Text>{item.eatName}</Text>
-            </View>
-          </View>
-        </View>
-      );
-    } else {
-      return (
+    return (
+      <View>
+        {index === 0 && <View style={styles.searchArea}></View>}
         <View style={styles.contents}>
           <View style={styles.imageArea}></View>
           <View>
             <Text>{item.eatName}</Text>
           </View>
         </View>
-      );
-    }
+      </View>
+    );
   };
 
   const keyExtractor = (_: any, index: any) => index;
@@ -68,7 +57,7 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   contents: {
-    height: 100,
+    height: 90,
     borderBottomWidth: 1,
     flexDirection: 'row',
   },
