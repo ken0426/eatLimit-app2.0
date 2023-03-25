@@ -17,11 +17,6 @@ const RootStackScreen = () => {
           headerStyle: {
             backgroundColor: color.mainColor,
           },
-          headerSearchBarOptions: {
-            hideNavigationBar: true,
-            placeholder: '検索',
-            cancelButtonText: 'キャンセル',
-          },
           headerTintColor: '#efefef',
           headerTitleStyle: {
             fontSize: 24, // 仮実装

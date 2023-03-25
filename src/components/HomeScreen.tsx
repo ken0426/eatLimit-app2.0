@@ -1,45 +1,68 @@
 import React, { useState } from 'react';
 import {
+  Alert,
   FlatList,
+  Keyboard,
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import { aaa } from '../moc';
+import { FontAwesome5 } from '@expo/vector-icons';
+import moment from 'moment';
 
 const HomeScreen = ({ navigation }: any) => {
   const [text, setText] = useState<string>('');
+  const [isScroll, setIsScroll] = useState(true);
+  console.log(isScroll);
 
-  const handleEndReached = () => {
-    // 末尾に到達したときにナビゲーションバーを非表示にする
-    return navigation.setOptions({
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
       headerSearchBarOptions: {
         placeholder: '検索',
-        hideWhenScrolling: true,
-        // onChangeText: (event: any) => setText(event.nativeEvent.text),
+        cancelButtonText: 'キャンセル',
+        onBlur: () => {
+          console.log('フォーカスが外れた');
+          Keyboard.dismiss();
+        },
+        onChangeText: (e: { nativeEvent: { text: string } }) =>
+          setText(e.nativeEvent.text),
       },
     });
-  };
+  }, [navigation, isScroll]);
 
   const renderItem = ({ item, index }: any) => {
     return (
       <View>
-        {index === 0 && (
+        {Number(index) === 0 && (
           <View style={styles.dateArea}>
             <View>
-              <Text>これは日付です</Text>
+              <Text>{moment().format('YYYY-MM-DD')}</Text>
             </View>
-            <View></View>
+            <TouchableOpacity
+              style={styles.iconArea}
+              activeOpacity={1}
+              onPress={() => {
+                setIsScroll(false);
+              }}
+            >
+              <FontAwesome5 name='sort-amount-down' size={20} color='black' />
+            </TouchableOpacity>
           </View>
         )}
-        <View style={styles.contents}>
+        <TouchableOpacity
+          style={styles.contents}
+          onPress={() => {
+            Keyboard.dismiss();
+          }}
+        >
           <View style={styles.imageArea}></View>
           <View>
             <Text>{item.eatName}</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   };
@@ -49,8 +72,11 @@ const HomeScreen = ({ navigation }: any) => {
       <FlatList
         data={aaa}
         renderItem={renderItem}
-        keyExtractor={(_: any, index: any) => index}
-        onEndReached={handleEndReached}
+        keyExtractor={(_, index) => index.toString()}
+        onScrollBeginDrag={() => {
+          console.log('スクロールされた');
+        }}
+        // onScrollEndDrag={() => console.log('一番下')}
         onEndReachedThreshold={0.5}
       />
     </SafeAreaView>
@@ -62,7 +88,8 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   contents: {
     height: 90,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.3,
+    borderColor: '#c2c2c2',
     flexDirection: 'row',
   },
   imageArea: {
@@ -73,13 +100,15 @@ const styles = StyleSheet.create({
   topBar: {
     height: 180,
     backgroundColor: 'red',
-    // backgroundColor: color.rightBlue,
   },
   dateArea: {
     height: 40,
-    // backgroundColor: 'blue',
-    // backgroundColor: 'red',
-    // borderColor: color.rightBlue,
-    // borderWidth: 0,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  iconArea: {
+    position: 'absolute',
+    right: 10,
   },
 });
