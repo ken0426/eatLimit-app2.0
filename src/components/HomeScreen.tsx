@@ -18,7 +18,7 @@ const HomeScreen = ({ navigation }: any) => {
       headerSearchBarOptions: {
         placeholder: '検索',
         hideWhenScrolling: true,
-        onChangeText: (event: any) => setText(event.nativeEvent.text),
+        // onChangeText: (event: any) => setText(event.nativeEvent.text),
       },
     });
   };
@@ -26,7 +26,14 @@ const HomeScreen = ({ navigation }: any) => {
   const renderItem = ({ item, index }: any) => {
     return (
       <View>
-        {index === 0 && <View style={styles.searchArea}></View>}
+        {index === 0 && (
+          <View style={styles.dateArea}>
+            <View>
+              <Text>これは日付です</Text>
+            </View>
+            <View></View>
+          </View>
+        )}
         <View style={styles.contents}>
           <View style={styles.imageArea}></View>
           <View>
@@ -43,7 +50,7 @@ const HomeScreen = ({ navigation }: any) => {
         data={aaa}
         renderItem={renderItem}
         keyExtractor={(_: any, index: any) => index}
-        // onEndReached={handleEndReached}
+        onEndReached={handleEndReached}
         onEndReachedThreshold={0.5}
       />
     </SafeAreaView>
@@ -68,9 +75,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     // backgroundColor: color.rightBlue,
   },
-  searchArea: {
+  dateArea: {
     height: 40,
-    backgroundColor: 'blue',
+    // backgroundColor: 'blue',
     // backgroundColor: 'red',
     // borderColor: color.rightBlue,
     // borderWidth: 0,
