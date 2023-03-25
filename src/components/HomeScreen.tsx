@@ -28,9 +28,9 @@ type SearchBarProp = {
 };
 
 type Props = {
-  navigation:
-    | StackNavigationProp<StackPramList, 'homeScreen'>
-    | { setOptions: (e: SearchBarProp) => void };
+  navigation: StackNavigationProp<StackPramList, 'homeScreen'> & {
+    setOptions: (e: SearchBarProp) => void;
+  };
 };
 
 const HomeScreen = ({ navigation }: Props) => {
