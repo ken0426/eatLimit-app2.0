@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
+import React from 'react';
 import { color } from '../../styles';
 import HomeScreen from '../components/HomeScreen';
 import { StackPramList } from '../types';

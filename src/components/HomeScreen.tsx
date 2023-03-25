@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Alert,
   FlatList,
   Keyboard,
   SafeAreaView,
@@ -12,11 +11,30 @@ import {
 import { aaa } from '../moc';
 import { FontAwesome5 } from '@expo/vector-icons';
 import moment from 'moment';
+import { StackPramList } from '../types';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-const HomeScreen = ({ navigation }: any) => {
+type TextType = {
+  nativeEvent: { text: string };
+};
+
+type SearchBarProp = {
+  headerSearchBarOptions: {
+    placeholder: string;
+    cancelButtonText: string;
+    onBlur: () => void;
+    onChangeText: (e: TextType) => void;
+  };
+};
+
+type Props = {
+  navigation:
+    | StackNavigationProp<StackPramList, 'homeScreen'>
+    | { setOptions: (e: SearchBarProp) => void };
+};
+
+const HomeScreen = ({ navigation }: Props) => {
   const [text, setText] = useState<string>('');
-  const [isScroll, setIsScroll] = useState(true);
-  console.log(isScroll);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -27,11 +45,10 @@ const HomeScreen = ({ navigation }: any) => {
           console.log('フォーカスが外れた');
           Keyboard.dismiss();
         },
-        onChangeText: (e: { nativeEvent: { text: string } }) =>
-          setText(e.nativeEvent.text),
+        onChangeText: (e: TextType) => setText(e.nativeEvent.text),
       },
     });
-  }, [navigation, isScroll]);
+  }, [navigation]);
 
   const renderItem = ({ item, index }: any) => {
     return (
@@ -41,13 +58,7 @@ const HomeScreen = ({ navigation }: any) => {
             <View>
               <Text>{moment().format('YYYY-MM-DD')}</Text>
             </View>
-            <TouchableOpacity
-              style={styles.iconArea}
-              activeOpacity={1}
-              onPress={() => {
-                setIsScroll(false);
-              }}
-            >
+            <TouchableOpacity style={styles.iconArea} activeOpacity={1}>
               <FontAwesome5 name='sort-amount-down' size={20} color='black' />
             </TouchableOpacity>
           </View>
@@ -73,10 +84,6 @@ const HomeScreen = ({ navigation }: any) => {
         data={aaa}
         renderItem={renderItem}
         keyExtractor={(_, index) => index.toString()}
-        onScrollBeginDrag={() => {
-          console.log('スクロールされた');
-        }}
-        // onScrollEndDrag={() => console.log('一番下')}
         onEndReachedThreshold={0.5}
       />
     </SafeAreaView>
