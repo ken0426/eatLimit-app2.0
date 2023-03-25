@@ -42,7 +42,6 @@ const HomeScreen = ({ navigation }: Props) => {
         placeholder: '検索',
         cancelButtonText: 'キャンセル',
         onBlur: () => {
-          console.log('フォーカスが外れた');
           Keyboard.dismiss();
         },
         onChangeText: (e: TextType) => setText(e.nativeEvent.text),
