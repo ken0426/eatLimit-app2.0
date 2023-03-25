@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import {
   FlatList,
   Keyboard,
@@ -36,7 +36,7 @@ type Props = {
 const HomeScreen = ({ navigation }: Props) => {
   const [text, setText] = useState<string>('');
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerSearchBarOptions: {
         placeholder: '検索',
