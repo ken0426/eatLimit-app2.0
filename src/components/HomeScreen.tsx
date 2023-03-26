@@ -22,7 +22,6 @@ type SearchBarProp = {
   headerSearchBarOptions: {
     placeholder: string;
     cancelButtonText: string;
-    onBlur: () => void;
     onChangeText: (e: TextType) => void;
   };
 };
@@ -41,9 +40,6 @@ const HomeScreen = ({ navigation }: Props) => {
       headerSearchBarOptions: {
         placeholder: '検索',
         cancelButtonText: 'キャンセル',
-        onBlur: () => {
-          Keyboard.dismiss();
-        },
         onChangeText: (e: TextType) => setText(e.nativeEvent.text),
       },
     });
