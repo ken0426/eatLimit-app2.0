@@ -1,8 +1,8 @@
 export const aaa = [
-  { eatName: 'スタート' },
-  { eatName: 'aaa' },
-  { eatName: 'aaa' },
-  { eatName: 'aaa' },
+  { eatName: 'たらこ' },
+  { eatName: 'いくら' },
+  { eatName: 'サーモン' },
+  { eatName: '納豆' },
   { eatName: 'aaa' },
   { eatName: 'aaa' },
   { eatName: 'aaa' },
