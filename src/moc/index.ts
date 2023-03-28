@@ -3,7 +3,7 @@ export const aaa = [
   { eatName: 'いくら' },
   { eatName: 'サーモン' },
   { eatName: '納豆' },
-  { eatName: 'aaa' },
+  { eatName: 'りんご' },
   { eatName: 'aaa' },
   { eatName: 'aaa' },
   { eatName: 'aaa' },
