@@ -69,7 +69,6 @@ const HomeScreen = ({ navigation }: Props) => {
         data={aaa}
         renderItem={renderItem}
         keyExtractor={(_, index) => index.toString()}
-        onEndReachedThreshold={0.5}
       />
     </SafeAreaView>
   );
