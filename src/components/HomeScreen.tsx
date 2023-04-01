@@ -35,16 +35,6 @@ type Props = {
 const HomeScreen = ({ navigation }: Props) => {
   const [text, setText] = useState<string>('');
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerSearchBarOptions: {
-        placeholder: '検索',
-        cancelButtonText: 'キャンセル',
-        onChangeText: (e: TextType) => setText(e.nativeEvent.text),
-      },
-    });
-  }, [navigation]);
-
   const renderItem = ({ item, index }: any) => {
     return (
       <View>
