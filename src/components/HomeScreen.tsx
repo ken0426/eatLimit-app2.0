@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   Animated,
+  Dimensions,
   FlatList,
   Keyboard,
   StyleSheet,
@@ -21,11 +22,41 @@ type Props = {
 };
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
 const HomeScreen = ({ navigation }: Props) => {
   const [text, setText] = useState<string>('');
   const [animatedValue] = useState(new Animated.Value(0));
-  const [isTextInputFocus, setIsTextInputFocus] = useState(false);
+  const [isTextInputFocus, setIsTextInputFocus] = useState(true);
+  const { width: windowWidth } = Dimensions.get('window');
+  const inputWidth = new Animated.Value(0.97 * windowWidth);
+
+  const handleFocus = () => {
+    setIsTextInputFocus(true);
+    Animated.timing(inputWidth, {
+      toValue: 0.7 * windowWidth,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const handleBlur = () => {
+    setIsTextInputFocus(true);
+    Animated.timing(inputWidth, {
+      toValue: 0.97 * windowWidth,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const animatedStyle = {
+    width: inputWidth,
+    backgroundColor: '#ffffff',
+    marginHorizontal: 5,
+    height: 30,
+    borderRadius: 3,
+    paddingHorizontal: 5,
+  };
 
   const ListHeaderComponent = () => {
     return (
@@ -119,12 +150,12 @@ const HomeScreen = ({ navigation }: Props) => {
           { transform: [{ translateY: translateY }] },
         ]}
       >
-        <TextInput
+        <AnimatedTextInput
           onChangeText={(e) => {
             setText(e);
           }}
-          onFocus={() => setIsTextInputFocus(true)}
-          onBlur={() => setIsTextInputFocus(false)}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           placeholder='検索'
           style={[
             {
@@ -133,7 +164,7 @@ const HomeScreen = ({ navigation }: Props) => {
               height: 30,
               borderRadius: 3,
               paddingHorizontal: 5,
-              width: isTextInputFocus ? '70%' : undefined,
+              width: inputWidth,
             },
           ]}
         />
