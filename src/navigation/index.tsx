@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { color } from '../../styles';
+import DetailScreen from '../components/DetailScreen';
 import HomeScreen from '../components/HomeScreen';
 import { StackPramList } from '../types';
 
@@ -22,6 +23,13 @@ const RootStackScreen = () => {
           headerTitleStyle: {
             fontSize: 24, // 仮実装
           },
+        }}
+      />
+      <Stack.Screen
+        name={'detailScreen'}
+        component={DetailScreen}
+        options={{
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
