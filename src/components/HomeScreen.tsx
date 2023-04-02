@@ -2,9 +2,12 @@ import React, { useLayoutEffect, useState } from 'react';
 import {
   FlatList,
   Keyboard,
+  RefreshControl,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -13,6 +16,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import moment from 'moment';
 import { StackPramList } from '../types';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { color } from '../../styles';
 
 type TextType = {
   nativeEvent: { text: string };
@@ -64,11 +68,21 @@ const HomeScreen = ({ navigation }: Props) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView>
+      <View style={{ backgroundColor: color.mainColor, height: 40 }}>
+        <TextInput
+          style={{
+            backgroundColor: '#ffffff',
+            height: 20,
+            marginHorizontal: 20,
+          }}
+        />
+      </View>
       <FlatList
         data={aaa}
         renderItem={renderItem}
         keyExtractor={(_, index) => index.toString()}
+        onScroll={() => Keyboard.dismiss()}
       />
     </SafeAreaView>
   );

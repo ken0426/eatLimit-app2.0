@@ -17,6 +17,7 @@ const RootStackScreen = () => {
           headerStyle: {
             backgroundColor: color.mainColor,
           },
+          headerLargeTitleShadowVisible: false,
           headerTintColor: '#efefef',
           headerTitleStyle: {
             fontSize: 24, // 仮実装
