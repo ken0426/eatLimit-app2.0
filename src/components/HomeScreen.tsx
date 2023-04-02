@@ -25,6 +25,7 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 const HomeScreen = ({ navigation }: Props) => {
   const [text, setText] = useState<string>('');
   const [animatedValue] = useState(new Animated.Value(0));
+  const [isTextInputFocus, setIsTextInputFocus] = useState(false);
 
   const ListHeaderComponent = () => {
     return (
@@ -122,6 +123,8 @@ const HomeScreen = ({ navigation }: Props) => {
           onChangeText={(e) => {
             setText(e);
           }}
+          onFocus={() => setIsTextInputFocus(true)}
+          onBlur={() => setIsTextInputFocus(false)}
           placeholder='検索'
           style={[
             {
@@ -130,6 +133,7 @@ const HomeScreen = ({ navigation }: Props) => {
               height: 30,
               borderRadius: 3,
               paddingHorizontal: 5,
+              width: isTextInputFocus ? '70%' : undefined,
             },
           ]}
         />
@@ -142,7 +146,6 @@ const HomeScreen = ({ navigation }: Props) => {
         onScroll={handleScroll}
         scrollEventThrottle={16}
         keyboardShouldPersistTaps='always'
-        stickyHeaderIndices={[0]}
         contentContainerStyle={{
           paddingTop: 40,
         }}
