@@ -43,7 +43,6 @@ const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 const HomeScreen = ({ navigation }: Props) => {
   const [text, setText] = useState<string>('');
   const [animatedValue] = useState(new Animated.Value(0));
-  const [hideTextInput, setHideTextInput] = useState(false);
 
   const ListHeaderComponent = () => {
     return (
@@ -75,21 +74,13 @@ const HomeScreen = ({ navigation }: Props) => {
       </View>
     );
   };
-  const handleScroll = () => {
-    Animated.event([{ nativeEvent: { contentOffset: { y: animatedValue } } }], {
-      useNativeDriver: true,
-    });
-  };
 
-  const handleScrollWithHideTextInput = (event: any) => {
-    handleScroll();
-    const offsetY = event.nativeEvent.contentOffset.y;
-    if (offsetY > 0 && !hideTextInput) {
-      setHideTextInput(true);
-    } else if (offsetY <= 0 && hideTextInput) {
-      setHideTextInput(false);
+  const handleScroll = Animated.event(
+    [{ nativeEvent: { contentOffset: { y: animatedValue } } }],
+    {
+      useNativeDriver: true,
     }
-  };
+  );
 
   const translateY = animatedValue.interpolate({
     inputRange: [0, 80],
@@ -101,12 +92,14 @@ const HomeScreen = ({ navigation }: Props) => {
     <SafeAreaView>
       <Animated.View
         style={[
-          { backgroundColor: color.mainColor, height: 40 },
+          {
+            backgroundColor: color.mainColor,
+            height: 40,
+          },
           { transform: [{ translateY: translateY }] },
-          { display: hideTextInput ? 'none' : 'flex' },
         ]}
       >
-        <AnimatedTextInput
+        <TextInput
           style={[{ backgroundColor: 'blue', marginHorizontal: 20 }]}
         />
       </Animated.View>
@@ -115,7 +108,7 @@ const HomeScreen = ({ navigation }: Props) => {
         renderItem={renderItem}
         ListHeaderComponent={ListHeaderComponent}
         keyExtractor={(_, index) => index.toString()}
-        onScroll={handleScrollWithHideTextInput}
+        onScroll={handleScroll}
         scrollEventThrottle={16}
       />
     </SafeAreaView>
