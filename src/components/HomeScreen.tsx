@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Animated,
   Dimensions,
@@ -30,23 +30,39 @@ const HomeScreen = ({ navigation }: Props) => {
   const [isTextInputFocus, setIsTextInputFocus] = useState(true);
   const { width: windowWidth } = Dimensions.get('window');
   const inputWidth = new Animated.Value(0.97 * windowWidth);
+  const fontSize = useRef(new Animated.Value(0)).current;
 
   const handleFocus = () => {
     setIsTextInputFocus(true);
-    Animated.timing(inputWidth, {
-      toValue: 0.7 * windowWidth,
-      duration: 300,
-      useNativeDriver: false,
-    }).start();
+    Animated.parallel([
+      Animated.timing(inputWidth, {
+        toValue: 0.7 * windowWidth,
+        duration: 300,
+        useNativeDriver: false,
+      }),
+      Animated.timing(fontSize, {
+        toValue: 16,
+        duration: 500,
+        useNativeDriver: false,
+      }),
+    ]).start();
   };
 
   const handleBlur = () => {
     setIsTextInputFocus(true);
-    Animated.timing(inputWidth, {
-      toValue: 0.97 * windowWidth,
-      duration: 300,
-      useNativeDriver: false,
-    }).start();
+    Animated.parallel([
+      Animated.timing(inputWidth, {
+        toValue: 0.97 * windowWidth,
+        duration: 300,
+        useNativeDriver: false,
+      }),
+      Animated.timing(fontSize, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: false,
+      }),
+    ]).start();
+    Keyboard.dismiss();
   };
 
   const animatedStyle = {
@@ -145,6 +161,7 @@ const HomeScreen = ({ navigation }: Props) => {
         style={[
           {
             backgroundColor: color.mainColor,
+            flexDirection: 'row',
             height: 0,
           },
           { transform: [{ translateY: translateY }] },
@@ -168,6 +185,20 @@ const HomeScreen = ({ navigation }: Props) => {
             },
           ]}
         />
+        <TouchableOpacity onPress={handleBlur} activeOpacity={1}>
+          <Animated.Text
+            style={{
+              height: 30,
+              width: 0.26 * windowWidth,
+              textAlign: 'center',
+              lineHeight: 30,
+              color: 'white',
+              fontSize: fontSize,
+            }}
+          >
+            キャンセル
+          </Animated.Text>
+        </TouchableOpacity>
       </Animated.View>
       <AnimatedFlatList
         data={aaa}
