@@ -18,6 +18,10 @@ const RootStackScreen = () => {
           headerStyle: {
             backgroundColor: color.mainColor,
           },
+          headerSearchBarOptions: {
+            placeholder: '検索',
+            cancelButtonText: 'キャンセル',
+          },
           headerLargeTitleShadowVisible: false,
           headerTintColor: '#efefef',
           headerTitleStyle: {
