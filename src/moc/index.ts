@@ -6,7 +6,10 @@ export const aaa: ApiData = [
     image:
       'https://p1-e6eeae93.imageflux.jp/c!/w=800,h=800,a=2/michiba-suisan/9a7ac9aa6985a45b860a.jpg',
   },
-  { eatName: 'いくら', image: '' },
+  {
+    eatName: 'いくら',
+    image: 'https://img.tkjm.jp/webshop/003/876/sl_10966.jpg',
+  },
   { eatName: 'サーモン' },
   { eatName: '納豆' },
   { eatName: 'りんご' },
