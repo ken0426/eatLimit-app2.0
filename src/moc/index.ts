@@ -10,7 +10,11 @@ export const aaa: ApiData = [
     eatName: 'いくら',
     image: 'https://img.tkjm.jp/webshop/003/876/sl_10966.jpg',
   },
-  { eatName: 'サーモン' },
+  {
+    eatName: 'サーモン',
+    image:
+      'https://media.delishkitchen.tv/article/105/kmn81saarcn.jpeg?version=1586229518',
+  },
   { eatName: '納豆' },
   { eatName: 'りんご' },
   { eatName: 'バナナ' },
