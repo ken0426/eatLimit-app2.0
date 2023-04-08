@@ -64,7 +64,6 @@ const HomeScreen = ({ navigation }: Props) => {
       <FlatList
         data={aaa}
         renderItem={renderItem}
-        ListHeaderComponent={ListHeaderComponent}
         keyboardDismissMode='on-drag'
         keyExtractor={(_, index) => index.toString()}
         keyboardShouldPersistTaps='always'
