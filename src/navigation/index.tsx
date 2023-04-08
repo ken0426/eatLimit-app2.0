@@ -13,21 +13,7 @@ const RootStackScreen = () => {
       <Stack.Screen
         name={'homeScreen'}
         component={HomeScreen}
-        options={{
-          title: 'ホーム',
-          headerStyle: {
-            backgroundColor: color.mainColor,
-          },
-          headerSearchBarOptions: {
-            placeholder: '検索',
-            cancelButtonText: 'キャンセル',
-          },
-          headerLargeTitleShadowVisible: false,
-          headerTintColor: '#efefef',
-          headerTitleStyle: {
-            fontSize: 24, // 仮実装
-          },
-        }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name={'detailScreen'}
