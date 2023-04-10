@@ -3,6 +3,7 @@ import React from 'react';
 import { color } from '../../styles';
 import DetailScreen from '../components/DetailScreen';
 import HomeScreen from '../components/HomeScreen';
+import SearchScreen from '../components/SearchScreen';
 import { StackPramList } from '../types';
 
 const Stack = createNativeStackNavigator<StackPramList>();
@@ -21,6 +22,11 @@ const RootStackScreen = () => {
         options={{
           headerShown: false,
         }}
+      />
+      <Stack.Screen
+        name={'searchScreen'}
+        component={SearchScreen}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
