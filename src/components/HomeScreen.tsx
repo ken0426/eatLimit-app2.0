@@ -59,7 +59,7 @@ const HomeScreen = ({ navigation }: Props) => {
         <View>
           <Text>本日の日付</Text>
         </View>
-        <View>
+        <View style={{ flexDirection: 'row' }}>
           <Text>aa</Text>
           <Text>ss</Text>
         </View>
