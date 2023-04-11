@@ -45,6 +45,25 @@ const HomeScreen = ({ navigation }: Props) => {
 
   return (
     <View style={{ flex: 1 }}>
+      <View
+        style={{
+          height: 100,
+          paddingHorizontal: 20,
+          paddingTop: 30,
+          backgroundColor: color.mainColor,
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexDirection: 'row',
+        }}
+      >
+        <View>
+          <Text>本日の日付</Text>
+        </View>
+        <View>
+          <Text>aa</Text>
+          <Text>ss</Text>
+        </View>
+      </View>
       <FlatList
         data={data}
         renderItem={renderItem}
