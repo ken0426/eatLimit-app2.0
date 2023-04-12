@@ -68,13 +68,13 @@ const HomeScreen = ({ navigation }: Props) => {
           }}
         >
           <TouchableOpacity onPress={() => navigation.navigate('searchScreen')}>
-            <AntDesign name='search1' size={24} color='black' />
+            <AntDesign name='search1' size={24} color='#ffffff' />
           </TouchableOpacity>
           <TouchableOpacity
             style={{ marginLeft: 15 }}
             onPress={() => Alert.alert('登録画面準備中')}
           >
-            <AntDesign name='pluscircleo' size={24} color='black' />
+            <AntDesign name='pluscircleo' size={24} color='#ffffff' />
           </TouchableOpacity>
         </View>
       </Header>
