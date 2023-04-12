@@ -26,7 +26,7 @@ const RootStackScreen = () => {
       <Stack.Screen
         name={'searchScreen'}
         component={SearchScreen}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, animation: 'none' }}
       />
     </Stack.Navigator>
   );
