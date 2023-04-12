@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  Alert,
   FlatList,
   Keyboard,
   StyleSheet,
@@ -12,6 +13,8 @@ import moment from 'moment';
 import { StackPramList } from '../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { color } from '../../styles';
+import { AntDesign } from '@expo/vector-icons';
+import Header from './molecules/Header';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
@@ -45,7 +48,7 @@ const HomeScreen = ({ navigation }: Props) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <View
+      <Header
         style={{
           height: 100,
           paddingHorizontal: 20,
@@ -57,13 +60,24 @@ const HomeScreen = ({ navigation }: Props) => {
         }}
       >
         <View>
-          <Text>本日の日付</Text>
+          <Text style={{ fontSize: 20, fontWeight: 'bold' }}>本日の日付</Text>
         </View>
-        <View style={{ flexDirection: 'row' }}>
-          <Text>aa</Text>
-          <Text>ss</Text>
+        <View
+          style={{
+            flexDirection: 'row',
+          }}
+        >
+          <TouchableOpacity onPress={() => navigation.navigate('searchScreen')}>
+            <AntDesign name='search1' size={24} color='black' />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{ marginLeft: 15 }}
+            onPress={() => Alert.alert('登録画面準備中')}
+          >
+            <AntDesign name='pluscircleo' size={24} color='black' />
+          </TouchableOpacity>
         </View>
-      </View>
+      </Header>
       <FlatList
         data={data}
         renderItem={renderItem}
