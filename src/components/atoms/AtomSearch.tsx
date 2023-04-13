@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { color } from '../../../styles';
 
-const AtomSearch = ({ navigation, inputRef }: any) => {
+const AtomSearch = ({ navigation }: any) => {
+  const inputRef = useRef<TextInput>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <View style={{ marginRight: 10 }}>

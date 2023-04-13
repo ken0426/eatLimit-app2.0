@@ -1,21 +1,13 @@
-import React, { useEffect, useRef } from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import AtomSearch from './atoms/AtomSearch';
 import MolHeader from './molecules/MolHeader';
 import { color } from '../../styles';
 
 const SearchScreen = ({ navigation }: any) => {
-  const inputRef = useRef<TextInput>(null);
-
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, []);
-
   return (
     <MolHeader style={styles.header}>
-      <AtomSearch navigation={navigation} inputRef={inputRef} />
+      <AtomSearch navigation={navigation} />
     </MolHeader>
   );
 };
