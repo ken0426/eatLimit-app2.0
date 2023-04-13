@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { TextInput, TouchableOpacity, View } from 'react-native';
 import { color } from '../../styles';
 import MolHeader from './molecules/MolHeader';
 import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const SearchScreen = ({ navigation }: any) => {
   const inputRef = useRef<TextInput>(null);
@@ -34,6 +35,7 @@ const SearchScreen = ({ navigation }: any) => {
         <View
           style={{
             width: '100%',
+            height: '100%',
           }}
         >
           <TextInput
@@ -43,11 +45,22 @@ const SearchScreen = ({ navigation }: any) => {
               height: 40,
               fontSize: 20,
               borderRadius: 50,
-              paddingHorizontal: 15,
+              paddingLeft: 30,
+              paddingRight: 20,
               backgroundColor: color.TextInput,
               width: '80%',
             }}
-          ></TextInput>
+          />
+          <View
+            style={{
+              position: 'absolute',
+              justifyContent: 'center',
+              padding: 10,
+              height: 40,
+            }}
+          >
+            <AntDesign name='search1' size={18} color={'#a78b74'} />
+          </View>
         </View>
       </View>
     </MolHeader>
