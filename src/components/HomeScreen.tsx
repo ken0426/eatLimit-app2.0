@@ -14,7 +14,7 @@ import { StackPramList } from '../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { color } from '../../styles';
 import { AntDesign } from '@expo/vector-icons';
-import Header from './molecules/Header';
+import MolHeader from './molecules/MolHeader';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
@@ -48,7 +48,7 @@ const HomeScreen = ({ navigation }: Props) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <Header
+      <MolHeader
         style={{
           height: 100,
           paddingHorizontal: 20,
@@ -77,7 +77,7 @@ const HomeScreen = ({ navigation }: Props) => {
             <AntDesign name='pluscircleo' size={24} color='#ffffff' />
           </TouchableOpacity>
         </View>
-      </Header>
+      </MolHeader>
       <FlatList
         data={data}
         renderItem={renderItem}

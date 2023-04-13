@@ -7,8 +7,8 @@ type HeaderProp = {
   style?: object;
 };
 
-const Header = ({ children, style }: HeaderProp) => {
+const MolHeader = ({ children, style }: HeaderProp) => {
   return <View style={style}>{children}</View>;
 };
 
-export default Header;
+export default MolHeader;

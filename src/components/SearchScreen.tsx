@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { color } from '../../styles';
-import Header from './molecules/Header';
+import MolHeader from './molecules/MolHeader';
 import { Ionicons } from '@expo/vector-icons';
 
 const SearchScreen = ({ navigation }: any) => {
@@ -14,7 +14,7 @@ const SearchScreen = ({ navigation }: any) => {
   }, []);
 
   return (
-    <Header
+    <MolHeader
       style={{
         height: 100,
         paddingHorizontal: 20,
@@ -50,7 +50,7 @@ const SearchScreen = ({ navigation }: any) => {
           ></TextInput>
         </View>
       </View>
-    </Header>
+    </MolHeader>
   );
 };
 
