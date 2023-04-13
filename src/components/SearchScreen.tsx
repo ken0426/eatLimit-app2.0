@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { TextInput } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
 import AtomSearch from './atoms/AtomSearch';
 import MolHeader from './molecules/MolHeader';
 import { color } from '../../styles';
@@ -14,20 +14,22 @@ const SearchScreen = ({ navigation }: any) => {
   }, []);
 
   return (
-    <MolHeader
-      style={{
-        height: 100,
-        paddingHorizontal: 20,
-        paddingTop: 30,
-        backgroundColor: color.mainColor,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexDirection: 'row',
-      }}
-    >
+    <MolHeader style={styles.header}>
       <AtomSearch navigation={navigation} inputRef={inputRef} />
     </MolHeader>
   );
 };
 
 export default SearchScreen;
+
+const styles = StyleSheet.create({
+  header: {
+    height: 100,
+    paddingHorizontal: 20,
+    paddingTop: 30,
+    backgroundColor: color.mainColor,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+});
