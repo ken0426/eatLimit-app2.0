@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import DetailScreen from '../components/DetailScreen';
 import HomeScreen from '../components/HomeScreen';
+import DetailScreen from '../components/DetailScreen';
 import SearchScreen from '../components/SearchScreen';
 import { StackPramList } from '../types';
 
