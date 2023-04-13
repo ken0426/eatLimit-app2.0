@@ -1,11 +1,17 @@
 import React, { useEffect, useRef } from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { color } from '../../styles';
 import { SEARCH_BAR_HIGHT, SEARCH_BAR_TEXT } from '../../contents';
+import { StackPramList } from '../../types';
 
-const AtomSearch = ({ navigation }: any) => {
+type Props = {
+  navigation: StackNavigationProp<StackPramList, 'searchScreen'>;
+};
+
+const AtomSearch = ({ navigation }: Props) => {
   const inputRef = useRef<TextInput>(null);
 
   useEffect(() => {

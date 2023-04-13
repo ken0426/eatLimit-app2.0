@@ -1,10 +1,16 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import AtomSearch from './atoms/AtomSearch';
 import MolHeader from './molecules/MolHeader';
+import { StackPramList } from '../types';
 import { color } from '../styles';
 
-const SearchScreen = ({ navigation }: any) => {
+type Props = {
+  navigation: StackNavigationProp<StackPramList, 'searchScreen'>;
+};
+
+const SearchScreen = ({ navigation }: Props) => {
   return (
     <MolHeader style={styles.header}>
       <AtomSearch navigation={navigation} />
