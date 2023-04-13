@@ -60,7 +60,9 @@ const HomeScreen = ({ navigation }: Props) => {
         }}
       >
         <View>
-          <Text style={{ fontSize: 20, fontWeight: 'bold' }}>本日の日付</Text>
+          <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
+            {`本日${moment().format('YYYY-MM-DD')}`}
+          </Text>
         </View>
         <View
           style={{
