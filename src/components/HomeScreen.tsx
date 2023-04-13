@@ -8,13 +8,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { data } from '../moc';
 import moment from 'moment';
-import { StackPramList } from '../types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { color } from '../../styles';
 import { AntDesign } from '@expo/vector-icons';
+import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
+import { color } from '../../styles';
+import { data } from '../moc';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
