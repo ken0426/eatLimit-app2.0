@@ -13,7 +13,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { AntDesign } from '@expo/vector-icons';
 import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
-import { color } from '../../styles';
+import { color } from '../styles';
 import { data } from '../moc';
 
 type Props = {

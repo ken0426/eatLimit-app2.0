@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import { color } from '../../../styles';
+import { color } from '../../styles';
 import { SEARCH_BAR_HIGHT, SEARCH_BAR_TEXT } from '../../contents';
 
 const AtomSearch = ({ navigation }: any) => {

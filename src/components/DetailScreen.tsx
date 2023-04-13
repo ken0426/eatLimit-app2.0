@@ -11,7 +11,7 @@ import {
   Text,
   Dimensions,
 } from 'react-native';
-import { color } from '../../styles';
+import { color } from '../styles';
 import { WINDOW_HEIGHT } from '../utils';
 
 const DetailScreen = ({ navigation, route }: any) => {

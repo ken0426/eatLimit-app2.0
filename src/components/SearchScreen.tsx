@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import AtomSearch from './atoms/AtomSearch';
 import MolHeader from './molecules/MolHeader';
-import { color } from '../../styles';
+import { color } from '../styles';
 
 const SearchScreen = ({ navigation }: any) => {
   return (

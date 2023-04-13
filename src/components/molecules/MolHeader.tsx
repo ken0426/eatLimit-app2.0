@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { View } from 'react-native';
-import { color } from '../../../styles';
+import { color } from '../../styles';
 
 type HeaderProp = {
   children?: ReactNode;
