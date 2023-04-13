@@ -3,6 +3,7 @@ import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { color } from '../../../styles';
+import { SEARCH_BAR_HIGHT, SEARCH_BAR_TEXT } from '../../contents';
 
 const AtomSearch = ({ navigation }: any) => {
   const inputRef = useRef<TextInput>(null);
@@ -38,8 +39,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textInput: {
-    height: 40,
-    fontSize: 20,
+    height: SEARCH_BAR_HIGHT,
+    fontSize: SEARCH_BAR_TEXT,
     borderRadius: 50,
     paddingLeft: 30,
     paddingRight: 20,
@@ -50,6 +51,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     justifyContent: 'center',
     padding: 10,
-    height: 40,
+    height: SEARCH_BAR_HIGHT,
   },
 });
