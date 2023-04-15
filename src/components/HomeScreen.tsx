@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   contents: {
     height: 90,
     borderBottomWidth: 0.3,
-    borderColor: '#c2c2c2',
+    borderColor: color.borderLine,
     flexDirection: 'row',
   },
   imageArea: {
