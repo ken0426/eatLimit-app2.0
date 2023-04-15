@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import AtomSearch from './atoms/AtomSearch';
 import MolHeader from './molecules/MolHeader';
@@ -12,9 +12,11 @@ type Props = {
 
 const SearchScreen = ({ navigation }: Props) => {
   return (
-    <MolHeader style={styles.header}>
-      <AtomSearch navigation={navigation} />
-    </MolHeader>
+    <View>
+      <MolHeader style={styles.header}>
+        <AtomSearch navigation={navigation} />
+      </MolHeader>
+    </View>
   );
 };
 

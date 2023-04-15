@@ -24,13 +24,13 @@ const AtomSearch = ({ navigation }: Props) => {
     <View style={styles.contents}>
       <View style={{ marginRight: 10 }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name='chevron-back' size={28} color='#ffffff' />
+          <Ionicons name='chevron-back' size={28} color={color.textWhite} />
         </TouchableOpacity>
       </View>
       <View style={{ width: '100%' }}>
         <TextInput ref={inputRef} placeholder='検索' style={styles.textInput} />
         <View style={styles.icon}>
-          <AntDesign name='search1' size={18} color={'#a78b74'} />
+          <AntDesign name='search1' size={18} color={color.searchIcon} />
         </View>
       </View>
     </View>
