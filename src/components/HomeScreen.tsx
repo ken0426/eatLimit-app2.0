@@ -66,7 +66,6 @@ const HomeScreen = ({ navigation }: Props) => {
         keyboardDismissMode='on-drag'
         keyExtractor={(_, index) => index.toString()}
         keyboardShouldPersistTaps='always' // キーボードの閉じる
-        // contentInsetAdjustmentBehavior='automatic'
       />
     </View>
   );
