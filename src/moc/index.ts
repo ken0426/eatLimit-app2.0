@@ -15,7 +15,11 @@ export const data: ApiData = [
     image:
       'https://media.delishkitchen.tv/article/105/kmn81saarcn.jpeg?version=1586229518',
   },
-  { eatName: '納豆' },
+  {
+    eatName: '納豆',
+    image:
+      'https://p1-e6eeae93.imageflux.jp/c!/a=2,w=800,h=800/mkdirect/149d22949040b32ff922.png',
+  },
   { eatName: 'りんご' },
   { eatName: 'バナナ' },
   { eatName: 'いちご' },
