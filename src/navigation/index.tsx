@@ -9,7 +9,11 @@ const Stack = createNativeStackNavigator<StackPramList>();
 
 const RootStackScreen = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        animation: 'slide_from_right',
+      }}
+    >
       <Stack.Screen
         name={'homeScreen'}
         component={HomeScreen}
