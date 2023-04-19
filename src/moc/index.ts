@@ -1,6 +1,6 @@
 import { ApiData } from '../types';
 
-export const data: ApiData = [
+export const data: ApiData[] = [
   {
     eatName: 'たらこ',
     image:
