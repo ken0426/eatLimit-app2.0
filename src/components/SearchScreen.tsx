@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import AtomSearch from './atoms/AtomSearch';
@@ -10,7 +10,7 @@ type Props = {
   navigation: StackNavigationProp<StackPramList, 'searchScreen'>;
 };
 
-const SearchScreen = ({ navigation }: Props) => {
+const SearchScreen: FC<Props> = ({ navigation }) => {
   return (
     <View>
       <MolHeader style={styles.header}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import {
   Alert,
   FlatList,
@@ -20,7 +20,7 @@ type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
 };
 
-const HomeScreen = ({ navigation }: Props) => {
+const HomeScreen: FC<Props> = ({ navigation }) => {
   const [text, setText] = useState<string>('');
 
   const renderItem: ListRenderItem<ApiData> = ({ item, index }) => {
