@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Alert, Text, TouchableOpacity, View } from 'react-native';
 import moment from 'moment';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -10,7 +10,7 @@ type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
 };
 
-const AtomHome = ({ navigation }: Props) => {
+const AtomHome: FC<Props> = ({ navigation }) => {
   return (
     <View
       style={{
