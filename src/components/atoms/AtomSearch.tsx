@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,7 +11,7 @@ type Props = {
   navigation: StackNavigationProp<StackPramList, 'searchScreen'>;
 };
 
-const AtomSearch = ({ navigation }: Props) => {
+const AtomSearch: FC<Props> = ({ navigation }) => {
   const inputRef = useRef<TextInput>(null);
 
   useEffect(() => {
