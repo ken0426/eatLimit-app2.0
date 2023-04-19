@@ -3,13 +3,14 @@ import {
   Alert,
   FlatList,
   Keyboard,
+  ListRenderItem,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { StackPramList } from '../types';
+import { ApiData, StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { color } from '../styles';
 import { data } from '../moc';
@@ -22,7 +23,7 @@ type Props = {
 const HomeScreen = ({ navigation }: Props) => {
   const [text, setText] = useState<string>('');
 
-  const renderItem = ({ item, index }: any) => {
+  const renderItem: ListRenderItem<ApiData> = ({ item, index }) => {
     if (item.eatName.match(text)) {
       return (
         <View key={Number(index)} style={{ backgroundColor: '#ffffff' }}>
