@@ -20,7 +20,11 @@ export const data: ApiData[] = [
     image:
       'https://p1-e6eeae93.imageflux.jp/c!/a=2,w=800,h=800/mkdirect/149d22949040b32ff922.png',
   },
-  { eatName: 'りんご' },
+  {
+    eatName: 'りんご',
+    image:
+      'https://media.delishkitchen.tv/article/742/5mvvi83j09h.jpeg?version=1625233091',
+  },
   { eatName: 'バナナ' },
   { eatName: 'いちご' },
   { eatName: 'アイス' },
