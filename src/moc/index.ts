@@ -25,7 +25,11 @@ export const data: ApiData[] = [
     image:
       'https://media.delishkitchen.tv/article/742/5mvvi83j09h.jpeg?version=1625233091',
   },
-  { eatName: 'バナナ' },
+  {
+    eatName: 'バナナ',
+    image:
+      'https://img.benesse-cms.jp/thank-you/item/image/normal/resized/resized_619b0fdf-b61c-472a-92f8-623153f27c0e.jpg',
+  },
   { eatName: 'いちご' },
   { eatName: 'アイス' },
   { eatName: 'aaa' },
