@@ -11,7 +11,6 @@ import {
   Text,
   Dimensions,
 } from 'react-native';
-import { color } from '../styles';
 import { WINDOW_HEIGHT } from '../utils';
 
 const DetailScreen = ({ navigation, route }: any) => {
@@ -51,12 +50,9 @@ const DetailScreen = ({ navigation, route }: any) => {
     <View style={styles.container}>
       <StatusBar barStyle={'light-content'} />
 
-      <Animated.View
+      {/* <Animated.View
         style={[styles.searchInputContainer, searchInputContainerAnimation]}
-      >
-        {/* <SafeAreaView /> */}
-        {/* <SearchInput editable={false} pointerEvents="none" /> */}
-      </Animated.View>
+      /> */}
       <TouchableOpacity
         style={styles.backButton}
         onPress={() => navigation.goBack()}
@@ -67,28 +63,10 @@ const DetailScreen = ({ navigation, route }: any) => {
         />
       </TouchableOpacity>
       <TouchableOpacity style={styles.searchButton}>
-        {/* <Animated.Image
-          source={require('../images/search.png')}
-          style={[styles.searchIcon]}
-        /> */}
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: 'bold',
-            color: '#ffffff',
-            top: 20,
-          }}
-        >
-          編集
-        </Text>
+        <Text style={styles.rightTextStyle}>編集</Text>
       </TouchableOpacity>
       <Animated.View style={[styles.bannerContainer, bannerAnimation]}>
-        <Image
-          style={styles.banner}
-          source={{
-            uri: item.image,
-          }}
-        />
+        <Image style={styles.banner} source={{ uri: item.image }} />
       </Animated.View>
       <ScrollView
         onScroll={Animated.event(
@@ -105,30 +83,6 @@ const DetailScreen = ({ navigation, route }: any) => {
       >
         <View style={styles.paddingForBanner} />
         <View style={styles.scrollViewContent}>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
           <Text>aaaaaaaaaaaaaaaaa</Text>
           <Text>aaaaaaaaaaaaaaaaa</Text>
           <Text>aaaaaaaaaaaaaaaaa</Text>
@@ -155,6 +109,12 @@ const styles = StyleSheet.create({
     height: 48,
     zIndex: 100,
   },
+  rightTextStyle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    top: 20,
+  },
   searchIcon: {
     width: 32,
     height: 32,
@@ -175,25 +135,26 @@ const styles = StyleSheet.create({
     tintColor: 'white',
     zIndex: 50,
   },
-  searchInputContainer: {
-    position: 'absolute',
-    zIndex: 100,
-    width: '100%',
-    padding: 60,
-    backgroundColor: color.mainColor,
-    ...Platform.select({
-      android: { elevation: 3 },
-      ios: {
-        shadowColor: '#a8bed2',
-        shadowOpacity: 1,
-        shadowRadius: 4,
-        shadowOffset: {
-          width: 2,
-          height: 2,
-        },
-      },
-    }),
-  },
+  // searchInputContainer: {
+  //   position: 'absolute',
+  //   zIndex: 100,
+  //   width: '100%',
+  //   padding: 60,
+  //   backgroundColor: 'rgba(255, 255, 255, 0.5)',
+  //   blurRadius: 100,
+  //   ...Platform.select({
+  //     android: { elevation: 3 },
+  //     ios: {
+  //       shadowColor: '#a8bed2',
+  //       shadowOpacity: 1,
+  //       shadowRadius: 4,
+  //       shadowOffset: {
+  //         width: 2,
+  //         height: 2,
+  //       },
+  //     },
+  //   }),
+  // },
   bannerContainer: {
     position: 'absolute',
     height: BANNER_HEIGHT,
