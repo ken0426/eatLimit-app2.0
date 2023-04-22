@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, ReactNode } from 'react';
 import { View } from 'react-native';
@@ -9,10 +10,10 @@ type HeaderProp = {
   children?: ReactNode;
   style?: object;
   type: string;
-  navigation?: StackNavigationProp<StackPramList>;
 };
 
-const MolHeader: FC<HeaderProp> = ({ children, style, type, navigation }) => {
+const MolHeader: FC<HeaderProp> = ({ children, style, type }) => {
+  const navigation = useNavigation<StackNavigationProp<StackPramList>>();
   switch (type) {
     case 'home':
     case 'search':

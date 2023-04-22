@@ -28,7 +28,7 @@ const DetailScreen: FC<Props> = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <MolHeader type={'detail'} navigation={navigation} />
+      <MolHeader type={'detail'} />
       <Animated.View style={[styles.bannerContainer, bannerAnimation]}>
         <Animated.Image
           blurRadius={blurRadius}

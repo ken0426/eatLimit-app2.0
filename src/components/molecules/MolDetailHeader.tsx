@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { color } from '../../styles';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { StackPramList } from '../../types';
 
-const MolDetailHeader = ({ navigation }: any) => {
+type Props = {
+  navigation: StackNavigationProp<StackPramList>;
+};
+
+const MolDetailHeader: FC<Props> = ({ navigation }) => {
   return (
     <>
       <View style={styles.header}>
