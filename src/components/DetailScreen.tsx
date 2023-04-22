@@ -3,10 +3,10 @@ import {
   StyleSheet,
   View,
   ScrollView,
-  Image,
   Animated,
   TouchableOpacity,
   Text,
+  Image,
 } from 'react-native';
 import { WINDOW_HEIGHT } from '../utils';
 
@@ -33,13 +33,19 @@ const DetailScreen = ({ navigation, route }: any) => {
     ],
   };
 
+  const blurRadius = animatedValue.interpolate({
+    inputRange: [100, 170],
+    outputRange: [0, 10],
+    extrapolate: 'clamp',
+  });
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.backButton}
         onPress={() => navigation.goBack()}
       >
-        <Animated.Image
+        <Image
           source={require('../images/left-arrow.png')}
           style={[styles.backIcon]}
         />
@@ -48,9 +54,9 @@ const DetailScreen = ({ navigation, route }: any) => {
         <Text style={styles.rightTextStyle}>編集</Text>
       </TouchableOpacity>
       <Animated.View style={[styles.bannerContainer, bannerAnimation]}>
-        <Image
-          blurRadius={0}
-          style={styles.banner}
+        <Animated.Image
+          blurRadius={blurRadius}
+          style={[styles.banner]}
           source={{ uri: item.image }}
         />
       </Animated.View>
@@ -82,7 +88,7 @@ const BANNER_HEIGHT = 224;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'red',
+    backgroundColor: '#ffffff',
   },
   searchButton: {
     position: 'absolute',
