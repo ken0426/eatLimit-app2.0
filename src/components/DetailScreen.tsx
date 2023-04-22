@@ -56,16 +56,6 @@ const DetailScreen = ({ navigation, route }: any) => {
       >
         {/* <SafeAreaView /> */}
         {/* <SearchInput editable={false} pointerEvents="none" /> */}
-        <Text
-          style={{
-            width: '100%',
-            backgroundColor: 'red',
-            textAlign: 'center',
-            position: 'absolute',
-          }}
-        >
-          たらこ
-        </Text>
       </Animated.View>
       <TouchableOpacity
         style={styles.backButton}
