@@ -57,6 +57,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
           alignItems: 'center',
           flexDirection: 'row',
         }}
+        type={'home'}
       >
         <AtomHome navigation={navigation} />
       </MolHeader>

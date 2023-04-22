@@ -2,12 +2,12 @@ import { Animated } from 'react-native';
 
 type UseDetailAnimation = {
   animatedValue: Animated.Value;
-  BANNER_HEIGHT: number;
+  BANNER_HEIGHT?: number;
 };
 
 export const useDetailAnimation = ({
   animatedValue,
-  BANNER_HEIGHT,
+  BANNER_HEIGHT = 130,
 }: UseDetailAnimation) => {
   /** 詳細画面を上下にスクロール時した時のアニメーションの処理 */
   const bannerAnimation = {
