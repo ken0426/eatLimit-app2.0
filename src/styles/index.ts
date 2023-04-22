@@ -10,4 +10,6 @@ export const color = {
   textWhite: '#dedede',
   /** 一覧画面の線のカラー */
   borderLine: '#c2c2c2',
+  /** 詳細画面の戻るボタンやハンバーガーメニューの背景色 */
+  detailHeaderButton: 'rgba(45, 45, 45, 0.7)',
 };
