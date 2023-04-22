@@ -107,27 +107,10 @@ const styles = StyleSheet.create({
     height: '100%',
     zIndex: 100,
   },
-  rightTextStyle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#ffffff',
-  },
-  searchIcon: {
-    width: 32,
-    height: 32,
-    tintColor: 'white',
-    zIndex: 50,
-  },
   backButton: {
     height: '100%',
     justifyContent: 'center',
     zIndex: 100,
-  },
-  backIcon: {
-    width: 16,
-    height: 16,
-    tintColor: 'white',
-    zIndex: 50,
   },
   bannerContainer: {
     position: 'absolute',
