@@ -20,30 +20,22 @@ type Props = {
 };
 
 const HomeScreen: FC<Props> = ({ navigation }) => {
-  const [text, setText] = useState<string>('');
-
-  const renderItem: ListRenderItem<ApiData> = ({ item, index }) => {
-    if (item.eatName.match(text)) {
-      return (
-        <View key={Number(index)} style={{ backgroundColor: '#ffffff' }}>
-          <TouchableOpacity
-            style={styles.contents}
-            onPress={() => {
-              navigation.navigate('detailScreen', { item });
-              Keyboard.dismiss();
-            }}
-          >
-            <View style={styles.imageArea}></View>
-            <View>
-              <Text>{item.eatName}</Text>
-            </View>
-          </TouchableOpacity>
+  const renderItem: ListRenderItem<ApiData> = ({ item, index }) => (
+    <View key={Number(index)} style={{ backgroundColor: '#ffffff' }}>
+      <TouchableOpacity
+        style={styles.contents}
+        onPress={() => {
+          navigation.navigate('detailScreen', { item });
+          Keyboard.dismiss();
+        }}
+      >
+        <View style={styles.imageArea}></View>
+        <View>
+          <Text>{item.eatName}</Text>
         </View>
-      );
-    } else {
-      return null;
-    }
-  };
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
     <View style={{ flex: 1 }}>
