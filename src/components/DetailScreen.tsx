@@ -57,7 +57,7 @@ const DetailScreen = ({ navigation, route }: any) => {
       >
         <View style={styles.paddingForBanner} />
         <View style={styles.scrollViewContent}>
-          <Text>aaaaaaaaaaaaaaaaa</Text>
+          <Text>{`これは【${item.eatName}】の詳細画面です`}</Text>
         </View>
       </ScrollView>
     </View>
