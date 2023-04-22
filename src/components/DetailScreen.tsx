@@ -25,29 +25,13 @@ const DetailScreen = ({ navigation, route }: any) => {
 
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          height: 80,
-          flexDirection: 'row',
-          zIndex: 11,
-          justifyContent: 'space-between',
-          paddingHorizontal: 20,
-          width: '100%',
-          top: 30,
-        }}
-      >
+      <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
           activeOpacity={0.8}
           onPress={() => navigation.goBack()}
         >
-          <View
-            style={{
-              backgroundColor: color.detailHeaderButton,
-              borderRadius: 50,
-              width: '100%',
-            }}
-          >
+          <View style={styles.headerButtonBackGround}>
             <Ionicons
               name='chevron-back'
               size={28}
@@ -61,13 +45,7 @@ const DetailScreen = ({ navigation, route }: any) => {
           style={styles.searchButton}
           onPress={() => console.log('編集ボタンです')}
         >
-          <View
-            style={{
-              backgroundColor: color.detailHeaderButton,
-              borderRadius: 50,
-              width: '100%',
-            }}
-          >
+          <View style={styles.headerButtonBackGround}>
             <Entypo
               name='dots-three-horizontal'
               size={28}
@@ -102,6 +80,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffff',
   },
+  header: {
+    height: 80,
+    flexDirection: 'row',
+    zIndex: 11,
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    width: '100%',
+    top: 30,
+  },
   searchButton: {
     justifyContent: 'center',
     height: '100%',
@@ -111,6 +98,11 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     zIndex: 100,
+  },
+  headerButtonBackGround: {
+    backgroundColor: color.detailHeaderButton,
+    borderRadius: 50,
+    width: '100%',
   },
   bannerContainer: {
     position: 'absolute',
