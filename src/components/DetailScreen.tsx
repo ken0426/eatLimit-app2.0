@@ -34,7 +34,7 @@ const DetailScreen = ({ navigation, route }: any) => {
   };
 
   const blurRadius = animatedValue.interpolate({
-    inputRange: [100, 170],
+    inputRange: [120, 170],
     outputRange: [0, 10],
     extrapolate: 'clamp',
   });
