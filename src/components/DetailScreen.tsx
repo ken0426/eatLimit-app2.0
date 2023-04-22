@@ -16,7 +16,7 @@ const DetailScreen = ({ navigation, route }: any) => {
   const { item } = route.params;
   const BANNER_HEIGHT = 100;
 
-  const { bannerAnimation, blurRadius } = useDetailAnimation({
+  const { bannerAnimation, blurRadius, onScroll } = useDetailAnimation({
     animatedValue,
     BANNER_HEIGHT,
   });
@@ -38,23 +38,11 @@ const DetailScreen = ({ navigation, route }: any) => {
       <Animated.View style={[styles.bannerContainer, bannerAnimation]}>
         <Animated.Image
           blurRadius={blurRadius}
-          style={[styles.banner]}
+          style={styles.banner}
           source={{ uri: item.image }}
         />
       </Animated.View>
-      <ScrollView
-        onScroll={Animated.event(
-          [
-            {
-              nativeEvent: {
-                contentOffset: { y: animatedValue },
-              },
-            },
-          ],
-          { useNativeDriver: false }
-        )}
-        scrollEventThrottle={16}
-      >
+      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         <View style={styles.paddingForBanner} />
         <View style={styles.scrollViewContent}>
           <Text>{`これは【${item.eatName}】の詳細画面です`}</Text>
@@ -114,7 +102,7 @@ const styles = StyleSheet.create({
   },
   banner: {
     width: '100%',
-    height: '100%',
+    height: BANNER_HEIGHT,
   },
   paddingForBanner: {
     height: BANNER_HEIGHT,
