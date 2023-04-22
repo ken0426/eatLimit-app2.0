@@ -5,6 +5,6 @@ export type ApiData = {
 
 export type StackPramList = {
   homeScreen: undefined;
-  detailScreen: undefined | { item: ApiData };
+  detailScreen: { item: ApiData };
   searchScreen: undefined;
 };

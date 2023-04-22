@@ -14,13 +14,21 @@ import { WINDOW_HEIGHT } from '../utils';
 import { color } from '../styles';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ApiData, StackPramList } from '../types';
+import { RouteProp } from '@react-navigation/native';
+
+type RouteItem = {
+  params: {
+    item: ApiData;
+  };
+};
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'detailScreen'>;
-  route: { params: { item: ApiData } };
+  route: RouteProp<StackPramList, 'detailScreen'> & RouteItem;
 };
 
 const DetailScreen: FC<Props> = ({ navigation, route }) => {
+  const { item } = route.params;
   const animatedValue = useRef(new Animated.Value(0)).current;
   const { item } = route.params;
   const BANNER_HEIGHT = 130;
