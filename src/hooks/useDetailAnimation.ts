@@ -22,7 +22,7 @@ export const useDetailAnimation = ({
       {
         scale: animatedValue.interpolate({
           inputRange: [-BANNER_HEIGHT, 0],
-          outputRange: [2, 1],
+          outputRange: [1.5, 1],
           extrapolate: 'clamp',
         }),
       },
