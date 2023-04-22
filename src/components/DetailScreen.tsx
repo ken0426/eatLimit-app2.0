@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { FC, useRef } from 'react';
 import {
   StyleSheet,
   View,
@@ -12,8 +12,15 @@ import { Entypo } from '@expo/vector-icons';
 import { useDetailAnimation } from '../hooks/useDetailAnimation';
 import { WINDOW_HEIGHT } from '../utils';
 import { color } from '../styles';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { ApiData, StackPramList } from '../types';
 
-const DetailScreen = ({ navigation, route }: any) => {
+type Props = {
+  navigation: StackNavigationProp<StackPramList, 'detailScreen'>;
+  route: { params: { item: ApiData } };
+};
+
+const DetailScreen: FC<Props> = ({ navigation, route }) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
   const { item } = route.params;
   const BANNER_HEIGHT = 130;
