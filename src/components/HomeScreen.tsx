@@ -63,9 +63,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
       <FlatList
         data={data}
         renderItem={renderItem}
-        keyboardDismissMode='on-drag'
         keyExtractor={(_, index) => index.toString()}
-        keyboardShouldPersistTaps='always' // キーボードの閉じる
       />
     </View>
   );
