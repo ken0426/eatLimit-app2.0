@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
 import {
-  Alert,
   FlatList,
   Keyboard,
   ListRenderItem,
