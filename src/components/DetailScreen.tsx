@@ -29,7 +29,7 @@ const DetailScreen = ({ navigation, route }: any) => {
       >
         <Image
           source={require('../images/left-arrow.png')}
-          style={[styles.backIcon]}
+          style={styles.backIcon}
         />
       </TouchableOpacity>
       <TouchableOpacity style={styles.searchButton}>
