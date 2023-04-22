@@ -1,12 +1,12 @@
 import React, { FC, useRef } from 'react';
 import { StyleSheet, View, ScrollView, Animated, Text } from 'react-native';
-
-import { useDetailAnimation } from '../hooks/useDetailAnimation';
-import { WINDOW_HEIGHT } from '../utils';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { ApiData, StackPramList } from '../types';
-import MolHeader from './molecules/MolHeader';
 import { RouteProp } from '@react-navigation/native';
+import { WINDOW_HEIGHT } from '../utils';
+import MolHeader from './molecules/MolHeader';
+import { ApiData, StackPramList } from '../types';
+import { DETAIL_IMAGE_HEIGHT } from '../contents';
+import { useDetailAnimation } from '../hooks/useDetailAnimation';
 
 type RouteItem = {
   params: {
@@ -22,12 +22,9 @@ type Props = {
 const DetailScreen: FC<Props> = ({ navigation, route }) => {
   const { item } = route.params;
   const animatedValue = useRef(new Animated.Value(0)).current;
-  const BANNER_HEIGHT = 130;
 
-  const { bannerAnimation, blurRadius, onScroll } = useDetailAnimation({
-    animatedValue,
-    BANNER_HEIGHT,
-  });
+  const { bannerAnimation, blurRadius, onScroll } =
+    useDetailAnimation(animatedValue);
 
   return (
     <View style={styles.container}>
@@ -51,7 +48,6 @@ const DetailScreen: FC<Props> = ({ navigation, route }) => {
 
 export default DetailScreen;
 
-const DETAIL_IMAGE_HEIGHT = 224;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
