@@ -13,19 +13,20 @@ import { WINDOW_HEIGHT } from '../utils';
 const DetailScreen = ({ navigation, route }: any) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
   const { item } = route.params;
+  const BANNER_HEIGHT = 100;
 
   const bannerAnimation = {
     transform: [
       {
         translateY: animatedValue.interpolate({
-          inputRange: [0, 100],
-          outputRange: [0, -100],
+          inputRange: [0, BANNER_HEIGHT],
+          outputRange: [0, -BANNER_HEIGHT],
           extrapolate: 'clamp',
         }),
       },
       {
         scale: animatedValue.interpolate({
-          inputRange: [-100, 0],
+          inputRange: [-BANNER_HEIGHT, 0],
           outputRange: [2, 1],
           extrapolate: 'clamp',
         }),
@@ -34,7 +35,7 @@ const DetailScreen = ({ navigation, route }: any) => {
   };
 
   const blurRadius = animatedValue.interpolate({
-    inputRange: [120, 170],
+    inputRange: [BANNER_HEIGHT + 20, BANNER_HEIGHT + 70],
     outputRange: [0, 10],
     extrapolate: 'clamp',
   });
