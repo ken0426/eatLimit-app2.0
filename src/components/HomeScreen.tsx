@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import {
   FlatList,
+  Image,
   Keyboard,
   ListRenderItem,
   StyleSheet,
@@ -29,7 +30,16 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
           Keyboard.dismiss();
         }}
       >
-        <View style={styles.imageArea}></View>
+        <View style={styles.imageArea}>
+          <Image
+            style={{ width: '90%', height: '90%' }}
+            source={{
+              uri:
+                item.image ??
+                'https://bpbd.sumbarprov.go.id/images/noimage.png',
+            }}
+          />
+        </View>
         <View>
           <Text>{item.eatName}</Text>
         </View>
@@ -74,7 +84,8 @@ const styles = StyleSheet.create({
   imageArea: {
     width: 130,
     height: '100%',
-    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   dateArea: {
     height: 40,
