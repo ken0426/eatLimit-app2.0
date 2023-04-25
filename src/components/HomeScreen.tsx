@@ -36,6 +36,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
             source={{
               uri:
                 item.image ??
+                // 最終的にここはmodule化したい
                 'https://bpbd.sumbarprov.go.id/images/noimage.png',
             }}
           />
