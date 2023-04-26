@@ -1,6 +1,7 @@
 export type ApiData = {
   eatName: string;
   image?: string;
+  data: string;
 };
 
 export type StackPramList = {
