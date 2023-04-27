@@ -36,7 +36,11 @@ export const data: ApiData[] = [
       'https://img.benesse-cms.jp/thank-you/item/image/normal/resized/resized_619b0fdf-b61c-472a-92f8-623153f27c0e.jpg',
     data: '2023-04-26',
   },
-  { eatName: 'いちご', data: '2023-04-26' },
+  {
+    eatName: 'いちご',
+    image: 'https://life.ja-group.jp/upload/food/vegetable/main/27_1.jpg',
+    data: '2023-04-26',
+  },
   { eatName: 'アイス', data: '2023-04-26' },
   { eatName: 'aaa', data: '2023-04-26' },
   { eatName: 'aaa', data: '2023-04-26' },
