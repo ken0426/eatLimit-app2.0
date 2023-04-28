@@ -46,7 +46,9 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
           <View>
             <Text>{item.eatName}</Text>
           </View>
-          <View></View>
+          <View>
+            <Text>{item.data}</Text>
+          </View>
         </View>
       </TouchableOpacity>
     </View>
