@@ -1,5 +1,7 @@
 import { ApiData } from '../types';
 
+export const noImage = 'https://bpbd.sumbarprov.go.id/images/noimage.png';
+
 export const data: ApiData[] = [
   {
     eatName: 'たらこ',

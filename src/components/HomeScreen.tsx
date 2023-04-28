@@ -13,7 +13,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { ApiData, StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { color } from '../styles';
-import { data } from '../moc';
+import { data, noImage } from '../moc';
 import AtomHome from './atoms/AtomHome';
 
 type Props = {
@@ -37,7 +37,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
               uri:
                 item.image ??
                 // 最終的にここはmodule化したい
-                'https://bpbd.sumbarprov.go.id/images/noimage.png',
+                noImage,
             }}
           />
         </View>
