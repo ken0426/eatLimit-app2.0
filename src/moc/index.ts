@@ -41,7 +41,12 @@ export const data: ApiData[] = [
     image: 'https://life.ja-group.jp/upload/food/vegetable/main/27_1.jpg',
     data: '2023-04-26',
   },
-  { eatName: 'アイス', data: '2023-04-26' },
+  {
+    eatName: 'アイス',
+    image:
+      'https://www.haagen-dazs.co.jp/products/uploads/images/20190601_08.png',
+    data: '2023-04-26',
+  },
   { eatName: 'aaa', data: '2023-04-26' },
   { eatName: 'aaa', data: '2023-04-26' },
   { eatName: 'aaa', data: '2023-04-26' },
