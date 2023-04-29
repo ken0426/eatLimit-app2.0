@@ -14,4 +14,6 @@ export const color = {
   detailHeaderButton: 'rgba(45, 45, 45, 0.7)',
   /** アプリで使用するメインのテキストカラー */
   textColor: '#373737',
+  /** 詳細画面で使用するボーダーの線の色 */
+  detailBorderColor: '#696969',
 };
