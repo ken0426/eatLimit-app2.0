@@ -35,7 +35,7 @@ const RootStackScreen = () => {
       <Stack.Screen
         name={'registerScreen'}
         component={RegisterScreen}
-        // options={{ headerShown: false, animation: 'none' }}
+        options={{ headerShown: false, presentation: 'fullScreenModal' }}
       />
     </Stack.Navigator>
   );

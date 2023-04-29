@@ -17,6 +17,7 @@ const MolHeader: FC<HeaderProp> = ({ children, style, type }) => {
   switch (type) {
     case 'home':
     case 'search':
+    case 'register':
       return <View style={style}>{children}</View>;
     case 'detail':
       return <MolDetailHeader navigation={navigation} />;
