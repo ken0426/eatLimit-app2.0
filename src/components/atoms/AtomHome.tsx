@@ -30,7 +30,7 @@ const AtomHome: FC<Props> = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={{ marginLeft: 15 }}
-          onPress={() => Alert.alert('登録画面準備中')}
+          onPress={() => navigation.navigate('registerScreen')}
         >
           <AntDesign name='pluscircleo' size={24} color={color.textWhite} />
         </TouchableOpacity>
