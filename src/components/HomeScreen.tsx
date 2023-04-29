@@ -33,12 +33,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
         <View style={styles.imageArea}>
           <Image
             style={{ width: '90%', height: '90%' }}
-            source={{
-              uri:
-                item.image ??
-                // 最終的にここはmodule化したい
-                noImage,
-            }}
+            source={{ uri: item.image ?? noImage }}
           />
         </View>
         <View style={styles.textArea}>
