@@ -10,6 +10,7 @@ import {
   View,
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { MaterialIcons } from '@expo/vector-icons';
 import { ApiData, StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { color } from '../styles';
@@ -41,14 +42,12 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
             }}
           />
         </View>
-        <View>
-          <View></View>
-          <View>
-            <Text>{item.eatName}</Text>
-          </View>
-          <View>
-            <Text>{item.data}</Text>
-          </View>
+        <View style={styles.textArea}>
+          <Text style={{ fontSize: 20 }}>{item.eatName}</Text>
+          <Text style={{ fontSize: 15 }}>{item.data}</Text>
+        </View>
+        <View style={styles.arrow}>
+          <MaterialIcons name='keyboard-arrow-right' size={24} color='black' />
         </View>
       </TouchableOpacity>
     </View>
@@ -104,5 +103,17 @@ const styles = StyleSheet.create({
   iconArea: {
     position: 'absolute',
     right: 10,
+  },
+  textArea: {
+    justifyContent: 'space-around',
+    marginVertical: 4,
+  },
+  arrow: {
+    height: '100%',
+    width: 30,
+    right: 0,
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
