@@ -24,7 +24,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
   const renderItem: ListRenderItem<ApiData> = ({ item, index }) => (
     <View key={Number(index)} style={{ backgroundColor: '#ffffff' }}>
       <TouchableOpacity
-        style={styles.contents}
+        style={[styles.contents, index === 0 && { borderTopWidth: 0.3 }]}
         onPress={() => {
           navigation.navigate('detailScreen', { item });
         }}
