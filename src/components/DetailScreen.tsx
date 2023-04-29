@@ -39,7 +39,7 @@ const DetailScreen: FC<Props> = ({ navigation, route }) => {
       <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         <View style={styles.paddingForBanner} />
         <View style={styles.scrollViewContent}>
-          <Text>{`これは【${item.eatName}】の詳細画面です`}</Text>
+          <Text>{item.eatName}</Text>
         </View>
       </ScrollView>
     </View>
