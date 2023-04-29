@@ -7,7 +7,6 @@ import MolHeader from './molecules/MolHeader';
 import { ApiData, StackPramList } from '../types';
 import { DETAIL_IMAGE_HEIGHT } from '../contents';
 import { useDetailAnimation } from '../hooks/useDetailAnimation';
-import { color } from '../styles';
 import AtomSingleItem from './atoms/AtomSingleItem';
 
 type RouteItem = {
