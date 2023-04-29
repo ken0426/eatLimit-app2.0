@@ -28,7 +28,6 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
         style={styles.contents}
         onPress={() => {
           navigation.navigate('detailScreen', { item });
-          Keyboard.dismiss();
         }}
       >
         <View style={styles.imageArea}>
