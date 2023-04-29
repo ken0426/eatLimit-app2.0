@@ -8,6 +8,7 @@ import { ApiData, StackPramList } from '../types';
 import { DETAIL_IMAGE_HEIGHT } from '../contents';
 import { useDetailAnimation } from '../hooks/useDetailAnimation';
 import { color } from '../styles';
+import AtomSingleItem from './atoms/AtomSingleItem';
 
 type RouteItem = {
   params: {
@@ -40,22 +41,9 @@ const DetailScreen: FC<Props> = ({ navigation, route }) => {
       <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         <View style={styles.paddingForBanner} />
         <View style={styles.scrollViewContent}>
-          <View style={styles.itemArea}>
-            <Text style={styles.label}>商品名</Text>
-            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
-              {item.eatName}
-            </Text>
-          </View>
-          <View style={styles.itemArea}>
-            <Text style={styles.label}>消費期限</Text>
-            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
-              {item.date}
-            </Text>
-          </View>
-          <View style={styles.itemArea}>
-            <Text style={styles.label}>保存方法</Text>
-            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>冷蔵</Text>
-          </View>
+          <AtomSingleItem value={item.eatName} label={'商品名'} />
+          <AtomSingleItem value={item.date} label={'消費期限'} />
+          <AtomSingleItem value={'冷蔵'} label={'保存方法'} />
         </View>
       </ScrollView>
     </View>
@@ -86,18 +74,5 @@ const styles = StyleSheet.create({
   banner: {
     width: '100%',
     height: DETAIL_IMAGE_HEIGHT,
-  },
-  itemArea: {
-    height: 50,
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    borderBottomWidth: 0.5,
-    borderBottomColor: color.detailBorderColor,
-  },
-  label: {
-    width: '40%',
-    fontSize: 20,
   },
 });
