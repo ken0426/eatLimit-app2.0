@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import {
   FlatList,
   Image,
-  Keyboard,
   ListRenderItem,
   StyleSheet,
   Text,
@@ -37,11 +36,15 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
           />
         </View>
         <View style={styles.textArea}>
-          <Text style={{ fontSize: 20 }}>{item.eatName}</Text>
-          <Text style={{ fontSize: 15 }}>{item.data}</Text>
+          <Text style={styles.eatName}>{item.eatName}</Text>
+          <Text style={styles.date}>{item.date}</Text>
         </View>
         <View style={styles.arrow}>
-          <MaterialIcons name='keyboard-arrow-right' size={24} color='black' />
+          <MaterialIcons
+            name='keyboard-arrow-right'
+            size={24}
+            color={color.textColor}
+          />
         </View>
       </TouchableOpacity>
     </View>
@@ -109,5 +112,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  eatName: {
+    fontSize: 20,
+  },
+  date: {
+    fontSize: 15,
   },
 });
