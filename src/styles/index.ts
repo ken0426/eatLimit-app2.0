@@ -12,4 +12,6 @@ export const color = {
   borderLine: '#c2c2c2',
   /** 詳細画面の戻るボタンやハンバーガーメニューの背景色 */
   detailHeaderButton: 'rgba(45, 45, 45, 0.7)',
+  /** アプリで使用するメインのテキストカラー */
+  textColor: '#373737',
 };
