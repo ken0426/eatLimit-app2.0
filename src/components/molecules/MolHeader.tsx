@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { color } from '../../styles';
 import { StackPramList } from '../../types';
 import MolDetailHeader from './MolDetailHeader';
+import { StyleSheet } from 'react-native';
 
 type HeaderProp = {
   children?: ReactNode;
@@ -16,7 +17,7 @@ const MolHeader: FC<HeaderProp> = ({ children, style, type }) => {
   const navigation = useNavigation<StackNavigationProp<StackPramList>>();
   switch (type) {
     case 'default':
-      return <View style={style}>{children}</View>;
+      return <View style={[style, styles.default]}>{children}</View>;
     case 'detail':
       return <MolDetailHeader navigation={navigation} />;
     default:
@@ -25,3 +26,10 @@ const MolHeader: FC<HeaderProp> = ({ children, style, type }) => {
 };
 
 export default MolHeader;
+
+const styles = StyleSheet.create({
+  default: {
+    borderBottomColor: '#a1a1a1',
+    borderBottomWidth: 0.5,
+  },
+});

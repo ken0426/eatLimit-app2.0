@@ -1,13 +1,13 @@
 /** グローバルで使用する色 */
 export const color = {
   /** アプリのメインカラー */
-  mainColor: '#d9b89b', // rgba: 217, 184, 155
+  mainColor: '#f9f9f9', // rgba: 217, 184, 155
   /** 検索バーのテキストカラー */
-  TextInput: '#cbaa8d',
+  TextInput: '#e0e0e0',
   /** 検索バーの虫眼鏡のカラー */
-  searchIcon: '#a78b74',
+  searchIcon: '#c6c6c6',
   /** アプリのテキスト入力やアイコンのカラー */
-  textWhite: '#dedede',
+  textWhite: '#434343',
   /** 一覧画面の線のカラー */
   borderLine: '#c2c2c2',
   /** 詳細画面の戻るボタンやハンバーガーメニューの背景色 */

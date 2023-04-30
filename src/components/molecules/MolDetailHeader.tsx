@@ -23,7 +23,7 @@ const MolDetailHeader: FC<Props> = ({ navigation }) => {
             <Ionicons
               name='chevron-back'
               size={28}
-              color={color.textWhite}
+              color={'#ffffff'}
               style={{ right: 1, padding: 2 }}
             />
           </View>
@@ -37,7 +37,7 @@ const MolDetailHeader: FC<Props> = ({ navigation }) => {
             <Entypo
               name='dots-three-horizontal'
               size={28}
-              color={color.textWhite}
+              color={'#ffffff'}
               style={{ padding: 2 }}
             />
           </View>
