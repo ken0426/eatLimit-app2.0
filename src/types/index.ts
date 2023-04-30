@@ -9,4 +9,5 @@ export type StackPramList = {
   detailScreen: { item: ApiData };
   searchScreen: undefined;
   registerScreen: undefined;
+  singleSelectScreen: undefined;
 };

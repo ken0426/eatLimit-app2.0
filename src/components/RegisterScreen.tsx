@@ -6,8 +6,8 @@ import MolHeader from './molecules/MolHeader';
 import { color } from '../styles';
 import AtomRegister from './atoms/AtomRegister';
 import AtomFileSelect from './atoms/AtomFileSelect';
-import AtomSingleInput from './atoms/AtomSIngleInput';
 import AtomSingleSelect from './atoms/AtomSingleSelect';
+import AtomSingleInput from './atoms/AtomSingleInput';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
@@ -24,7 +24,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
         <AtomFileSelect />
         <View style={styles.inputForm}>
           <AtomSingleInput label={'商品名'} />
-          <AtomSingleSelect label={'保存方法'} />
+          <AtomSingleSelect label={'保存方法'} navigation={navigation} />
         </View>
       </View>
     </View>
