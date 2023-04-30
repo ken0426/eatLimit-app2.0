@@ -15,7 +15,7 @@ const AtomSingleSelect: FC<Props> = ({ label, onPress }) => {
     <TouchableOpacity onPress={onPress} style={styles.itemArea}>
       <Text style={styles.label}>{`${label}：`}</Text>
       <View style={{ flexDirection: 'row', flex: 1 }}>
-        <Text style={styles.textValue}>冷蔵</Text>
+        <Text style={styles.textValue}></Text>
         <View>
           <MaterialIcons
             name='keyboard-arrow-down'
