@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { StackPramList } from '../../types';
 import { color } from '../../styles';
 
@@ -17,9 +17,9 @@ const AtomRegister: FC<Props> = ({ navigation }) => {
         style={{ width: '33%' }}
         onPress={() => navigation.goBack()}
       >
-        <Ionicons
-          name='chevron-back'
-          size={20}
+        <AntDesign
+          name='close'
+          size={24}
           color={color.textWhite}
           style={{ right: 1, padding: 2 }}
         />
@@ -27,8 +27,11 @@ const AtomRegister: FC<Props> = ({ navigation }) => {
       <View style={{ width: '33%' }}>
         <Text style={styles.headerText}>登録画面</Text>
       </View>
-      <TouchableOpacity style={{ width: '33%', alignItems: 'flex-end' }}>
-        <AntDesign name='plus' size={20} color={color.textWhite} />
+      <TouchableOpacity
+        onPress={() => Alert.alert('登録ボタン準備中')}
+        style={{ width: '33%', alignItems: 'flex-end' }}
+      >
+        <FontAwesome name='pencil-square-o' size={24} color={color.textWhite} />
       </TouchableOpacity>
     </View>
   );
