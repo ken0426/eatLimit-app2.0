@@ -12,12 +12,14 @@ const AtomFileSelect = () => {
       >
         ファイルを選択
       </Text>
-      <TouchableOpacity onPress={() => Alert.alert('ヒントのボタン')}>
+      <TouchableOpacity
+        style={{ position: 'absolute', right: '30%' }}
+        onPress={() => Alert.alert('ヒントのボタン')}
+      >
         <AntDesign
           name='infocirlceo'
           size={17}
           color={color.detailBorderColor}
-          style={{ paddingLeft: 5 }}
         />
       </TouchableOpacity>
     </View>
@@ -37,7 +39,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   fileSelectText: {
-    fontSize: 15,
+    fontSize: 18,
     color: '#44d2d4',
     paddingRight: 5,
   },
