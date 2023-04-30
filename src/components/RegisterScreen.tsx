@@ -16,7 +16,7 @@ type Props = {
 const RegisterScreen: FC<Props> = ({ navigation }) => {
   return (
     <View style={{ backgroundColor: '#ffffff' }}>
-      <MolHeader style={styles.header} type={'register'}>
+      <MolHeader style={styles.header} type={'default'}>
         <AtomRegister navigation={navigation} />
       </MolHeader>
 

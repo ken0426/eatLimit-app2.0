@@ -9,15 +9,13 @@ import MolDetailHeader from './MolDetailHeader';
 type HeaderProp = {
   children?: ReactNode;
   style?: object;
-  type: string;
+  type: 'default' | 'detail';
 };
 
 const MolHeader: FC<HeaderProp> = ({ children, style, type }) => {
   const navigation = useNavigation<StackNavigationProp<StackPramList>>();
   switch (type) {
-    case 'home':
-    case 'search':
-    case 'register':
+    case 'default':
       return <View style={style}>{children}</View>;
     case 'detail':
       return <MolDetailHeader navigation={navigation} />;

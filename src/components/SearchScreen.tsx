@@ -13,7 +13,7 @@ type Props = {
 const SearchScreen: FC<Props> = ({ navigation }) => {
   return (
     <View>
-      <MolHeader style={styles.header} type={'search'}>
+      <MolHeader style={styles.header} type={'default'}>
         <AtomSearch navigation={navigation} />
       </MolHeader>
     </View>
