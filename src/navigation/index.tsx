@@ -41,7 +41,7 @@ const RootStackScreen = () => {
       <Stack.Screen
         name={'singleSelectScreen'}
         component={SingleSelectScreen}
-        options={{ presentation: 'fullScreenModal' }}
+        options={{ headerShown: false, presentation: 'fullScreenModal' }}
       />
     </Stack.Navigator>
   );
