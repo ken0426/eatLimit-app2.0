@@ -7,6 +7,7 @@ import { color } from '../styles';
 import AtomRegister from './atoms/AtomRegister';
 import AtomFileSelect from './atoms/AtomFileSelect';
 import AtomSingleInput from './atoms/AtomSIngleInput';
+import AtomSingleSelect from './atoms/AtomSingleSelect';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
@@ -14,15 +15,16 @@ type Props = {
 
 const RegisterScreen: FC<Props> = ({ navigation }) => {
   return (
-    <View>
+    <View style={{ backgroundColor: '#ffffff' }}>
       <MolHeader style={styles.header} type={'register'}>
         <AtomRegister navigation={navigation} />
       </MolHeader>
 
       <View style={{ width: '100%', height: '100%' }}>
         <AtomFileSelect />
-        <View style={{ padding: 10 }}>
+        <View style={styles.inputForm}>
           <AtomSingleInput label={'商品名'} />
+          <AtomSingleSelect label={'保存方法'} />
         </View>
       </View>
     </View>
@@ -40,5 +42,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+  },
+  inputForm: {
+    paddingHorizontal: 10,
+    paddingBottom: 10,
   },
 });
