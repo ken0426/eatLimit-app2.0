@@ -2,14 +2,20 @@ import React, { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { color } from '../../styles';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { StackPramList } from '../../types';
 
 type Props = {
   label: string;
+  navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
 };
 
-const AtomSingleSelect: FC<Props> = ({ label }) => {
+const AtomSingleSelect: FC<Props> = ({ label, navigation }) => {
   return (
-    <TouchableOpacity style={styles.itemArea}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('singleSelectScreen')}
+      style={styles.itemArea}
+    >
       <Text style={styles.label}>{`${label}：`}</Text>
       <View style={{ flexDirection: 'row', flex: 1 }}>
         <Text style={styles.textValue}>冷蔵</Text>
