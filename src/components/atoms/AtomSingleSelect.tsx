@@ -21,7 +21,7 @@ const AtomSingleSelect: FC<Props> = ({ label, navigation }) => {
         <Text style={styles.textValue}>冷蔵</Text>
         <View>
           <MaterialIcons
-            name='keyboard-arrow-right'
+            name='keyboard-arrow-down'
             size={20}
             color={color.textColor}
           />
