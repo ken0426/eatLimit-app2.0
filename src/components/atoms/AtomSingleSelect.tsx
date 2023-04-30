@@ -7,15 +7,12 @@ import { StackPramList } from '../../types';
 
 type Props = {
   label: string;
-  navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
+  onPress: () => void;
 };
 
-const AtomSingleSelect: FC<Props> = ({ label, navigation }) => {
+const AtomSingleSelect: FC<Props> = ({ label, onPress }) => {
   return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate('singleSelectScreen')}
-      style={styles.itemArea}
-    >
+    <TouchableOpacity onPress={onPress} style={styles.itemArea}>
       <Text style={styles.label}>{`${label}：`}</Text>
       <View style={{ flexDirection: 'row', flex: 1 }}>
         <Text style={styles.textValue}>冷蔵</Text>

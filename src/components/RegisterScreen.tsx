@@ -24,7 +24,10 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
         <AtomFileSelect />
         <View style={styles.inputForm}>
           <AtomSingleInput label={'商品名'} />
-          <AtomSingleSelect label={'保存方法'} navigation={navigation} />
+          <AtomSingleSelect
+            label={'保存方法'}
+            onPress={() => navigation.navigate('singleSelectScreen')}
+          />
         </View>
       </View>
     </View>
