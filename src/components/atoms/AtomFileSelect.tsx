@@ -6,13 +6,14 @@ import { color } from '../../styles';
 const AtomFileSelect = () => {
   return (
     <View style={styles.fileSelectArea}>
-      <Text
-        onPress={() => Alert.alert('ファイルを選択するボタン')}
-        style={styles.fileSelectText}
-      >
-        ファイルを選択
-      </Text>
       <TouchableOpacity
+        activeOpacity={1}
+        onPress={() => Alert.alert('ファイルを選択するボタン')}
+      >
+        <Text style={styles.fileSelectText}>ファイルを選択</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={1}
         style={{ position: 'absolute', right: '30%' }}
         onPress={() => Alert.alert('ヒントのボタン')}
       >

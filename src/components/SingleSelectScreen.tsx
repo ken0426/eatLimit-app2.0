@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { color } from '../styles';
@@ -19,9 +19,13 @@ const SingleSelectScreen: FC<Props> = ({ navigation }) => {
             alignItems: 'center',
           }}
         >
-          <Text style={styles.goBack} onPress={() => navigation.goBack()}>
-            戻る
-          </Text>
+          <TouchableOpacity
+            activeOpacity={1}
+            style={{ position: 'absolute', left: 0 }}
+            onPress={() => navigation.goBack()}
+          >
+            <Text style={styles.goBack}>戻る</Text>
+          </TouchableOpacity>
           <Text style={styles.title}>保存方法</Text>
         </View>
       </MolHeader>
@@ -44,8 +48,6 @@ const styles = StyleSheet.create({
   goBack: {
     fontSize: 24,
     fontWeight: 'bold',
-    position: 'absolute',
-    left: 0,
     color: color.blue,
   },
   title: {
