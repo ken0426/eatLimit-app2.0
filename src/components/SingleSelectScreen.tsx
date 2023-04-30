@@ -46,11 +46,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     position: 'absolute',
     left: 0,
-    color: color.textWhite,
+    color: color.mainTextColor,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: color.textWhite,
+    color: color.mainTextColor,
   },
 });

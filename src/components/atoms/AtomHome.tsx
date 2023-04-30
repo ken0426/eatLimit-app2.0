@@ -26,13 +26,13 @@ const AtomHome: FC<Props> = ({ navigation }) => {
       </View>
       <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity onPress={() => navigation.navigate('searchScreen')}>
-          <AntDesign name='search1' size={24} color={color.textWhite} />
+          <AntDesign name='search1' size={24} color={color.mainTextColor} />
         </TouchableOpacity>
         <TouchableOpacity
           style={{ marginLeft: 15 }}
           onPress={() => navigation.navigate('registerScreen')}
         >
-          <AntDesign name='pluscircleo' size={24} color={color.textWhite} />
+          <AntDesign name='pluscircleo' size={24} color={color.mainTextColor} />
         </TouchableOpacity>
       </View>
     </View>

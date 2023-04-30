@@ -24,7 +24,7 @@ const AtomSearch: FC<Props> = ({ navigation }) => {
     <View style={styles.contents}>
       <View style={{ marginRight: 10 }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name='chevron-back' size={28} color={color.textWhite} />
+          <Ionicons name='chevron-back' size={28} color={color.mainTextColor} />
         </TouchableOpacity>
       </View>
       <View style={{ width: '100%' }}>
