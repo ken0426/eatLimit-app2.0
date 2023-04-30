@@ -6,7 +6,7 @@ type Props = {
   label: string;
 };
 
-const AtomSIngleInput: FC<Props> = ({ label }) => {
+const AtomSingleInput: FC<Props> = ({ label }) => {
   return (
     <View style={styles.itemArea}>
       <Text style={styles.label}>{`${label}：`}</Text>
@@ -15,7 +15,7 @@ const AtomSIngleInput: FC<Props> = ({ label }) => {
   );
 };
 
-export default AtomSIngleInput;
+export default AtomSingleInput;
 
 const styles = StyleSheet.create({
   itemArea: {
