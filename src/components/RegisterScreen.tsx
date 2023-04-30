@@ -22,7 +22,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
       <View style={{ width: '100%', height: '100%' }}>
         <AtomFileSelect />
         <View style={{ padding: 10 }}>
-          <AtomSIngleInput />
+          <AtomSIngleInput label={'商品名'} />
         </View>
       </View>
     </View>
