@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     position: 'absolute',
     left: 0,
-    color: color.mainTextColor,
+    color: color.blue,
   },
   title: {
     fontSize: 24,

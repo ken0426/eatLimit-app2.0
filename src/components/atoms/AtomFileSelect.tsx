@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
   },
   fileSelectText: {
     fontSize: 18,
-    color: '#44d2d4',
+    color: color.blue,
     paddingRight: 5,
+    fontWeight: 'bold',
   },
 });
