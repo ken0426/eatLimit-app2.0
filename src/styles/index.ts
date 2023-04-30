@@ -16,4 +16,6 @@ export const color = {
   textColor: '#373737',
   /** 詳細画面で使用するボーダーの線の色 */
   detailBorderColor: '#696969',
+  /** 登録画面などで使用するラベルカラー */
+  textLabel: '#787878',
 };

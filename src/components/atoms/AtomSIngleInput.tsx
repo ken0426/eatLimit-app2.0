@@ -8,8 +8,8 @@ type Props = {
 
 const AtomSIngleInput: FC<Props> = ({ label }) => {
   return (
-    <View style={styles.label}>
-      <Text style={{ fontSize: 18 }}>{`${label}：`}</Text>
+    <View style={styles.itemArea}>
+      <Text style={styles.label}>{`${label}：`}</Text>
       <Text style={styles.textValue}>いちご</Text>
     </View>
   );
@@ -18,17 +18,24 @@ const AtomSIngleInput: FC<Props> = ({ label }) => {
 export default AtomSIngleInput;
 
 const styles = StyleSheet.create({
-  label: {
+  itemArea: {
     flexDirection: 'row',
     height: 45,
     alignItems: 'center',
     borderBottomWidth: 0.3,
     borderBottomColor: color.detailBorderColor,
   },
+  label: {
+    fontSize: 18,
+    color: color.textLabel,
+    fontWeight: '400',
+  },
   textValue: {
     fontSize: 18,
     flex: 1,
     textAlign: 'right',
     paddingRight: 10,
+    color: color.textColor,
+    fontWeight: '400',
   },
 });
