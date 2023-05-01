@@ -1,0 +1,74 @@
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { DatePicker } from 'react-native-woodpicker';
+import { MaterialIcons } from '@expo/vector-icons';
+import { color } from '../../styles';
+
+const AtomDate = () => {
+  const [pickedDate, setPickedDate] = useState<Date>(new Date());
+
+  const handleText = () => {
+    const year = pickedDate.getFullYear();
+    const month = pickedDate.getMonth() + 1;
+    const date = pickedDate.getDate();
+    return `${year}年${month}月${date}日`;
+  };
+
+  return (
+    <View style={styles.contents}>
+      <Text style={styles.label}>日付：</Text>
+      <View style={styles.selectArea}>
+        <DatePicker
+          textColor='#000000'
+          value={pickedDate}
+          doneButtonLabel={'完了'}
+          text={handleText()}
+          iosDisplay='spinner'
+          androidDisplay='spinner'
+          minimumDate={new Date('2000')}
+          maximumDate={new Date('2100')}
+          onDateChange={(e) => e && setPickedDate(e)}
+          style={styles.datePicker}
+          backdropAnimation={{ opacity: 0, duration: 0.3, delay: 1 }}
+        />
+        <View style={styles.icon}>
+          <MaterialIcons
+            name='keyboard-arrow-down'
+            size={20}
+            color={color.textColor}
+          />
+        </View>
+      </View>
+    </View>
+  );
+};
+
+export default AtomDate;
+
+const styles = StyleSheet.create({
+  contents: {
+    flexDirection: 'row',
+    height: 45,
+    alignItems: 'center',
+    borderBottomWidth: 0.3,
+    borderBottomColor: color.detailBorderColor,
+  },
+  label: {
+    fontSize: 18,
+    color: color.textLabel,
+    fontWeight: '400',
+  },
+  selectArea: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  datePicker: {
+    height: '100%',
+    shadowColor: '#000000',
+  },
+  icon: {
+    height: '100%',
+    justifyContent: 'center',
+  },
+});
