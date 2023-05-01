@@ -42,7 +42,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     width: '100%',
     height: '30%',
-    // paddingTop: 10,
-    // paddingHorizontal: 10,
   },
 });
