@@ -2,9 +2,8 @@ import React, { FC, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { color } from '../../styles';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { StackPramList } from '../../types';
 import OrgModalBottom from '../organisms/OrgModalBottom';
+import AtomSelectButton from './AtomSelectButton';
 
 type Props = {
   label: string;
@@ -36,7 +35,7 @@ const AtomSingleSelect: FC<Props> = ({ label }) => {
         cancelOnPress={() => setIsVisible(false)}
         completedOnPress={() => setIsVisible(false)}
       >
-        <View></View>
+        <AtomSelectButton />
       </OrgModalBottom>
     </View>
   );
