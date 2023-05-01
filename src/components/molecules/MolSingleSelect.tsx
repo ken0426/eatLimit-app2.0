@@ -7,11 +7,10 @@ type Props = {
   setText: (e: string) => void;
 };
 
-const AtomSelectButton: FC<Props> = ({ data, setIsVisible, setText }) => {
+const MolSingleSelect: FC<Props> = ({ data, setIsVisible, setText }) => {
   return (
     <View style={styles.selectArea}>
       {data.map((item: any, index: number) => (
-        // =============== 以下の範囲が必要（※それ以外不要）===============
         <TouchableOpacity
           key={index}
           activeOpacity={1}
@@ -30,13 +29,12 @@ const AtomSelectButton: FC<Props> = ({ data, setIsVisible, setText }) => {
             </Text>
           </View>
         </TouchableOpacity>
-        // =============== ここまでの範囲が必要（※それ以外不要）===============
       ))}
     </View>
   );
 };
 
-export default AtomSelectButton;
+export default MolSingleSelect;
 
 const styles = StyleSheet.create({
   selectArea: {

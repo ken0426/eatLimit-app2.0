@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { color } from '../../styles';
 import OrgModalBottom from '../organisms/OrgModalBottom';
-import AtomSelectButton from './AtomSelectButton';
+import MolSingleSelect from '../molecules/MolSingleSelect';
 
 type Props = {
   label: string;
@@ -37,7 +37,7 @@ const AtomSingleSelect: FC<Props> = ({ label, data }) => {
         cancelOnPress={() => setIsVisible(false)}
         completedOnPress={() => setIsVisible(false)}
       >
-        <AtomSelectButton
+        <MolSingleSelect
           data={data}
           setIsVisible={setIsVisible}
           setText={setText}
