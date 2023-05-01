@@ -20,8 +20,9 @@ const OrgModalBottom: FC<Props> = ({
     <Modal
       animationIn={'slideInUp'}
       isVisible={isVisible}
-      backdropOpacity={0.2}
+      backdropOpacity={0}
       style={{ justifyContent: 'flex-end', margin: 0 }}
+      onBackdropPress={cancelOnPress}
     >
       <View style={styles.modal}>
         <MolModalHeader
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     width: '100%',
     height: '30%',
-    paddingTop: 10,
-    paddingHorizontal: 10,
+    // paddingTop: 10,
+    // paddingHorizontal: 10,
   },
 });
