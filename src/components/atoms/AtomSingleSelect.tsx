@@ -7,10 +7,12 @@ import AtomSelectButton from './AtomSelectButton';
 
 type Props = {
   label: string;
+  data: any;
 };
 
-const AtomSingleSelect: FC<Props> = ({ label }) => {
+const AtomSingleSelect: FC<Props> = ({ label, data }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [text, setText] = useState('');
 
   return (
     <View>
@@ -20,7 +22,7 @@ const AtomSingleSelect: FC<Props> = ({ label }) => {
       >
         <Text style={styles.label}>{`${label}：`}</Text>
         <View style={{ flexDirection: 'row', flex: 1 }}>
-          <Text style={styles.textValue}></Text>
+          <Text style={styles.textValue}>{text}</Text>
           <View>
             <MaterialIcons
               name='keyboard-arrow-down'
@@ -35,7 +37,11 @@ const AtomSingleSelect: FC<Props> = ({ label }) => {
         cancelOnPress={() => setIsVisible(false)}
         completedOnPress={() => setIsVisible(false)}
       >
-        <AtomSelectButton />
+        <AtomSelectButton
+          data={data}
+          setIsVisible={setIsVisible}
+          setText={setText}
+        />
       </OrgModalBottom>
     </View>
   );

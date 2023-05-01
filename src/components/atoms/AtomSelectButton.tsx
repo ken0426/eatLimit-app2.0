@@ -1,20 +1,35 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const AtomSelectButton = () => {
+type Props = {
+  data: any;
+  setIsVisible: (e: boolean) => void;
+  setText: (e: string) => void;
+};
+
+const AtomSelectButton: FC<Props> = ({ data, setIsVisible, setText }) => {
   return (
     <View style={styles.selectArea}>
-      <TouchableOpacity style={styles.content}>
-        <View style={styles.imageArea}>
-          <Image
-            source={require('../../images/snow.png')}
-            style={styles.image}
-          />
-        </View>
-        <View style={styles.textArea}>
-          <Text style={styles.text}>冷凍</Text>
-        </View>
-      </TouchableOpacity>
+      {data.map((item: any, index: number) => (
+        <TouchableOpacity
+          key={index}
+          activeOpacity={1}
+          onPress={() => {
+            setText(item.text);
+            setIsVisible(false);
+          }}
+          style={[styles.content, { borderColor: item.selectColor }]}
+        >
+          <View style={styles.imageArea}>
+            <Image source={item.image} style={styles.image} />
+          </View>
+          <View style={[styles.textArea, { borderColor: item.selectColor }]}>
+            <Text style={[styles.text, { color: item.selectColor }]}>
+              {item.text}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 };
@@ -25,14 +40,14 @@ const styles = StyleSheet.create({
   selectArea: {
     padding: 10,
     height: '100%',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    flexDirection: 'row',
   },
   content: {
     height: '70%',
     width: '30%',
     borderWidth: 3,
-    borderColor: 'rgb(79, 199, 214)',
+    borderRadius: 10,
   },
   imageArea: {
     flex: 1,
@@ -44,7 +59,6 @@ const styles = StyleSheet.create({
     height: '50%',
   },
   textArea: {
-    borderTopColor: 'rgb(79, 199, 214)',
     borderTopWidth: 3,
   },
   text: {
@@ -52,7 +66,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 25,
     paddingVertical: 10,
-    color: 'rgb(79, 199, 214)',
     fontWeight: 'bold',
   },
 });

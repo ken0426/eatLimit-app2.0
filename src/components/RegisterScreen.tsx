@@ -9,6 +9,7 @@ import AtomFileSelect from './atoms/AtomFileSelect';
 import AtomSingleSelect from './atoms/AtomSingleSelect';
 import AtomSingleInput from './atoms/AtomSingleInput';
 import AtomDate from './atoms/AtomDate';
+import { keepData } from '../contents';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
@@ -25,8 +26,8 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
         <AtomFileSelect />
         <View style={styles.inputForm}>
           <AtomSingleInput label={'商品名'} />
-          <AtomSingleSelect label={'保存方法'} />
-          <AtomSingleSelect label={'管理方法'} />
+          <AtomSingleSelect label={'保存方法'} data={keepData} />
+          <AtomSingleSelect label={'管理方法'} data={[]} />
           <AtomDate />
         </View>
       </View>
