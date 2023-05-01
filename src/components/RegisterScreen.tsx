@@ -26,8 +26,8 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
         <AtomFileSelect />
         <View style={styles.inputForm}>
           <AtomSingleInput label={'商品名'} />
-          <AtomSingleSelect label={'保存方法'} data={keepData} />
           <AtomSingleSelect label={'管理方法'} data={[]} />
+          <AtomSingleSelect label={'保存方法'} data={keepData} />
           <AtomDate />
         </View>
       </View>
