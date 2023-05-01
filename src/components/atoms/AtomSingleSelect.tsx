@@ -1,30 +1,44 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { color } from '../../styles';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../../types';
+import OrgModalBottom from '../organisms/OrgModalBottom';
 
 type Props = {
   label: string;
-  onPress: () => void;
 };
 
-const AtomSingleSelect: FC<Props> = ({ label, onPress }) => {
+const AtomSingleSelect: FC<Props> = ({ label }) => {
+  const [isVisible, setIsVisible] = useState(false);
+
   return (
-    <TouchableOpacity onPress={onPress} style={styles.itemArea}>
-      <Text style={styles.label}>{`${label}：`}</Text>
-      <View style={{ flexDirection: 'row', flex: 1 }}>
-        <Text style={styles.textValue}></Text>
-        <View>
-          <MaterialIcons
-            name='keyboard-arrow-down'
-            size={20}
-            color={color.textColor}
-          />
+    <View>
+      <TouchableOpacity
+        onPress={() => setIsVisible(true)}
+        style={styles.itemArea}
+      >
+        <Text style={styles.label}>{`${label}：`}</Text>
+        <View style={{ flexDirection: 'row', flex: 1 }}>
+          <Text style={styles.textValue}></Text>
+          <View>
+            <MaterialIcons
+              name='keyboard-arrow-down'
+              size={20}
+              color={color.textColor}
+            />
+          </View>
         </View>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+      <OrgModalBottom
+        isVisible={isVisible}
+        cancelOnPress={() => setIsVisible(false)}
+        completedOnPress={() => setIsVisible(false)}
+      >
+        <View></View>
+      </OrgModalBottom>
+    </View>
   );
 };
 

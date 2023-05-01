@@ -16,8 +16,6 @@ type Props = {
 };
 
 const RegisterScreen: FC<Props> = ({ navigation }) => {
-  const [isVisible, setIsVisible] = useState(false);
-
   return (
     <View style={{ backgroundColor: '#ffffff' }}>
       <MolHeader style={styles.header} type={'default'}>
@@ -28,24 +26,11 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
         <AtomFileSelect />
         <View style={styles.inputForm}>
           <AtomSingleInput label={'商品名'} />
-          <AtomSingleSelect
-            label={'保存方法'}
-            onPress={() => navigation.navigate('singleSelectScreen')}
-          />
-          <AtomSingleSelect
-            label={'管理方法'}
-            onPress={() => setIsVisible(true)}
-          />
+          <AtomSingleSelect label={'保存方法'} />
+          <AtomSingleSelect label={'管理方法'} />
           <AtomDate />
         </View>
       </View>
-      <OrgModalBottom
-        isVisible={isVisible}
-        cancelOnPress={() => setIsVisible(false)}
-        completedOnPress={() => setIsVisible(false)}
-      >
-        <View></View>
-      </OrgModalBottom>
     </View>
   );
 };
