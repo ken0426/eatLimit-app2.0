@@ -13,9 +13,9 @@ const MolModalHeader: FC<Props> = ({ cancelOnPress, completedOnPress }) => {
       <TouchableOpacity onPress={cancelOnPress}>
         <Text style={styles.cancel}>キャンセル</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={completedOnPress}>
+      {/* <TouchableOpacity onPress={completedOnPress}>
         <Text style={styles.completed}>完了</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };
