@@ -1,6 +1,8 @@
 import { StackNavigationProp } from '@react-navigation/stack';
+import { MaterialIcons } from '@expo/vector-icons';
+import { DatePicker } from 'react-native-woodpicker';
 import React, { FC, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { color } from '../styles';
@@ -16,6 +18,17 @@ type Props = {
 
 const RegisterScreen: FC<Props> = ({ navigation }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [pickedDate, setPickedDate] = useState<Date>(new Date());
+  const handleText = () => {
+    if (pickedDate) {
+      const year = pickedDate.getFullYear();
+      const month = pickedDate.getMonth() + 1;
+      const date = pickedDate.getDate();
+      return `${year}年${month}月${date}日`;
+    } else {
+      return '';
+    }
+  };
   return (
     <View style={{ backgroundColor: '#ffffff' }}>
       <MolHeader style={styles.header} type={'default'}>
@@ -31,9 +44,66 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
             onPress={() => navigation.navigate('singleSelectScreen')}
           />
           <AtomSingleSelect
-            label={'消費期限'}
+            label={'管理方法'}
             onPress={() => setIsVisible(true)}
           />
+          <View
+            style={{
+              flexDirection: 'row',
+              height: 45,
+              alignItems: 'center',
+              borderBottomWidth: 0.3,
+              borderBottomColor: color.detailBorderColor,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+                color: color.textLabel,
+                fontWeight: '400',
+              }}
+            >
+              日付：
+            </Text>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'flex-end',
+              }}
+            >
+              <DatePicker
+                textColor='#000000'
+                value={pickedDate}
+                doneButtonLabel={'完了'}
+                text={handleText()}
+                iosDisplay='spinner'
+                androidDisplay='spinner'
+                onDateChange={(e) => {
+                  if (e) {
+                    setPickedDate(e);
+                  }
+                }}
+                style={{
+                  height: '100%',
+                  shadowColor: '#000000',
+                }}
+                backdropAnimation={{ opacity: 0, duration: 0.3, delay: 1 }}
+              />
+              <View
+                style={{
+                  height: '100%',
+                  justifyContent: 'center',
+                }}
+              >
+                <MaterialIcons
+                  name='keyboard-arrow-down'
+                  size={20}
+                  color={color.textColor}
+                />
+              </View>
+            </View>
+          </View>
         </View>
       </View>
       <OrgModalBottom
