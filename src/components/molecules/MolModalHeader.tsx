@@ -27,6 +27,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    backgroundColor: color.modalFooterTextArea,
   },
   cancel: {
     width: '100%',

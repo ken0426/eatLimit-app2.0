@@ -20,4 +20,6 @@ export const color = {
   detailBorderColor: '#696969',
   /** 登録画面などで使用するラベルカラー */
   textLabel: '#787878',
+  /** フッターモーダルのテキストエリアの色 */
+  modalFooterTextArea: '#eeeeee',
 };
