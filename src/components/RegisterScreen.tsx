@@ -9,6 +9,7 @@ import AtomFileSelect from './atoms/AtomFileSelect';
 import AtomSingleSelect from './atoms/AtomSingleSelect';
 import AtomSingleInput from './atoms/AtomSingleInput';
 import Modal from 'react-native-modal';
+import MolModalHeader from './molecules/MolModalHeader';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
@@ -51,38 +52,10 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
             paddingHorizontal: 10,
           }}
         >
-          <View
-            style={{
-              flexDirection: 'row',
-              width: '100%',
-              justifyContent: 'space-between',
-            }}
-          >
-            <TouchableOpacity onPress={() => setIsVisible(false)}>
-              <Text
-                style={{
-                  width: '100%',
-                  justifyContent: 'center',
-                  fontSize: 20,
-                  color: color.mainTextColor,
-                }}
-              >
-                キャンセル
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setIsVisible(false)}>
-              <Text
-                style={{
-                  width: '100%',
-                  justifyContent: 'center',
-                  fontSize: 20,
-                  color: color.blue,
-                }}
-              >
-                完了
-              </Text>
-            </TouchableOpacity>
-          </View>
+          <MolModalHeader
+            cancelOnPress={() => setIsVisible(false)}
+            completedOnPress={() => setIsVisible(false)}
+          />
         </View>
       </Modal>
     </View>
