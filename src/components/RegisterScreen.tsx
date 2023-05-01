@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { FC } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { color } from '../styles';
@@ -8,7 +8,6 @@ import AtomRegister from './atoms/AtomRegister';
 import AtomFileSelect from './atoms/AtomFileSelect';
 import AtomSingleSelect from './atoms/AtomSingleSelect';
 import AtomSingleInput from './atoms/AtomSingleInput';
-import OrgModalBottom from './organisms/OrgModalBottom';
 import AtomDate from './atoms/AtomDate';
 
 type Props = {
