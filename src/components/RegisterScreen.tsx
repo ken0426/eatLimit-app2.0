@@ -79,6 +79,8 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                 text={handleText()}
                 iosDisplay='spinner'
                 androidDisplay='spinner'
+                minimumDate={new Date('2000')}
+                maximumDate={new Date('2100')}
                 onDateChange={(e) => {
                   if (e) {
                     setPickedDate(e);
