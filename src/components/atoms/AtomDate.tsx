@@ -30,6 +30,7 @@ const AtomDate = () => {
           onDateChange={(e) => e && setPickedDate(e)}
           style={styles.datePicker}
           backdropAnimation={{ opacity: 0, duration: 0.3, delay: 1 }}
+          // textInputStyle={{ color: 'red' }} ※消費期限または賞味期限が切れている場合は赤で表示する
         />
         <View style={styles.icon}>
           <MaterialIcons
