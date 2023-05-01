@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, useState } from 'react';
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { color } from '../styles';
@@ -8,8 +8,7 @@ import AtomRegister from './atoms/AtomRegister';
 import AtomFileSelect from './atoms/AtomFileSelect';
 import AtomSingleSelect from './atoms/AtomSingleSelect';
 import AtomSingleInput from './atoms/AtomSingleInput';
-import Modal from 'react-native-modal';
-import MolModalHeader from './molecules/MolModalHeader';
+import OrgModalBottom from './organisms/OrgModalBottom';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
@@ -37,27 +36,13 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
           />
         </View>
       </View>
-      <Modal
-        animationIn={'slideInUp'}
+      <OrgModalBottom
         isVisible={isVisible}
-        backdropOpacity={0.2}
-        style={{ justifyContent: 'flex-end', margin: 0 }}
+        cancelOnPress={() => setIsVisible(false)}
+        completedOnPress={() => setIsVisible(false)}
       >
-        <View
-          style={{
-            backgroundColor: '#ffffff',
-            width: '100%',
-            height: '30%',
-            paddingTop: 10,
-            paddingHorizontal: 10,
-          }}
-        >
-          <MolModalHeader
-            cancelOnPress={() => setIsVisible(false)}
-            completedOnPress={() => setIsVisible(false)}
-          />
-        </View>
-      </Modal>
+        <View></View>
+      </OrgModalBottom>
     </View>
   );
 };
