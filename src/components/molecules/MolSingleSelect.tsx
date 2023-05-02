@@ -13,8 +13,8 @@ const MolSingleSelect: FC<Props> = ({ data, setIsVisible, setText }) => {
     <View style={styles.selectArea}>
       {data.map((item: any, index: number) => (
         <AtomSelectButton
+          key={index}
           item={item}
-          index={index}
           onPress={() => {
             setText(item.text);
             setIsVisible(false);

@@ -3,14 +3,12 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 type Props = {
   item: any;
-  index: number;
   onPress: () => void;
 };
 
-const AtomSelectButton: FC<Props> = ({ item, index, onPress }) => {
+const AtomSelectButton: FC<Props> = ({ item, onPress }) => {
   return (
     <TouchableOpacity
-      key={index}
       activeOpacity={1}
       onPress={onPress}
       style={[styles.content, { borderColor: item.selectColor }]}
