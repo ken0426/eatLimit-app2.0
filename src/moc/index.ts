@@ -49,7 +49,7 @@ export const data: ApiData[] = [
       'https://www.haagen-dazs.co.jp/products/uploads/images/20190601_08.png',
     date: '2023-04-26',
   },
-  { eatName: 'aaa', date: '2023-04-26' },
+  { eatName: 'オレンジジュース', date: '2023-04-26', image: 'https://ok-netsuper.com/images/sku/d4ae3eb6b068e/d4ae3eb6b068e_01.jpg' },
   { eatName: 'aaa', date: '2023-04-26' },
   { eatName: 'aaa', date: '2023-04-26' },
   { eatName: 'aaa', date: '2023-04-26' },
