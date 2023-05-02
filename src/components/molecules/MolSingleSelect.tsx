@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import AtomSelectButton from '../atoms/AtomSelectButton';
 
 type Props = {
   data: any;
@@ -11,24 +12,14 @@ const MolSingleSelect: FC<Props> = ({ data, setIsVisible, setText }) => {
   return (
     <View style={styles.selectArea}>
       {data.map((item: any, index: number) => (
-        <TouchableOpacity
-          key={index}
-          activeOpacity={1}
+        <AtomSelectButton
+          item={item}
+          index={index}
           onPress={() => {
             setText(item.text);
             setIsVisible(false);
           }}
-          style={[styles.content, { borderColor: item.selectColor }]}
-        >
-          <View style={styles.imageArea}>
-            <Image source={item.image} style={styles.image} />
-          </View>
-          <View style={[styles.textArea, { borderColor: item.selectColor }]}>
-            <Text style={[styles.text, { color: item.selectColor }]}>
-              {item.text}
-            </Text>
-          </View>
-        </TouchableOpacity>
+        />
       ))}
     </View>
   );

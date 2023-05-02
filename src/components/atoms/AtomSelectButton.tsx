@@ -2,37 +2,28 @@ import React, { FC } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 type Props = {
-  data: any;
-  setIsVisible: (e: boolean) => void;
-  setText: (e: string) => void;
+  item: any;
+  index: number;
+  onPress: () => void;
 };
 
-const AtomSelectButton: FC<Props> = ({ data, setIsVisible, setText }) => {
+const AtomSelectButton: FC<Props> = ({ item, index, onPress }) => {
   return (
-    <View style={styles.selectArea}>
-      {data.map((item: any, index: number) => (
-        // =============== 以下の範囲が必要（※それ以外不要）===============
-        <TouchableOpacity
-          key={index}
-          activeOpacity={1}
-          onPress={() => {
-            setText(item.text);
-            setIsVisible(false);
-          }}
-          style={[styles.content, { borderColor: item.selectColor }]}
-        >
-          <View style={styles.imageArea}>
-            <Image source={item.image} style={styles.image} />
-          </View>
-          <View style={[styles.textArea, { borderColor: item.selectColor }]}>
-            <Text style={[styles.text, { color: item.selectColor }]}>
-              {item.text}
-            </Text>
-          </View>
-        </TouchableOpacity>
-        // =============== ここまでの範囲が必要（※それ以外不要）===============
-      ))}
-    </View>
+    <TouchableOpacity
+      key={index}
+      activeOpacity={1}
+      onPress={onPress}
+      style={[styles.content, { borderColor: item.selectColor }]}
+    >
+      <View style={styles.imageArea}>
+        <Image source={item.image} style={styles.image} />
+      </View>
+      <View style={[styles.textArea, { borderColor: item.selectColor }]}>
+        <Text style={[styles.text, { color: item.selectColor }]}>
+          {item.text}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
