@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { KeepData } from '../../types';
 import AtomSelectButton from '../atoms/AtomSelectButton';
 
 type Props = {
-  data: any;
+  data: KeepData[];
   setIsVisible: (e: boolean) => void;
   setText: (e: string) => void;
 };
@@ -11,7 +12,7 @@ type Props = {
 const MolSingleSelect: FC<Props> = ({ data, setIsVisible, setText }) => {
   return (
     <View style={styles.selectArea}>
-      {data.map((item: any, index: number) => (
+      {data.map((item, index) => (
         <AtomSelectButton
           key={index}
           item={item}

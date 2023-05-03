@@ -1,3 +1,5 @@
+import { KeepData } from "../types";
+
 /** 検索バー */
 export const SEARCH_BAR_HIGHT = 40;
 
@@ -13,7 +15,7 @@ export const BANNER_HEIGHT = 130;
 export const DETAIL_IMAGE_HEIGHT = 224;
 
 /** 保存方法のデータ */
-export const keepData = [
+export const keepData: KeepData[] = [
   {
     text: '冷凍',
     image: require('../images/snow.png'),

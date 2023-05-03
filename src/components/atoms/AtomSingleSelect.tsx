@@ -4,10 +4,11 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { color } from '../../styles';
 import OrgModalBottom from '../organisms/OrgModalBottom';
 import MolSingleSelect from '../molecules/MolSingleSelect';
+import { KeepData } from '../../types';
 
 type Props = {
   label: string;
-  data: any;
+  data: KeepData[];
 };
 
 const AtomSingleSelect: FC<Props> = ({ label, data }) => {
