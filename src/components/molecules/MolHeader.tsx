@@ -2,7 +2,6 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, ReactNode } from 'react';
 import { View } from 'react-native';
-import { color } from '../../styles';
 import { StackPramList } from '../../types';
 import MolDetailHeader from './MolDetailHeader';
 import { StyleSheet } from 'react-native';

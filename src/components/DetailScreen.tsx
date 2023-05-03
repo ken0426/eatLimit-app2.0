@@ -1,5 +1,5 @@
 import React, { FC, useRef } from 'react';
-import { StyleSheet, View, ScrollView, Animated, Text } from 'react-native';
+import { StyleSheet, View, ScrollView, Animated } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import { WINDOW_HEIGHT } from '../utils';

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Alert, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import moment from 'moment';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AntDesign } from '@expo/vector-icons';

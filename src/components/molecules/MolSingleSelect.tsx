@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { KeepData } from '../../types';
 import AtomSelectButton from '../atoms/AtomSelectButton';
 
