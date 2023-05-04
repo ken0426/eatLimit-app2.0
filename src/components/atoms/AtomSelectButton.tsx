@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { KeepData } from '../../types';
 
 type Props = {
-  item: any;
+  item: KeepData;
   onPress: () => void;
 };
 

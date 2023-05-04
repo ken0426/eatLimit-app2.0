@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from "react-native";
+
 export type ApiData = {
   eatName: string;
   image?: string;
@@ -6,7 +8,7 @@ export type ApiData = {
 
 export type KeepData = {
   text: '冷凍' | '冷蔵' | '常温'
-  image: string
+  image: ImageSourcePropType
   selectColor: string
 }
 
