@@ -51,7 +51,7 @@ export const data: ApiData[] = [
   },
   { eatName: 'オレンジジュース', date: '2023-04-26', image: 'https://ok-netsuper.com/images/sku/d4ae3eb6b068e/d4ae3eb6b068e_01.jpg' },
   { eatName: 'メロン', date: '2023-04-26', image: 'https://shop.odakyu-dept.co.jp/storage/ex_product_sku_image/1/1052011853.jpg' },
-  { eatName: 'aaa', date: '2023-04-26' },
+  { eatName: 'うどn', date: '2023-04-26', image: 'https://housefoods.jp/_sys/catimages/recipe/hfrecipe/items/00023060/0.jpeg' },
   { eatName: 'aaa', date: '2023-04-26' },
   { eatName: 'aaa', date: '2023-04-26' },
 ];
