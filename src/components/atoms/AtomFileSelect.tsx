@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Alert,
   Keyboard,
@@ -9,8 +9,11 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { color } from '../../styles';
+import OrgModalDefault from '../organisms/OrgModalDefault';
 
 const AtomFileSelect = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
   return (
     <View style={styles.fileSelectArea}>
       <TouchableOpacity
@@ -25,7 +28,7 @@ const AtomFileSelect = () => {
       <TouchableOpacity
         activeOpacity={1}
         style={{ position: 'absolute', right: '30%' }}
-        onPress={() => Alert.alert('ヒントのボタン')}
+        onPress={() => setIsVisible(true)}
       >
         <AntDesign
           name='infocirlceo'
@@ -33,6 +36,13 @@ const AtomFileSelect = () => {
           color={color.detailBorderColor}
         />
       </TouchableOpacity>
+      <OrgModalDefault
+        isVisible={isVisible}
+        cancelOnPress={() => setIsVisible(false)}
+        onPress={() => setIsVisible(false)}
+        text={`画像を追加することができます。\n画像を追加できない場合はアプリへの画像の権限を許可してください。`}
+        label={'閉じる'}
+      />
     </View>
   );
 };
