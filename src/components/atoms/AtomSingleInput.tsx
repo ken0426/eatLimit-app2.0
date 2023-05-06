@@ -4,14 +4,16 @@ import { color } from '../../styles';
 
 type Props = {
   label: string;
+  onPressIn: () => void;
 };
 
-const AtomSingleInput: FC<Props> = ({ label }) => {
+const AtomSingleInput: FC<Props> = ({ label, onPressIn }) => {
   const [text, setText] = useState<string>('');
   return (
     <View style={styles.itemArea}>
       <Text style={styles.label}>{`${label}：`}</Text>
       <TextInput
+        onPressIn={onPressIn}
         onChangeText={(inputText) => setText(inputText)}
         style={styles.textValue}
         value={text}

@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { FC, useState } from 'react';
+import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
 import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { color } from '../styles';
@@ -16,22 +16,35 @@ type Props = {
 };
 
 const RegisterScreen: FC<Props> = ({ navigation }) => {
+  const [enabled, setEnabled] = useState(false);
   return (
-    <View style={{ backgroundColor: '#ffffff' }}>
+    <View style={{ backgroundColor: '#ffffff', flex: 1 }}>
       <MolHeader style={styles.header} type={'default'}>
         <AtomRegister navigation={navigation} />
       </MolHeader>
 
-      <View style={{ width: '100%', height: '100%' }}>
-        <AtomFileSelect />
-        <View style={styles.inputForm}>
-          <AtomSingleInput label={'商品名'} />
-          <AtomSingleSelect label={'管理方法'} data={managementData} />
-          <AtomSingleSelect label={'保存方法'} data={keepData} />
-          <AtomDate />
-          <AtomSingleInput label={'購入場所'} />
+      <KeyboardAvoidingView
+        behavior='position'
+        style={{ height: '60%' }}
+        enabled={enabled}
+      >
+        <View style={{ width: '100%', height: '100%' }}>
+          <AtomFileSelect />
+          <View style={styles.inputForm}>
+            <AtomSingleInput
+              label={'商品名'}
+              onPressIn={() => setEnabled(false)}
+            />
+            <AtomSingleSelect label={'管理方法'} data={managementData} />
+            <AtomSingleSelect label={'保存方法'} data={keepData} />
+            <AtomDate />
+            <AtomSingleInput
+              label={'購入場所'}
+              onPressIn={() => setEnabled(true)}
+            />
+          </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
 };
@@ -47,6 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
+    zIndex: 2,
   },
   inputForm: {
     paddingHorizontal: 10,
