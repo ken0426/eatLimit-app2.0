@@ -12,7 +12,7 @@ const AtomSingleInput: FC<Props> = ({ label }) => {
     <View style={styles.itemArea}>
       <Text style={styles.label}>{`${label}：`}</Text>
       <TextInput
-        onChange={(inputText) => setText(inputText.nativeEvent.text)}
+        onChangeText={(inputText) => setText(inputText)}
         style={styles.textValue}
         value={text}
       />
