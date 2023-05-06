@@ -1,6 +1,12 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, useState } from 'react';
-import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { color } from '../styles';
@@ -28,22 +34,24 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
         style={{ height: '60%' }}
         enabled={enabled}
       >
-        <View style={{ width: '100%', height: '100%' }}>
-          <AtomFileSelect />
-          <View style={styles.inputForm}>
-            <AtomSingleInput
-              label={'商品名'}
-              onPressIn={() => setEnabled(false)}
-            />
-            <AtomSingleSelect label={'管理方法'} data={managementData} />
-            <AtomSingleSelect label={'保存方法'} data={keepData} />
-            <AtomDate />
-            <AtomSingleInput
-              label={'購入場所'}
-              onPressIn={() => setEnabled(true)}
-            />
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <View style={{ width: '100%', height: '100%' }}>
+            <AtomFileSelect />
+            <View style={styles.inputForm}>
+              <AtomSingleInput
+                label={'商品名'}
+                onPressIn={() => setEnabled(false)}
+              />
+              <AtomSingleSelect label={'管理方法'} data={managementData} />
+              <AtomSingleSelect label={'保存方法'} data={keepData} />
+              <AtomDate />
+              <AtomSingleInput
+                label={'購入場所'}
+                onPressIn={() => setEnabled(true)}
+              />
+            </View>
           </View>
-        </View>
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </View>
   );
