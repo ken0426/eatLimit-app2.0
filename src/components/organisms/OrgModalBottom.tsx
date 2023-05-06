@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MolModalHeader from '../molecules/MolModalHeader';
 import Modal from 'react-native-modal';
+import { WINDOW_HEIGHT } from '../../utils';
 
 type Props = {
   isVisible: boolean;
@@ -41,6 +42,6 @@ const styles = StyleSheet.create({
   modal: {
     backgroundColor: '#ffffff',
     width: '100%',
-    height: '30%',
+    height: WINDOW_HEIGHT / 3.2,
   },
 });
