@@ -1,5 +1,12 @@
 import React from 'react';
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Alert,
+  Keyboard,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { color } from '../../styles';
 
@@ -8,9 +15,12 @@ const AtomFileSelect = () => {
     <View style={styles.fileSelectArea}>
       <TouchableOpacity
         activeOpacity={1}
-        onPress={() => Alert.alert('ファイルを選択するボタン')}
+        onPress={() => {
+          Keyboard.dismiss();
+          Alert.alert('ファイルを選択するボタン');
+        }}
       >
-        <Text style={styles.fileSelectText}>ファイルを選択</Text>
+        <Text style={styles.fileSelectText}>画像を追加する</Text>
       </TouchableOpacity>
       <TouchableOpacity
         activeOpacity={1}
