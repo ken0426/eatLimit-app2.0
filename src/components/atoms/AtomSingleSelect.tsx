@@ -1,5 +1,11 @@
 import React, { FC, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Keyboard,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { color } from '../../styles';
 import OrgModalBottom from '../organisms/OrgModalBottom';
@@ -18,7 +24,10 @@ const AtomSingleSelect: FC<Props> = ({ label, data }) => {
   return (
     <View>
       <TouchableOpacity
-        onPress={() => setIsVisible(true)}
+        onPress={() => {
+          Keyboard.dismiss();
+          setIsVisible(true);
+        }}
         style={styles.itemArea}
       >
         <Text style={styles.label}>{`${label}：`}</Text>
