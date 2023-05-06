@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { FC, useState } from 'react';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { color } from '../../styles';
 
 type Props = {
@@ -7,10 +7,15 @@ type Props = {
 };
 
 const AtomSingleInput: FC<Props> = ({ label }) => {
+  const [text, setText] = useState<string>('');
   return (
     <View style={styles.itemArea}>
       <Text style={styles.label}>{`${label}：`}</Text>
-      <Text style={styles.textValue}>いちご</Text>
+      <TextInput
+        onChange={(inputText) => setText(inputText.nativeEvent.text)}
+        style={styles.textValue}
+        value={text}
+      />
     </View>
   );
 };
