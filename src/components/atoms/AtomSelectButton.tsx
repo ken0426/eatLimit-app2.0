@@ -1,29 +1,44 @@
 import React, { FC } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { KeepData } from '../../types';
+import { KeepData, ManagementData } from '../../types';
+import { color } from '../../styles';
 
 type Props = {
-  item: KeepData;
+  item: KeepData | ManagementData;
   onPress: () => void;
 };
 
 const AtomSelectButton: FC<Props> = ({ item, onPress }) => {
-  return (
-    <TouchableOpacity
-      activeOpacity={1}
-      onPress={onPress}
-      style={[styles.content, { borderColor: item.selectColor }]}
-    >
-      <View style={styles.imageArea}>
-        <Image source={item.image} style={styles.image} />
-      </View>
-      <View style={[styles.textArea, { borderColor: item.selectColor }]}>
-        <Text style={[styles.text, { color: item.selectColor }]}>
-          {item.text}
-        </Text>
-      </View>
-    </TouchableOpacity>
-  );
+  if (item?.image) {
+    return (
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={onPress}
+        style={[styles.content, { borderColor: item.selectColor }]}
+      >
+        <View style={styles.imageArea}>
+          <Image source={item.image} style={styles.image} />
+        </View>
+        <View style={[styles.textArea, { borderColor: item.selectColor }]}>
+          <Text style={[styles.text, { color: item.selectColor }]}>
+            {item.text}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  } else {
+    return (
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={onPress}
+        style={styles.noImageContent}
+      >
+        <View style={styles.noImageTextArea}>
+          <Text style={styles.noImageText}>{item.text}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
 };
 
 export default AtomSelectButton;
@@ -41,23 +56,46 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderRadius: 10,
   },
+  noImageContent: {
+    width: '44%',
+    height: 50,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginHorizontal: 10,
+    marginVertical: 10,
+    paddingHorizontal: 25,
+    borderRadius: 10,
+    borderWidth: 3,
+    borderColor: color.detailBorderColor,
+  },
   imageArea: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   image: {
-    width: '50%',
-    height: '50%',
+    width: '55%',
+    resizeMode: 'contain',
   },
   textArea: {
     borderTopWidth: 3,
+  },
+  noImageTextArea: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   text: {
     width: '100%',
     textAlign: 'center',
     fontSize: 25,
     paddingVertical: 10,
+    fontWeight: 'bold',
+  },
+  noImageText: {
+    fontSize: 25,
+    color: color.detailBorderColor,
     fontWeight: 'bold',
   },
 });

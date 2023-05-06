@@ -1,4 +1,4 @@
-import { KeepData } from "../types";
+import { KeepData, ManagementData } from '../types';
 
 /** 検索バー */
 export const SEARCH_BAR_HIGHT = 40;
@@ -13,6 +13,30 @@ export const BANNER_HEIGHT = 130;
 
 /** 詳細画面の画像の高さ */
 export const DETAIL_IMAGE_HEIGHT = 224;
+
+/** 管理方法のデータ */
+export const managementData: ManagementData[] = [
+  {
+    text: '消費期限',
+    image: undefined,
+    selectColor: undefined,
+  },
+  {
+    text: '賞味期限',
+    image: undefined,
+    selectColor: undefined,
+  },
+  {
+    text: '購入日',
+    image: undefined,
+    selectColor: undefined,
+  },
+  {
+    text: '登録日',
+    image: undefined,
+    selectColor: undefined,
+  },
+];
 
 /** 保存方法のデータ */
 export const keepData: KeepData[] = [

@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { KeepData } from '../../types';
+import { KeepData, ManagementData } from '../../types';
 import AtomSelectButton from '../atoms/AtomSelectButton';
 
 type Props = {
-  data: KeepData[];
+  data: KeepData[] | ManagementData[];
   setIsVisible: (e: boolean) => void;
   setText: (e: string) => void;
 };
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'space-between',
     flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   content: {
     height: '70%',
