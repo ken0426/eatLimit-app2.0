@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '55%',
+    height: '100%',
     resizeMode: 'contain',
   },
   textArea: {
