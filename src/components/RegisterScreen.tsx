@@ -29,6 +29,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
           <AtomSingleSelect label={'管理方法'} data={managementData} />
           <AtomSingleSelect label={'保存方法'} data={keepData} />
           <AtomDate />
+          <AtomSingleInput label={'購入場所'} />
         </View>
       </View>
     </View>
