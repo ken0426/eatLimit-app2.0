@@ -49,6 +49,11 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                 label={'購入場所'}
                 onPressIn={() => setEnabled(true)}
               />
+              <AtomSingleInput
+                label={'金額'}
+                onPressIn={() => setEnabled(true)}
+                inputMode={'numeric'}
+              />
             </View>
           </View>
         </TouchableWithoutFeedback>

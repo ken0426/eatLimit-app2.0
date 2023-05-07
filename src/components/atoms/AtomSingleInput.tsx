@@ -1,13 +1,24 @@
 import React, { FC, useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  InputModeOptions,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import { color } from '../../styles';
 
 type Props = {
   label: string;
   onPressIn: () => void;
+  inputMode?: InputModeOptions;
 };
 
-const AtomSingleInput: FC<Props> = ({ label, onPressIn }) => {
+const AtomSingleInput: FC<Props> = ({
+  label,
+  onPressIn,
+  inputMode = 'text',
+}) => {
   const [text, setText] = useState<string>('');
   return (
     <View style={styles.itemArea}>
@@ -17,7 +28,9 @@ const AtomSingleInput: FC<Props> = ({ label, onPressIn }) => {
         onChangeText={(inputText) => setText(inputText)}
         style={styles.textValue}
         value={text}
+        inputMode={inputMode}
       />
+      {inputMode === 'numeric' && <Text style={styles.label}>円</Text>}
     </View>
   );
 };
@@ -43,6 +56,6 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     paddingRight: 10,
     color: color.textColor,
-    fontWeight: '400',
+    fontWeight: 'bold',
   },
 });
