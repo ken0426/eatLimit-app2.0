@@ -15,7 +15,11 @@ type Props = {
   keyboardType?: KeyboardTypeOptions;
 };
 
-const AtomSingleInput: FC<Props> = ({ label, onPressIn, keyboardType }) => {
+const AtomSingleInput: FC<Props> = ({
+  label,
+  onPressIn,
+  keyboardType = 'default',
+}) => {
   const [text, setText] = useState<string>('');
 
   return (
