@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native';
 import { color } from '../../styles';
+import { getText } from '../../utils';
 
 type Props = {
   label: string;
@@ -20,6 +21,7 @@ const AtomSingleInput: FC<Props> = ({
   inputMode = 'text',
 }) => {
   const [text, setText] = useState<string>('');
+
   return (
     <View style={styles.itemArea}>
       <Text style={styles.label}>{`${label}：`}</Text>
@@ -27,7 +29,7 @@ const AtomSingleInput: FC<Props> = ({
         onPressIn={onPressIn}
         onChangeText={(inputText) => setText(inputText)}
         style={styles.textValue}
-        value={text}
+        value={getText(text, inputMode)}
         inputMode={inputMode}
       />
       {inputMode === 'numeric' && <Text style={styles.label}>円</Text>}
