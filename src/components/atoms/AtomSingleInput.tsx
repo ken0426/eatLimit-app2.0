@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import {
-  InputModeOptions,
+  KeyboardTypeOptions,
   StyleSheet,
   Text,
   TextInput,
@@ -12,14 +12,10 @@ import { getText } from '../../utils';
 type Props = {
   label: string;
   onPressIn: () => void;
-  inputMode?: InputModeOptions;
+  keyboardType?: KeyboardTypeOptions;
 };
 
-const AtomSingleInput: FC<Props> = ({
-  label,
-  onPressIn,
-  inputMode = 'text',
-}) => {
+const AtomSingleInput: FC<Props> = ({ label, onPressIn, keyboardType }) => {
   const [text, setText] = useState<string>('');
 
   return (
@@ -29,10 +25,10 @@ const AtomSingleInput: FC<Props> = ({
         onPressIn={onPressIn}
         onChangeText={(inputText) => setText(inputText)}
         style={styles.textValue}
-        value={getText(text, inputMode)}
-        inputMode={inputMode}
+        value={getText(text, keyboardType)}
+        keyboardType={keyboardType}
       />
-      {inputMode === 'numeric' && <Text style={styles.label}>円</Text>}
+      {keyboardType === 'number-pad' && <Text style={styles.label}>円</Text>}
     </View>
   );
 };

@@ -52,7 +52,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
               <AtomSingleInput
                 label={'金額'}
                 onPressIn={() => setEnabled(true)}
-                inputMode={'numeric'}
+                keyboardType={'number-pad'}
               />
             </View>
           </View>
