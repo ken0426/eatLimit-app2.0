@@ -78,6 +78,6 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     paddingRight: 10,
     color: color.textColor,
-    fontWeight: '400',
+    fontWeight: 'bold',
   },
 });

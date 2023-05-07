@@ -20,6 +20,7 @@ const AtomDate = () => {
       <View style={styles.selectArea}>
         <DatePicker
           textColor='#000000'
+          textInputStyle={{ fontWeight: 'bold' }}
           value={pickedDate}
           doneButtonLabel={'完了'}
           text={handleText()}
