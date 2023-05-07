@@ -9,7 +9,7 @@ export const getText = (
   keyboardType: KeyboardTypeOptions | undefined
 ) => {
   if (keyboardType === 'number-pad' && text !== '') {
-    const newText = text.replace(/,/g, '');
+    const newText = text.replace(/\D/g, '');
     return Number(newText).toLocaleString();
   } else {
     return text;
