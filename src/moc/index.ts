@@ -49,9 +49,29 @@ export const data: ApiData[] = [
       'https://www.haagen-dazs.co.jp/products/uploads/images/20190601_08.png',
     date: '2023-04-26',
   },
-  { eatName: 'オレンジジュース', date: '2023-04-26', image: 'https://ok-netsuper.com/images/sku/d4ae3eb6b068e/d4ae3eb6b068e_01.jpg' },
-  { eatName: 'メロン', date: '2023-04-26', image: 'https://shop.odakyu-dept.co.jp/storage/ex_product_sku_image/1/1052011853.jpg' },
-  { eatName: 'うどn', date: '2023-04-26', image: 'https://housefoods.jp/_sys/catimages/recipe/hfrecipe/items/00023060/0.jpeg' },
-  { eatName: 'aaa', date: '2023-04-26' },
+  {
+    eatName: 'オレンジジュース',
+    date: '2023-04-26',
+    image:
+      'https://ok-netsuper.com/images/sku/d4ae3eb6b068e/d4ae3eb6b068e_01.jpg',
+  },
+  {
+    eatName: 'メロン',
+    date: '2023-04-26',
+    image:
+      'https://shop.odakyu-dept.co.jp/storage/ex_product_sku_image/1/1052011853.jpg',
+  },
+  {
+    eatName: 'うどん',
+    date: '2023-04-26',
+    image:
+      'https://housefoods.jp/_sys/catimages/recipe/hfrecipe/items/00023060/0.jpeg',
+  },
+  {
+    eatName: 'ケーキ',
+    date: '2023-04-26',
+    image:
+      'https://tk.ismcdn.jp/mwimgs/5/5/1200w/img_55da7d47b72b81c3e63e872b5cd5965e320650.jpg',
+  },
   { eatName: 'aaa', date: '2023-04-26' },
 ];
