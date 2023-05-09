@@ -43,8 +43,12 @@ export default AtomMemo;
 const styles = StyleSheet.create({
   memoArea: {
     width: '100%',
-    backgroundColor: '#dbdbdb',
     marginTop: 10,
+    borderLeftWidth: 2,
+    borderTopWidth: 2,
+    borderRadius: 5,
+    borderColor: '#cccccc',
+    backgroundColor: '#e9e9e9',
   },
   textInput: {
     width: '100%',
