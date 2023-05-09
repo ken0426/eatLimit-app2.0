@@ -6,6 +6,7 @@ import {
   View,
   Button,
   StyleSheet,
+  Platform,
 } from 'react-native';
 import { color } from '../../styles';
 
@@ -26,11 +27,13 @@ const AtomMemo: FC<Props> = ({ onPress }) => {
         inputAccessoryViewID={inputAccessoryViewID}
         multiline
       />
-      <InputAccessoryView nativeID={inputAccessoryViewID}>
-        <View pointerEvents='box-none' style={styles.completedArea}>
-          <Button title='完了' onPress={() => Keyboard.dismiss()} />
-        </View>
-      </InputAccessoryView>
+      {Platform.OS === 'ios' && (
+        <InputAccessoryView nativeID={inputAccessoryViewID}>
+          <View pointerEvents='box-none' style={styles.completedArea}>
+            <Button title='完了' onPress={() => Keyboard.dismiss()} />
+          </View>
+        </InputAccessoryView>
+      )}
     </View>
   );
 };
@@ -49,6 +52,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     paddingVertical: 10,
     color: 'black',
+    justifyContent: 'flex-start',
   },
   completedArea: {
     backgroundColor: '#f1f1f1',
