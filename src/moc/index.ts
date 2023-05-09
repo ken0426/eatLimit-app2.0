@@ -7,7 +7,7 @@ export const data: ApiData[] = [
     eatName: 'たらこ',
     image:
       'https://p1-e6eeae93.imageflux.jp/c!/w=800,h=800,a=2/michiba-suisan/9a7ac9aa6985a45b860a.jpg',
-    date: '2023-04-26',
+    date: '2023-04-27',
   },
   {
     eatName: 'いくら',
