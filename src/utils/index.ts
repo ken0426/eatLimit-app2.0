@@ -1,4 +1,4 @@
-import { Dimensions, KeyboardTypeOptions } from 'react-native';
+import { Dimensions, KeyboardTypeOptions, Platform } from 'react-native';
 
 export const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT } =
   Dimensions.get('window');
@@ -7,7 +7,13 @@ export const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT } =
 export const getText = (text: string, keyboardType: KeyboardTypeOptions) => {
   if (keyboardType === 'number-pad' && text !== '') {
     const newText = text.replace(/\D/g, '');
-    return Number(newText).toLocaleString();
+    if (Platform.OS === 'ios') {
+      return Number(newText).toLocaleString();
+    } else if (Platform.OS === 'android') {
+      return Number(newText)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
   } else {
     return text;
   }
