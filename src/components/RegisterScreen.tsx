@@ -3,6 +3,7 @@ import React, { FC, useState } from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
+  Platform,
   StyleSheet,
   TouchableWithoutFeedback,
   View,
@@ -16,6 +17,7 @@ import AtomSingleSelect from './atoms/AtomSingleSelect';
 import AtomSingleInput from './atoms/AtomSingleInput';
 import AtomDate from './atoms/AtomDate';
 import { keepData, managementData } from '../contents';
+import AtomMemo from './atoms/AtomMemo';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
@@ -33,6 +35,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
         behavior='position'
         style={{ height: '60%' }}
         enabled={enabled}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
       >
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <View style={{ width: '100%', height: '100%' }}>
@@ -54,6 +57,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                 onPressIn={() => setEnabled(true)}
                 keyboardType={'number-pad'}
               />
+              <AtomMemo onPress={() => setEnabled(true)} />
             </View>
           </View>
         </TouchableWithoutFeedback>
