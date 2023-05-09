@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
   memoArea: {
     width: '100%',
     marginTop: 10,
-    borderLeftWidth: 2,
-    borderTopWidth: 2,
+    borderLeftWidth: 2.5,
+    borderTopWidth: 2.5,
     borderRadius: 5,
-    borderColor: '#cccccc',
+    borderColor: '#d6d6d6',
     backgroundColor: '#e9e9e9',
   },
   textInput: {
