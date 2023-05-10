@@ -25,7 +25,7 @@ const AtomRegister: FC<Props> = ({ navigation }) => {
         />
       </TouchableOpacity>
       <View style={{ width: '33%' }}>
-        <Text style={styles.headerText}>登録画面</Text>
+        <Text style={styles.headerText}>登録</Text>
       </View>
       <TouchableOpacity
         onPress={() => Alert.alert('登録ボタン準備中')}
