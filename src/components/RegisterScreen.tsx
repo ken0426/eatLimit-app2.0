@@ -33,7 +33,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
 
       <KeyboardAvoidingView
         behavior='position'
-        style={{ height: '60%' }}
+        style={{ height: '60%' }} // iPhone8やiPhoneX以降のシリーズでキーボードの高さが変化するため修正必要
         enabled={enabled}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
       >
