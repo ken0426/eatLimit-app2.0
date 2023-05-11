@@ -18,6 +18,7 @@ import AtomSingleInput from './atoms/AtomSingleInput';
 import AtomDate from './atoms/AtomDate';
 import { keepData, managementData } from '../contents';
 import AtomMemo from './atoms/AtomMemo';
+import AtomButton from './atoms/AtomButton';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
@@ -59,6 +60,16 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
               />
               <AtomMemo onPress={() => setEnabled(true)} />
             </View>
+            <View style={styles.buttonArea}>
+              <AtomButton
+                onPress={() => {}}
+                color={'#ffffff'}
+                fontSize={30}
+                backgroundColor={color.blue}
+                width={200}
+                label={'登録'}
+              />
+            </View>
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
@@ -82,5 +93,10 @@ const styles = StyleSheet.create({
   inputForm: {
     paddingHorizontal: 10,
     paddingBottom: 10,
+  },
+  buttonArea: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
   },
 });
