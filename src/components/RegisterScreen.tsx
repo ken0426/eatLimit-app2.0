@@ -4,6 +4,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
   StyleSheet,
   TouchableWithoutFeedback,
   View,
@@ -33,47 +34,49 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
         <AtomRegister navigation={navigation} />
       </MolHeader>
 
-      <KeyboardAvoidingView
-        behavior='position'
-        style={{ height: WINDOW_HEIGHT >= 812 ? '60%' : '65%' }}
-        enabled={enabled}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
-      >
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          <View style={{ width: '100%', height: '100%' }}>
-            <AtomFileSelect />
-            <View style={styles.inputForm}>
-              <AtomSingleInput
-                label={'商品名'}
-                onPressIn={() => setEnabled(false)}
-              />
-              <AtomSingleSelect label={'管理方法'} data={managementData} />
-              <AtomSingleSelect label={'保存方法'} data={keepData} />
-              <AtomDate />
-              <AtomSingleInput
-                label={'購入場所'}
-                onPressIn={() => setEnabled(true)}
-              />
-              <AtomSingleInput
-                label={'金額'}
-                onPressIn={() => setEnabled(true)}
-                keyboardType={'number-pad'}
-              />
-              <AtomMemo onPress={() => setEnabled(true)} />
+      <ScrollView>
+        <KeyboardAvoidingView
+          behavior='position'
+          style={{ height: WINDOW_HEIGHT >= 812 ? '60%' : '65%' }}
+          enabled={enabled}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+        >
+          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <View style={{ width: '100%' }}>
+              <AtomFileSelect />
+              <View style={styles.inputForm}>
+                <AtomSingleInput
+                  label={'商品名'}
+                  onPressIn={() => setEnabled(false)}
+                />
+                <AtomSingleSelect label={'管理方法'} data={managementData} />
+                <AtomSingleSelect label={'保存方法'} data={keepData} />
+                <AtomDate />
+                <AtomSingleInput
+                  label={'購入場所'}
+                  onPressIn={() => setEnabled(true)}
+                />
+                <AtomSingleInput
+                  label={'金額'}
+                  onPressIn={() => setEnabled(true)}
+                  keyboardType={'number-pad'}
+                />
+                <AtomMemo onPress={() => setEnabled(true)} />
+              </View>
+              <View style={styles.buttonArea}>
+                <AtomButton
+                  onPress={() => {}}
+                  color={'#ffffff'}
+                  fontSize={30}
+                  backgroundColor={color.blue}
+                  width={200}
+                  label={'登録'}
+                />
+              </View>
             </View>
-            <View style={styles.buttonArea}>
-              <AtomButton
-                onPress={() => {}}
-                color={'#ffffff'}
-                fontSize={30}
-                backgroundColor={color.blue}
-                width={200}
-                label={'登録'}
-              />
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      </ScrollView>
     </View>
   );
 };
