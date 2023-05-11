@@ -19,6 +19,7 @@ import AtomDate from './atoms/AtomDate';
 import { keepData, managementData } from '../contents';
 import AtomMemo from './atoms/AtomMemo';
 import AtomButton from './atoms/AtomButton';
+import { WINDOW_HEIGHT } from '../utils';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
@@ -34,7 +35,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
 
       <KeyboardAvoidingView
         behavior='position'
-        style={{ height: '60%' }} // iPhone8やiPhoneX以降のシリーズでキーボードの高さが変化するため修正必要
+        style={{ height: WINDOW_HEIGHT >= 812 ? '60%' : '65%' }}
         enabled={enabled}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
       >
