@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextStyle, TouchableOpacity } from 'react-native';
 
 type Props = {
   onPress: () => void;
@@ -10,6 +10,7 @@ type Props = {
   width: number;
   borderColor?: string;
   borderWidth?: number;
+  fontWeight?: 'normal' | 'bold';
 };
 
 const AtomButton: FC<Props> = ({
@@ -21,6 +22,7 @@ const AtomButton: FC<Props> = ({
   label,
   borderColor,
   borderWidth = 0,
+  fontWeight = 'normal',
 }) => {
   return (
     <TouchableOpacity
@@ -36,7 +38,7 @@ const AtomButton: FC<Props> = ({
       onPress={onPress}
       activeOpacity={1}
     >
-      <Text style={{ fontSize, color }}>{label}</Text>
+      <Text style={{ fontSize, color, fontWeight }}>{label}</Text>
     </TouchableOpacity>
   );
 };

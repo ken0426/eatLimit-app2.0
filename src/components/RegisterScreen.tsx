@@ -71,6 +71,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                   backgroundColor={color.blue}
                   width={200}
                   label={'登録'}
+                  fontWeight={'bold'}
                 />
               </View>
             </View>
