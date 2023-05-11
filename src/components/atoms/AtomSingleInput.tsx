@@ -6,7 +6,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { color } from '../../styles';
+import { INPUT_HEIGHT, color } from '../../styles';
 import { getText } from '../../utils';
 
 type Props = {
@@ -42,7 +42,7 @@ export default AtomSingleInput;
 const styles = StyleSheet.create({
   itemArea: {
     flexDirection: 'row',
-    height: 45,
+    height: INPUT_HEIGHT,
     alignItems: 'center',
     borderBottomWidth: 0.3,
     borderBottomColor: color.detailBorderColor,

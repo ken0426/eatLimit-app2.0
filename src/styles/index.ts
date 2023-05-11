@@ -23,3 +23,6 @@ export const color = {
   /** フッターモーダルのテキストエリアの色 */
   modalFooterTextArea: '#eeeeee',
 };
+
+/** 入力項目の高さ */
+export const INPUT_HEIGHT = 50;

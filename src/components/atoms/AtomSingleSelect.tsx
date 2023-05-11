@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { color } from '../../styles';
+import { INPUT_HEIGHT, color } from '../../styles';
 import OrgModalBottom from '../organisms/OrgModalBottom';
 import MolSingleSelect from '../molecules/MolSingleSelect';
 import { KeepData, ManagementData } from '../../types';
@@ -62,7 +62,7 @@ export default AtomSingleSelect;
 const styles = StyleSheet.create({
   itemArea: {
     flexDirection: 'row',
-    height: 45,
+    height: INPUT_HEIGHT,
     alignItems: 'center',
     borderBottomWidth: 0.3,
     borderBottomColor: color.detailBorderColor,
