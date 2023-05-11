@@ -37,7 +37,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
       <ScrollView>
         <KeyboardAvoidingView
           behavior='position'
-          style={{ height: WINDOW_HEIGHT >= 812 ? '60%' : '70%', flex: 1 }}
+          style={{ flex: 1 }}
           enabled={enabled}
           keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
         >
