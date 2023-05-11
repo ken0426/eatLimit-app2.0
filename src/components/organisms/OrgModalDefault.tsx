@@ -13,7 +13,6 @@ type Props = {
   label: string;
   fontSize?: number;
   borderColor?: string;
-  borderRadius?: number;
 };
 
 const OrgModalDefault: FC<Props> = ({
@@ -24,16 +23,20 @@ const OrgModalDefault: FC<Props> = ({
   label,
   fontSize = 30,
   borderColor = color.detailBorderColor,
-  borderRadius = 20,
 }) => {
   return (
     <Modal isVisible={isVisible} onBackdropPress={cancelOnPress}>
       <View style={styles.modal}>
         <Text style={{ fontSize: 20 }}>{text}</Text>
         <AtomButton
-          style={[styles.button, { fontSize, borderColor, borderRadius }]}
           onPress={onPress}
           label={label}
+          fontSize={fontSize}
+          borderColor={borderColor}
+          color='#000000'
+          backgroundColor='white'
+          width={150}
+          borderWidth={1}
         />
       </View>
     </Modal>
@@ -52,10 +55,5 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     paddingHorizontal: 10,
     paddingVertical: 10,
-  },
-  button: {
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
   },
 });
