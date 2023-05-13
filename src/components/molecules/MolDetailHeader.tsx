@@ -8,12 +8,13 @@ import { StackPramList } from '../../types';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList>;
+  top?: number;
 };
 
-const MolDetailHeader: FC<Props> = ({ navigation }) => {
+const MolDetailHeader: FC<Props> = ({ navigation, top = 30 }) => {
   return (
     <>
-      <View style={styles.header}>
+      <View style={[styles.header, { top }]}>
         <TouchableOpacity
           style={styles.backButton}
           activeOpacity={0.8}
@@ -57,7 +58,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     width: '100%',
-    top: 30,
   },
   backButton: {
     height: '100%',

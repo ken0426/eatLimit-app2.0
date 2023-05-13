@@ -8,6 +8,8 @@ import { ApiData, StackPramList } from '../types';
 import { DETAIL_IMAGE_HEIGHT } from '../contents';
 import { useDetailAnimation } from '../hooks/useDetailAnimation';
 import AtomSingleItem from './atoms/AtomSingleItem';
+import MolDetailHeader from './molecules/MolDetailHeader';
+import { color } from '../styles';
 
 type RouteItem = {
   params: {
@@ -29,16 +31,23 @@ const DetailScreen: FC<Props> = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <MolHeader type={'detail'} />
-      <Animated.View style={[styles.bannerContainer, bannerAnimation]}>
-        <Animated.Image
-          blurRadius={blurRadius}
-          style={styles.banner}
-          source={{ uri: item.image }}
-        />
-      </Animated.View>
+      {item.image && <MolHeader type={'detail'} />}
+      {item.image && (
+        <Animated.View style={[styles.bannerContainer, bannerAnimation]}>
+          <Animated.Image
+            blurRadius={blurRadius}
+            style={styles.banner}
+            source={{ uri: item.image }}
+          />
+        </Animated.View>
+      )}
+      {!item.image && (
+        <View style={styles.noImageHeader}>
+          <MolDetailHeader navigation={navigation} top={10} />
+        </View>
+      )}
       <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
-        <View style={styles.paddingForBanner} />
+        {item.image && <View style={styles.paddingForBanner} />}
         <View style={styles.scrollViewContent}>
           <AtomSingleItem value={item.eatName} label={'商品名'} />
           <AtomSingleItem value={item.date} label={'消費期限'} />
@@ -55,6 +64,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
+  },
+  noImageHeader: {
+    height: 100,
+    backgroundColor: color.mainColor,
+    paddingTop: 20,
+    justifyContent: 'center',
   },
   paddingForBanner: {
     height: 150,
