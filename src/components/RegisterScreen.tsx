@@ -20,7 +20,6 @@ import AtomDate from './atoms/AtomDate';
 import { keepData, managementData } from '../contents';
 import AtomMemo from './atoms/AtomMemo';
 import AtomButton from './atoms/AtomButton';
-import { WINDOW_HEIGHT } from '../utils';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
