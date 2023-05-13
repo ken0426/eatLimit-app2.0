@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Alert,
   Keyboard,
   StyleSheet,
   Text,
@@ -10,6 +9,7 @@ import {
 import { AntDesign } from '@expo/vector-icons';
 import { color } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
+import { onPressAction } from '../../functions';
 
 const AtomFileSelect = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -20,7 +20,7 @@ const AtomFileSelect = () => {
         activeOpacity={1}
         onPress={() => {
           Keyboard.dismiss();
-          Alert.alert('ファイルを選択するボタン');
+          onPressAction(false);
         }}
       >
         <Text style={styles.fileSelectText}>画像を追加する</Text>
