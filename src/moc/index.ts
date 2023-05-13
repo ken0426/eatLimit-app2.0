@@ -73,5 +73,5 @@ export const data: ApiData[] = [
     image:
       'https://tk.ismcdn.jp/mwimgs/5/5/1200w/img_55da7d47b72b81c3e63e872b5cd5965e320650.jpg',
   },
-  { eatName: 'aaa', date: '2023-04-26' },
+  { eatName: '画像なし', date: '2023-04-26' },
 ];
