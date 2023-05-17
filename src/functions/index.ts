@@ -1,4 +1,5 @@
 import { ActionSheetIOS, Alert, Platform } from 'react-native';
+import { ACTION_SHEET } from '../contents';
 
 /** 画像をアップロードするときに出るモーダル */
 export const onPressAction = (isImage: boolean) => {
@@ -8,19 +9,19 @@ export const onPressAction = (isImage: boolean) => {
         options: isImage
           ? ['キャンセル', '写真を撮影', '写真を選択', '削除']
           : ['キャンセル', '写真を撮影', '写真を選択'],
-        cancelButtonIndex: 0,
-        destructiveButtonIndex: 3,
+        cancelButtonIndex: ACTION_SHEET.CAN_SELL,
+        destructiveButtonIndex: ACTION_SHEET.DELETE,
       },
       (buttonIndex) => {
-        if (buttonIndex === 0) {
+        if (buttonIndex === ACTION_SHEET.CAN_SELL) {
           // キャンセルのアクション
-        } else if (buttonIndex === 1) {
+        } else if (buttonIndex === ACTION_SHEET.CAMERA) {
           // カメラを起動
           // takePhoto();
-        } else if (buttonIndex === 2) {
+        } else if (buttonIndex === ACTION_SHEET.LIBRARY) {
           // ライブラリから写真を選択
           // pickImage();
-        } else if (buttonIndex === 3) {
+        } else if (buttonIndex === ACTION_SHEET.DELETE) {
           // setImage(null);
         }
       }

@@ -56,3 +56,11 @@ export const keepData: KeepData[] = [
     selectColor: 'rgb(232, 154, 98)',
   },
 ];
+
+/** 画像追加のボタン */
+export const ACTION_SHEET = {
+  CAN_SELL: 0,
+  CAMERA: 1,
+  LIBRARY: 2,
+  DELETE: 3,
+};
