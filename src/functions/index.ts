@@ -4,7 +4,18 @@ import { ACTION_SHEET, CAMERA_ERROR_MESSAGE } from '../contents';
 
 /** カメラの起動 */
 const takePhoto = async (setImage: (e: string) => void) => {
-  let result: any = await ImagePicker.launchCameraAsync({
+  const result: any = await ImagePicker.launchCameraAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.Images,
+  });
+
+  if (!result.canceled) {
+    setImage(result.assets[0].uri);
+  }
+};
+
+/** ライブラリから画像を選択 */
+const pickImage = async (setImage: (e: string) => void) => {
+  const result: any = await ImagePicker.launchImageLibraryAsync({
     mediaTypes: ImagePicker.MediaTypeOptions.Images,
   });
 
@@ -39,7 +50,7 @@ export const onPressAction = (
           }
         } else if (buttonIndex === ACTION_SHEET.LIBRARY) {
           // ライブラリから写真を選択
-          // pickImage();
+          pickImage(setImage);
         } else if (buttonIndex === ACTION_SHEET.DELETE) {
           setImage('');
         }
