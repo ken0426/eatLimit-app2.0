@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Camera } from 'expo-camera';
 import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import { color } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onPressAction } from '../../functions';
@@ -32,7 +33,7 @@ const AtomFileSelect = () => {
   }, []);
 
   /** 画像が挿入されているかどうかを判断するフラグ */
-  const isImage = useMemo(() => image === '' ? false : true, [image])
+  const isImage = useMemo(() => (image === '' ? false : true), [image]);
 
   return (
     <View style={styles.fileSelectArea}>
@@ -47,16 +48,22 @@ const AtomFileSelect = () => {
           <Text style={styles.fileSelectText}>画像を追加する</Text>
         )}
         {image !== '' && (
-          <Image
-            source={{ uri: image }}
-            style={{ height: '90%', width: WINDOW_WIDTH * 0.8 }}
-          />
+          <View style={styles.imageArea}>
+            <Image source={{ uri: image }} style={styles.image} />
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={() => setImage('')}
+              style={styles.closeButton}
+            >
+              <FontAwesome name='close' size={13} color='#ffffff' />
+            </TouchableOpacity>
+          </View>
         )}
       </TouchableOpacity>
       {image === '' && (
         <TouchableOpacity
           activeOpacity={1}
-          style={{ position: 'absolute', right: '30%' }}
+          style={styles.hint}
           onPress={() => setIsVisible(true)}
         >
           <AntDesign
@@ -95,5 +102,27 @@ const styles = StyleSheet.create({
     color: color.blue,
     paddingRight: 5,
     fontWeight: 'bold',
+  },
+  imageArea: {
+    height: '90%',
+  },
+  image: {
+    height: '100%',
+    width: WINDOW_WIDTH * 0.8,
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    backgroundColor: '#000000',
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 26,
+    height: 26,
+  },
+  hint: {
+    position: 'absolute',
+    right: '30%',
   },
 });
