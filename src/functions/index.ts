@@ -1,8 +1,24 @@
 import { ActionSheetIOS, Alert, Platform } from 'react-native';
-import { ACTION_SHEET } from '../contents';
+import * as ImagePicker from 'expo-image-picker';
+import { ACTION_SHEET, CAMERA_ERROR_MESSAGE } from '../contents';
+
+/** カメラの起動 */
+const takePhoto = async (setImage: (e: string) => void) => {
+  let result: any = await ImagePicker.launchCameraAsync({
+    mediaTypes: ImagePicker.MediaTypeOptions.Images,
+  });
+
+  if (!result.canceled) {
+    setImage(result.assets[0].uri);
+  }
+};
 
 /** 画像をアップロードするときに出るモーダル */
-export const onPressAction = (isImage: boolean) => {
+export const onPressAction = (
+  isImage: boolean,
+  hasPermission: boolean,
+  setImage: (e: string) => void
+) => {
   if (Platform.OS === 'ios') {
     ActionSheetIOS.showActionSheetWithOptions(
       {
@@ -16,8 +32,11 @@ export const onPressAction = (isImage: boolean) => {
         if (buttonIndex === ACTION_SHEET.CAN_SELL) {
           // キャンセルのアクション
         } else if (buttonIndex === ACTION_SHEET.CAMERA) {
-          // カメラを起動
-          // takePhoto();
+          if (!hasPermission) {
+            Alert.alert(CAMERA_ERROR_MESSAGE);
+          } else {
+            takePhoto(setImage);
+          }
         } else if (buttonIndex === ACTION_SHEET.LIBRARY) {
           // ライブラリから写真を選択
           // pickImage();

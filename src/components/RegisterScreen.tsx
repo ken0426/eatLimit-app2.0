@@ -10,7 +10,6 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { Camera } from 'expo-camera';
 import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { color } from '../styles';
@@ -29,18 +28,6 @@ type Props = {
 
 const RegisterScreen: FC<Props> = ({ navigation }) => {
   const [enabled, setEnabled] = useState(false);
-  /** アプリがカメラへのアクセス権限を求めるためのフラグ */
-  const [hasPermission, setHasPermission] = useState(false);
-
-  /** 初めてこの画面を開いた際にカメラへのアクセス権限を聞くロジック */
-  // useEffect(() => {
-  //   (async () => {
-  //     const { status } = await Camera.requestCameraPermissionsAsync();
-  //     setHasPermission(status === 'granted');
-  //   })();
-  // }, []);
-
-  if (!hasPermission) Alert.alert('カメラの起動に失敗しました');
 
   return (
     <View style={{ backgroundColor: '#ffffff', flex: 1 }}>
