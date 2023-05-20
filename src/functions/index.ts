@@ -4,23 +4,31 @@ import { ACTION_SHEET, CAMERA_ERROR_MESSAGE } from '../contents';
 
 /** カメラの起動 */
 const takePhoto = async (setImage: (e: string) => void) => {
-  const result: any = await ImagePicker.launchCameraAsync({
-    mediaTypes: ImagePicker.MediaTypeOptions.Images,
-  });
+  try {
+    const result: any = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    });
 
-  if (!result.canceled) {
-    setImage(result.assets[0].uri);
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 
 /** ライブラリから画像を選択 */
 const pickImage = async (setImage: (e: string) => void) => {
-  const result: any = await ImagePicker.launchImageLibraryAsync({
-    mediaTypes: ImagePicker.MediaTypeOptions.Images,
-  });
+  try {
+    const result: any = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    });
 
-  if (!result.canceled) {
-    setImage(result.assets[0].uri);
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 
