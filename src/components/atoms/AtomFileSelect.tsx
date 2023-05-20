@@ -33,7 +33,7 @@ const AtomFileSelect = () => {
   }, []);
 
   /** 画像が挿入されているかどうかを判断するフラグ */
-  const isImage = useMemo(() => image !== '' ?? false, [image]);
+  const isImage = useMemo(() => image !== '', [image]);
 
   return (
     <View style={styles.fileSelectArea}>
