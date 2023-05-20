@@ -27,6 +27,7 @@ type Props = {
 };
 
 const RegisterScreen: FC<Props> = ({ navigation }) => {
+  /** キーボードで入力するエリアで高さを調整するフラグ */
   const [enabled, setEnabled] = useState(false);
 
   return (
