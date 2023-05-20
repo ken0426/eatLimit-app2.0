@@ -41,7 +41,7 @@ export const onPressAction = (
           // ライブラリから写真を選択
           // pickImage();
         } else if (buttonIndex === ACTION_SHEET.DELETE) {
-          // setImage(null);
+          setImage('');
         }
       }
     );

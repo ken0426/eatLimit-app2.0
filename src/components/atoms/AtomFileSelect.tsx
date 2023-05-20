@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import {
   Image,
   Keyboard,
@@ -31,13 +31,16 @@ const AtomFileSelect = () => {
     })();
   }, []);
 
+  /** 画像が挿入されているかどうかを判断するフラグ */
+  const isImage = useMemo(() => image === '' ? false : true, [image])
+
   return (
     <View style={styles.fileSelectArea}>
       <TouchableOpacity
         activeOpacity={1}
         onPress={() => {
           Keyboard.dismiss();
-          onPressAction(false, hasPermission, setImage);
+          onPressAction(isImage, hasPermission, setImage);
         }}
       >
         {image === '' && (
