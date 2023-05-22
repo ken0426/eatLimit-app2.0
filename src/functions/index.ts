@@ -66,7 +66,6 @@ export const onPressAction = (
         takePhoto(setImage);
       }
     } else if (buttonIndex === ACTION_SHEET.LIBRARY) {
-      // ライブラリから写真を選択
       pickImage(setImage);
     } else if (buttonIndex === destructiveButtonIndex) {
       setImage('');
