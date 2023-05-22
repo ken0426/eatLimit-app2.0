@@ -25,7 +25,7 @@ const takePhoto = async (setImage: (e: string) => void) => {
       setImage(result.assets[0].uri);
     }
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -40,7 +40,7 @@ const pickImage = async (setImage: (e: string) => void) => {
       setImage(result.assets[0].uri);
     }
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
