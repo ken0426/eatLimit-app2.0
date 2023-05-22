@@ -77,22 +77,14 @@ export const onPressAction = (
 
   if (Platform.OS === 'ios') {
     ActionSheetIOS.showActionSheetWithOptions(
-      {
-        options: options,
-        cancelButtonIndex: cancelButtonIndex,
-        destructiveButtonIndex: destructiveButtonIndex,
-      },
+      { options, cancelButtonIndex, destructiveButtonIndex },
       (buttonIndex) => {
         handleAction(buttonIndex);
       }
     );
   } else if (Platform.OS === 'android') {
     showActionSheetWithOptions(
-      {
-        options,
-        cancelButtonIndex,
-        destructiveButtonIndex,
-      },
+      { options, cancelButtonIndex, destructiveButtonIndex },
       (buttonIndex: number | undefined) => {
         if (buttonIndex) handleAction(buttonIndex);
       }
