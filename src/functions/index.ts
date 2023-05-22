@@ -59,9 +59,7 @@ export const onPressAction = (
   const options = isImage ? imageSelected : noImageSelected;
 
   const handleAction = (buttonIndex: number) => {
-    if (buttonIndex === cancelButtonIndex) {
-      // キャンセルのアクション
-    } else if (buttonIndex === ACTION_SHEET.CAMERA) {
+    if (buttonIndex === ACTION_SHEET.CAMERA) {
       if (!hasPermission) {
         Alert.alert(CAMERA_ERROR_MESSAGE);
       } else {
