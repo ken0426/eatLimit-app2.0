@@ -59,7 +59,7 @@ export const onPressAction = (
   const options = isImage ? imageSelected : noImageSelected;
 
   const handleAction = (buttonIndex: number) => {
-    if (buttonIndex === ACTION_SHEET.CAN_SELL) {
+    if (buttonIndex === cancelButtonIndex) {
       // キャンセルのアクション
     } else if (buttonIndex === ACTION_SHEET.CAMERA) {
       if (!hasPermission) {
@@ -70,7 +70,7 @@ export const onPressAction = (
     } else if (buttonIndex === ACTION_SHEET.LIBRARY) {
       // ライブラリから写真を選択
       pickImage(setImage);
-    } else if (buttonIndex === ACTION_SHEET.DELETE) {
+    } else if (buttonIndex === destructiveButtonIndex) {
       setImage('');
     }
   };
