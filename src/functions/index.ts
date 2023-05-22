@@ -2,6 +2,18 @@ import { ActionSheetIOS, Alert, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { ACTION_SHEET, CAMERA_ERROR_MESSAGE } from '../contents';
 
+type Options = {
+  options: string[];
+  cancelButtonIndex?: number;
+  destructiveButtonIndex?: number;
+  title?: string;
+  message?: string;
+  anchor?: number;
+  tintColor?: string;
+};
+
+type Callback = (buttonIndex: number | undefined) => void | Promise<void>;
+
 /** カメラの起動 */
 const takePhoto = async (setImage: (e: string) => void) => {
   try {
@@ -36,35 +48,54 @@ const pickImage = async (setImage: (e: string) => void) => {
 export const onPressAction = (
   isImage: boolean,
   hasPermission: boolean,
-  setImage: (e: string) => void
+  setImage: (e: string) => void,
+  showActionSheetWithOptions: (options: Options, callback: Callback) => void
 ) => {
+  const imageSelected = ['キャンセル', '写真を撮影', '写真を選択', '削除'];
+  const noImageSelected = ['キャンセル', '写真を撮影', '写真を選択'];
+  const cancelButtonIndex = ACTION_SHEET.CAN_SELL;
+  const destructiveButtonIndex = ACTION_SHEET.DELETE;
+
+  const options = isImage ? imageSelected : noImageSelected;
+
+  const handleAction = (buttonIndex: number) => {
+    if (buttonIndex === ACTION_SHEET.CAN_SELL) {
+      // キャンセルのアクション
+    } else if (buttonIndex === ACTION_SHEET.CAMERA) {
+      if (!hasPermission) {
+        Alert.alert(CAMERA_ERROR_MESSAGE);
+      } else {
+        takePhoto(setImage);
+      }
+    } else if (buttonIndex === ACTION_SHEET.LIBRARY) {
+      // ライブラリから写真を選択
+      pickImage(setImage);
+    } else if (buttonIndex === ACTION_SHEET.DELETE) {
+      setImage('');
+    }
+  };
+
   if (Platform.OS === 'ios') {
     ActionSheetIOS.showActionSheetWithOptions(
       {
-        options: isImage
-          ? ['キャンセル', '写真を撮影', '写真を選択', '削除']
-          : ['キャンセル', '写真を撮影', '写真を選択'],
-        cancelButtonIndex: ACTION_SHEET.CAN_SELL,
-        destructiveButtonIndex: ACTION_SHEET.DELETE,
+        options: options,
+        cancelButtonIndex: cancelButtonIndex,
+        destructiveButtonIndex: destructiveButtonIndex,
       },
       (buttonIndex) => {
-        if (buttonIndex === ACTION_SHEET.CAN_SELL) {
-          // キャンセルのアクション
-        } else if (buttonIndex === ACTION_SHEET.CAMERA) {
-          if (!hasPermission) {
-            Alert.alert(CAMERA_ERROR_MESSAGE);
-          } else {
-            takePhoto(setImage);
-          }
-        } else if (buttonIndex === ACTION_SHEET.LIBRARY) {
-          // ライブラリから写真を選択
-          pickImage(setImage);
-        } else if (buttonIndex === ACTION_SHEET.DELETE) {
-          setImage('');
-        }
+        handleAction(buttonIndex);
       }
     );
   } else if (Platform.OS === 'android') {
-    Alert.alert('Androidは現在準備中です');
+    showActionSheetWithOptions(
+      {
+        options,
+        cancelButtonIndex,
+        destructiveButtonIndex,
+      },
+      (buttonIndex: number | undefined) => {
+        if (buttonIndex) handleAction(buttonIndex);
+      }
+    );
   }
 };

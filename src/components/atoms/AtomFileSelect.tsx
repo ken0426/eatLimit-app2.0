@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import { Camera } from 'expo-camera';
+import { useActionSheet } from '@expo/react-native-action-sheet';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { color } from '../../styles';
@@ -16,11 +17,10 @@ import { onPressAction } from '../../functions';
 import { WINDOW_WIDTH } from '../../utils';
 
 const AtomFileSelect = () => {
+  const { showActionSheetWithOptions } = useActionSheet();
   const [isVisible, setIsVisible] = useState(false);
-
   /** アプリがカメラへのアクセス権限を求めるためのフラグ */
   const [hasPermission, setHasPermission] = useState(false);
-
   /** 画像があるかどうか判定するフラグ */
   const [image, setImage] = useState('');
 
@@ -41,7 +41,12 @@ const AtomFileSelect = () => {
         activeOpacity={1}
         onPress={() => {
           Keyboard.dismiss();
-          onPressAction(isImage, hasPermission, setImage);
+          onPressAction(
+            isImage,
+            hasPermission,
+            setImage,
+            showActionSheetWithOptions
+          );
         }}
       >
         {image === '' && (
