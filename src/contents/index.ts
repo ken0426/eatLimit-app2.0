@@ -1,4 +1,4 @@
-import { KeepData, ManagementData } from '../types';
+import { KeepData, ManagementData, ModalButton } from '../types';
 
 /** 検索バー */
 export const SEARCH_BAR_HIGHT = 40;
@@ -58,6 +58,17 @@ export const keepData: KeepData[] = [
     text: '常温',
     image: require('../images/salt.png'),
     selectColor: 'rgb(232, 154, 98)',
+  },
+];
+
+/** モーダルのボタン */
+export const SINGLE_MODAL_BUTTON: ModalButton[] = [{ text: '閉じる' }];
+export const DOUBLE_MODAL_BUTTON: ModalButton[] = [
+  {
+    text: 'キャンセル',
+  },
+  {
+    text: 'OK',
   },
 ];
 
