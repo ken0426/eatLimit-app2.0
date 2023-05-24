@@ -4,13 +4,14 @@ import Modal from 'react-native-modal';
 import { WINDOW_HEIGHT } from '../../utils';
 import AtomButton from '../atoms/AtomButton';
 import { color } from '../../styles';
+import { ModalButton } from '../../types';
 
 type Props = {
   isVisible: boolean;
   cancelOnPress: () => void;
   onPress: () => void;
-  text: string;
-  label: string;
+  message: string;
+  data: ModalButton[];
   fontSize?: number;
   borderColor?: string;
 };
@@ -19,25 +20,28 @@ const OrgModalDefault: FC<Props> = ({
   isVisible,
   cancelOnPress,
   onPress,
-  text,
-  label,
+  message,
+  data,
   fontSize = 30,
   borderColor = color.detailBorderColor,
 }) => {
   return (
     <Modal isVisible={isVisible} onBackdropPress={cancelOnPress}>
       <View style={styles.modal}>
-        <Text style={{ fontSize: 20 }}>{text}</Text>
-        <AtomButton
-          onPress={onPress}
-          label={label}
-          fontSize={fontSize}
-          borderColor={borderColor}
-          color='#000000'
-          backgroundColor='white'
-          width={150}
-          borderWidth={1}
-        />
+        <Text style={{ fontSize: 20 }}>{message}</Text>
+        {data.map((item, index) => (
+          <AtomButton
+            key={index}
+            onPress={onPress}
+            buttonText={item.text}
+            fontSize={fontSize}
+            borderColor={borderColor}
+            color='#000000'
+            backgroundColor='white'
+            width={150}
+            borderWidth={1}
+          />
+        ))}
       </View>
     </Modal>
   );
