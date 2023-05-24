@@ -15,6 +15,7 @@ import { color } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onPressAction } from '../../functions';
 import { WINDOW_WIDTH } from '../../utils';
+import { SINGLE_MODAL_BUTTON } from '../../contents';
 
 const AtomFileSelect = () => {
   const { showActionSheetWithOptions } = useActionSheet();
@@ -82,8 +83,8 @@ const AtomFileSelect = () => {
         isVisible={isVisible}
         cancelOnPress={() => setIsVisible(false)}
         onPress={() => setIsVisible(false)}
-        text={`画像を追加することができます。\n画像を追加できない場合はアプリへの画像の権限を許可してください。`}
-        label={'閉じる'}
+        message={`画像を追加することができます。\n画像を追加できない場合はアプリへの画像の権限を許可してください。`}
+        data={SINGLE_MODAL_BUTTON}
       />
     </View>
   );
