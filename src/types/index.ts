@@ -25,3 +25,7 @@ export type StackPramList = {
   registerScreen: undefined;
   singleSelectScreen: undefined;
 };
+
+export type ModalButton = {
+  text: string;
+};
