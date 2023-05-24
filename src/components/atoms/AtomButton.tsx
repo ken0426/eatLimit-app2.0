@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextStyle, TouchableOpacity } from 'react-native';
 
 type Props = {
   onPress: () => void;
-  label: string;
+  buttonText: string;
   color: string;
   fontSize: number;
   backgroundColor: string;
@@ -19,7 +19,7 @@ const AtomButton: FC<Props> = ({
   color,
   backgroundColor,
   width,
-  label,
+  buttonText,
   borderColor,
   borderWidth = 0,
   fontWeight = 'normal',
@@ -38,7 +38,7 @@ const AtomButton: FC<Props> = ({
       onPress={onPress}
       activeOpacity={1}
     >
-      <Text style={{ fontSize, color, fontWeight }}>{label}</Text>
+      <Text style={{ fontSize, color, fontWeight }}>{buttonText}</Text>
     </TouchableOpacity>
   );
 };
