@@ -52,6 +52,12 @@ const DetailScreen: FC<Props> = ({ navigation, route }) => {
           <AtomSingleItem value={item.eatName} label={'商品名'} />
           <AtomSingleItem value={item.date} label={'消費期限'} />
           <AtomSingleItem value={'冷蔵'} label={'保存方法'} />
+          {item?.placeOfPurchase && (
+            <AtomSingleItem value={item.placeOfPurchase} label={'購入場所'} />
+          )}
+          {item?.place && (
+            <AtomSingleItem value={item.place} label={'購入場所'} />
+          )}
         </View>
       </ScrollView>
     </View>

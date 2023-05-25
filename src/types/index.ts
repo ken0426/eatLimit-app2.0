@@ -4,6 +4,8 @@ export type ApiData = {
   eatName: string;
   image?: string;
   date: string;
+  placeOfPurchase?: string;
+  place?: number;
 };
 
 export type ManagementData = {

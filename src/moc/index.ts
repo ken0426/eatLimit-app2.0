@@ -13,12 +13,14 @@ export const data: ApiData[] = [
     eatName: 'いくら',
     image: 'https://img.tkjm.jp/webshop/003/876/sl_10966.jpg',
     date: '2023-04-26',
+    place: 2500,
   },
   {
     eatName: 'サーモン',
     image:
       'https://media.delishkitchen.tv/article/105/kmn81saarcn.jpeg?version=1586229518',
     date: '2023-04-26',
+    placeOfPurchase: 'イオン',
   },
   {
     eatName: '納豆',

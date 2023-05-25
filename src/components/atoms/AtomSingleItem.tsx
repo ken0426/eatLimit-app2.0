@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { color } from '../../styles';
 
 type Props = {
-  value: string;
+  value: string | number;
   label: string;
 };
 
@@ -11,7 +11,9 @@ const AtomSingleItem: FC<Props> = ({ value, label }) => {
   return (
     <View style={styles.itemArea}>
       <Text style={styles.label}>{label}</Text>
-      <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{value}</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
+        {typeof value === 'string' ? value : `${value}円`}
+      </Text>
     </View>
   );
 };
