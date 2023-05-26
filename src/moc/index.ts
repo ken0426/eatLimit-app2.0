@@ -33,6 +33,7 @@ export const data: ApiData[] = [
     image:
       'https://media.delishkitchen.tv/article/742/5mvvi83j09h.jpeg?version=1625233091',
     date: '2023-04-26',
+    placeOfPurchase: 'イオン',
   },
   {
     eatName: 'バナナ',
