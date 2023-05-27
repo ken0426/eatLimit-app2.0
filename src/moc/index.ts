@@ -63,6 +63,7 @@ export const data: ApiData[] = [
     date: '2023-04-26',
     image:
       'https://shop.odakyu-dept.co.jp/storage/ex_product_sku_image/1/1052011853.jpg',
+    placeOfPurchase: 'イオン',
   },
   {
     eatName: 'うどん',
