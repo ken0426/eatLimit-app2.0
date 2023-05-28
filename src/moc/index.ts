@@ -14,6 +14,7 @@ export const data: ApiData[] = [
     image: 'https://img.tkjm.jp/webshop/003/876/sl_10966.jpg',
     date: '2023-04-26',
     place: 2500,
+    placeOfPurchase: 'イオン',
   },
   {
     eatName: 'サーモン',
