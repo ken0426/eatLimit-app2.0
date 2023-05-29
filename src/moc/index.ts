@@ -22,6 +22,7 @@ export const data: ApiData[] = [
       'https://media.delishkitchen.tv/article/105/kmn81saarcn.jpeg?version=1586229518',
     date: '2023-04-26',
     placeOfPurchase: 'イオン',
+    place: 1200,
   },
   {
     eatName: '納豆',
