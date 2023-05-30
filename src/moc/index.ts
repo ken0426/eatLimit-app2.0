@@ -53,6 +53,7 @@ export const data: ApiData[] = [
     image:
       'https://www.haagen-dazs.co.jp/products/uploads/images/20190601_08.png',
     date: '2023-04-26',
+    place: 200,
   },
   {
     eatName: 'オレンジジュース',
