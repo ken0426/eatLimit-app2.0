@@ -29,6 +29,7 @@ export const data: ApiData[] = [
     image:
       'https://p1-e6eeae93.imageflux.jp/c!/a=2,w=800,h=800/mkdirect/149d22949040b32ff922.png',
     date: '2023-04-26',
+    placeOfPurchase: 'イオン',
   },
   {
     eatName: 'りんご',
