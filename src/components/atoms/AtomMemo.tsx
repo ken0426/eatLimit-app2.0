@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     color: 'black',
     justifyContent: 'flex-start',
+    textAlignVertical: 'top',
   },
   completedArea: {
     backgroundColor: '#f1f1f1',
