@@ -1,3 +1,9 @@
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import { RFPercentage } from 'react-native-responsive-fontsize';
+
 /** グローバルで使用する色 */
 export const color = {
   /** アプリのメインカラー */
@@ -22,6 +28,15 @@ export const color = {
   textLabel: '#787878',
   /** フッターモーダルのテキストエリアの色 */
   modalFooterTextArea: '#eeeeee',
+};
+
+export const SIZE = {
+  BASE_HP: hp('1%'),
+  BASE_WP: wp('1%'),
+};
+
+export const FONTSIZE = {
+  SIZE20PX: RFPercentage(2.6),
 };
 
 /** 入力項目の高さ */

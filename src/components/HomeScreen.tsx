@@ -12,7 +12,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { MaterialIcons } from '@expo/vector-icons';
 import { ApiData, StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
-import { color } from '../styles';
+import { FONTSIZE, SIZE, color } from '../styles';
 import { data, noImage } from '../moc';
 import AtomHome from './atoms/AtomHome';
 
@@ -79,13 +79,13 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   contents: {
-    height: 90,
+    height: SIZE.BASE_HP * 11,
     borderBottomWidth: 0.3,
     borderColor: color.borderLine,
     flexDirection: 'row',
   },
   imageArea: {
-    width: 130,
+    width: SIZE.BASE_HP * 15.5,
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   eatName: {
-    fontSize: 20,
+    fontSize: FONTSIZE.SIZE20PX,
   },
   date: {
     fontSize: 15,
