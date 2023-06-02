@@ -24,7 +24,10 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
   const renderItem: ListRenderItem<ApiData> = ({ item, index }) => (
     <View key={Number(index)} style={{ backgroundColor: '#ffffff' }}>
       <TouchableOpacity
-        style={[styles.contents, index === 0 && { borderTopWidth: 0.3 }]}
+        style={[
+          styles.contents,
+          index === 0 && { borderTopWidth: SIZE.BASE_HP * 0.05 },
+        ]}
         onPress={() => {
           navigation.navigate('detailScreen', { item });
         }}
@@ -54,9 +57,9 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
     <View style={{ flex: 1 }}>
       <MolHeader
         style={{
-          height: 100,
+          height: SIZE.BASE_HP * 12,
           paddingHorizontal: 20,
-          paddingTop: 30,
+          paddingTop: SIZE.BASE_HP * 4,
           backgroundColor: color.mainColor,
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -80,7 +83,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   contents: {
     height: SIZE.BASE_HP * 11,
-    borderBottomWidth: 0.3,
+    borderBottomWidth: SIZE.BASE_HP * 0.05,
     borderColor: color.borderLine,
     flexDirection: 'row',
   },
@@ -90,24 +93,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  dateArea: {
-    height: 40,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: color.mainColor,
-  },
-  iconArea: {
-    position: 'absolute',
-    right: 10,
-  },
   textArea: {
     justifyContent: 'space-around',
-    marginVertical: 4,
+    marginVertical: SIZE.BASE_HP * 0.6,
   },
   arrow: {
     height: '100%',
-    width: 30,
+    width: SIZE.BASE_WP * 8,
     right: 0,
     position: 'absolute',
     alignItems: 'center',
@@ -117,6 +109,6 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.SIZE20PX,
   },
   date: {
-    fontSize: 15,
+    fontSize: FONTSIZE.SIZE15PX,
   },
 });
