@@ -4,7 +4,7 @@ import moment from 'moment';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AntDesign } from '@expo/vector-icons';
 import { StackPramList } from '../../types';
-import { color } from '../../styles';
+import { FONTSIZE, color } from '../../styles';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
@@ -20,7 +20,7 @@ const AtomHome: FC<Props> = ({ navigation }) => {
       }}
     >
       <View>
-        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
+        <Text style={{ fontSize: FONTSIZE.SIZE20PX, fontWeight: 'bold' }}>
           {`本日${moment().format('YYYY-MM-DD')}`}
         </Text>
       </View>

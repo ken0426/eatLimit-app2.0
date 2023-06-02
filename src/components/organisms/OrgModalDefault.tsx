@@ -1,9 +1,9 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { WINDOW_HEIGHT } from '../../utils';
 import AtomButton from '../atoms/AtomButton';
-import { color } from '../../styles';
+import { FONTSIZE, color } from '../../styles';
 import { ModalButton } from '../../types';
 
 type Props = {
@@ -28,7 +28,7 @@ const OrgModalDefault: FC<Props> = ({
   return (
     <Modal isVisible={isVisible} onBackdropPress={cancelOnPress}>
       <View style={styles.modal}>
-        <Text style={{ fontSize: 20 }}>{message}</Text>
+        <Text style={{ fontSize: FONTSIZE.SIZE20PX }}>{message}</Text>
         {data.map((item, index) => (
           <AtomButton
             key={index}

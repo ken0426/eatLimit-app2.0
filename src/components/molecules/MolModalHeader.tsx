@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { color } from '../../styles';
+import { FONTSIZE, color } from '../../styles';
 
 type Props = {
   cancelOnPress: () => void;
@@ -34,13 +34,13 @@ const styles = StyleSheet.create({
   cancel: {
     width: '100%',
     justifyContent: 'center',
-    fontSize: 20,
+    fontSize: FONTSIZE.SIZE20PX,
     color: color.mainTextColor,
   },
   completed: {
     width: '100%',
     justifyContent: 'center',
-    fontSize: 20,
+    fontSize: FONTSIZE.SIZE20PX,
     color: color.mainTextColor,
   },
 });
