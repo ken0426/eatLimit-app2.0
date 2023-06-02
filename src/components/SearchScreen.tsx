@@ -4,7 +4,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import AtomSearch from './atoms/AtomSearch';
 import MolHeader from './molecules/MolHeader';
 import { StackPramList } from '../types';
-import { color } from '../styles';
+import { SIZE, color } from '../styles';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'searchScreen'>;
@@ -24,7 +24,7 @@ export default SearchScreen;
 
 const styles = StyleSheet.create({
   header: {
-    height: 100,
+    height: SIZE.BASE_HP * 12,
     paddingHorizontal: 20,
     paddingTop: 30,
     backgroundColor: color.mainColor,

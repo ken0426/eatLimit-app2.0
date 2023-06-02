@@ -11,7 +11,7 @@ import { Camera } from 'expo-camera';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
-import { color } from '../../styles';
+import { SIZE, color } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onPressAction } from '../../functions';
 import { WINDOW_WIDTH } from '../../utils';
@@ -95,7 +95,7 @@ export default AtomFileSelect;
 const styles = StyleSheet.create({
   fileSelectArea: {
     width: WINDOW_WIDTH,
-    minHeight: 100,
+    minHeight: SIZE.BASE_HP * 12,
     maxHeight: 200,
     borderBottomColor: color.detailBorderColor,
     borderBottomWidth: 0.3,

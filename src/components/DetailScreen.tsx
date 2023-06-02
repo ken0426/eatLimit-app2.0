@@ -9,7 +9,7 @@ import { DETAIL_IMAGE_HEIGHT } from '../contents';
 import { useDetailAnimation } from '../hooks/useDetailAnimation';
 import AtomSingleItem from './atoms/AtomSingleItem';
 import MolDetailHeader from './molecules/MolDetailHeader';
-import { color } from '../styles';
+import { SIZE, color } from '../styles';
 
 type RouteItem = {
   params: {
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   noImageHeader: {
-    height: 100,
+    height: SIZE.BASE_HP * 12,
     backgroundColor: color.mainColor,
     paddingTop: 20,
     justifyContent: 'center',

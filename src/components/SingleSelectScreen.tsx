@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
-import { color } from '../styles';
+import { SIZE, color } from '../styles';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'singleSelectScreen'>;
@@ -37,7 +37,7 @@ export default SingleSelectScreen;
 
 const styles = StyleSheet.create({
   header: {
-    height: 100,
+    height: SIZE.BASE_HP * 12,
     paddingHorizontal: 20,
     paddingTop: 30,
     backgroundColor: color.mainColor,

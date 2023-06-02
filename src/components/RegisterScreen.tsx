@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
-import { color } from '../styles';
+import { SIZE, color } from '../styles';
 import AtomRegister from './atoms/AtomRegister';
 import AtomFileSelect from './atoms/AtomFileSelect';
 import AtomSingleSelect from './atoms/AtomSingleSelect';
@@ -87,7 +87,7 @@ export default RegisterScreen;
 
 const styles = StyleSheet.create({
   header: {
-    height: 100,
+    height: SIZE.BASE_HP * 12,
     paddingHorizontal: 20,
     paddingTop: 30,
     backgroundColor: color.mainColor,
