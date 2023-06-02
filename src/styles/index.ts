@@ -36,6 +36,7 @@ export const SIZE = {
 };
 
 export const FONTSIZE = {
+  SIZE15PX: RFPercentage(2.0),
   SIZE20PX: RFPercentage(2.6),
 };
 
