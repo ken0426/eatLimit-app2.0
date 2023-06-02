@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   header: {
     height: SIZE.BASE_HP * 12,
     paddingHorizontal: 20,
-    paddingTop: 30,
+    paddingTop: SIZE.BASE_HP * 4,
     backgroundColor: color.mainColor,
     justifyContent: 'center',
     alignItems: 'center',
