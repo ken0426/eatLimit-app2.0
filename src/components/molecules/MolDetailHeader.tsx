@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-import { color } from '../../styles';
+import { SIZE, color } from '../../styles';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../../types';
 
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     zIndex: 11,
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
+    paddingHorizontal: SIZE.BASE_WP * 5,
     width: '100%',
   },
   backButton: {

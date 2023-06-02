@@ -58,7 +58,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
       <MolHeader
         style={{
           height: SIZE.BASE_HP * 12,
-          paddingHorizontal: 20,
+          paddingHorizontal: SIZE.BASE_WP * 5,
           paddingTop: SIZE.BASE_HP * 4,
           backgroundColor: color.mainColor,
           justifyContent: 'space-between',
