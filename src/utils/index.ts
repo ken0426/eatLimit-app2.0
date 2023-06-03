@@ -22,6 +22,7 @@ export const getText = (text: string, keyboardType: KeyboardTypeOptions) => {
 
 /** 商品の検索をする際のロジック */
 export const filterData = (data: ApiData[], text: string) => {
+  /** ひらがなをカタカナに置換するロジック */
   const hiraganaToKatakana = (str: string) => {
     return str.replace(/[\u3041-\u3096]/g, function (match) {
       const chr = match.charCodeAt(0) + 0x60;
