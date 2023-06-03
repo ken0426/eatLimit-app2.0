@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: SIZE.BASE_WP * 3,
-    borderBottomWidth: SIZE.BASE_HP * 0.03,
+    borderBottomWidth: SIZE.BASE_HP * 0.04,
     borderBottomColor: color.detailBorderColor,
   },
   label: {
