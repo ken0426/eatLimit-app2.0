@@ -16,38 +16,36 @@ const MolDetailHeader: FC<Props> = ({
   top = SIZE.BASE_HP * 3.8,
 }) => {
   return (
-    <>
-      <View style={[styles.header, { top }]}>
-        <TouchableOpacity
-          style={styles.backButton}
-          activeOpacity={0.8}
-          onPress={() => navigation.goBack()}
-        >
-          <View style={styles.headerButtonBackGround}>
-            <Ionicons
-              name='chevron-back'
-              size={28}
-              color={'#ffffff'}
-              style={{ right: 1, padding: 2 }}
-            />
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.8}
-          style={styles.searchButton}
-          onPress={() => console.log('編集ボタンです')}
-        >
-          <View style={styles.headerButtonBackGround}>
-            <Entypo
-              name='dots-three-horizontal'
-              size={28}
-              color={'#ffffff'}
-              style={{ padding: 2 }}
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-    </>
+    <View style={[styles.header, { top }]}>
+      <TouchableOpacity
+        style={styles.backButton}
+        activeOpacity={0.8}
+        onPress={() => navigation.goBack()}
+      >
+        <View style={styles.headerButtonBackGround}>
+          <Ionicons
+            name='chevron-back'
+            size={28}
+            color={'#ffffff'}
+            style={{ right: 1, padding: 2 }}
+          />
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={styles.searchButton}
+        onPress={() => console.log('編集ボタンです')}
+      >
+        <View style={styles.headerButtonBackGround}>
+          <Entypo
+            name='dots-three-horizontal'
+            size={28}
+            color={'#ffffff'}
+            style={{ padding: 2 }}
+          />
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
