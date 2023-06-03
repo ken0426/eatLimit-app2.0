@@ -11,7 +11,10 @@ type Props = {
   top?: number;
 };
 
-const MolDetailHeader: FC<Props> = ({ navigation, top = 30 }) => {
+const MolDetailHeader: FC<Props> = ({
+  navigation,
+  top = SIZE.BASE_HP * 3.8,
+}) => {
   return (
     <>
       <View style={[styles.header, { top }]}>
@@ -52,7 +55,7 @@ export default MolDetailHeader;
 
 const styles = StyleSheet.create({
   header: {
-    height: 80,
+    height: SIZE.BASE_HP * 10,
     flexDirection: 'row',
     zIndex: 11,
     justifyContent: 'space-between',
