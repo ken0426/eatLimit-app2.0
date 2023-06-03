@@ -5,11 +5,10 @@ import { RouteProp } from '@react-navigation/native';
 import { WINDOW_HEIGHT } from '../utils';
 import MolHeader from './molecules/MolHeader';
 import { ApiData, StackPramList } from '../types';
-import { DETAIL_IMAGE_HEIGHT } from '../contents';
 import { useDetailAnimation } from '../hooks/useDetailAnimation';
 import AtomSingleItem from './atoms/AtomSingleItem';
 import MolDetailHeader from './molecules/MolDetailHeader';
-import { SIZE, color } from '../styles';
+import { DETAIL_IMAGE_HEIGHT, SIZE, color } from '../styles';
 
 type RouteItem = {
   params: {

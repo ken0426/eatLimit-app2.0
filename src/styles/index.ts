@@ -46,3 +46,5 @@ export const FONTSIZE = {
 
 /** 入力項目の高さ */
 export const INPUT_HEIGHT = 50;
+/** 詳細画面の画像の高さ */
+export const DETAIL_IMAGE_HEIGHT = SIZE.BASE_HP * 28;
