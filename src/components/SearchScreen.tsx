@@ -1,5 +1,11 @@
 import React, { FC, useState } from 'react';
-import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
+import {
+  FlatList,
+  Keyboard,
+  ListRenderItem,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import AtomSearch from './atoms/AtomSearch';
@@ -46,6 +52,7 @@ const SearchScreen: FC<Props> = ({ navigation, route }) => {
         data={getData()}
         renderItem={renderItem}
         keyExtractor={(_, index) => index.toString()}
+        onScroll={() => Keyboard.dismiss()}
       />
     </View>
   );
