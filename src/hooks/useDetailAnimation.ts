@@ -1,5 +1,5 @@
 import { Animated } from 'react-native';
-import { BANNER_HEIGHT } from '../contents';
+import { BANNER_HEIGHT } from '../styles';
 
 export const useDetailAnimation = (animatedValue: Animated.Value) => {
   /** 詳細画面を上下にスクロール時した時のアニメーションの処理 */

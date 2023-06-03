@@ -8,9 +8,6 @@ export const SEARCH_BAR_HIGHT = 40;
  */
 export const SEARCH_BAR_TEXT = 20;
 
-/** 詳細画面のヘッダーの高さ */
-export const BANNER_HEIGHT = 130;
-
 /** カメラへの権限メッセージ */
 export const CAMERA_ERROR_MESSAGE =
   'カメラの起動に失敗しました。\n設定からカメラへの権限を許可してください';
