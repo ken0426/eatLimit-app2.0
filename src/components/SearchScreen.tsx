@@ -37,7 +37,7 @@ const SearchScreen: FC<Props> = ({ navigation, route }) => {
   };
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <MolHeader style={styles.header} type={'default'}>
         <AtomSearch navigation={navigation} text={text} setText={setText} />
       </MolHeader>
