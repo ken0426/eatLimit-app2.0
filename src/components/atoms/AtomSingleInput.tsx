@@ -6,7 +6,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { INPUT_HEIGHT, color } from '../../styles';
+import { FONTSIZE, INPUT_HEIGHT, color } from '../../styles';
 import { getText } from '../../utils';
 
 type Props = {
@@ -48,12 +48,12 @@ const styles = StyleSheet.create({
     borderBottomColor: color.detailBorderColor,
   },
   label: {
-    fontSize: 18,
+    fontSize: FONTSIZE.SIZE18PX,
     color: color.textLabel,
     fontWeight: '400',
   },
   textValue: {
-    fontSize: 18,
+    fontSize: FONTSIZE.SIZE18PX,
     flex: 1,
     textAlign: 'right',
     paddingRight: 10,

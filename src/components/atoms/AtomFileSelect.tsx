@@ -11,7 +11,7 @@ import { Camera } from 'expo-camera';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
-import { SIZE, color } from '../../styles';
+import { FONTSIZE, SIZE, color } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onPressAction } from '../../functions';
 import { WINDOW_WIDTH } from '../../utils';
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   fileSelectArea: {
     width: WINDOW_WIDTH,
     minHeight: SIZE.BASE_HP * 12,
-    maxHeight: 200,
+    maxHeight: SIZE.BASE_HP * 24,
     borderBottomColor: color.detailBorderColor,
     borderBottomWidth: 0.3,
     justifyContent: 'center',
@@ -104,9 +104,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   fileSelectText: {
-    fontSize: 18,
+    fontSize: FONTSIZE.SIZE18PX,
     color: color.blue,
-    paddingRight: 5,
+    paddingRight: SIZE.BASE_WP * 1.3,
     fontWeight: 'bold',
   },
   imageArea: {
@@ -118,8 +118,8 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: 'absolute',
-    top: 10,
-    right: 10,
+    top: SIZE.BASE_WP * 2.8,
+    right: SIZE.BASE_WP * 2.8,
     backgroundColor: '#000000',
     borderRadius: 50,
     alignItems: 'center',

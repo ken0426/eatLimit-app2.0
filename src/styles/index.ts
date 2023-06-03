@@ -37,7 +37,11 @@ export const SIZE = {
 
 export const FONTSIZE = {
   SIZE15PX: RFPercentage(2.0),
+  SIZE18PX: RFPercentage(2.4),
   SIZE20PX: RFPercentage(2.6),
+  SIZE24PX: RFPercentage(3.3),
+  SIZE25PX: RFPercentage(3.5),
+  SIZE30PX: RFPercentage(3.9),
 };
 
 /** 入力項目の高さ */

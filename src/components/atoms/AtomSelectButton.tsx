@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { KeepData, ManagementData } from '../../types';
-import { color } from '../../styles';
+import { FONTSIZE, color } from '../../styles';
 
 type Props = {
   item: KeepData | ManagementData;
@@ -90,12 +90,12 @@ const styles = StyleSheet.create({
   text: {
     width: '100%',
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: FONTSIZE.SIZE25PX,
     paddingVertical: 10,
     fontWeight: 'bold',
   },
   noImageText: {
-    fontSize: 25,
+    fontSize: FONTSIZE.SIZE25PX,
     color: color.detailBorderColor,
     fontWeight: 'bold',
   },

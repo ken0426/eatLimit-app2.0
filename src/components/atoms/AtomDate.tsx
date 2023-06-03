@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { DatePicker } from 'react-native-woodpicker';
 import { MaterialIcons } from '@expo/vector-icons';
-import { INPUT_HEIGHT, color } from '../../styles';
+import { FONTSIZE, INPUT_HEIGHT, color } from '../../styles';
 
 const AtomDate = () => {
   const [pickedDate, setPickedDate] = useState<Date>(new Date());
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     borderBottomColor: color.detailBorderColor,
   },
   label: {
-    fontSize: 18,
+    fontSize: FONTSIZE.SIZE18PX,
     color: color.textLabel,
     fontWeight: '400',
   },

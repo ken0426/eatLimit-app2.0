@@ -9,7 +9,7 @@ import {
   Platform,
   Text,
 } from 'react-native';
-import { color } from '../../styles';
+import { FONTSIZE, color } from '../../styles';
 
 type Props = {
   onPress: () => void;
@@ -67,14 +67,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   label: {
-    fontSize: 18,
+    fontSize: FONTSIZE.SIZE18PX,
     color: color.textLabel,
     fontWeight: '400',
   },
   textInput: {
     width: '100%',
     height: 120,
-    fontSize: 18,
+    fontSize: FONTSIZE.SIZE18PX,
     paddingVertical: 10,
     color: 'black',
     justifyContent: 'flex-start',

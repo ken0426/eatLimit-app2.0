@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
-import { SIZE, color } from '../styles';
+import { FONTSIZE, SIZE, color } from '../styles';
 import AtomRegister from './atoms/AtomRegister';
 import AtomFileSelect from './atoms/AtomFileSelect';
 import AtomSingleSelect from './atoms/AtomSingleSelect';
@@ -68,7 +68,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                 <AtomButton
                   onPress={() => {}}
                   color={'#ffffff'}
-                  fontSize={30}
+                  fontSize={FONTSIZE.SIZE30PX}
                   backgroundColor={color.blue}
                   width={200}
                   buttonText={'登録'}
@@ -97,12 +97,12 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   inputForm: {
-    paddingHorizontal: 10,
-    paddingBottom: 10,
+    paddingHorizontal: SIZE.BASE_HP * 1.2,
+    paddingBottom: SIZE.BASE_HP * 1.2,
   },
   buttonArea: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 20,
+    marginVertical: SIZE.BASE_HP * 2.4,
   },
 });

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { FONTSIZE, color } from '../../styles';
+import { FONTSIZE, SIZE, color } from '../../styles';
 
 type Props = {
   value: string | number;
@@ -22,12 +22,12 @@ export default AtomSingleItem;
 
 const styles = StyleSheet.create({
   itemArea: {
-    height: 50,
+    height: SIZE.BASE_HP * 6,
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    borderBottomWidth: 0.5,
+    paddingHorizontal: SIZE.BASE_WP * 3,
+    borderBottomWidth: SIZE.BASE_HP * 0.03,
     borderBottomColor: color.detailBorderColor,
   },
   label: {

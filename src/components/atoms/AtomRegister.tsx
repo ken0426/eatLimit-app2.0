@@ -4,7 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { StackPramList } from '../../types';
-import { color } from '../../styles';
+import { FONTSIZE, color } from '../../styles';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     textAlign: 'center',
-    fontSize: 24,
+    fontSize: FONTSIZE.SIZE24PX,
     fontWeight: 'bold',
     color: color.mainTextColor,
   },

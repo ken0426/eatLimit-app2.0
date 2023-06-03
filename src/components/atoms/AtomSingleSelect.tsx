@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { INPUT_HEIGHT, color } from '../../styles';
+import { FONTSIZE, INPUT_HEIGHT, color } from '../../styles';
 import OrgModalBottom from '../organisms/OrgModalBottom';
 import MolSingleSelect from '../molecules/MolSingleSelect';
 import { KeepData, ManagementData } from '../../types';
@@ -68,12 +68,12 @@ const styles = StyleSheet.create({
     borderBottomColor: color.detailBorderColor,
   },
   label: {
-    fontSize: 18,
+    fontSize: FONTSIZE.SIZE18PX,
     color: color.textLabel,
     fontWeight: '400',
   },
   textValue: {
-    fontSize: 18,
+    fontSize: FONTSIZE.SIZE18PX,
     flex: 1,
     textAlign: 'right',
     paddingRight: 10,

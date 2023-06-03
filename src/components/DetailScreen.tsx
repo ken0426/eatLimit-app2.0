@@ -43,7 +43,7 @@ const DetailScreen: FC<Props> = ({ navigation, route }) => {
       )}
       {!item.image && (
         <View style={styles.noImageHeader}>
-          <MolDetailHeader navigation={navigation} top={10} />
+          <MolDetailHeader navigation={navigation} top={SIZE.BASE_HP * 1.2} />
         </View>
       )}
       <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
@@ -72,16 +72,16 @@ const styles = StyleSheet.create({
   noImageHeader: {
     height: SIZE.BASE_HP * 12,
     backgroundColor: color.mainColor,
-    paddingTop: 20,
+    paddingTop: SIZE.BASE_HP * 2.3,
     justifyContent: 'center',
   },
   paddingForBanner: {
-    height: 150,
+    height: SIZE.BASE_HP * 18,
   },
   scrollViewContent: {
     height: WINDOW_HEIGHT,
     backgroundColor: 'white',
-    padding: 10,
+    padding: SIZE.BASE_HP * 1.2,
   },
   bannerContainer: {
     position: 'absolute',

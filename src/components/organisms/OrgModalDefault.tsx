@@ -22,7 +22,7 @@ const OrgModalDefault: FC<Props> = ({
   onPress,
   message,
   data,
-  fontSize = 30,
+  fontSize = FONTSIZE.SIZE30PX,
   borderColor = color.detailBorderColor,
 }) => {
   return (
