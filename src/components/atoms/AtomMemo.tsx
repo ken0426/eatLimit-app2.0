@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 120,
     fontSize: FONTSIZE.SIZE18PX,
-    paddingVertical: 10,
     color: 'black',
     justifyContent: 'flex-start',
     textAlignVertical: 'top',
