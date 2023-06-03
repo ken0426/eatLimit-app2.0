@@ -1,21 +1,52 @@
-import React, { FC } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { FC, useState } from 'react';
+import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
 import AtomSearch from './atoms/AtomSearch';
 import MolHeader from './molecules/MolHeader';
-import { StackPramList } from '../types';
+import { ApiData, StackPramList } from '../types';
 import { SIZE, color } from '../styles';
+import OrgList from './organisms/OrgList';
+import { filterData } from '../utils';
+
+type RouteItem = {
+  params: {
+    data: ApiData[];
+  };
+};
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'searchScreen'>;
+  route: RouteProp<StackPramList, 'searchScreen'> & RouteItem;
 };
 
-const SearchScreen: FC<Props> = ({ navigation }) => {
+const SearchScreen: FC<Props> = ({ navigation, route }) => {
+  const { data } = route.params;
+  const [text, setText] = useState('');
+
+  const renderItem: ListRenderItem<ApiData> = ({ item, index }) => (
+    <OrgList item={item} index={index} navigation={navigation} />
+  );
+
+  const getData = () => {
+    if (text === '') {
+      return [];
+    } else {
+      return filterData(data, text);
+    }
+  };
+
   return (
     <View>
       <MolHeader style={styles.header} type={'default'}>
-        <AtomSearch navigation={navigation} />
+        <AtomSearch navigation={navigation} text={text} setText={setText} />
       </MolHeader>
+
+      <FlatList
+        data={getData()}
+        renderItem={renderItem}
+        keyExtractor={(_, index) => index.toString()}
+      />
     </View>
   );
 };

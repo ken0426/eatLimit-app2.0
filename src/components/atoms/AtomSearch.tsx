@@ -9,9 +9,11 @@ import { StackPramList } from '../../types';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'searchScreen'>;
+  text: string;
+  setText: (e: string) => void;
 };
 
-const AtomSearch: FC<Props> = ({ navigation }) => {
+const AtomSearch: FC<Props> = ({ navigation, text, setText }) => {
   const inputRef = useRef<TextInput>(null);
 
   useEffect(() => {
@@ -28,7 +30,13 @@ const AtomSearch: FC<Props> = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <View style={{ width: '100%' }}>
-        <TextInput ref={inputRef} placeholder='検索' style={styles.textInput} />
+        <TextInput
+          ref={inputRef}
+          value={text}
+          onChangeText={(e) => setText(e)}
+          placeholder='検索'
+          style={styles.textInput}
+        />
         <View style={styles.icon}>
           <AntDesign name='search1' size={18} color={color.searchIcon} />
         </View>

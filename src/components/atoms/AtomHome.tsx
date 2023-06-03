@@ -3,14 +3,15 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import moment from 'moment';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AntDesign } from '@expo/vector-icons';
-import { StackPramList } from '../../types';
+import { ApiData, StackPramList } from '../../types';
 import { FONTSIZE, color } from '../../styles';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
+  data: ApiData[];
 };
 
-const AtomHome: FC<Props> = ({ navigation }) => {
+const AtomHome: FC<Props> = ({ navigation, data }) => {
   return (
     <View
       style={{
@@ -25,7 +26,9 @@ const AtomHome: FC<Props> = ({ navigation }) => {
         </Text>
       </View>
       <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity onPress={() => navigation.navigate('searchScreen')}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('searchScreen', { data: data })}
+        >
           <AntDesign name='search1' size={24} color={color.mainTextColor} />
         </TouchableOpacity>
         <TouchableOpacity

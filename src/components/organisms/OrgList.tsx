@@ -10,7 +10,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 type Props = {
   item: ApiData;
   index: number;
-  navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
+  navigation: StackNavigationProp<StackPramList, 'homeScreen' | 'searchScreen'>;
 };
 
 const OrgList: FC<Props> = ({ item, index, navigation }) => {

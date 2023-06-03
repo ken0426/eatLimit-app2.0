@@ -31,7 +31,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
         }}
         type={'default'}
       >
-        <AtomHome navigation={navigation} />
+        <AtomHome navigation={navigation} data={data} />
       </MolHeader>
       <FlatList
         data={data}

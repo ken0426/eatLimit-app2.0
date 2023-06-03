@@ -1,4 +1,5 @@
 import { Dimensions, KeyboardTypeOptions, Platform } from 'react-native';
+import { ApiData } from '../types';
 
 export const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT } =
   Dimensions.get('window');
@@ -17,4 +18,23 @@ export const getText = (text: string, keyboardType: KeyboardTypeOptions) => {
   } else {
     return text;
   }
+};
+
+/** 商品の検索をする際のロジック */
+export const filterData = (data: ApiData[], text: string) => {
+  const hiraganaToKatakana = (str: string) => {
+    return str.replace(/[\u3041-\u3096]/g, function (match) {
+      const chr = match.charCodeAt(0) + 0x60;
+      return String.fromCharCode(chr);
+    });
+  };
+
+  const pattern = new RegExp(hiraganaToKatakana(text));
+  return data.filter((item) => {
+    if (pattern.test(item.eatName)) {
+      return pattern.test(item.eatName);
+    } else {
+      return item.eatName.match(text);
+    }
+  });
 };

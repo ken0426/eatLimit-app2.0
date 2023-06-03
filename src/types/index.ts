@@ -23,7 +23,7 @@ export type KeepData = {
 export type StackPramList = {
   homeScreen: undefined;
   detailScreen: { item: ApiData };
-  searchScreen: undefined;
+  searchScreen: { data: ApiData[] };
   registerScreen: undefined;
 };
 
