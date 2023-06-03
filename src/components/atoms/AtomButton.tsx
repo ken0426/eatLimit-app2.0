@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { StyleSheet, Text, TextStyle, TouchableOpacity } from 'react-native';
+import { SIZE } from '../../styles';
 
 type Props = {
   onPress: () => void;
@@ -48,7 +49,7 @@ export default AtomButton;
 const styles = StyleSheet.create({
   contents: {
     alignItems: 'center',
-    borderRadius: 20,
+    borderRadius: SIZE.BASE_WP * 20,
     paddingVertical: 2,
   },
 });
