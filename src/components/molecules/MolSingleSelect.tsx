@@ -54,11 +54,4 @@ const styles = StyleSheet.create({
   textArea: {
     borderTopWidth: 3,
   },
-  text: {
-    width: '100%',
-    textAlign: 'center',
-    fontSize: 25,
-    paddingVertical: 10,
-    fontWeight: 'bold',
-  },
 });
