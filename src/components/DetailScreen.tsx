@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     height: DETAIL_IMAGE_HEIGHT,
     width: '100%',
     zIndex: 10,
+    backgroundColor: '#ffffff',
   },
   banner: {
     width: '100%',
