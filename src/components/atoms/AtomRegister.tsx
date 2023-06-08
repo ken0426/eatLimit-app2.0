@@ -7,10 +7,14 @@ import { StackPramList } from '../../types';
 import { FONTSIZE, color } from '../../styles';
 
 type Props = {
-  navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
+  navigation:
+    | StackNavigationProp<StackPramList, 'registerScreen'>
+    | StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
+  onPress: () => void;
+  title: string;
 };
 
-const AtomRegister: FC<Props> = ({ navigation }) => {
+const AtomRegister: FC<Props> = ({ navigation, onPress, title }) => {
   return (
     <View style={styles.header}>
       <TouchableOpacity
@@ -25,10 +29,10 @@ const AtomRegister: FC<Props> = ({ navigation }) => {
         />
       </TouchableOpacity>
       <View style={{ width: '33%' }}>
-        <Text style={styles.headerText}>登録</Text>
+        <Text style={styles.headerText}>{title}</Text>
       </View>
       <TouchableOpacity
-        onPress={() => Alert.alert('登録ボタン準備中')}
+        onPress={onPress}
         style={{ width: '33%', alignItems: 'flex-end' }}
       >
         <FontAwesome

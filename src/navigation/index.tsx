@@ -5,6 +5,7 @@ import DetailScreen from '../components/DetailScreen';
 import SearchScreen from '../components/SearchScreen';
 import { StackPramList } from '../types';
 import RegisterScreen from '../components/RegisterScreen';
+import UpdateRegisterScreen from '../components/UpdateRegisterScreen';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
@@ -35,6 +36,11 @@ const RootStackScreen = () => {
       <Stack.Screen
         name={'registerScreen'}
         component={RegisterScreen}
+        options={{ headerShown: false, presentation: 'fullScreenModal' }}
+      />
+      <Stack.Screen
+        name={'updateRegisterScreen'}
+        component={UpdateRegisterScreen}
         options={{ headerShown: false, presentation: 'fullScreenModal' }}
       />
     </Stack.Navigator>

@@ -34,7 +34,7 @@ const MolDetailHeader: FC<Props> = ({
       <TouchableOpacity
         activeOpacity={0.8}
         style={styles.searchButton}
-        onPress={() => console.log('編集ボタンです')}
+        onPress={() => navigation.navigate('updateRegisterScreen')}
       >
         <View style={styles.headerButtonBackGround}>
           <Entypo

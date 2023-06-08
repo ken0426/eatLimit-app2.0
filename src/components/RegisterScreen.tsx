@@ -1,6 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, useState } from 'react';
 import {
+  Alert,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -32,7 +33,11 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
   return (
     <View style={{ backgroundColor: '#ffffff', flex: 1 }}>
       <MolHeader style={styles.header} type={'default'}>
-        <AtomRegister navigation={navigation} />
+        <AtomRegister
+          onPress={() => Alert.alert('登録準備中')}
+          navigation={navigation}
+          title={'登録'}
+        />
       </MolHeader>
 
       <ScrollView>
