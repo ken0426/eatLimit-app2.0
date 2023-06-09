@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
+import { Alert, ScrollView, StyleSheet, View } from 'react-native';
 import MolHeader from './molecules/MolHeader';
 import AtomRegister from './atoms/AtomRegister';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -20,6 +20,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
           title={'変更'}
         />
       </MolHeader>
+      <ScrollView></ScrollView>
     </View>
   );
 };
