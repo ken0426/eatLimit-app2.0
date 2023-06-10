@@ -1,16 +1,35 @@
-import React, { FC } from 'react';
-import { Alert, ScrollView, StyleSheet, View } from 'react-native';
+import React, { FC, useState } from 'react';
+import {
+  Alert,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import MolHeader from './molecules/MolHeader';
 import AtomRegister from './atoms/AtomRegister';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../types';
-import { SIZE, color } from '../styles';
+import { FONTSIZE, SIZE, color } from '../styles';
+import AtomFileSelect from './atoms/AtomFileSelect';
+import AtomSingleInput from './atoms/AtomSingleInput';
+import AtomSingleSelect from './atoms/AtomSingleSelect';
+import AtomDate from './atoms/AtomDate';
+import AtomMemo from './atoms/AtomMemo';
+import AtomButton from './atoms/AtomButton';
+import { keepData, managementData } from '../contents';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
 };
 
 const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
+  /** キーボードで入力するエリアで高さを調整するフラグ */
+  const [enabled, setEnabled] = useState(false);
+
   return (
     <View style={{ backgroundColor: '#ffffff', flex: 1 }}>
       <MolHeader style={styles.header} type={'default'}>
@@ -20,7 +39,50 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
           title={'変更'}
         />
       </MolHeader>
-      <ScrollView></ScrollView>
+      <ScrollView>
+        <KeyboardAvoidingView
+          behavior='position'
+          style={{ flex: 1 }}
+          enabled={enabled}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+        >
+          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <View style={{ width: '100%' }}>
+              <AtomFileSelect />
+              <View style={styles.inputForm}>
+                <AtomSingleInput
+                  label={'商品名'}
+                  onPressIn={() => setEnabled(false)}
+                />
+                <AtomSingleSelect label={'管理方法'} data={managementData} />
+                <AtomSingleSelect label={'保存方法'} data={keepData} />
+                <AtomDate />
+                <AtomSingleInput
+                  label={'購入場所'}
+                  onPressIn={() => setEnabled(true)}
+                />
+                <AtomSingleInput
+                  label={'金額'}
+                  onPressIn={() => setEnabled(true)}
+                  keyboardType={'number-pad'}
+                />
+                <AtomMemo onPress={() => setEnabled(true)} />
+              </View>
+              <View style={styles.buttonArea}>
+                <AtomButton
+                  onPress={() => {}}
+                  color={'#ffffff'}
+                  fontSize={FONTSIZE.SIZE30PX}
+                  backgroundColor={color.blue}
+                  width={200}
+                  buttonText={'登録'}
+                  fontWeight={'bold'}
+                />
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      </ScrollView>
     </View>
   );
 };
@@ -37,5 +99,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     zIndex: 2,
+  },
+  inputForm: {
+    paddingHorizontal: SIZE.BASE_HP * 1.2,
+    paddingBottom: SIZE.BASE_HP * 1.2,
+  },
+  buttonArea: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: SIZE.BASE_HP * 2.4,
   },
 });
