@@ -5,6 +5,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { AntDesign } from '@expo/vector-icons';
 import { ApiData, StackPramList } from '../../types';
 import { FONTSIZE, color } from '../../styles';
+import { useRootDispatch } from '../../redux/store/store';
+import { setRegisterData } from '../../redux/slices/commonRegisterSlice';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
@@ -12,6 +14,8 @@ type Props = {
 };
 
 const AtomHome: FC<Props> = ({ navigation, data }) => {
+  const dispatch = useRootDispatch();
+
   return (
     <View
       style={{
@@ -33,7 +37,16 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={{ marginLeft: 15 }}
-          onPress={() => navigation.navigate('registerScreen')}
+          onPress={() => {
+            dispatch(
+              setRegisterData({
+                eatName: '',
+                image: '',
+                date: '',
+              })
+            );
+            navigation.navigate('registerScreen');
+          }}
         >
           <AntDesign name='pluscircleo' size={24} color={color.mainTextColor} />
         </TouchableOpacity>

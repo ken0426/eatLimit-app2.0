@@ -1,11 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const commonRegisterState = {};
+const commonRegisterState = {
+  registerData: {
+    eatName: '',
+    image: '',
+    date: '',
+    place: undefined,
+    placeOfPurchase: undefined,
+  },
+};
 
 export const commonRegisterSlice = createSlice({
   name: 'commonRegister',
   initialState: commonRegisterState,
-  reducers: {},
+  reducers: {
+    setRegisterData: (state, { payload }) => {
+      state.registerData = payload;
+    },
+  },
 });
 
-export const {} = commonRegisterSlice.actions;
+export const { setRegisterData } = commonRegisterSlice.actions;

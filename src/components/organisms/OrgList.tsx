@@ -6,6 +6,8 @@ import { FONTSIZE, SIZE, color } from '../../styles';
 import { noImage } from '../../moc';
 import { ApiData, StackPramList } from '../../types';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useRootDispatch } from '../../redux/store/store';
+import { setRegisterData } from '../../redux/slices/commonRegisterSlice';
 
 type Props = {
   item: ApiData;
@@ -14,6 +16,8 @@ type Props = {
 };
 
 const OrgList: FC<Props> = ({ item, index, navigation }) => {
+  const dispatch = useRootDispatch();
+
   return (
     <View key={Number(index)} style={{ backgroundColor: '#ffffff' }}>
       <TouchableOpacity
@@ -23,6 +27,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
         ]}
         onPress={() => {
           navigation.navigate('detailScreen', { item });
+          dispatch(setRegisterData(item));
         }}
       >
         <View style={styles.imageArea}>
