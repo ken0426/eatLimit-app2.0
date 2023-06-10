@@ -5,7 +5,7 @@ export type ApiData = {
   image?: string;
   date: string;
   placeOfPurchase?: string;
-  place?: number;
+  price?: number;
 };
 
 export type ManagementData = {

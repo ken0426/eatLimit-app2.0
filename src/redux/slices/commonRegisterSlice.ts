@@ -5,7 +5,7 @@ const commonRegisterState = {
     eatName: '',
     image: '',
     date: '',
-    place: undefined,
+    price: undefined,
     placeOfPurchase: undefined,
   },
 };

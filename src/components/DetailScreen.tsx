@@ -54,7 +54,7 @@ const DetailScreen: FC<Props> = ({ navigation, route }) => {
           {item?.placeOfPurchase && (
             <AtomSingleItem value={item.placeOfPurchase} label={'購入場所'} />
           )}
-          {item?.place && <AtomSingleItem value={item.place} label={'金額'} />}
+          {item?.price && <AtomSingleItem value={item.price} label={'金額'} />}
         </View>
       </ScrollView>
     </View>
