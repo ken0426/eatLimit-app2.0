@@ -16,14 +16,19 @@ import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onPressAction } from '../../functions';
 import { WINDOW_WIDTH } from '../../utils';
 import { SINGLE_MODAL_BUTTON } from '../../contents';
+import { useRootSelector } from '../../redux/store/store';
 
 const AtomFileSelect = () => {
   const { showActionSheetWithOptions } = useActionSheet();
+  const updateRegisterData = useRootSelector(
+    (state) => state.commonRegister.updateRegisterData
+  );
+  const imageText = updateRegisterData.image;
   const [isVisible, setIsVisible] = useState(false);
   /** アプリがカメラへのアクセス権限を求めるためのフラグ */
   const [hasPermission, setHasPermission] = useState(false);
   /** 画像があるかどうか判定するフラグ */
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(imageText ?? '');
 
   /** 初めてこの画面を開いた際にカメラへのアクセス権限を聞くロジック */
   useEffect(() => {
