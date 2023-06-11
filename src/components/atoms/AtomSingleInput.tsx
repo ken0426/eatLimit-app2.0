@@ -13,14 +13,16 @@ type Props = {
   label: string;
   onPressIn: () => void;
   keyboardType?: KeyboardTypeOptions;
+  textData?: string;
 };
 
 const AtomSingleInput: FC<Props> = ({
   label,
   onPressIn,
   keyboardType = 'default',
+  textData = '',
 }) => {
-  const [text, setText] = useState<string>('');
+  const [text, setText] = useState<string>(textData);
 
   return (
     <View style={styles.itemArea}>

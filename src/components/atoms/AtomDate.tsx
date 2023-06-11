@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { DatePicker } from 'react-native-woodpicker';
 import { MaterialIcons } from '@expo/vector-icons';
 import { FONTSIZE, INPUT_HEIGHT, color } from '../../styles';
 
-const AtomDate = () => {
-  const [pickedDate, setPickedDate] = useState<Date>(new Date());
+type Props = {
+  date?: string;
+};
+
+const AtomDate: FC<Props> = ({ date }) => {
+  const [pickedDate, setPickedDate] = useState<Date>(
+    date ? new Date(date) : new Date()
+  );
 
   const handleText = () => {
     const year = pickedDate.getFullYear();

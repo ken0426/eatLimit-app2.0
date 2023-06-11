@@ -21,12 +21,16 @@ import AtomDate from './atoms/AtomDate';
 import AtomMemo from './atoms/AtomMemo';
 import AtomButton from './atoms/AtomButton';
 import { keepData, managementData } from '../contents';
+import { useRootSelector } from '../redux/store/store';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
 };
 
 const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
+  const updateData = useRootSelector(
+    (state) => state.commonRegister.updateRegisterData
+  );
   /** キーボードで入力するエリアで高さを調整するフラグ */
   const [enabled, setEnabled] = useState(false);
 
@@ -53,18 +57,21 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                 <AtomSingleInput
                   label={'商品名'}
                   onPressIn={() => setEnabled(false)}
+                  textData={updateData.eatName}
                 />
                 <AtomSingleSelect label={'管理方法'} data={managementData} />
                 <AtomSingleSelect label={'保存方法'} data={keepData} />
-                <AtomDate />
+                <AtomDate date={updateData.date} />
                 <AtomSingleInput
                   label={'購入場所'}
                   onPressIn={() => setEnabled(true)}
+                  textData={updateData.placeOfPurchase}
                 />
                 <AtomSingleInput
                   label={'金額'}
                   onPressIn={() => setEnabled(true)}
                   keyboardType={'number-pad'}
+                  textData={updateData.price ? String(updateData.price) : ''}
                 />
                 <AtomMemo onPress={() => setEnabled(true)} />
               </View>
