@@ -6,7 +6,10 @@ import { AntDesign } from '@expo/vector-icons';
 import { ApiData, StackPramList } from '../../types';
 import { FONTSIZE, color } from '../../styles';
 import { useRootDispatch } from '../../redux/store/store';
-import { setRegisterData } from '../../redux/slices/commonRegisterSlice';
+import {
+  setRegisterData,
+  setUpdateRegisterData,
+} from '../../redux/slices/commonRegisterSlice';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
@@ -39,10 +42,14 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
           style={{ marginLeft: 15 }}
           onPress={() => {
             dispatch(
-              setRegisterData({
+              setUpdateRegisterData({
                 eatName: '',
                 image: '',
                 date: '',
+                price: undefined,
+                placeOfPurchase: undefined,
+                management: '',
+                keep: '',
               })
             );
             navigation.navigate('registerScreen');
