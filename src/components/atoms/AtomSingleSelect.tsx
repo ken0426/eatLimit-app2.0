@@ -15,11 +15,12 @@ import { KeepData, ManagementData } from '../../types';
 type Props = {
   label: string;
   data: KeepData[] | ManagementData[];
+  textData?: string;
 };
 
-const AtomSingleSelect: FC<Props> = ({ label, data }) => {
+const AtomSingleSelect: FC<Props> = ({ label, data, textData = '' }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [text, setText] = useState('');
+  const [text, setText] = useState(textData);
 
   return (
     <View>

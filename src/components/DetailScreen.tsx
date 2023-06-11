@@ -49,8 +49,8 @@ const DetailScreen: FC<Props> = ({ navigation, route }) => {
         {item.image && <View style={styles.paddingForBanner} />}
         <View style={styles.scrollViewContent}>
           <AtomSingleItem value={item.eatName} label={'商品名'} />
-          <AtomSingleItem value={item.date} label={'消費期限'} />
-          <AtomSingleItem value={'冷蔵'} label={'保存方法'} />
+          <AtomSingleItem value={item.date} label={item.management} />
+          <AtomSingleItem value={item.keep} label={'保存方法'} />
           {item?.placeOfPurchase && (
             <AtomSingleItem value={item.placeOfPurchase} label={'購入場所'} />
           )}

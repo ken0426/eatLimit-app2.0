@@ -7,6 +7,8 @@ const commonRegisterState = {
     date: '',
     price: undefined,
     placeOfPurchase: undefined,
+    management: '',
+    keep: '',
   },
   updateRegisterData: {
     eatName: '',
@@ -14,6 +16,8 @@ const commonRegisterState = {
     date: '',
     price: undefined,
     placeOfPurchase: undefined,
+    management: '',
+    keep: '',
   },
 };
 

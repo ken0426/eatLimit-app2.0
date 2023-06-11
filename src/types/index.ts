@@ -6,6 +6,8 @@ export type ApiData = {
   date: string;
   placeOfPurchase?: string;
   price?: number;
+  management: '消費期限' | '賞味期限' | '購入日' | '登録日';
+  keep: '冷凍' | '冷蔵' | '常温';
 };
 
 export type ManagementData = {

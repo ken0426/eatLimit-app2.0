@@ -59,8 +59,16 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                   onPressIn={() => setEnabled(false)}
                   textData={updateData.eatName}
                 />
-                <AtomSingleSelect label={'管理方法'} data={managementData} />
-                <AtomSingleSelect label={'保存方法'} data={keepData} />
+                <AtomSingleSelect
+                  label={'管理方法'}
+                  data={managementData}
+                  textData={updateData.management}
+                />
+                <AtomSingleSelect
+                  label={'保存方法'}
+                  data={keepData}
+                  textData={updateData.keep}
+                />
                 <AtomDate date={updateData.date} />
                 <AtomSingleInput
                   label={'購入場所'}
