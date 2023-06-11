@@ -7,7 +7,7 @@ import { noImage } from '../../moc';
 import { ApiData, StackPramList } from '../../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useRootDispatch } from '../../redux/store/store';
-import { setRegisterData } from '../../redux/slices/commonRegisterSlice';
+import { setUpdateRegisterData } from '../../redux/slices/commonRegisterSlice';
 
 type Props = {
   item: ApiData;
@@ -27,7 +27,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
         ]}
         onPress={() => {
           navigation.navigate('detailScreen', { item });
-          dispatch(setRegisterData(item));
+          dispatch(setUpdateRegisterData(item));
         }}
       >
         <View style={styles.imageArea}>
