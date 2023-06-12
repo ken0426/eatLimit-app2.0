@@ -89,10 +89,22 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                   color={'#ffffff'}
                   fontSize={FONTSIZE.SIZE30PX}
                   backgroundColor={color.blue}
-                  width={200}
+                  width={SIZE.BASE_WP * 50}
                   buttonText={'登録'}
                   fontWeight={'bold'}
                 />
+                {/* 削除ボタンの仮実装 */}
+                <View style={{ marginTop: SIZE.BASE_HP }}>
+                  <AtomButton
+                    onPress={() => {}}
+                    color={'#ffffff'}
+                    fontSize={FONTSIZE.SIZE30PX}
+                    backgroundColor={'red'}
+                    width={SIZE.BASE_WP * 50}
+                    buttonText={'削除'}
+                    fontWeight={'bold'}
+                  />
+                </View>
               </View>
             </View>
           </TouchableWithoutFeedback>
