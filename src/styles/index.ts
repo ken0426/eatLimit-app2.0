@@ -28,6 +28,8 @@ export const color = {
   textLabel: '#787878',
   /** フッターモーダルのテキストエリアの色 */
   modalFooterTextArea: '#eeeeee',
+  /** 削除ボタン */
+  red: '#ff1414',
 };
 
 export const SIZE = {

@@ -94,12 +94,12 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                   fontWeight={'bold'}
                 />
                 {/* 削除ボタンの仮実装 */}
-                <View style={{ marginTop: SIZE.BASE_HP }}>
+                <View style={{ marginTop: SIZE.BASE_HP * 2 }}>
                   <AtomButton
                     onPress={() => {}}
                     color={'#ffffff'}
                     fontSize={FONTSIZE.SIZE30PX}
-                    backgroundColor={'red'}
+                    backgroundColor={color.red}
                     width={SIZE.BASE_WP * 50}
                     buttonText={'削除'}
                     fontWeight={'bold'}
