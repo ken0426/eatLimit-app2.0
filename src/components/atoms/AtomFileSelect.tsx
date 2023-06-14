@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   },
   fileSelectText: {
     fontSize: FONTSIZE.SIZE18PX,
-    color: COLORS.blue,
+    color: COLORS.BLUE,
     paddingRight: SIZE.BASE_WP * 1.3,
     fontWeight: 'bold',
   },

@@ -11,7 +11,7 @@ export const COLORS = {
   /** アプリのテキスト入力 */
   mainTextColor: '#434343',
   /** 戻るボタンやリンクなどの色 */
-  blue: '#007AFF',
+  BLUE: '#007AFF',
   /** 検索バーのテキストカラー */
   TextInput: '#e0e0e0',
   /** 検索バーの虫眼鏡のカラー */

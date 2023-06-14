@@ -88,7 +88,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                   onPress={() => {}}
                   color={'#ffffff'}
                   fontSize={FONTSIZE.SIZE30PX}
-                  backgroundColor={COLORS.blue}
+                  backgroundColor={COLORS.BLUE}
                   width={SIZE.BASE_WP * 50}
                   buttonText={'登録'}
                   fontWeight={'bold'}

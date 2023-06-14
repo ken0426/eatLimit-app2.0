@@ -74,7 +74,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                   onPress={() => {}}
                   color={'#ffffff'}
                   fontSize={FONTSIZE.SIZE30PX}
-                  backgroundColor={COLORS.blue}
+                  backgroundColor={COLORS.BLUE}
                   width={200}
                   buttonText={'登録'}
                   fontWeight={'bold'}
