@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { FONTSIZE, color } from '../../styles';
+import { COLORS, FONTSIZE } from '../../styles';
 
 type Props = {
   cancelOnPress: () => void;
@@ -29,18 +29,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 10,
     paddingVertical: 10,
-    backgroundColor: color.modalFooterTextArea,
+    backgroundColor: COLORS.modalFooterTextArea,
   },
   cancel: {
     width: '100%',
     justifyContent: 'center',
     fontSize: FONTSIZE.SIZE20PX,
-    color: color.mainTextColor,
+    color: COLORS.mainTextColor,
   },
   completed: {
     width: '100%',
     justifyContent: 'center',
     fontSize: FONTSIZE.SIZE20PX,
-    color: color.mainTextColor,
+    color: COLORS.mainTextColor,
   },
 });

@@ -9,7 +9,7 @@ import {
   Platform,
   Text,
 } from 'react-native';
-import { FONTSIZE, SIZE, color } from '../../styles';
+import { COLORS, FONTSIZE, SIZE } from '../../styles';
 
 type Props = {
   onPress: () => void;
@@ -29,7 +29,7 @@ const AtomMemo: FC<Props> = ({ onPress }) => {
           <TextInput
             placeholder={'500文字以内で入力してください'}
             onPressIn={onPress}
-            placeholderTextColor={color.textLabel}
+            placeholderTextColor={COLORS.textLabel}
             style={styles.textInput}
             inputAccessoryViewID={inputAccessoryViewID}
             multiline
@@ -46,7 +46,7 @@ const AtomMemo: FC<Props> = ({ onPress }) => {
           )}
         </View>
       </View>
-      <Text style={{ textAlign: 'right', color: color.textLabel }}>
+      <Text style={{ textAlign: 'right', color: COLORS.textLabel }}>
         {`${text.length}／500`}
       </Text>
     </View>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: FONTSIZE.SIZE18PX,
-    color: color.textLabel,
+    color: COLORS.textLabel,
     fontWeight: '400',
   },
   textInput: {

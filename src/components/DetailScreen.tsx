@@ -8,7 +8,7 @@ import { ApiData, StackPramList } from '../types';
 import { useDetailAnimation } from '../hooks/useDetailAnimation';
 import AtomSingleItem from './atoms/AtomSingleItem';
 import MolDetailHeader from './molecules/MolDetailHeader';
-import { DETAIL_IMAGE_HEIGHT, SIZE, color } from '../styles';
+import { COLORS, DETAIL_IMAGE_HEIGHT, SIZE } from '../styles';
 
 type RouteItem = {
   params: {
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   noImageHeader: {
     height: SIZE.BASE_HP * 12,
-    backgroundColor: color.mainColor,
+    backgroundColor: COLORS.mainColor,
     paddingTop: SIZE.BASE_HP * 2.3,
     justifyContent: 'center',
   },

@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
-import { FONTSIZE, SIZE, color } from '../styles';
+import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomRegister from './atoms/AtomRegister';
 import AtomFileSelect from './atoms/AtomFileSelect';
 import AtomSingleSelect from './atoms/AtomSingleSelect';
@@ -74,7 +74,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                   onPress={() => {}}
                   color={'#ffffff'}
                   fontSize={FONTSIZE.SIZE30PX}
-                  backgroundColor={color.blue}
+                  backgroundColor={COLORS.blue}
                   width={200}
                   buttonText={'登録'}
                   fontWeight={'bold'}
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     height: SIZE.BASE_HP * 12,
     paddingHorizontal: SIZE.BASE_WP * 5,
     paddingTop: SIZE.BASE_HP * 4,
-    backgroundColor: color.mainColor,
+    backgroundColor: COLORS.mainColor,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',

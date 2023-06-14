@@ -11,7 +11,7 @@ import { RouteProp } from '@react-navigation/native';
 import AtomSearch from './atoms/AtomSearch';
 import MolHeader from './molecules/MolHeader';
 import { ApiData, StackPramList } from '../types';
-import { SIZE, color } from '../styles';
+import { COLORS, SIZE } from '../styles';
 import OrgList from './organisms/OrgList';
 import { filterData } from '../utils';
 
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     height: SIZE.BASE_HP * 12,
     paddingHorizontal: SIZE.BASE_WP * 5,
     paddingTop: SIZE.BASE_HP * 4,
-    backgroundColor: color.mainColor,
+    backgroundColor: COLORS.mainColor,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',

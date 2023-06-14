@@ -4,7 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { StackPramList } from '../../types';
-import { FONTSIZE, color } from '../../styles';
+import { COLORS, FONTSIZE } from '../../styles';
 
 type Props = {
   navigation:
@@ -24,7 +24,7 @@ const AtomRegister: FC<Props> = ({ navigation, onPress, title }) => {
         <AntDesign
           name='close'
           size={24}
-          color={color.mainTextColor}
+          color={COLORS.mainTextColor}
           style={{ right: 1, padding: 2 }}
         />
       </TouchableOpacity>
@@ -38,7 +38,7 @@ const AtomRegister: FC<Props> = ({ navigation, onPress, title }) => {
         <FontAwesome
           name='pencil-square-o'
           size={24}
-          color={color.mainTextColor}
+          color={COLORS.mainTextColor}
         />
       </TouchableOpacity>
     </View>
@@ -58,6 +58,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: FONTSIZE.SIZE24PX,
     fontWeight: 'bold',
-    color: color.mainTextColor,
+    color: COLORS.mainTextColor,
   },
 });

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { WINDOW_HEIGHT } from '../../utils';
 import AtomButton from '../atoms/AtomButton';
-import { FONTSIZE, color } from '../../styles';
+import { COLORS, FONTSIZE } from '../../styles';
 import { ModalButton } from '../../types';
 
 type Props = {
@@ -23,7 +23,7 @@ const OrgModalDefault: FC<Props> = ({
   message,
   data,
   fontSize = FONTSIZE.SIZE30PX,
-  borderColor = color.detailBorderColor,
+  borderColor = COLORS.detailBorderColor,
 }) => {
   return (
     <Modal isVisible={isVisible} onBackdropPress={cancelOnPress}>

@@ -2,7 +2,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
-import { FONTSIZE, SIZE, color } from '../../styles';
+import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { noImage } from '../../moc';
 import { ApiData, StackPramList } from '../../types';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -44,7 +44,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
           <MaterialIcons
             name='keyboard-arrow-right'
             size={24}
-            color={color.textColor}
+            color={COLORS.textColor}
           />
         </View>
       </TouchableOpacity>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   contents: {
     height: SIZE.BASE_HP * 11,
     borderBottomWidth: SIZE.BASE_HP * 0.05,
-    borderColor: color.borderLine,
+    borderColor: COLORS.borderLine,
     flexDirection: 'row',
   },
   imageArea: {

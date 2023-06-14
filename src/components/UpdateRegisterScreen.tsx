@@ -13,7 +13,7 @@ import MolHeader from './molecules/MolHeader';
 import AtomRegister from './atoms/AtomRegister';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../types';
-import { FONTSIZE, SIZE, color } from '../styles';
+import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomFileSelect from './atoms/AtomFileSelect';
 import AtomSingleInput from './atoms/AtomSingleInput';
 import AtomSingleSelect from './atoms/AtomSingleSelect';
@@ -88,7 +88,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                   onPress={() => {}}
                   color={'#ffffff'}
                   fontSize={FONTSIZE.SIZE30PX}
-                  backgroundColor={color.blue}
+                  backgroundColor={COLORS.blue}
                   width={SIZE.BASE_WP * 50}
                   buttonText={'登録'}
                   fontWeight={'bold'}
@@ -99,7 +99,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     onPress={() => {}}
                     color={'#ffffff'}
                     fontSize={FONTSIZE.SIZE30PX}
-                    backgroundColor={color.red}
+                    backgroundColor={COLORS.red}
                     width={SIZE.BASE_WP * 50}
                     buttonText={'削除'}
                     fontWeight={'bold'}
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     height: SIZE.BASE_HP * 12,
     paddingHorizontal: SIZE.BASE_WP * 5,
     paddingTop: SIZE.BASE_HP * 4,
-    backgroundColor: color.mainColor,
+    backgroundColor: COLORS.mainColor,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',

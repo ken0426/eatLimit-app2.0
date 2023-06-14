@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import { color } from '../../styles';
+import { COLORS } from '../../styles';
 import { SEARCH_BAR_HIGHT, SEARCH_BAR_TEXT } from '../../contents';
 import { StackPramList } from '../../types';
 
@@ -26,7 +26,11 @@ const AtomSearch: FC<Props> = ({ navigation, text, setText }) => {
     <View style={styles.contents}>
       <View style={{ marginRight: 10 }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name='chevron-back' size={28} color={color.mainTextColor} />
+          <Ionicons
+            name='chevron-back'
+            size={28}
+            color={COLORS.mainTextColor}
+          />
         </TouchableOpacity>
       </View>
       <View style={{ width: '100%' }}>
@@ -38,7 +42,7 @@ const AtomSearch: FC<Props> = ({ navigation, text, setText }) => {
           style={styles.textInput}
         />
         <View style={styles.icon}>
-          <AntDesign name='search1' size={18} color={color.searchIcon} />
+          <AntDesign name='search1' size={18} color={COLORS.searchIcon} />
         </View>
       </View>
     </View>
@@ -58,7 +62,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     paddingLeft: 30,
     paddingRight: 20,
-    backgroundColor: color.TextInput,
+    backgroundColor: COLORS.TextInput,
     width: '80%',
   },
   icon: {

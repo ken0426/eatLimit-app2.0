@@ -4,7 +4,7 @@ import moment from 'moment';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AntDesign } from '@expo/vector-icons';
 import { ApiData, StackPramList } from '../../types';
-import { FONTSIZE, color } from '../../styles';
+import { COLORS, FONTSIZE } from '../../styles';
 import { useRootDispatch } from '../../redux/store/store';
 import {
   setRegisterData,
@@ -36,7 +36,7 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
         <TouchableOpacity
           onPress={() => navigation.navigate('searchScreen', { data: data })}
         >
-          <AntDesign name='search1' size={24} color={color.mainTextColor} />
+          <AntDesign name='search1' size={24} color={COLORS.mainTextColor} />
         </TouchableOpacity>
         <TouchableOpacity
           style={{ marginLeft: 15 }}
@@ -55,7 +55,11 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
             navigation.navigate('registerScreen');
           }}
         >
-          <AntDesign name='pluscircleo' size={24} color={color.mainTextColor} />
+          <AntDesign
+            name='pluscircleo'
+            size={24}
+            color={COLORS.mainTextColor}
+          />
         </TouchableOpacity>
       </View>
     </View>

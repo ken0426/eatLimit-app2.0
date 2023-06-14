@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { FONTSIZE, INPUT_HEIGHT, color } from '../../styles';
+import { COLORS, FONTSIZE, INPUT_HEIGHT } from '../../styles';
 import OrgModalBottom from '../organisms/OrgModalBottom';
 import MolSingleSelect from '../molecules/MolSingleSelect';
 import { KeepData, ManagementData } from '../../types';
@@ -38,7 +38,7 @@ const AtomSingleSelect: FC<Props> = ({ label, data, textData = '' }) => {
             <MaterialIcons
               name='keyboard-arrow-down'
               size={20}
-              color={color.textColor}
+              color={COLORS.textColor}
             />
           </View>
         </View>
@@ -66,11 +66,11 @@ const styles = StyleSheet.create({
     height: INPUT_HEIGHT,
     alignItems: 'center',
     borderBottomWidth: 0.3,
-    borderBottomColor: color.detailBorderColor,
+    borderBottomColor: COLORS.detailBorderColor,
   },
   label: {
     fontSize: FONTSIZE.SIZE18PX,
-    color: color.textLabel,
+    color: COLORS.textLabel,
     fontWeight: '400',
   },
   textValue: {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'right',
     paddingRight: 10,
-    color: color.textColor,
+    color: COLORS.textColor,
     fontWeight: 'bold',
   },
 });

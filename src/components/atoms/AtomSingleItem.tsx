@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { FONTSIZE, SIZE, color } from '../../styles';
+import { COLORS, FONTSIZE, SIZE } from '../../styles';
 
 type Props = {
   value: string | number;
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: SIZE.BASE_WP * 3,
     borderBottomWidth: SIZE.BASE_HP * 0.04,
-    borderBottomColor: color.detailBorderColor,
+    borderBottomColor: COLORS.detailBorderColor,
   },
   label: {
     width: '40%',

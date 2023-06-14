@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-import { SIZE, color } from '../../styles';
+import { COLORS, SIZE } from '../../styles';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../../types';
 
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     zIndex: 100,
   },
   headerButtonBackGround: {
-    backgroundColor: color.detailHeaderButton,
+    backgroundColor: COLORS.detailHeaderButton,
     borderRadius: 50,
     width: '100%',
   },

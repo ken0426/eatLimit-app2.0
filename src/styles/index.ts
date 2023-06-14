@@ -5,7 +5,7 @@ import {
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
 /** グローバルで使用する色 */
-export const color = {
+export const COLORS = {
   /** アプリのメインカラー */
   mainColor: '#f9f9f9', // rgba: 217, 184, 155
   /** アプリのテキスト入力 */

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { KeepData, ManagementData } from '../../types';
-import { FONTSIZE, color } from '../../styles';
+import { COLORS, FONTSIZE } from '../../styles';
 
 type Props = {
   item: KeepData | ManagementData;
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     borderRadius: 10,
     borderWidth: 3,
-    borderColor: color.detailBorderColor,
+    borderColor: COLORS.detailBorderColor,
   },
   imageArea: {
     flex: 1,
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
   noImageText: {
     fontSize: FONTSIZE.SIZE25PX,
-    color: color.detailBorderColor,
+    color: COLORS.detailBorderColor,
     fontWeight: 'bold',
   },
 });

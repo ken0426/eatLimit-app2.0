@@ -11,7 +11,7 @@ import { Camera } from 'expo-camera';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
-import { FONTSIZE, SIZE, color } from '../../styles';
+import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onPressAction } from '../../functions';
 import { WINDOW_WIDTH } from '../../utils';
@@ -80,7 +80,7 @@ const AtomFileSelect = () => {
           <AntDesign
             name='infocirlceo'
             size={17}
-            color={color.detailBorderColor}
+            color={COLORS.detailBorderColor}
           />
         </TouchableOpacity>
       )}
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     width: WINDOW_WIDTH,
     minHeight: SIZE.BASE_HP * 12,
     maxHeight: SIZE.BASE_HP * 24,
-    borderBottomColor: color.detailBorderColor,
+    borderBottomColor: COLORS.detailBorderColor,
     borderBottomWidth: 0.3,
     justifyContent: 'center',
     alignItems: 'center',
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   },
   fileSelectText: {
     fontSize: FONTSIZE.SIZE18PX,
-    color: color.blue,
+    color: COLORS.blue,
     paddingRight: SIZE.BASE_WP * 1.3,
     fontWeight: 'bold',
   },

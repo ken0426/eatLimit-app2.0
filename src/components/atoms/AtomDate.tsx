@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { DatePicker } from 'react-native-woodpicker';
 import { MaterialIcons } from '@expo/vector-icons';
-import { FONTSIZE, INPUT_HEIGHT, color } from '../../styles';
+import { COLORS, FONTSIZE, INPUT_HEIGHT } from '../../styles';
 
 type Props = {
   date?: string;
@@ -43,7 +43,7 @@ const AtomDate: FC<Props> = ({ date }) => {
           <MaterialIcons
             name='keyboard-arrow-down'
             size={20}
-            color={color.textColor}
+            color={COLORS.textColor}
           />
         </View>
       </View>
@@ -59,11 +59,11 @@ const styles = StyleSheet.create({
     height: INPUT_HEIGHT,
     alignItems: 'center',
     borderBottomWidth: 0.3,
-    borderBottomColor: color.detailBorderColor,
+    borderBottomColor: COLORS.detailBorderColor,
   },
   label: {
     fontSize: FONTSIZE.SIZE18PX,
-    color: color.textLabel,
+    color: COLORS.textLabel,
     fontWeight: '400',
   },
   selectArea: {
