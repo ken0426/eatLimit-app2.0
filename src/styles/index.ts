@@ -29,7 +29,7 @@ export const COLORS = {
   /** フッターモーダルのテキストエリアの色 */
   modalFooterTextArea: '#eeeeee',
   /** 削除ボタン */
-  red: '#ff1414',
+  RED: '#ff1414',
 };
 
 export const SIZE = {

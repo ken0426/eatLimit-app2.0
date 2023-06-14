@@ -99,7 +99,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     onPress={() => {}}
                     color={'#ffffff'}
                     fontSize={FONTSIZE.SIZE30PX}
-                    backgroundColor={COLORS.red}
+                    backgroundColor={COLORS.RED}
                     width={SIZE.BASE_WP * 50}
                     buttonText={'削除'}
                     fontWeight={'bold'}
