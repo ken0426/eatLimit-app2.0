@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: FONTSIZE.SIZE18PX,
-    color: COLORS.textLabel,
+    color: COLORS.TEXT_LABEL,
     fontWeight: '400',
   },
   textValue: {

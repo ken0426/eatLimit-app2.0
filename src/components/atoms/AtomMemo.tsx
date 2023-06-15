@@ -29,7 +29,7 @@ const AtomMemo: FC<Props> = ({ onPress }) => {
           <TextInput
             placeholder={'500文字以内で入力してください'}
             onPressIn={onPress}
-            placeholderTextColor={COLORS.textLabel}
+            placeholderTextColor={COLORS.TEXT_LABEL}
             style={styles.textInput}
             inputAccessoryViewID={inputAccessoryViewID}
             multiline
@@ -46,7 +46,7 @@ const AtomMemo: FC<Props> = ({ onPress }) => {
           )}
         </View>
       </View>
-      <Text style={{ textAlign: 'right', color: COLORS.textLabel }}>
+      <Text style={{ textAlign: 'right', color: COLORS.TEXT_LABEL }}>
         {`${text.length}／500`}
       </Text>
     </View>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: FONTSIZE.SIZE18PX,
-    color: COLORS.textLabel,
+    color: COLORS.TEXT_LABEL,
     fontWeight: '400',
   },
   textInput: {

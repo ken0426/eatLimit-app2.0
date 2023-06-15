@@ -25,7 +25,7 @@ export const COLORS = {
   /** 詳細画面で使用するボーダーの線の色 */
   detailBorderColor: '#696969',
   /** 登録画面などで使用するラベルカラー */
-  textLabel: '#787878',
+  TEXT_LABEL: '#787878',
   /** フッターモーダルのテキストエリアの色 */
   modalFooterTextArea: '#eeeeee',
   /** 削除ボタン */
