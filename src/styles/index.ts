@@ -13,7 +13,7 @@ export const COLORS = {
   /** 戻るボタンやリンクなどの色 */
   BLUE: '#007AFF',
   /** 検索バーのテキストカラー */
-  TextInput: '#e0e0e0',
+  TEXT_INPUT: '#e0e0e0',
   /** 検索バーの虫眼鏡のカラー */
   searchIcon: '#c6c6c6',
   /** 一覧画面の線のカラー */

@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     paddingLeft: 30,
     paddingRight: 20,
-    backgroundColor: COLORS.TextInput,
+    backgroundColor: COLORS.TEXT_INPUT,
     width: '80%',
   },
   icon: {
