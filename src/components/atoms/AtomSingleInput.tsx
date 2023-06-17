@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     height: INPUT_HEIGHT,
     alignItems: 'center',
     borderBottomWidth: 0.3,
-    borderBottomColor: COLORS.detailBorderColor,
+    borderBottomColor: COLORS.DETAIL_BORDER,
   },
   label: {
     fontSize: FONTSIZE.SIZE18PX,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'right',
     paddingRight: 10,
-    color: COLORS.textColor,
+    color: COLORS.TEXT_COLOR,
     fontWeight: 'bold',
   },
 });

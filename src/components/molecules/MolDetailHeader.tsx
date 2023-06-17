@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     zIndex: 100,
   },
   headerButtonBackGround: {
-    backgroundColor: COLORS.detailHeaderButton,
+    backgroundColor: COLORS.DETAIL_HEADER_BUTTON,
     borderRadius: 50,
     width: '100%',
   },

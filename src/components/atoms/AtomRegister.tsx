@@ -24,7 +24,7 @@ const AtomRegister: FC<Props> = ({ navigation, onPress, title }) => {
         <AntDesign
           name='close'
           size={24}
-          color={COLORS.mainTextColor}
+          color={COLORS.MAIN_TEXT_COLOR}
           style={{ right: 1, padding: 2 }}
         />
       </TouchableOpacity>
@@ -38,7 +38,7 @@ const AtomRegister: FC<Props> = ({ navigation, onPress, title }) => {
         <FontAwesome
           name='pencil-square-o'
           size={24}
-          color={COLORS.mainTextColor}
+          color={COLORS.MAIN_TEXT_COLOR}
         />
       </TouchableOpacity>
     </View>
@@ -58,6 +58,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: FONTSIZE.SIZE24PX,
     fontWeight: 'bold',
-    color: COLORS.mainTextColor,
+    color: COLORS.MAIN_TEXT_COLOR,
   },
 });

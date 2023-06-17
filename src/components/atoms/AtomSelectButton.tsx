@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     borderRadius: 10,
     borderWidth: 3,
-    borderColor: COLORS.detailBorderColor,
+    borderColor: COLORS.DETAIL_BORDER,
   },
   imageArea: {
     flex: 1,
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
   noImageText: {
     fontSize: FONTSIZE.SIZE25PX,
-    color: COLORS.detailBorderColor,
+    color: COLORS.DETAIL_BORDER,
     fontWeight: 'bold',
   },
 });

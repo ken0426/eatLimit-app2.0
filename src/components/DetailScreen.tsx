@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   noImageHeader: {
     height: SIZE.BASE_HP * 12,
-    backgroundColor: COLORS.mainColor,
+    backgroundColor: COLORS.MAIN_COLOR,
     paddingTop: SIZE.BASE_HP * 2.3,
     justifyContent: 'center',
   },

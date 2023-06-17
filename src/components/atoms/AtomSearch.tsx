@@ -29,7 +29,7 @@ const AtomSearch: FC<Props> = ({ navigation, text, setText }) => {
           <Ionicons
             name='chevron-back'
             size={28}
-            color={COLORS.mainTextColor}
+            color={COLORS.MAIN_TEXT_COLOR}
           />
         </TouchableOpacity>
       </View>
@@ -42,7 +42,7 @@ const AtomSearch: FC<Props> = ({ navigation, text, setText }) => {
           style={styles.textInput}
         />
         <View style={styles.icon}>
-          <AntDesign name='search1' size={18} color={COLORS.searchIcon} />
+          <AntDesign name='search1' size={18} color={COLORS.SEARCH_ICON} />
         </View>
       </View>
     </View>

@@ -23,7 +23,7 @@ const OrgModalDefault: FC<Props> = ({
   message,
   data,
   fontSize = FONTSIZE.SIZE30PX,
-  borderColor = COLORS.detailBorderColor,
+  borderColor = COLORS.DETAIL_BORDER,
 }) => {
   return (
     <Modal isVisible={isVisible} onBackdropPress={cancelOnPress}>

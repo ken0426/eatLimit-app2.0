@@ -44,7 +44,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
           <MaterialIcons
             name='keyboard-arrow-right'
             size={24}
-            color={COLORS.textColor}
+            color={COLORS.TEXT_COLOR}
           />
         </View>
       </TouchableOpacity>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   contents: {
     height: SIZE.BASE_HP * 11,
     borderBottomWidth: SIZE.BASE_HP * 0.05,
-    borderColor: COLORS.borderLine,
+    borderColor: COLORS.BORDER_LINE,
     flexDirection: 'row',
   },
   imageArea: {

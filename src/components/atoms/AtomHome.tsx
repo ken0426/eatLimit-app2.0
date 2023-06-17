@@ -36,7 +36,7 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
         <TouchableOpacity
           onPress={() => navigation.navigate('searchScreen', { data: data })}
         >
-          <AntDesign name='search1' size={24} color={COLORS.mainTextColor} />
+          <AntDesign name='search1' size={24} color={COLORS.MAIN_TEXT_COLOR} />
         </TouchableOpacity>
         <TouchableOpacity
           style={{ marginLeft: 15 }}
@@ -58,7 +58,7 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
           <AntDesign
             name='pluscircleo'
             size={24}
-            color={COLORS.mainTextColor}
+            color={COLORS.MAIN_TEXT_COLOR}
           />
         </TouchableOpacity>
       </View>

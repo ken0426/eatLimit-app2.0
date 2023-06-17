@@ -80,7 +80,7 @@ const AtomFileSelect = () => {
           <AntDesign
             name='infocirlceo'
             size={17}
-            color={COLORS.detailBorderColor}
+            color={COLORS.DETAIL_BORDER}
           />
         </TouchableOpacity>
       )}
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     width: WINDOW_WIDTH,
     minHeight: SIZE.BASE_HP * 12,
     maxHeight: SIZE.BASE_HP * 24,
-    borderBottomColor: COLORS.detailBorderColor,
+    borderBottomColor: COLORS.DETAIL_BORDER,
     borderBottomWidth: 0.3,
     justifyContent: 'center',
     alignItems: 'center',

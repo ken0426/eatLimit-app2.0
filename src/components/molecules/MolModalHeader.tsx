@@ -29,18 +29,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 10,
     paddingVertical: 10,
-    backgroundColor: COLORS.modalFooterTextArea,
+    backgroundColor: COLORS.MODAL_FOOTER,
   },
   cancel: {
     width: '100%',
     justifyContent: 'center',
     fontSize: FONTSIZE.SIZE20PX,
-    color: COLORS.mainTextColor,
+    color: COLORS.MAIN_TEXT_COLOR,
   },
   completed: {
     width: '100%',
     justifyContent: 'center',
     fontSize: FONTSIZE.SIZE20PX,
-    color: COLORS.mainTextColor,
+    color: COLORS.MAIN_TEXT_COLOR,
   },
 });

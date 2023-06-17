@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     height: SIZE.BASE_HP * 12,
     paddingHorizontal: SIZE.BASE_WP * 5,
     paddingTop: SIZE.BASE_HP * 4,
-    backgroundColor: COLORS.mainColor,
+    backgroundColor: COLORS.MAIN_COLOR,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',

@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: SIZE.BASE_WP * 3,
     borderBottomWidth: SIZE.BASE_HP * 0.04,
-    borderBottomColor: COLORS.detailBorderColor,
+    borderBottomColor: COLORS.DETAIL_BORDER,
   },
   label: {
     width: '40%',

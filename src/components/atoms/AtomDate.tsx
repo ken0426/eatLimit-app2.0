@@ -43,7 +43,7 @@ const AtomDate: FC<Props> = ({ date }) => {
           <MaterialIcons
             name='keyboard-arrow-down'
             size={20}
-            color={COLORS.textColor}
+            color={COLORS.TEXT_COLOR}
           />
         </View>
       </View>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     height: INPUT_HEIGHT,
     alignItems: 'center',
     borderBottomWidth: 0.3,
-    borderBottomColor: COLORS.detailBorderColor,
+    borderBottomColor: COLORS.DETAIL_BORDER,
   },
   label: {
     fontSize: FONTSIZE.SIZE18PX,
