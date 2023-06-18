@@ -2,13 +2,14 @@ import React, { FC, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { DatePicker } from 'react-native-woodpicker';
 import { MaterialIcons } from '@expo/vector-icons';
-import { COLORS, FONTSIZE, INPUT_HEIGHT } from '../../styles';
+import { COLORS, FONTSIZE, INPUT_HEIGHT, SIZE } from '../../styles';
 
 type Props = {
   date?: string;
+  isRequired?: boolean;
 };
 
-const AtomDate: FC<Props> = ({ date }) => {
+const AtomDate: FC<Props> = ({ date, isRequired = false }) => {
   const [pickedDate, setPickedDate] = useState<Date>(
     date ? new Date(date) : new Date()
   );
@@ -22,7 +23,18 @@ const AtomDate: FC<Props> = ({ date }) => {
 
   return (
     <View style={styles.contents}>
-      <Text style={styles.label}>日付：</Text>
+      {isRequired ? (
+        <>
+          <Text style={styles.label}>日付</Text>
+          <View style={styles.requiredArea}>
+            <Text style={styles.required}>必須</Text>
+          </View>
+          <Text style={styles.label}>：</Text>
+        </>
+      ) : (
+        <Text style={styles.label}>日付：</Text>
+      )}
+
       <View style={styles.selectArea}>
         <DatePicker
           textColor='#000000'
@@ -65,6 +77,18 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.SIZE18PX,
     color: COLORS.TEXT_LABEL,
     fontWeight: '400',
+  },
+  requiredArea: {
+    borderRadius: 10,
+    backgroundColor: COLORS.RED,
+    marginLeft: SIZE.BASE_WP * 1.5,
+  },
+  required: {
+    fontSize: FONTSIZE.SIZE15PX,
+    color: '#ffffff',
+    fontWeight: '400',
+    paddingHorizontal: SIZE.BASE_WP * 2,
+    paddingVertical: SIZE.BASE_HP * 0.1,
   },
   selectArea: {
     flex: 1,

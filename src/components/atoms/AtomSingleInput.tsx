@@ -6,7 +6,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { COLORS, FONTSIZE, INPUT_HEIGHT } from '../../styles';
+import { COLORS, FONTSIZE, INPUT_HEIGHT, SIZE } from '../../styles';
 import { getText } from '../../utils';
 
 type Props = {
@@ -14,6 +14,7 @@ type Props = {
   onPressIn: () => void;
   keyboardType?: KeyboardTypeOptions;
   textData?: string;
+  isRequired?: boolean;
 };
 
 const AtomSingleInput: FC<Props> = ({
@@ -21,12 +22,24 @@ const AtomSingleInput: FC<Props> = ({
   onPressIn,
   keyboardType = 'default',
   textData = '',
+  isRequired = false,
 }) => {
   const [text, setText] = useState<string>(textData);
 
   return (
     <View style={styles.itemArea}>
-      <Text style={styles.label}>{`${label}：`}</Text>
+      {isRequired ? (
+        <>
+          <Text style={styles.label}>{label}</Text>
+          <View style={styles.requiredArea}>
+            <Text style={styles.required}>必須</Text>
+          </View>
+          <Text style={styles.label}>：</Text>
+        </>
+      ) : (
+        <Text style={styles.label}>{`${label}：`}</Text>
+      )}
+
       <TextInput
         onPressIn={onPressIn}
         onChangeText={(inputText) => setText(inputText)}
@@ -53,6 +66,18 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.SIZE18PX,
     color: COLORS.TEXT_LABEL,
     fontWeight: '400',
+  },
+  requiredArea: {
+    borderRadius: 10,
+    backgroundColor: COLORS.RED,
+    marginLeft: SIZE.BASE_WP * 1.5,
+  },
+  required: {
+    fontSize: FONTSIZE.SIZE15PX,
+    color: '#ffffff',
+    fontWeight: '400',
+    paddingHorizontal: SIZE.BASE_WP * 2,
+    paddingVertical: SIZE.BASE_HP * 0.1,
   },
   textValue: {
     fontSize: FONTSIZE.SIZE18PX,

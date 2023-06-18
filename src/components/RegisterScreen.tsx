@@ -54,10 +54,19 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                 <AtomSingleInput
                   label={'商品名'}
                   onPressIn={() => setEnabled(false)}
+                  isRequired={true}
                 />
-                <AtomSingleSelect label={'管理方法'} data={managementData} />
-                <AtomSingleSelect label={'保存方法'} data={keepData} />
-                <AtomDate />
+                <AtomSingleSelect
+                  label={'管理方法'}
+                  data={managementData}
+                  isRequired={true}
+                />
+                <AtomSingleSelect
+                  label={'保存方法'}
+                  data={keepData}
+                  isRequired={true}
+                />
+                <AtomDate isRequired={true} />
                 <AtomSingleInput
                   label={'購入場所'}
                   onPressIn={() => setEnabled(true)}

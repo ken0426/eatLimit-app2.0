@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { COLORS, FONTSIZE, INPUT_HEIGHT } from '../../styles';
+import { COLORS, FONTSIZE, INPUT_HEIGHT, SIZE } from '../../styles';
 import OrgModalBottom from '../organisms/OrgModalBottom';
 import MolSingleSelect from '../molecules/MolSingleSelect';
 import { KeepData, ManagementData } from '../../types';
@@ -16,9 +16,15 @@ type Props = {
   label: string;
   data: KeepData[] | ManagementData[];
   textData?: string;
+  isRequired?: boolean;
 };
 
-const AtomSingleSelect: FC<Props> = ({ label, data, textData = '' }) => {
+const AtomSingleSelect: FC<Props> = ({
+  label,
+  data,
+  textData = '',
+  isRequired = false,
+}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [text, setText] = useState(textData);
 
@@ -31,7 +37,17 @@ const AtomSingleSelect: FC<Props> = ({ label, data, textData = '' }) => {
         }}
         style={styles.itemArea}
       >
-        <Text style={styles.label}>{`${label}：`}</Text>
+        {isRequired ? (
+          <>
+            <Text style={styles.label}>{label}</Text>
+            <View style={styles.requiredArea}>
+              <Text style={styles.required}>必須</Text>
+            </View>
+            <Text style={styles.label}>：</Text>
+          </>
+        ) : (
+          <Text style={styles.label}>{`${label}：`}</Text>
+        )}
         <View style={{ flexDirection: 'row', flex: 1 }}>
           <Text style={styles.textValue}>{text}</Text>
           <View>
@@ -72,6 +88,18 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.SIZE18PX,
     color: COLORS.TEXT_LABEL,
     fontWeight: '400',
+  },
+  requiredArea: {
+    borderRadius: 10,
+    backgroundColor: COLORS.RED,
+    marginLeft: SIZE.BASE_WP * 1.5,
+  },
+  required: {
+    fontSize: FONTSIZE.SIZE15PX,
+    color: '#ffffff',
+    fontWeight: '400',
+    paddingHorizontal: SIZE.BASE_WP * 2,
+    paddingVertical: SIZE.BASE_HP * 0.1,
   },
   textValue: {
     fontSize: FONTSIZE.SIZE18PX,
