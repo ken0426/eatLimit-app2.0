@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
   required: {
     fontSize: FONTSIZE.SIZE15PX,
-    color: '#ffffff',
+    color: COLORS.WHITE,
     fontWeight: '400',
     paddingHorizontal: SIZE.BASE_WP * 2,
     paddingVertical: SIZE.BASE_HP * 0.1,

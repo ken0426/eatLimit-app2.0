@@ -66,7 +66,7 @@ export default DetailScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: COLORS.WHITE,
   },
   noImageHeader: {
     height: SIZE.BASE_HP * 12,
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     height: DETAIL_IMAGE_HEIGHT,
     width: '100%',
     zIndex: 10,
-    backgroundColor: '#ffffff',
+    backgroundColor: COLORS.WHITE,
   },
   banner: {
     width: '100%',

@@ -35,7 +35,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
   const [enabled, setEnabled] = useState(false);
 
   return (
-    <View style={{ backgroundColor: '#ffffff', flex: 1 }}>
+    <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
       <MolHeader style={styles.header} type={'default'}>
         <AtomRegister
           onPress={() => Alert.alert('変更準備中')}
@@ -89,7 +89,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
               <View style={styles.buttonArea}>
                 <AtomButton
                   onPress={() => {}}
-                  color={'#ffffff'}
+                  color={COLORS.WHITE}
                   fontSize={FONTSIZE.SIZE30PX}
                   backgroundColor={COLORS.BLUE}
                   width={SIZE.BASE_WP * 50}
@@ -100,7 +100,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                 <View style={{ marginTop: SIZE.BASE_HP * 2 }}>
                   <AtomButton
                     onPress={() => {}}
-                    color={'#ffffff'}
+                    color={COLORS.WHITE}
                     fontSize={FONTSIZE.SIZE30PX}
                     backgroundColor={COLORS.RED}
                     width={SIZE.BASE_WP * 50}

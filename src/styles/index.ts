@@ -30,6 +30,8 @@ export const COLORS = {
   MODAL_FOOTER: '#eeeeee',
   /** 削除ボタン */
   RED: '#ff1414',
+  /** 背景色などで使う白色 */
+  WHITE: '#efefef',
 };
 
 export const SIZE = {

@@ -31,7 +31,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
   const [enabled, setEnabled] = useState(false);
 
   return (
-    <View style={{ backgroundColor: '#ffffff', flex: 1 }}>
+    <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
       <MolHeader style={styles.header} type={'default'}>
         <AtomRegister
           onPress={() => Alert.alert('登録準備中')}
@@ -81,7 +81,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
               <View style={styles.buttonArea}>
                 <AtomButton
                   onPress={() => {}}
-                  color={'#ffffff'}
+                  color={COLORS.WHITE}
                   fontSize={FONTSIZE.SIZE30PX}
                   backgroundColor={COLORS.BLUE}
                   width={200}

@@ -51,7 +51,7 @@ export default OrgModalDefault;
 
 const styles = StyleSheet.create({
   modal: {
-    backgroundColor: '#ffffff',
+    backgroundColor: COLORS.WHITE,
     justifyContent: 'space-around',
     alignItems: 'center',
     width: '100%',

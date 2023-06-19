@@ -19,7 +19,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
   const dispatch = useRootDispatch();
 
   return (
-    <View key={Number(index)} style={{ backgroundColor: '#ffffff' }}>
+    <View key={Number(index)} style={{ backgroundColor: COLORS.WHITE }}>
       <TouchableOpacity
         style={[
           styles.contents,

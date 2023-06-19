@@ -66,7 +66,7 @@ const AtomFileSelect = () => {
               onPress={() => setImage('')}
               style={styles.closeButton}
             >
-              <FontAwesome name='close' size={13} color='#ffffff' />
+              <FontAwesome name='close' size={13} color={COLORS.WHITE} />
             </TouchableOpacity>
           </View>
         )}

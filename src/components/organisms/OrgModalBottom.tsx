@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import MolModalHeader from '../molecules/MolModalHeader';
 import Modal from 'react-native-modal';
 import { WINDOW_HEIGHT } from '../../utils';
+import { COLORS } from '../../styles';
 
 type Props = {
   isVisible: boolean;
@@ -40,7 +41,7 @@ export default OrgModalBottom;
 
 const styles = StyleSheet.create({
   modal: {
-    backgroundColor: '#ffffff',
+    backgroundColor: COLORS.WHITE,
     width: '100%',
     height: WINDOW_HEIGHT / 3.2,
   },
