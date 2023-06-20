@@ -31,7 +31,7 @@ export const COLORS = {
   /** 削除ボタン */
   RED: '#ff1414',
   /** 背景色などで使う白色 */
-  WHITE: '#efefef',
+  WHITE: '#f8f8f8',
 };
 
 export const SIZE = {
