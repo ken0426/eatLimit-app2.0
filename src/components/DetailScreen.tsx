@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     height: WINDOW_HEIGHT,
-    backgroundColor: 'white',
+    backgroundColor: COLORS.WHITE,
     padding: SIZE.BASE_HP * 1.2,
   },
   bannerContainer: {
