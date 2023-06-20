@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { DatePicker } from 'react-native-woodpicker';
 import { MaterialIcons } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, INPUT_HEIGHT, SIZE } from '../../styles';
+import AtomRequire from './AtomRequire';
 
 type Props = {
   date?: string;
@@ -23,17 +24,7 @@ const AtomDate: FC<Props> = ({ date, isRequired = false }) => {
 
   return (
     <View style={styles.contents}>
-      {isRequired ? (
-        <>
-          <Text style={styles.label}>日付</Text>
-          <View style={styles.requiredArea}>
-            <Text style={styles.required}>必須</Text>
-          </View>
-          <Text style={styles.label}>：</Text>
-        </>
-      ) : (
-        <Text style={styles.label}>日付：</Text>
-      )}
+      {isRequired ? <AtomRequire /> : <Text style={styles.label}>日付：</Text>}
 
       <View style={styles.selectArea}>
         <DatePicker

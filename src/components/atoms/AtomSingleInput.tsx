@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { COLORS, FONTSIZE, INPUT_HEIGHT, SIZE } from '../../styles';
 import { getText } from '../../utils';
+import AtomRequire from './AtomRequire';
 
 type Props = {
   label: string;
@@ -29,13 +30,7 @@ const AtomSingleInput: FC<Props> = ({
   return (
     <View style={styles.itemArea}>
       {isRequired ? (
-        <>
-          <Text style={styles.label}>{label}</Text>
-          <View style={styles.requiredArea}>
-            <Text style={styles.required}>必須</Text>
-          </View>
-          <Text style={styles.label}>：</Text>
-        </>
+        <AtomRequire label={label} />
       ) : (
         <Text style={styles.label}>{`${label}：`}</Text>
       )}
