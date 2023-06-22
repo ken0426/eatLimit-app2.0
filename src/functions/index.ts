@@ -19,6 +19,9 @@ const takePhoto = async (setImage: (e: string) => void) => {
   try {
     const result: any = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
     });
 
     if (!result.canceled) {
@@ -34,6 +37,9 @@ const pickImage = async (setImage: (e: string) => void) => {
   try {
     const result: any = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
     });
 
     if (!result.canceled) {
