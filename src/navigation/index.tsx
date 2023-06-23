@@ -6,6 +6,7 @@ import SearchScreen from '../components/SearchScreen';
 import { StackPramList } from '../types';
 import RegisterScreen from '../components/RegisterScreen';
 import UpdateRegisterScreen from '../components/UpdateRegisterScreen';
+import TopScreen from '../components/TopScreen';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
@@ -16,6 +17,11 @@ const RootStackScreen = () => {
         animation: 'slide_from_right',
       }}
     >
+      {/* <Stack.Screen
+        name={'TopScreen'}
+        component={TopScreen}
+        options={{ headerShown: false }}
+      /> */}
       <Stack.Screen
         name={'homeScreen'}
         component={HomeScreen}
