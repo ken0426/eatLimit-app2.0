@@ -117,12 +117,17 @@ export const onRegisterPress = async ({
   if (isTextNull) {
     setIsVisible(true);
   } else {
-    console.log('postするデータ（常に監視）', postData);
-    setIsLoading(true);
-    console.log('リクエストを送信中・・・');
-    await new Promise((resolve) => setTimeout(resolve, 2500)); // 2.5秒待機（見た目として実装）
-    console.log('DBに保存完了'); // 非同期処理
-    setIsLoading(false);
-    navigation.goBack();
+    try {
+      console.log('postするデータ（常に監視）', postData);
+      setIsLoading(true);
+      console.log('リクエストを送信中・・・');
+      await new Promise((resolve) => setTimeout(resolve, 2500)); // 2.5秒待機（見た目として実装）
+      console.log('DBに保存完了'); // 非同期処理
+      navigation.goBack();
+    } catch (error) {
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
   }
 };
