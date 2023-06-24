@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { StyleSheet, Text, TextStyle, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { SIZE } from '../../styles';
 
 type Props = {

@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { COLORS, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
-import AtomRegister from './atoms/AtomRegister';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 
 type Props = {
