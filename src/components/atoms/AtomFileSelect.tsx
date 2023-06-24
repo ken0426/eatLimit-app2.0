@@ -17,8 +17,13 @@ import { onPressAction } from '../../functions';
 import { WINDOW_WIDTH } from '../../utils';
 import { SINGLE_MODAL_BUTTON } from '../../contents';
 import { useRootSelector } from '../../redux/store/store';
+import { PostData } from '../../types';
 
-const AtomFileSelect = () => {
+type Props = {
+  setData: ({ key, value }: PostData) => void;
+};
+
+const AtomFileSelect: FC<Props> = ({ setData }) => {
   const { showActionSheetWithOptions } = useActionSheet();
   const updateRegisterData = useRootSelector(
     (state) => state.commonRegister.updateRegisterData
@@ -40,6 +45,10 @@ const AtomFileSelect = () => {
 
   /** 画像が挿入されているかどうかを判断するフラグ */
   const isImage = useMemo(() => image !== '', [image]);
+
+  useEffect(() => {
+    setData({ key: '画像', value: image, isRequired: false });
+  }, [image]);
 
   return (
     <View style={styles.fileSelectArea}>

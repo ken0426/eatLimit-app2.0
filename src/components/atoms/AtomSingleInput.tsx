@@ -31,7 +31,7 @@ const AtomSingleInput: FC<Props> = ({
   const [text, setText] = useState<string>(textData);
 
   useEffect(() => {
-    setData({ key: label, value: text });
+    setData({ key: label, value: text, isRequired });
   }, [text]);
 
   return (

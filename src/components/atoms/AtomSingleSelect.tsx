@@ -31,7 +31,7 @@ const AtomSingleSelect: FC<Props> = ({
   const [text, setText] = useState(textData);
 
   useEffect(() => {
-    setData({ key: label, value: text });
+    setData({ key: label, value: text, isRequired });
   }, [text]);
 
   return (

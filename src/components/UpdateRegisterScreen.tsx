@@ -58,7 +58,15 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
           >
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
               <View style={{ width: '100%' }}>
-                <AtomFileSelect />
+                <AtomFileSelect
+                  setData={(data) =>
+                    setTargetPostData({
+                      key: '画像',
+                      value: data.value,
+                      isRequired: data.isRequired,
+                    })
+                  }
+                />
                 <View style={styles.inputForm}>
                   <AtomSingleInput
                     label={'商品名'}
@@ -69,7 +77,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                       setTargetPostData({
                         key: '商品名',
                         value: data.value,
-                        isRequired: true,
+                        isRequired: data.isRequired,
                       })
                     }
                   />
@@ -82,7 +90,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                       setTargetPostData({
                         key: '管理方法',
                         value: data.value,
-                        isRequired: true,
+                        isRequired: data.isRequired,
                       })
                     }
                   />
@@ -95,7 +103,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                       setTargetPostData({
                         key: '保存方法',
                         value: data.value,
-                        isRequired: true,
+                        isRequired: data.isRequired,
                       })
                     }
                   />
@@ -108,7 +116,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                       setTargetPostData({
                         key: '購入場所',
                         value: data.value,
-                        isRequired: false,
+                        isRequired: data.isRequired,
                       })
                     }
                   />
@@ -121,7 +129,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                       setTargetPostData({
                         key: '金額',
                         value: data.value,
-                        isRequired: false,
+                        isRequired: data.isRequired,
                       })
                     }
                   />
