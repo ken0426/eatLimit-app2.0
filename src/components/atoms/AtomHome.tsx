@@ -29,7 +29,7 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
     >
       <View>
         <Text style={{ fontSize: FONTSIZE.SIZE20PX, fontWeight: 'bold' }}>
-          {`本日${moment().format('YYYY-MM-DD')}`}
+          {`${moment().format('YYYY年MM月DD日')}`}
         </Text>
       </View>
       <View style={{ flexDirection: 'row' }}>
