@@ -32,6 +32,8 @@ export const COLORS = {
   RED: '#ff1414',
   /** 背景色などで使う白色 */
   WHITE: '#f8f8f8',
+  /** 設定画面のラベルカラー */
+  SETTING_LABEL: '#c8c8c8',
 };
 
 export const SIZE = {

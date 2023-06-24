@@ -30,6 +30,7 @@ export type StackPramList = {
   registerScreen: undefined;
   updateRegisterScreen: undefined;
   settingScreen: { item: any };
+  settingDetailScreen: undefined;
 };
 
 export type ModalButton = {

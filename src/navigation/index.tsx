@@ -8,6 +8,7 @@ import RegisterScreen from '../components/RegisterScreen';
 import UpdateRegisterScreen from '../components/UpdateRegisterScreen';
 import TopScreen from '../components/TopScreen';
 import SettingScreen from '../components/SettingScreen';
+import SettingDetailScreen from '../components/SettingDetailScreen';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
@@ -51,6 +52,11 @@ const RootStackScreen = () => {
       <Stack.Screen
         name={'settingScreen'}
         component={SettingScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={'settingDetailScreen'}
+        component={SettingDetailScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
