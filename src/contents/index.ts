@@ -86,11 +86,19 @@ export const settingData: SettingData[] = [
           data: [{ text: '画像表示あり' }, { text: '画像表示なし' }],
         },
         {
-          label: '年月日の表示',
+          label: '年月日のフォーマット表示',
           data: [
             { text: moment().format('YYYY年MM月DD') },
             { text: moment().format('YYYY/MM/DD') },
             { text: moment().format('YYYY-MM-DD') },
+          ],
+        },
+        // 年月日の表示はフォーマットに依存する設定にする
+        {
+          label: '年月日の表示',
+          data: [
+            { text: moment().format('YYYY年MM月DD') },
+            { text: moment().format('MM年DD') },
           ],
         },
       ],
