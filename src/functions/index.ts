@@ -1,6 +1,7 @@
 import { ActionSheetIOS, Alert, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { ACTION_SHEET, CAMERA_ERROR_MESSAGE } from '../contents';
+import { PostData } from '../types';
 
 type Options = {
   options: string[];
@@ -13,6 +14,13 @@ type Options = {
 };
 
 type Callback = (buttonIndex: number | undefined) => void | Promise<void>;
+
+type OnRegisterPress = {
+  postData: PostData[];
+  setIsVisible: (e: boolean) => void;
+  setIsLoading: (e: boolean) => void;
+  navigation: any;
+};
 
 /** カメラの起動 */
 const takePhoto = async (setImage: (e: string) => void) => {
@@ -92,5 +100,29 @@ export const onPressAction = (
         if (buttonIndex) handleAction(buttonIndex);
       }
     );
+  }
+};
+
+/** 登録や変更ボタンを押したときの処理 */
+export const onRegisterPress = async ({
+  postData,
+  setIsVisible,
+  setIsLoading,
+  navigation,
+}: OnRegisterPress) => {
+  /** 必須項目を抽出 */
+  const filterData = postData.filter((item) => item.isRequired);
+  /** 必須項目の中で1つでも空文字がある場合はtrueにする */
+  const isTextNull = filterData.find((item) => item.value === '');
+  if (isTextNull) {
+    setIsVisible(true);
+  } else {
+    console.log('postするデータ（常に監視）', postData);
+    setIsLoading(true);
+    console.log('リクエストを送信中・・・');
+    await new Promise((resolve) => setTimeout(resolve, 3000)); // 3秒待機（見た目として実装）
+    console.log('DBに保存完了'); // 非同期処理
+    setIsLoading(false);
+    navigation.goBack();
   }
 };

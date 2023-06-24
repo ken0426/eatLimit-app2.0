@@ -6,6 +6,7 @@ import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { PostData, StackPramList } from '../../types';
 import { COLORS, FONTSIZE } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
+import { onRegisterPress } from '../../functions';
 
 type Props = {
   navigation:
@@ -13,6 +14,8 @@ type Props = {
     | StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
   title: string;
   postData: PostData[];
+  setIsVisible: (e: boolean) => void;
+  isVisible: boolean;
   setIsLoading: (e: boolean) => void;
 };
 
@@ -21,26 +24,9 @@ const AtomRegister: FC<Props> = ({
   title,
   postData,
   setIsLoading,
+  isVisible,
+  setIsVisible,
 }) => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-
-  const onPress = async () => {
-    /** 必須項目を抽出 */
-    const filterData = postData.filter((item) => item.isRequired);
-    /** 必須項目の中で1つでも空文字がある場合はtrueにする */
-    const isTextNull = filterData.find((item) => item.value === '');
-    if (isTextNull) {
-      setIsVisible(true);
-    } else {
-      console.log('postするデータ（常に監視）', postData);
-      setIsLoading(true);
-      console.log('リクエストを送信中・・・');
-      await new Promise((resolve) => setTimeout(resolve, 3000)); // 3秒待機（見た目として実装）
-      console.log('DBに保存完了'); // 非同期処理
-      setIsLoading(false);
-      navigation.goBack();
-    }
-  };
   return (
     <View style={styles.header}>
       <TouchableOpacity
@@ -58,7 +44,9 @@ const AtomRegister: FC<Props> = ({
         <Text style={styles.headerText}>{title}</Text>
       </View>
       <TouchableOpacity
-        onPress={onPress}
+        onPress={() =>
+          onRegisterPress({ postData, setIsVisible, setIsLoading, navigation })
+        }
         style={{ width: '33%', alignItems: 'flex-end' }}
       >
         <FontAwesome

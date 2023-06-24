@@ -22,6 +22,7 @@ import AtomMemo from './atoms/AtomMemo';
 import AtomButton from './atoms/AtomButton';
 import { useRegister } from '../hooks/useRegister';
 import AtomLoading from './atoms/AtomLoading';
+import { onRegisterPress } from '../functions';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
@@ -31,6 +32,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
   /** キーボードで入力するエリアで高さを調整するフラグ */
   const [enabled, setEnabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const { setTargetPostData, postData } = useRegister();
 
@@ -43,6 +45,8 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
             title={'登録'}
             postData={postData}
             setIsLoading={setIsLoading}
+            isVisible={isVisible}
+            setIsVisible={setIsVisible}
           />
         </MolHeader>
 
@@ -138,7 +142,14 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                 </View>
                 <View style={styles.buttonArea}>
                   <AtomButton
-                    onPress={() => {}}
+                    onPress={() =>
+                      onRegisterPress({
+                        postData,
+                        setIsVisible,
+                        setIsLoading,
+                        navigation,
+                      })
+                    }
                     color={COLORS.WHITE}
                     fontSize={FONTSIZE.SIZE30PX}
                     backgroundColor={COLORS.BLUE}

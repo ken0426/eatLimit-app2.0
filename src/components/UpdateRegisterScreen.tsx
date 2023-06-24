@@ -23,6 +23,7 @@ import { keepData, managementData } from '../contents';
 import { useRootSelector } from '../redux/store/store';
 import { useRegister } from '../hooks/useRegister';
 import AtomLoading from './atoms/AtomLoading';
+import { onRegisterPress } from '../functions';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
@@ -35,6 +36,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
   /** キーボードで入力するエリアで高さを調整するフラグ */
   const [enabled, setEnabled] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const { setTargetPostData, postData } = useRegister();
 
@@ -47,6 +49,8 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
             title={'変更'}
             postData={postData}
             setIsLoading={setIsLoading}
+            isVisible={isVisible}
+            setIsVisible={setIsVisible}
           />
         </MolHeader>
         <ScrollView>
@@ -147,12 +151,19 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                 </View>
                 <View style={styles.buttonArea}>
                   <AtomButton
-                    onPress={() => {}}
+                    onPress={() =>
+                      onRegisterPress({
+                        postData,
+                        setIsVisible,
+                        setIsLoading,
+                        navigation,
+                      })
+                    }
                     color={COLORS.WHITE}
                     fontSize={FONTSIZE.SIZE30PX}
                     backgroundColor={COLORS.BLUE}
                     width={SIZE.BASE_WP * 50}
-                    buttonText={'登録'}
+                    buttonText={'変更'}
                     fontWeight={'bold'}
                   />
                   {/* 削除ボタンの仮実装 */}
