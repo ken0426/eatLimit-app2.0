@@ -31,7 +31,13 @@ const AtomSingleInput: FC<Props> = ({
   const [text, setText] = useState<string>(textData);
 
   useEffect(() => {
-    setData({ key: label, value: text, isRequired });
+    if (label === '金額') {
+      const pattern = /,/g;
+      const ediText = text.replace(pattern, '');
+      setData({ key: label, value: ediText, isRequired });
+    } else {
+      setData({ key: label, value: text, isRequired });
+    }
   }, [text]);
 
   return (
