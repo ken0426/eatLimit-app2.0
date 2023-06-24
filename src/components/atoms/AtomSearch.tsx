@@ -40,6 +40,7 @@ const AtomSearch: FC<Props> = ({ navigation, text, setText }) => {
           onChangeText={(e) => setText(e)}
           placeholder='検索'
           style={styles.textInput}
+          clearButtonMode={'always'}
         />
         <View style={styles.icon}>
           <AntDesign name='search1' size={18} color={COLORS.SEARCH_ICON} />
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
     fontSize: SEARCH_BAR_TEXT,
     borderRadius: 50,
     paddingLeft: 30,
-    paddingRight: 20,
+    paddingRight: 5,
     backgroundColor: COLORS.TEXT_INPUT,
     width: '80%',
   },
