@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import {
-  Alert,
+  ActivityIndicator,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -34,103 +34,142 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
   );
   /** キーボードで入力するエリアで高さを調整するフラグ */
   const [enabled, setEnabled] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { setTargetPostData, postData } = useRegister();
 
   return (
-    <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
-      <MolHeader style={styles.header} type={'default'}>
-        <AtomRegister
-          onPress={() => Alert.alert('変更準備中')}
-          navigation={navigation}
-          title={'変更'}
-        />
-      </MolHeader>
-      <ScrollView>
-        <KeyboardAvoidingView
-          behavior='position'
-          style={{ flex: 1 }}
-          enabled={enabled}
-          keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
-        >
-          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-            <View style={{ width: '100%' }}>
-              <AtomFileSelect />
-              <View style={styles.inputForm}>
-                <AtomSingleInput
-                  label={'商品名'}
-                  onPressIn={() => setEnabled(false)}
-                  textData={updateData.eatName}
-                  isRequired={true}
-                  setData={(data) =>
-                    setTargetPostData({ key: '商品名', value: data.value })
-                  }
-                />
-                <AtomSingleSelect
-                  label={'管理方法'}
-                  data={managementData}
-                  textData={updateData.management}
-                  isRequired={true}
-                  setData={(data) =>
-                    setTargetPostData({ key: '管理方法', value: data.value })
-                  }
-                />
-                <AtomSingleSelect
-                  label={'保存方法'}
-                  data={keepData}
-                  textData={updateData.keep}
-                  isRequired={true}
-                  setData={(data) =>
-                    setTargetPostData({ key: '保存方法', value: data.value })
-                  }
-                />
-                <AtomDate date={updateData.date} isRequired={true} />
-                <AtomSingleInput
-                  label={'購入場所'}
-                  onPressIn={() => setEnabled(true)}
-                  textData={updateData.placeOfPurchase}
-                  setData={(data) =>
-                    setTargetPostData({ key: '購入場所', value: data.value })
-                  }
-                />
-                <AtomSingleInput
-                  label={'金額'}
-                  onPressIn={() => setEnabled(true)}
-                  keyboardType={'number-pad'}
-                  textData={updateData.price ? String(updateData.price) : ''}
-                  setData={(data) =>
-                    setTargetPostData({ key: '金額', value: data.value })
-                  }
-                />
-                <AtomMemo onPress={() => setEnabled(true)} />
-              </View>
-              <View style={styles.buttonArea}>
-                <AtomButton
-                  onPress={() => {}}
-                  color={COLORS.WHITE}
-                  fontSize={FONTSIZE.SIZE30PX}
-                  backgroundColor={COLORS.BLUE}
-                  width={SIZE.BASE_WP * 50}
-                  buttonText={'登録'}
-                  fontWeight={'bold'}
-                />
-                {/* 削除ボタンの仮実装 */}
-                <View style={{ marginTop: SIZE.BASE_HP * 2 }}>
+    <View style={{ flex: 1 }}>
+      <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
+        <MolHeader style={styles.header} type={'default'}>
+          <AtomRegister
+            navigation={navigation}
+            title={'変更'}
+            postData={postData}
+            setIsLoading={setIsLoading}
+          />
+        </MolHeader>
+        <ScrollView>
+          <KeyboardAvoidingView
+            behavior='position'
+            style={{ flex: 1 }}
+            enabled={enabled}
+            keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+          >
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+              <View style={{ width: '100%' }}>
+                <AtomFileSelect />
+                <View style={styles.inputForm}>
+                  <AtomSingleInput
+                    label={'商品名'}
+                    onPressIn={() => setEnabled(false)}
+                    textData={updateData.eatName}
+                    isRequired={true}
+                    setData={(data) =>
+                      setTargetPostData({
+                        key: '商品名',
+                        value: data.value,
+                        isRequired: true,
+                      })
+                    }
+                  />
+                  <AtomSingleSelect
+                    label={'管理方法'}
+                    data={managementData}
+                    textData={updateData.management}
+                    isRequired={true}
+                    setData={(data) =>
+                      setTargetPostData({
+                        key: '管理方法',
+                        value: data.value,
+                        isRequired: true,
+                      })
+                    }
+                  />
+                  <AtomSingleSelect
+                    label={'保存方法'}
+                    data={keepData}
+                    textData={updateData.keep}
+                    isRequired={true}
+                    setData={(data) =>
+                      setTargetPostData({
+                        key: '保存方法',
+                        value: data.value,
+                        isRequired: true,
+                      })
+                    }
+                  />
+                  <AtomDate date={updateData.date} isRequired={true} />
+                  <AtomSingleInput
+                    label={'購入場所'}
+                    onPressIn={() => setEnabled(true)}
+                    textData={updateData.placeOfPurchase}
+                    setData={(data) =>
+                      setTargetPostData({
+                        key: '購入場所',
+                        value: data.value,
+                        isRequired: false,
+                      })
+                    }
+                  />
+                  <AtomSingleInput
+                    label={'金額'}
+                    onPressIn={() => setEnabled(true)}
+                    keyboardType={'number-pad'}
+                    textData={updateData.price ? String(updateData.price) : ''}
+                    setData={(data) =>
+                      setTargetPostData({
+                        key: '金額',
+                        value: data.value,
+                        isRequired: false,
+                      })
+                    }
+                  />
+                  <AtomMemo onPress={() => setEnabled(true)} />
+                </View>
+                <View style={styles.buttonArea}>
                   <AtomButton
                     onPress={() => {}}
                     color={COLORS.WHITE}
                     fontSize={FONTSIZE.SIZE30PX}
-                    backgroundColor={COLORS.RED}
+                    backgroundColor={COLORS.BLUE}
                     width={SIZE.BASE_WP * 50}
-                    buttonText={'削除'}
+                    buttonText={'登録'}
                     fontWeight={'bold'}
                   />
+                  {/* 削除ボタンの仮実装 */}
+                  <View style={{ marginTop: SIZE.BASE_HP * 2 }}>
+                    <AtomButton
+                      onPress={() => {}}
+                      color={COLORS.WHITE}
+                      fontSize={FONTSIZE.SIZE30PX}
+                      backgroundColor={COLORS.RED}
+                      width={SIZE.BASE_WP * 50}
+                      buttonText={'削除'}
+                      fontWeight={'bold'}
+                    />
+                  </View>
                 </View>
               </View>
-            </View>
-          </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
-      </ScrollView>
+            </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
+        </ScrollView>
+      </View>
+
+      {isLoading && (
+        <ActivityIndicator
+          style={{
+            backgroundColor: '#303030',
+            opacity: 0.5,
+            height: '100%',
+            width: '100%',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }}
+        />
+      )}
     </View>
   );
 };

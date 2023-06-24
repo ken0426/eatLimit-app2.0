@@ -39,4 +39,5 @@ export type ModalButton = {
 export type PostData = {
   key: string;
   value: string;
+  isRequired: boolean;
 };

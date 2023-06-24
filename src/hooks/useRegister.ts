@@ -12,7 +12,11 @@ export const useRegister = () => {
         if (hasPostData) {
           const newPostData = prevData.map((item) => {
             if (item.key === hasPostData.key) {
-              return { key: post.key, value: post.value };
+              return {
+                key: post.key,
+                value: post.value,
+                isRequired: post.isRequired,
+              };
             } else {
               return item;
             }
