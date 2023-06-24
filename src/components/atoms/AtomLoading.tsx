@@ -2,7 +2,7 @@ import React from 'react';
 import { ActivityIndicator, StyleSheet } from 'react-native';
 
 const AtomLoading = () => {
-  return <ActivityIndicator style={styles.loading} />;
+  return <ActivityIndicator style={styles.loading} size={'large'} />;
 };
 
 export default AtomLoading;
