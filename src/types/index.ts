@@ -34,3 +34,9 @@ export type StackPramList = {
 export type ModalButton = {
   text: string;
 };
+
+/** 項目ごとのデータ */
+export type PostData = {
+  key: string;
+  value: string;
+};

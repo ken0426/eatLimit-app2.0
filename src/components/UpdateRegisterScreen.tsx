@@ -22,6 +22,7 @@ import AtomMemo from './atoms/AtomMemo';
 import AtomButton from './atoms/AtomButton';
 import { keepData, managementData } from '../contents';
 import { useRootSelector } from '../redux/store/store';
+import { useRegister } from '../hooks/useRegister';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
@@ -33,6 +34,8 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
   );
   /** キーボードで入力するエリアで高さを調整するフラグ */
   const [enabled, setEnabled] = useState(false);
+
+  const { setTargetPostData, postData } = useRegister();
 
   return (
     <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
@@ -59,30 +62,45 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                   onPressIn={() => setEnabled(false)}
                   textData={updateData.eatName}
                   isRequired={true}
+                  setData={(data) =>
+                    setTargetPostData({ key: '商品名', value: data.value })
+                  }
                 />
                 <AtomSingleSelect
                   label={'管理方法'}
                   data={managementData}
                   textData={updateData.management}
                   isRequired={true}
+                  setData={(data) =>
+                    setTargetPostData({ key: '管理方法', value: data.value })
+                  }
                 />
                 <AtomSingleSelect
                   label={'保存方法'}
                   data={keepData}
                   textData={updateData.keep}
                   isRequired={true}
+                  setData={(data) =>
+                    setTargetPostData({ key: '保存方法', value: data.value })
+                  }
                 />
                 <AtomDate date={updateData.date} isRequired={true} />
                 <AtomSingleInput
                   label={'購入場所'}
                   onPressIn={() => setEnabled(true)}
                   textData={updateData.placeOfPurchase}
+                  setData={(data) =>
+                    setTargetPostData({ key: '購入場所', value: data.value })
+                  }
                 />
                 <AtomSingleInput
                   label={'金額'}
                   onPressIn={() => setEnabled(true)}
                   keyboardType={'number-pad'}
                   textData={updateData.price ? String(updateData.price) : ''}
+                  setData={(data) =>
+                    setTargetPostData({ key: '金額', value: data.value })
+                  }
                 />
                 <AtomMemo onPress={() => setEnabled(true)} />
               </View>

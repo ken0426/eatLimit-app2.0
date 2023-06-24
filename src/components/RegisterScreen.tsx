@@ -1,5 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import {
   Alert,
   Keyboard,
@@ -21,6 +21,7 @@ import AtomDate from './atoms/AtomDate';
 import { keepData, managementData } from '../contents';
 import AtomMemo from './atoms/AtomMemo';
 import AtomButton from './atoms/AtomButton';
+import { useRegister } from '../hooks/useRegister';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
@@ -28,7 +29,9 @@ type Props = {
 
 const RegisterScreen: FC<Props> = ({ navigation }) => {
   /** キーボードで入力するエリアで高さを調整するフラグ */
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState<boolean>(false);
+
+  const { setTargetPostData, postData } = useRegister();
 
   return (
     <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
@@ -55,26 +58,41 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                   label={'商品名'}
                   onPressIn={() => setEnabled(false)}
                   isRequired={true}
+                  setData={(data) =>
+                    setTargetPostData({ key: '商品名', value: data.value })
+                  }
                 />
                 <AtomSingleSelect
                   label={'管理方法'}
                   data={managementData}
                   isRequired={true}
+                  setData={(data) =>
+                    setTargetPostData({ key: '管理方法', value: data.value })
+                  }
                 />
                 <AtomSingleSelect
                   label={'保存方法'}
                   data={keepData}
                   isRequired={true}
+                  setData={(data) =>
+                    setTargetPostData({ key: '保存方法', value: data.value })
+                  }
                 />
                 <AtomDate isRequired={true} />
                 <AtomSingleInput
                   label={'購入場所'}
                   onPressIn={() => setEnabled(true)}
+                  setData={(data) =>
+                    setTargetPostData({ key: '購入場所', value: data.value })
+                  }
                 />
                 <AtomSingleInput
                   label={'金額'}
                   onPressIn={() => setEnabled(true)}
                   keyboardType={'number-pad'}
+                  setData={(data) =>
+                    setTargetPostData({ key: '金額', value: data.value })
+                  }
                 />
                 <AtomMemo onPress={() => setEnabled(true)} />
               </View>

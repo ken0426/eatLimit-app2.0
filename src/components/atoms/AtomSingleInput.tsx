@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   KeyboardTypeOptions,
   StyleSheet,
@@ -9,6 +9,7 @@ import {
 import { COLORS, FONTSIZE, INPUT_HEIGHT, SIZE } from '../../styles';
 import { getText } from '../../utils';
 import AtomRequire from './AtomRequire';
+import { PostData } from '../../types';
 
 type Props = {
   label: string;
@@ -16,6 +17,7 @@ type Props = {
   keyboardType?: KeyboardTypeOptions;
   textData?: string;
   isRequired?: boolean;
+  setData: ({ key, value }: PostData) => void;
 };
 
 const AtomSingleInput: FC<Props> = ({
@@ -24,8 +26,13 @@ const AtomSingleInput: FC<Props> = ({
   keyboardType = 'default',
   textData = '',
   isRequired = false,
+  setData,
 }) => {
   const [text, setText] = useState<string>(textData);
+
+  useEffect(() => {
+    setData({ key: label, value: text });
+  }, [text]);
 
   return (
     <View style={styles.itemArea}>

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   Keyboard,
   StyleSheet,
@@ -10,13 +10,14 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, INPUT_HEIGHT, SIZE } from '../../styles';
 import OrgModalBottom from '../organisms/OrgModalBottom';
 import MolSingleSelect from '../molecules/MolSingleSelect';
-import { KeepData, ManagementData } from '../../types';
+import { KeepData, ManagementData, PostData } from '../../types';
 
 type Props = {
   label: string;
   data: KeepData[] | ManagementData[];
   textData?: string;
   isRequired?: boolean;
+  setData: ({ key, value }: PostData) => void;
 };
 
 const AtomSingleSelect: FC<Props> = ({
@@ -24,9 +25,14 @@ const AtomSingleSelect: FC<Props> = ({
   data,
   textData = '',
   isRequired = false,
+  setData,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [text, setText] = useState(textData);
+
+  useEffect(() => {
+    setData({ key: label, value: text });
+  }, [text]);
 
   return (
     <View>
