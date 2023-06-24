@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
 import {
-  ActivityIndicator,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -23,6 +22,7 @@ import AtomButton from './atoms/AtomButton';
 import { keepData, managementData } from '../contents';
 import { useRootSelector } from '../redux/store/store';
 import { useRegister } from '../hooks/useRegister';
+import AtomLoading from './atoms/AtomLoading';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
@@ -174,20 +174,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
         </ScrollView>
       </View>
 
-      {isLoading && (
-        <ActivityIndicator
-          style={{
-            backgroundColor: '#303030',
-            opacity: 0.5,
-            height: '100%',
-            width: '100%',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-          }}
-        />
-      )}
+      {isLoading && <AtomLoading />}
     </View>
   );
 };
