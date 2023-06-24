@@ -101,7 +101,16 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                       })
                     }
                   />
-                  <AtomDate isRequired={true} />
+                  <AtomDate
+                    isRequired={true}
+                    setData={(data) =>
+                      setTargetPostData({
+                        key: '日付',
+                        value: data.value,
+                        isRequired: data.isRequired,
+                      })
+                    }
+                  />
                   <AtomSingleInput
                     label={'購入場所'}
                     onPressIn={() => setEnabled(true)}

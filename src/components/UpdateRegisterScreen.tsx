@@ -107,7 +107,17 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                       })
                     }
                   />
-                  <AtomDate date={updateData.date} isRequired={true} />
+                  <AtomDate
+                    date={updateData.date}
+                    isRequired={true}
+                    setData={(data) =>
+                      setTargetPostData({
+                        key: '日付',
+                        value: data.value,
+                        isRequired: data.isRequired,
+                      })
+                    }
+                  />
                   <AtomSingleInput
                     label={'購入場所'}
                     onPressIn={() => setEnabled(true)}

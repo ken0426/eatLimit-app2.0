@@ -1,16 +1,18 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { DatePicker } from 'react-native-woodpicker';
 import { MaterialIcons } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, INPUT_HEIGHT, SIZE } from '../../styles';
 import AtomRequire from './AtomRequire';
+import { PostData } from '../../types';
 
 type Props = {
   date?: string;
   isRequired?: boolean;
+  setData: ({ key, value }: PostData) => void;
 };
 
-const AtomDate: FC<Props> = ({ date, isRequired = false }) => {
+const AtomDate: FC<Props> = ({ date, isRequired = false, setData }) => {
   const [pickedDate, setPickedDate] = useState<Date>(
     date ? new Date(date) : new Date()
   );
@@ -21,6 +23,19 @@ const AtomDate: FC<Props> = ({ date, isRequired = false }) => {
     const date = pickedDate.getDate();
     return `${year}年${month}月${date}日`;
   };
+
+  useEffect(() => {
+    const year = pickedDate.getFullYear();
+    const month = pickedDate.getMonth() + 1;
+    const date = pickedDate.getDate();
+    setData({
+      key: '日付',
+      value: `${year}-${month >= 10 ? month : `0${month}`}-${
+        date >= 10 ? date : `0${date}`
+      }`,
+      isRequired,
+    });
+  }, [pickedDate]);
 
   return (
     <View style={styles.contents}>
