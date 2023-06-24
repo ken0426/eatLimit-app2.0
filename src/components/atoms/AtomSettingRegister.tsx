@@ -20,14 +20,7 @@ const AtomSettingRegister: FC<Props> = ({ navigation, title }) => {
       <View style={{ width: '33%' }}>
         <Text style={styles.headerText}>{title}</Text>
       </View>
-      <TouchableOpacity
-        onPress={() => {}}
-        style={{ width: '33%', alignItems: 'flex-end' }}
-      >
-        <Text style={{ fontSize: FONTSIZE.SIZE20PX, fontWeight: 'bold' }}>
-          完了
-        </Text>
-      </TouchableOpacity>
+      <View style={{ width: '33%', alignItems: 'flex-end' }}></View>
     </View>
   );
 };
