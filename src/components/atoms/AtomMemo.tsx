@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   InputAccessoryView,
   Keyboard,
@@ -10,14 +10,20 @@ import {
   Text,
 } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
+import { PostData } from '../../types';
 
 type Props = {
   onPress: () => void;
+  setData: ({ key, value }: PostData) => void;
 };
 
-const AtomMemo: FC<Props> = ({ onPress }) => {
+const AtomMemo: FC<Props> = ({ onPress, setData }) => {
   const inputAccessoryViewID = 'uniqueID';
   const [text, setText] = useState('');
+
+  useEffect(() => {
+    setData({ key: 'メモ', value: text, isRequired: false });
+  }, [text]);
 
   return (
     <View>

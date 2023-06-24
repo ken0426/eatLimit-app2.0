@@ -138,7 +138,16 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                       })
                     }
                   />
-                  <AtomMemo onPress={() => setEnabled(true)} />
+                  <AtomMemo
+                    onPress={() => setEnabled(true)}
+                    setData={(data) =>
+                      setTargetPostData({
+                        key: 'メモ',
+                        value: data.value,
+                        isRequired: data.isRequired,
+                      })
+                    }
+                  />
                 </View>
                 <View style={styles.buttonArea}>
                   <AtomButton
