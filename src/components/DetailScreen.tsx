@@ -73,6 +73,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.MAIN_COLOR,
     paddingTop: SIZE.BASE_HP * 2.3,
     justifyContent: 'center',
+    borderBottomColor: '#a1a1a1',
+    borderBottomWidth: 0.5,
   },
   paddingForBanner: {
     height: SIZE.BASE_HP * 18,
