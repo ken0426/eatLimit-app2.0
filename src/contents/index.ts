@@ -1,4 +1,5 @@
-import { KeepData, ManagementData, ModalButton } from '../types';
+import moment from 'moment';
+import { KeepData, ManagementData, ModalButton, SettingData } from '../types';
 
 /** 検索バー */
 export const SEARCH_BAR_HIGHT = 40;
@@ -73,3 +74,41 @@ export const ACTION_SHEET = {
   LIBRARY: 2,
   DELETE: 3,
 };
+
+/** 設定の情報 */
+export const settingData: SettingData[] = [
+  {
+    list: {
+      headline: '一覧リスト',
+      item: [
+        {
+          label: '画像表示',
+          data: [{ text: '画像表示あり' }, { text: '画像表示なし' }],
+        },
+        {
+          label: '年月日の表示',
+          data: [
+            { text: moment().format('YYYY年MM月DD') },
+            { text: moment().format('YYYY/MM/DD') },
+            { text: moment().format('YYYY-MM-DD') },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    user: {
+      headline: 'ユーザー設定',
+      item: [
+        {
+          label: 'A設定',
+          data: [{ text: '項目1' }, { text: '項目2' }],
+        },
+        {
+          label: 'B設定',
+          data: [{ text: '項目1' }, { text: '項目2' }, { text: '項目3' }],
+        },
+      ],
+    },
+  },
+];

@@ -39,3 +39,10 @@ export const filterData = (data: ApiData[], text: string) => {
     }
   });
 };
+
+/** 設定の見出しのキーを取得するロジック */
+export const getKey = (item: any) => {
+  const objectKey = Object.keys(item);
+  const key = objectKey[0];
+  return key;
+};

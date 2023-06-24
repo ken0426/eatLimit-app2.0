@@ -12,15 +12,15 @@ const AtomSettingRegister: FC<Props> = ({ navigation, title }) => {
   return (
     <View style={styles.header}>
       <TouchableOpacity
-        style={{ width: '33%' }}
+        style={{ width: '20%' }}
         onPress={() => navigation.goBack()}
       >
         <Ionicons name='chevron-back' size={24} color='black' />
       </TouchableOpacity>
-      <View style={{ width: '33%' }}>
+      <View style={{ width: '60%' }}>
         <Text style={styles.headerText}>{title}</Text>
       </View>
-      <View style={{ width: '33%', alignItems: 'flex-end' }}></View>
+      <View style={{ width: '20%', alignItems: 'flex-end' }}></View>
     </View>
   );
 };
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     textAlign: 'center',
-    fontSize: FONTSIZE.SIZE24PX,
+    fontSize: FONTSIZE.SIZE20PX,
     fontWeight: 'bold',
     color: COLORS.MAIN_TEXT_COLOR,
   },

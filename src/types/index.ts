@@ -30,7 +30,7 @@ export type StackPramList = {
   registerScreen: undefined;
   updateRegisterScreen: undefined;
   settingScreen: { item: any };
-  settingDetailScreen: undefined;
+  settingDetailScreen: { data: any };
 };
 
 export type ModalButton = {
@@ -42,4 +42,17 @@ export type PostData = {
   key: string;
   value: string;
   isRequired: boolean;
+};
+
+/** 設定のデータ */
+export type SettingData = {
+  [key: string]: {
+    headline: string;
+    item: {
+      label: string;
+      data: {
+        text: string;
+      }[];
+    }[];
+  };
 };
