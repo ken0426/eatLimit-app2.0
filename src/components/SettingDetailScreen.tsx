@@ -11,7 +11,7 @@ import { Feather } from '@expo/vector-icons';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
-import { commonSettingAdaptor } from '../adptor/commonSettingAdaptor';
+import { commonSettingAdaptor } from '../adaptor/commonSettingAdaptor';
 import { useRootDispatch } from '../redux/store/store';
 import { onSettingPress } from '../functions';
 
