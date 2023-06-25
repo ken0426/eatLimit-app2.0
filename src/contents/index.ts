@@ -107,7 +107,7 @@ export const settingData: SettingData[] = [
   },
   {
     user: {
-      headline: 'ユーザー設定',
+      headline: 'ユーザー未実装設定（この項目はエラーになります）',
       item: [
         {
           label: 'A設定',
