@@ -13,13 +13,19 @@ import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { settingData } from '../contents';
 import { SettingData } from '../types';
-import { getKey } from '../utils';
+import { getEditDataFormat, getKey } from '../utils';
+import { useRootSelector } from '../redux/store/store';
 
 type Props = {
   navigation: any;
 };
 
 const SettingScreen: FC<Props> = ({ navigation }) => {
+  const dateFormatDisplayId = useRootSelector(
+    (state) => state.common.dateFormatDisplayId
+  );
+  const id = dateFormatDisplayId;
+
   const renderItem: ListRenderItem<SettingData> = ({ item, index }) => {
     const key = getKey(item);
     return (
@@ -31,7 +37,16 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
           <TouchableOpacity
             key={index}
             style={styles.item}
-            onPress={() => navigation.navigate('settingDetailScreen', { data })}
+            onPress={() => {
+              if (data.label === '年月日の表示') {
+                const editFormat = getEditDataFormat(data, id);
+                navigation.navigate('settingDetailScreen', {
+                  data: editFormat,
+                });
+              } else {
+                navigation.navigate('settingDetailScreen', { data });
+              }
+            }}
           >
             <Text style={styles.text}>{data.label}</Text>
             <MaterialIcons

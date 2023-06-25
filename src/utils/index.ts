@@ -1,5 +1,6 @@
 import { Dimensions, KeyboardTypeOptions, Platform } from 'react-native';
 import { ApiData } from '../types';
+import moment from 'moment';
 
 export const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT } =
   Dimensions.get('window');
@@ -45,4 +46,38 @@ export const getKey = (item: any) => {
   const objectKey = Object.keys(item);
   const key = objectKey[0];
   return key;
+};
+
+/** 設定項目の「年月日の表示」項目でフォーマットに依存した形で項目を表示できるようにするロジック */
+export const getEditDataFormat = (data: any, id: number) => {
+  const newData = data.data.map((d: any) => {
+    const getFormat = (id: number) => {
+      if (id === 1) {
+        if (d.id === 1) {
+          return 'YYYY年MM月DD日';
+        } else {
+          return 'MM月DD日';
+        }
+      } else if (id === 2) {
+        if (d.id === 1) {
+          return 'YYYY/MM/DD';
+        } else {
+          return 'MM/DD';
+        }
+      } else {
+        if (d.id === 1) {
+          return 'YYYY-MM-DD';
+        } else {
+          return 'MM-DD';
+        }
+      }
+    };
+
+    return {
+      text: moment(d.text).format(getFormat(id)),
+      id: d.id,
+    };
+  });
+
+  return { data: newData, label: data.label };
 };
