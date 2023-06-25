@@ -13,7 +13,7 @@ import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { commonSettingAdaptor } from '../adptor/commonSettingAdaptor';
 import { useRootDispatch } from '../redux/store/store';
-import { setImageId } from '../redux/slices/commonSlice';
+import { onSettingPress } from '../functions';
 
 type Props = {
   navigation: any;
@@ -39,7 +39,7 @@ const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
           },
         ]}
         onPress={() => {
-          dispatch(setImageId(item.id));
+          onSettingPress(dispatch, formatData.label, item);
           navigation.goBack();
         }}
       >

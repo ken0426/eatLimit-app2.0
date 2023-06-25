@@ -8,6 +8,7 @@ import { ApiData, StackPramList } from '../../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useRootDispatch, useRootSelector } from '../../redux/store/store';
 import { setUpdateRegisterData } from '../../redux/slices/commonRegisterSlice';
+import moment from 'moment';
 
 type Props = {
   item: ApiData;
@@ -18,7 +19,33 @@ type Props = {
 const OrgList: FC<Props> = ({ item, index, navigation }) => {
   const dispatch = useRootDispatch();
   const imageId = useRootSelector((state) => state.common.imageId);
+  const dateFormatDisplayId = useRootSelector(
+    (state) => state.common.dateFormatDisplayId
+  );
+  const dateDisplayId = useRootSelector((state) => state.common.dateDisplayId);
   const isImage = imageId == 1;
+
+  const getDate = () => {
+    if (dateFormatDisplayId === 1) {
+      if (dateDisplayId === 1) {
+        return moment(item.date).format('YYYY年MM月DD日');
+      } else {
+        return moment(item.date).format('MM月DD日');
+      }
+    } else if (dateFormatDisplayId === 2) {
+      if (dateDisplayId === 1) {
+        return moment(item.date).format('YYYY/MM/DD');
+      } else {
+        return moment(item.date).format('MM/DD');
+      }
+    } else if (dateFormatDisplayId === 3) {
+      if (dateDisplayId === 1) {
+        return moment(item.date).format('YYYY-MM-DD');
+      } else {
+        return moment(item.date).format('MM-DD');
+      }
+    }
+  };
 
   return (
     <View key={Number(index)} style={{ backgroundColor: COLORS.WHITE }}>
@@ -42,7 +69,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
         )}
         <View style={[styles.textArea, { paddingLeft: isImage ? 0 : 20 }]}>
           <Text style={styles.eatName}>{item.eatName}</Text>
-          <Text style={styles.date}>{item.date}</Text>
+          <Text style={styles.date}>{getDate()}</Text>
         </View>
         <View style={styles.arrow}>
           <MaterialIcons

@@ -2,6 +2,11 @@ import { ActionSheetIOS, Alert, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { ACTION_SHEET, CAMERA_ERROR_MESSAGE } from '../contents';
 import { PostData } from '../types';
+import {
+  setDateDisplayId,
+  setDateFormatDisplayId,
+  setImageId,
+} from '../redux/slices/commonSlice';
 
 type Options = {
   options: string[];
@@ -129,5 +134,16 @@ export const onRegisterPress = async ({
     } finally {
       setIsLoading(false);
     }
+  }
+};
+
+/** 設定項目を保存するロジック */
+export const onSettingPress = (dispatch: any, label: string, item: any) => {
+  if (label === '画像表示') {
+    dispatch(setImageId(item.id));
+  } else if (label === '年月日のフォーマット表示') {
+    dispatch(setDateFormatDisplayId(item.id));
+  } else if (label === '年月日の表示') {
+    dispatch(setDateDisplayId(item.id));
   }
 };

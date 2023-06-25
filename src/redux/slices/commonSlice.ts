@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const commonState = {
   imageId: 1,
+  dateFormatDisplayId: 3,
+  dateDisplayId: 1,
 };
 
 export const commonSlice = createSlice({
@@ -12,7 +14,16 @@ export const commonSlice = createSlice({
     setImageId: (state, { payload }) => {
       state.imageId = payload;
     },
+    /** 年月日のフォーマット表示 */
+    setDateFormatDisplayId: (state, { payload }) => {
+      state.dateFormatDisplayId = payload;
+    },
+    /** 年月日の表示 */
+    setDateDisplayId: (state, { payload }) => {
+      state.dateDisplayId = payload;
+    },
   },
 });
 
-export const { setImageId } = commonSlice.actions;
+export const { setImageId, setDateFormatDisplayId, setDateDisplayId } =
+  commonSlice.actions;
