@@ -18,6 +18,8 @@ type Props = {
 
 const OrgList: FC<Props> = ({ item, index, navigation }) => {
   const dispatch = useRootDispatch();
+
+  // この辺の計算処理はカスタムフックにできそうなら別ファイルで実装する
   const imageId = useRootSelector((state) => state.common.imageId);
   const dateFormatDisplayId = useRootSelector(
     (state) => state.common.dateFormatDisplayId
