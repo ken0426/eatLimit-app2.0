@@ -81,22 +81,25 @@ export const settingData: SettingData[] = [
       item: [
         {
           label: '画像表示',
-          data: [{ text: '画像表示あり' }, { text: '画像表示なし' }],
+          data: [
+            { text: '画像表示あり', id: 1 },
+            { text: '画像表示なし', id: 2 },
+          ],
         },
         {
           label: '年月日のフォーマット表示',
           data: [
-            { text: moment().format('YYYY年MM月DD日') },
-            { text: moment().format('YYYY/MM/DD') },
-            { text: moment().format('YYYY-MM-DD') },
+            { text: moment().format('YYYY年MM月DD日'), id: 1 },
+            { text: moment().format('YYYY/MM/DD'), id: 2 },
+            { text: moment().format('YYYY-MM-DD'), id: 3 },
           ],
         },
         // 年月日の表示はフォーマットに依存する設定にする
         {
           label: '年月日の表示',
           data: [
-            { text: moment().format('YYYY年MM月DD日') },
-            { text: moment().format('MM月DD日') },
+            { text: moment().format('YYYY年MM月DD日'), id: 1 },
+            { text: moment().format('MM月DD日'), id: 2 },
           ],
         },
       ],
@@ -108,11 +111,18 @@ export const settingData: SettingData[] = [
       item: [
         {
           label: 'A設定',
-          data: [{ text: '項目1' }, { text: '項目2' }],
+          data: [
+            { text: '項目1', id: 1 },
+            { text: '項目2', id: 2 },
+          ],
         },
         {
           label: 'B設定',
-          data: [{ text: '項目1' }, { text: '項目2' }, { text: '項目3' }],
+          data: [
+            { text: '項目1', id: 1 },
+            { text: '項目2', id: 2 },
+            { text: '項目3', id: 3 },
+          ],
         },
       ],
     },

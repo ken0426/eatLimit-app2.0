@@ -6,7 +6,7 @@ import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { noImage } from '../../moc';
 import { ApiData, StackPramList } from '../../types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useRootDispatch } from '../../redux/store/store';
+import { useRootDispatch, useRootSelector } from '../../redux/store/store';
 import { setUpdateRegisterData } from '../../redux/slices/commonRegisterSlice';
 
 type Props = {
@@ -17,6 +17,7 @@ type Props = {
 
 const OrgList: FC<Props> = ({ item, index, navigation }) => {
   const dispatch = useRootDispatch();
+  const imageId = useRootSelector((state) => state.common.imageId);
 
   return (
     <View key={Number(index)} style={{ backgroundColor: COLORS.WHITE }}>
@@ -30,13 +31,17 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
           dispatch(setUpdateRegisterData(item));
         }}
       >
-        <View style={styles.imageArea}>
-          <Image
-            style={{ width: '90%', height: '90%' }}
-            source={{ uri: item.image ?? noImage }}
-          />
-        </View>
-        <View style={styles.textArea}>
+        {imageId == 1 && (
+          <View style={styles.imageArea}>
+            <Image
+              style={{ width: '90%', height: '90%' }}
+              source={{ uri: item.image ?? noImage }}
+            />
+          </View>
+        )}
+        <View
+          style={[styles.textArea, { paddingLeft: imageId === 2 ? 20 : 0 }]}
+        >
           <Text style={styles.eatName}>{item.eatName}</Text>
           <Text style={styles.date}>{item.date}</Text>
         </View>

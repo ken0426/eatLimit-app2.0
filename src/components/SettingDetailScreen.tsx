@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   FlatList,
   ListRenderItem,
@@ -11,6 +11,9 @@ import { Feather } from '@expo/vector-icons';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
+import { commonSettingAdaptor } from '../adptor/commonSettingAdaptor';
+import { useRootDispatch } from '../redux/store/store';
+import { setImageId } from '../redux/slices/commonSlice';
 
 type Props = {
   navigation: any;
@@ -18,7 +21,11 @@ type Props = {
 };
 
 const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
+  const dispatch = useRootDispatch();
   const { data } = route.params;
+  const formatData = commonSettingAdaptor(data);
+
+  const listData = formatData.data;
 
   const renderItem: ListRenderItem<any> = ({ item, index }) => {
     return (
@@ -31,13 +38,16 @@ const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
             borderTopColor: COLORS.DETAIL_BORDER,
           },
         ]}
-        onPress={() => navigation.goBack()}
+        onPress={() => {
+          dispatch(setImageId(item.id));
+          navigation.goBack();
+        }}
       >
         <Feather
           name='check'
           size={24}
           color={COLORS.BLUE}
-          style={styles.check}
+          style={[styles.check, { opacity: item.check ? 1 : 0 }]}
         />
         <Text style={styles.text}>{item.text}</Text>
       </TouchableOpacity>
@@ -52,7 +62,7 @@ const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
         </MolHeader>
 
         <FlatList
-          data={data.data}
+          data={listData}
           renderItem={renderItem}
           keyExtractor={(_, index) => index.toString()}
           style={{ marginTop: -1 }}

@@ -1,17 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const commonState = {
-  isImage: true,
+  imageId: 1,
 };
 
 export const commonSlice = createSlice({
   name: 'common',
   initialState: commonState,
   reducers: {
-    setIsImage: (state, { payload }) => {
-      state.isImage = payload;
+    /** 画像の表示非表示 */
+    setImageId: (state, { payload }) => {
+      state.imageId = payload;
     },
   },
 });
 
-export const { setIsImage } = commonSlice.actions;
+export const { setImageId } = commonSlice.actions;

@@ -52,6 +52,7 @@ export type SettingData = {
       label: string;
       data: {
         text: string;
+        id: number;
       }[];
     }[];
   };
