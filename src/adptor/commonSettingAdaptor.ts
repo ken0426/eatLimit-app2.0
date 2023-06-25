@@ -7,26 +7,22 @@ export const commonSettingAdaptor = (data: any) => {
   );
   const dateDisplayId = useRootSelector((state) => state.common.dateDisplayId);
 
-  const editData = data.data.map((item: any) => {
+  const isCheck = (id: any) => {
     if (data.label === '画像表示') {
-      return {
-        text: item.text,
-        check: item.id === imageId,
-        id: item.id,
-      };
+      return id === imageId;
     } else if (data.label === '年月日のフォーマット表示') {
-      return {
-        text: item.text,
-        check: item.id === dateFormatDisplayId,
-        id: item.id,
-      };
+      return id === dateFormatDisplayId;
     } else if (data.label === '年月日の表示') {
-      return {
-        text: item.text,
-        check: item.id === dateDisplayId,
-        id: item.id,
-      };
+      return id === dateDisplayId;
     }
+  };
+
+  const editData = data.data.map((item: any) => {
+    return {
+      text: item.text,
+      check: isCheck(item.id),
+      id: item.id,
+    };
   });
 
   const newData = {
