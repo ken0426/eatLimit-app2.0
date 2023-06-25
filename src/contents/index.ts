@@ -98,8 +98,8 @@ export const settingData: SettingData[] = [
         {
           label: '年月日の表示',
           data: [
-            { text: moment().format('YYYY/MM/DD'), id: 1 },
-            { text: moment().format('MM/DD'), id: 2 },
+            { text: moment().format('YYYY-MM-DD'), id: 1 },
+            { text: moment().format('MM-DD'), id: 2 },
           ],
         },
       ],
