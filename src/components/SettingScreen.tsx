@@ -24,36 +24,16 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
     const key = getKey(item);
     return (
       <View key={index}>
-        <View
-          style={{
-            width: '100%',
-            backgroundColor: COLORS.SETTING_LABEL,
-            height: SIZE.BASE_HP * 4,
-            justifyContent: 'center',
-            paddingHorizontal: SIZE.BASE_WP * 2,
-          }}
-        >
-          <Text style={{ fontSize: FONTSIZE.SIZE18PX }}>
-            {item[`${key}`].headline}
-          </Text>
+        <View style={styles.headline}>
+          <Text style={styles.text}>{item[`${key}`].headline}</Text>
         </View>
         {item[`${key}`].item.map((data, index) => (
           <TouchableOpacity
             key={index}
-            style={{
-              width: '100%',
-              backgroundColor: COLORS.WHITE,
-              height: SIZE.BASE_HP * 6.5,
-              borderBottomColor: COLORS.DETAIL_BORDER,
-              borderBottomWidth: 0.2,
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              paddingHorizontal: SIZE.BASE_WP * 2,
-              flexDirection: 'row',
-            }}
+            style={styles.item}
             onPress={() => navigation.navigate('settingDetailScreen', { data })}
           >
-            <Text style={{ fontSize: FONTSIZE.SIZE18PX }}>{data.label}</Text>
+            <Text style={styles.text}>{data.label}</Text>
             <MaterialIcons
               name='navigate-next'
               size={26}
@@ -94,5 +74,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     zIndex: 2,
+  },
+  headline: {
+    width: '100%',
+    backgroundColor: COLORS.SETTING_LABEL,
+    height: SIZE.BASE_HP * 4,
+    justifyContent: 'center',
+    paddingHorizontal: SIZE.BASE_WP * 2,
+  },
+  item: {
+    width: '100%',
+    backgroundColor: COLORS.WHITE,
+    height: SIZE.BASE_HP * 6.5,
+    borderBottomColor: COLORS.DETAIL_BORDER,
+    borderBottomWidth: 0.2,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: SIZE.BASE_WP * 2,
+    flexDirection: 'row',
+  },
+  text: {
+    fontSize: FONTSIZE.SIZE18PX,
   },
 });

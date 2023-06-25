@@ -22,27 +22,14 @@ const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
 
   const renderItem: ListRenderItem<any> = ({ item, index }) => {
     return (
-      <TouchableOpacity
-        key={index}
-        style={{
-          width: '100%',
-          backgroundColor: COLORS.WHITE,
-          height: SIZE.BASE_HP * 5.5,
-          borderBottomColor: COLORS.DETAIL_BORDER,
-          borderBottomWidth: 0.2,
-          alignItems: 'center',
-          paddingHorizontal: SIZE.BASE_WP * 2,
-          flexDirection: 'row',
-        }}
-        onPress={() => {}}
-      >
+      <TouchableOpacity key={index} style={styles.item} onPress={() => {}}>
         <Feather
           name='check'
           size={24}
           color={COLORS.BLUE}
-          style={{ marginRight: SIZE.BASE_WP * 2 }}
+          style={styles.check}
         />
-        <Text style={{ fontSize: FONTSIZE.SIZE18PX }}>{item.text}</Text>
+        <Text style={styles.text}>{item.text}</Text>
       </TouchableOpacity>
     );
   };
@@ -76,5 +63,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     zIndex: 2,
+  },
+  item: {
+    width: '100%',
+    backgroundColor: COLORS.WHITE,
+    height: SIZE.BASE_HP * 5.5,
+    borderBottomColor: COLORS.DETAIL_BORDER,
+    borderBottomWidth: 0.2,
+    alignItems: 'center',
+    paddingHorizontal: SIZE.BASE_WP * 2,
+    flexDirection: 'row',
+  },
+  check: {
+    marginRight: SIZE.BASE_WP * 2,
+  },
+  text: {
+    fontSize: FONTSIZE.SIZE18PX,
   },
 });
