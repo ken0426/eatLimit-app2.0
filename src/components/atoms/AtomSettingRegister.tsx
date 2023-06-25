@@ -12,15 +12,15 @@ const AtomSettingRegister: FC<Props> = ({ navigation, title }) => {
   return (
     <View style={styles.header}>
       <TouchableOpacity
-        style={{ width: '20%' }}
+        style={{ width: '10%' }}
         onPress={() => navigation.goBack()}
       >
         <Ionicons name='chevron-back' size={24} color='black' />
       </TouchableOpacity>
-      <View style={{ width: '60%' }}>
+      <View style={{ width: '80%' }}>
         <Text style={styles.headerText}>{title}</Text>
       </View>
-      <View style={{ width: '20%', alignItems: 'flex-end' }}></View>
+      <View style={{ width: '10%', alignItems: 'flex-end' }}></View>
     </View>
   );
 };

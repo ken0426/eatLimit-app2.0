@@ -88,7 +88,7 @@ export const settingData: SettingData[] = [
         {
           label: '年月日のフォーマット表示',
           data: [
-            { text: moment().format('YYYY年MM月DD') },
+            { text: moment().format('YYYY年MM月DD日') },
             { text: moment().format('YYYY/MM/DD') },
             { text: moment().format('YYYY-MM-DD') },
           ],
@@ -97,8 +97,8 @@ export const settingData: SettingData[] = [
         {
           label: '年月日の表示',
           data: [
-            { text: moment().format('YYYY年MM月DD') },
-            { text: moment().format('MM年DD') },
+            { text: moment().format('YYYY年MM月DD日') },
+            { text: moment().format('MM月DD日') },
           ],
         },
       ],
