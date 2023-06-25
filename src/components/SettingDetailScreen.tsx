@@ -31,7 +31,7 @@ const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
             borderTopColor: COLORS.DETAIL_BORDER,
           },
         ]}
-        onPress={() => {}}
+        onPress={() => navigation.goBack()}
       >
         <Feather
           name='check'
