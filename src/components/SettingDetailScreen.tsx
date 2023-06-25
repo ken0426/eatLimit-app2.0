@@ -22,7 +22,17 @@ const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
 
   const renderItem: ListRenderItem<any> = ({ item, index }) => {
     return (
-      <TouchableOpacity key={index} style={styles.item} onPress={() => {}}>
+      <TouchableOpacity
+        key={index}
+        style={[
+          styles.item,
+          {
+            borderTopWidth: index === 0 ? 0.2 : 0,
+            borderTopColor: COLORS.DETAIL_BORDER,
+          },
+        ]}
+        onPress={() => {}}
+      >
         <Feather
           name='check'
           size={24}
@@ -45,6 +55,7 @@ const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
           data={data.data}
           renderItem={renderItem}
           keyExtractor={(_, index) => index.toString()}
+          style={{ marginTop: -1 }}
         />
       </View>
     </View>
