@@ -18,6 +18,7 @@ type Props = {
 const OrgList: FC<Props> = ({ item, index, navigation }) => {
   const dispatch = useRootDispatch();
   const imageId = useRootSelector((state) => state.common.imageId);
+  const isImage = imageId == 1;
 
   return (
     <View key={Number(index)} style={{ backgroundColor: COLORS.WHITE }}>
@@ -31,7 +32,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
           dispatch(setUpdateRegisterData(item));
         }}
       >
-        {imageId == 1 && (
+        {isImage && (
           <View style={styles.imageArea}>
             <Image
               style={{ width: '90%', height: '90%' }}
@@ -39,9 +40,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
             />
           </View>
         )}
-        <View
-          style={[styles.textArea, { paddingLeft: imageId === 2 ? 20 : 0 }]}
-        >
+        <View style={[styles.textArea, { paddingLeft: isImage ? 0 : 20 }]}>
           <Text style={styles.eatName}>{item.eatName}</Text>
           <Text style={styles.date}>{item.date}</Text>
         </View>
