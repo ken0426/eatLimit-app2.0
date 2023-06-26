@@ -105,26 +105,26 @@ export const settingData: SettingData[] = [
       ],
     },
   },
-  {
-    user: {
-      headline: 'ユーザー未実装設定（この項目はエラーになります）',
-      item: [
-        {
-          label: 'A設定',
-          data: [
-            { text: '項目1', id: 1 },
-            { text: '項目2', id: 2 },
-          ],
-        },
-        {
-          label: 'B設定',
-          data: [
-            { text: '項目1', id: 1 },
-            { text: '項目2', id: 2 },
-            { text: '項目3', id: 3 },
-          ],
-        },
-      ],
-    },
-  },
+  // {
+  //   user: {
+  //     headline: 'ユーザー未実装設定（この項目はエラーになります）',
+  //     item: [
+  //       {
+  //         label: 'A設定',
+  //         data: [
+  //           { text: '項目1', id: 1 },
+  //           { text: '項目2', id: 2 },
+  //         ],
+  //       },
+  //       {
+  //         label: 'B設定',
+  //         data: [
+  //           { text: '項目1', id: 1 },
+  //           { text: '項目2', id: 2 },
+  //           { text: '項目3', id: 3 },
+  //         ],
+  //       },
+  //     ],
+  //   },
+  // },
 ];
