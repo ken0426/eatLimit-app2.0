@@ -50,31 +50,36 @@ export const getKey = (item: any) => {
 
 /** 設定項目の「年月日の表示」項目でフォーマットに依存した形で項目を表示できるようにするロジック */
 export const getEditDataFormat = (data: any, id: number) => {
+  const today = new Date();
   const newData = data.data.map((d: any) => {
+    const year = today.getFullYear();
+    const month = today.getMonth();
+    const monthMM = month > 9 ? month : `0${month}`;
+    const day = today.getDate();
     const getFormat = (id: number) => {
       if (id === 1) {
         if (d.id === 1) {
-          return 'YYYY年MM月DD日';
+          return `${year}年${monthMM}月${day}日`;
         } else {
-          return 'MM月DD日';
+          return `${monthMM}月${day}日`;
         }
       } else if (id === 2) {
         if (d.id === 1) {
-          return 'YYYY/MM/DD';
+          return `${year}/${monthMM}/${day}`;
         } else {
-          return 'MM/DD';
+          return `${monthMM}/${day}`;
         }
       } else {
         if (d.id === 1) {
-          return 'YYYY-MM-DD';
+          return `${year}-${monthMM}-${day}`;
         } else {
-          return 'MM-DD';
+          return `${monthMM}-${day}`;
         }
       }
     };
 
     return {
-      text: moment(d.text).format(getFormat(id)),
+      text: getFormat(id),
       id: d.id,
     };
   });
