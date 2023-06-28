@@ -102,6 +102,13 @@ export const settingData: SettingData[] = [
             { text: moment().format('MM-DD'), id: 2 },
           ],
         },
+        {
+          label: '曜日の表示',
+          data: [
+            // { text: moment().format('YYYY-MM-DD'), id: 1 },
+            // { text: moment().format('MM-DD'), id: 2 },
+          ],
+        },
       ],
     },
   },
