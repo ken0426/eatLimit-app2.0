@@ -4,6 +4,7 @@ const commonState = {
   imageId: 1,
   dateFormatDisplayId: 3,
   dateDisplayId: 1,
+  dayOfWeekId: 1,
 };
 
 export const commonSlice = createSlice({
@@ -22,8 +23,16 @@ export const commonSlice = createSlice({
     setDateDisplayId: (state, { payload }) => {
       state.dateDisplayId = payload;
     },
+    /** 曜日の表示 */
+    setDayOfWeekId: (state, { payload }) => {
+      state.dayOfWeekId = payload;
+    },
   },
 });
 
-export const { setImageId, setDateFormatDisplayId, setDateDisplayId } =
-  commonSlice.actions;
+export const {
+  setImageId,
+  setDateFormatDisplayId,
+  setDateDisplayId,
+  setDayOfWeekId,
+} = commonSlice.actions;

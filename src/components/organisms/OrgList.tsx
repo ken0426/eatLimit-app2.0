@@ -23,11 +23,13 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
     (state) => state.common.dateFormatDisplayId
   );
   const dateDisplayId = useRootSelector((state) => state.common.dateDisplayId);
+  const dayOfWeekId = useRootSelector((state) => state.common.dayOfWeekId);
 
   const { isImage, dateText } = useListEdit(
     imageId,
     dateFormatDisplayId,
     dateDisplayId,
+    dayOfWeekId,
     item.date
   );
 

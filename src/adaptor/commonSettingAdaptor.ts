@@ -6,6 +6,7 @@ export const commonSettingAdaptor = (data: any) => {
     (state) => state.common.dateFormatDisplayId
   );
   const dateDisplayId = useRootSelector((state) => state.common.dateDisplayId);
+  const dayOfWeekId = useRootSelector((state) => state.common.dayOfWeekId);
 
   const isCheck = (id: any) => {
     if (data.label === '画像表示') {
@@ -14,6 +15,8 @@ export const commonSettingAdaptor = (data: any) => {
       return id === dateFormatDisplayId;
     } else if (data.label === '年月日の表示') {
       return id === dateDisplayId;
+    } else if (data.label === '曜日の表示') {
+      return id === dayOfWeekId;
     }
   };
 

@@ -105,8 +105,8 @@ export const settingData: SettingData[] = [
         {
           label: '曜日の表示',
           data: [
-            // { text: moment().format('YYYY-MM-DD'), id: 1 },
-            // { text: moment().format('MM-DD'), id: 2 },
+            { text: 'なし', id: 1 },
+            { text: 'あり', id: 2 },
           ],
         },
       ],

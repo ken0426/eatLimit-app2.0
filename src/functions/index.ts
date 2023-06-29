@@ -5,6 +5,7 @@ import { PostData } from '../types';
 import {
   setDateDisplayId,
   setDateFormatDisplayId,
+  setDayOfWeekId,
   setImageId,
 } from '../redux/slices/commonSlice';
 
@@ -145,5 +146,7 @@ export const onSettingPress = (dispatch: any, label: string, item: any) => {
     dispatch(setDateFormatDisplayId(item.id));
   } else if (label === '年月日の表示') {
     dispatch(setDateDisplayId(item.id));
+  } else if (label === '曜日の表示') {
+    dispatch(setDayOfWeekId(item.id));
   }
 };
