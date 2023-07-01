@@ -27,8 +27,8 @@ const AtomMemo: FC<Props> = ({ onPress, setData }) => {
 
   return (
     <View>
-      <View style={{ alignItems: 'flex-start', flexDirection: 'row' }}>
-        <View style={{ height: 45, justifyContent: 'center' }}>
+      <View style={styles.contents}>
+        <View style={styles.labelArea}>
           <Text style={styles.label}>メモ：</Text>
         </View>
         <View style={styles.memoArea}>
@@ -62,6 +62,10 @@ const AtomMemo: FC<Props> = ({ onPress, setData }) => {
 export default AtomMemo;
 
 const styles = StyleSheet.create({
+  contents: {
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+  },
   memoArea: {
     width: '100%',
     marginTop: 10,
@@ -71,6 +75,10 @@ const styles = StyleSheet.create({
     borderColor: '#d6d6d6',
     backgroundColor: '#e9e9e9',
     flex: 1,
+  },
+  labelArea: {
+    height: SIZE.BASE_HP * 5.5,
+    justifyContent: 'center',
   },
   label: {
     fontSize: FONTSIZE.SIZE18PX,

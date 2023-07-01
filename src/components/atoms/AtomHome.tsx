@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import moment from 'moment';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AntDesign } from '@expo/vector-icons';
@@ -18,13 +18,7 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
   const dispatch = useRootDispatch();
 
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-      }}
-    >
+    <View style={styles.contents}>
       <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity
           onPress={() => navigation.navigate('settingScreen', { item: [] })}
@@ -72,3 +66,11 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
 };
 
 export default AtomHome;
+
+const styles = StyleSheet.create({
+  contents: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+});

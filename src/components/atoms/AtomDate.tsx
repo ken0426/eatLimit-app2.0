@@ -28,11 +28,13 @@ const AtomDate: FC<Props> = ({ date, isRequired = false, setData }) => {
     const year = pickedDate.getFullYear();
     const month = pickedDate.getMonth() + 1;
     const date = pickedDate.getDate();
+    const value = `${year}-${month >= 10 ? month : `0${month}`}-${
+      date >= 10 ? date : `0${date}`
+    }`;
+
     setData({
       key: '日付',
-      value: `${year}-${month >= 10 ? month : `0${month}`}-${
-        date >= 10 ? date : `0${date}`
-      }`,
+      value,
       isRequired,
     });
   }, [pickedDate]);
