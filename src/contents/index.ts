@@ -1,6 +1,9 @@
 import moment from 'moment';
 import { KeepData, ManagementData, ModalButton, SettingData } from '../types';
 
+/** 9月 */
+export const SEPTEMBER = 9;
+
 /** 検索バー */
 export const SEARCH_BAR_HIGHT = 40;
 
@@ -75,10 +78,36 @@ export const ACTION_SHEET = {
 
 /** 設定項目の各項目名 */
 export const LABEL = {
+  /** 画像表示 */
   IMAGE_DISPLAY: '画像表示',
+  /** 年月日のフォーマット表示 */
   DATE_FORMAT_DISPLAY: '年月日のフォーマット表示',
+  /** 年月日の表示 */
   DATE_DISPLAY: '年月日の表示',
+  /** 曜日の表示 */
   DAY_OF_THE_WEEK_DISPLAY: '曜日の表示',
+};
+
+/** 設定項目で選択するID */
+export const SETTING_ITEM_ID = {
+  /** 画像あり */
+  IMAGE_DISPLAY: 1,
+  /** 画像なし */
+  IMAGE_NOT_DISPLAY: 2,
+  /** YYYY年MM月DD日 */
+  FORMAT_JP: 1,
+  /** YYYY/MM/DD */
+  FORMAT_SLASH: 2,
+  /** YYYY-MM-DD */
+  FORMAT_HYPHEN: 3,
+  /** 年＋月＋日 */
+  FORMAT_YYYY_MM_DD: 1,
+  /** 月＋日 */
+  FORMAT_MM_DD: 2,
+  /** 曜日表示なし */
+  DATE_NOT_DISPLAY: 1,
+  /** 曜日表示あり */
+  DATE_DISPLAY: 2,
 };
 
 /** 設定の情報 */
@@ -90,31 +119,46 @@ export const settingData: SettingData[] = [
         {
           label: LABEL.IMAGE_DISPLAY,
           data: [
-            { text: 'あり', id: 1 },
-            { text: 'なし', id: 2 },
+            { text: 'あり', id: SETTING_ITEM_ID.IMAGE_DISPLAY },
+            { text: 'なし', id: SETTING_ITEM_ID.IMAGE_NOT_DISPLAY },
           ],
         },
         {
           label: LABEL.DATE_FORMAT_DISPLAY,
           data: [
-            { text: moment().format('YYYY年MM月DD日'), id: 1 },
-            { text: moment().format('YYYY/MM/DD'), id: 2 },
-            { text: moment().format('YYYY-MM-DD'), id: 3 },
+            {
+              text: moment().format('YYYY年MM月DD日'),
+              id: SETTING_ITEM_ID.FORMAT_JP,
+            },
+            {
+              text: moment().format('YYYY/MM/DD'),
+              id: SETTING_ITEM_ID.FORMAT_SLASH,
+            },
+            {
+              text: moment().format('YYYY-MM-DD'),
+              id: SETTING_ITEM_ID.FORMAT_HYPHEN,
+            },
           ],
         },
         // 年月日の表示はフォーマットに依存する設定にする
         {
           label: LABEL.DATE_DISPLAY,
           data: [
-            { text: moment().format('YYYY-MM-DD'), id: 1 },
-            { text: moment().format('MM-DD'), id: 2 },
+            {
+              text: moment().format('YYYY-MM-DD'),
+              id: SETTING_ITEM_ID.FORMAT_YYYY_MM_DD,
+            },
+            {
+              text: moment().format('MM-DD'),
+              id: SETTING_ITEM_ID.FORMAT_MM_DD,
+            },
           ],
         },
         {
           label: LABEL.DAY_OF_THE_WEEK_DISPLAY,
           data: [
-            { text: 'なし', id: 1 },
-            { text: 'あり', id: 2 },
+            { text: 'なし', id: SETTING_ITEM_ID.DATE_NOT_DISPLAY },
+            { text: 'あり', id: SETTING_ITEM_ID.DATE_DISPLAY },
           ],
         },
       ],
