@@ -1,3 +1,4 @@
+import { LABEL } from '../contents';
 import { useRootSelector } from '../redux/store/store';
 
 export const commonSettingAdaptor = (data: any) => {
@@ -9,13 +10,13 @@ export const commonSettingAdaptor = (data: any) => {
   const dayOfWeekId = useRootSelector((state) => state.common.dayOfWeekId);
 
   const isCheck = (id: any) => {
-    if (data.label === '画像表示') {
+    if (data.label === LABEL.IMAGE_DISPLAY) {
       return id === imageId;
-    } else if (data.label === '年月日のフォーマット表示') {
+    } else if (data.label === LABEL.DATE_FORMAT_DISPLAY) {
       return id === dateFormatDisplayId;
-    } else if (data.label === '年月日の表示') {
+    } else if (data.label === LABEL.DATE_DISPLAY) {
       return id === dateDisplayId;
-    } else if (data.label === '曜日の表示') {
+    } else if (data.label === LABEL.DAY_OF_THE_WEEK_DISPLAY) {
       return id === dayOfWeekId;
     }
   };

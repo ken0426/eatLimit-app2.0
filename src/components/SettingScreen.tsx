@@ -11,7 +11,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
-import { settingData } from '../contents';
+import { LABEL, settingData } from '../contents';
 import { SettingData } from '../types';
 import { getEditDataFormat, getKey } from '../utils';
 import { useRootSelector } from '../redux/store/store';
@@ -38,7 +38,7 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
             key={index}
             style={styles.item}
             onPress={() => {
-              if (data.label === '年月日の表示') {
+              if (data.label === LABEL.DATE_DISPLAY) {
                 const editFormat = getEditDataFormat(data, id);
                 navigation.navigate('settingDetailScreen', {
                   data: editFormat,

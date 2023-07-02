@@ -73,6 +73,14 @@ export const ACTION_SHEET = {
   DELETE: 3,
 };
 
+/** 設定項目の各項目名 */
+export const LABEL = {
+  IMAGE_DISPLAY: '画像表示',
+  DATE_FORMAT_DISPLAY: '年月日のフォーマット表示',
+  DATE_DISPLAY: '年月日の表示',
+  DAY_OF_THE_WEEK_DISPLAY: '曜日の表示',
+};
+
 /** 設定の情報 */
 export const settingData: SettingData[] = [
   {
@@ -80,14 +88,14 @@ export const settingData: SettingData[] = [
       headline: '一覧リスト',
       item: [
         {
-          label: '画像表示',
+          label: LABEL.IMAGE_DISPLAY,
           data: [
             { text: 'あり', id: 1 },
             { text: 'なし', id: 2 },
           ],
         },
         {
-          label: '年月日のフォーマット表示',
+          label: LABEL.DATE_FORMAT_DISPLAY,
           data: [
             { text: moment().format('YYYY年MM月DD日'), id: 1 },
             { text: moment().format('YYYY/MM/DD'), id: 2 },
@@ -96,14 +104,14 @@ export const settingData: SettingData[] = [
         },
         // 年月日の表示はフォーマットに依存する設定にする
         {
-          label: '年月日の表示',
+          label: LABEL.DATE_DISPLAY,
           data: [
             { text: moment().format('YYYY-MM-DD'), id: 1 },
             { text: moment().format('MM-DD'), id: 2 },
           ],
         },
         {
-          label: '曜日の表示',
+          label: LABEL.DAY_OF_THE_WEEK_DISPLAY,
           data: [
             { text: 'なし', id: 1 },
             { text: 'あり', id: 2 },

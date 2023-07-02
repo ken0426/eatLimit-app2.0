@@ -1,6 +1,6 @@
 import { ActionSheetIOS, Alert, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { ACTION_SHEET, CAMERA_ERROR_MESSAGE } from '../contents';
+import { ACTION_SHEET, CAMERA_ERROR_MESSAGE, LABEL } from '../contents';
 import { PostData } from '../types';
 import {
   setDateDisplayId,
@@ -140,13 +140,13 @@ export const onRegisterPress = async ({
 
 /** 設定項目を保存するロジック */
 export const onSettingPress = (dispatch: any, label: string, item: any) => {
-  if (label === '画像表示') {
+  if (label === LABEL.IMAGE_DISPLAY) {
     dispatch(setImageId(item.id));
-  } else if (label === '年月日のフォーマット表示') {
+  } else if (label === LABEL.DATE_FORMAT_DISPLAY) {
     dispatch(setDateFormatDisplayId(item.id));
-  } else if (label === '年月日の表示') {
+  } else if (label === LABEL.DATE_DISPLAY) {
     dispatch(setDateDisplayId(item.id));
-  } else if (label === '曜日の表示') {
+  } else if (label === LABEL.DAY_OF_THE_WEEK_DISPLAY) {
     dispatch(setDayOfWeekId(item.id));
   }
 };
