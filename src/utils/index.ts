@@ -54,26 +54,27 @@ export const getEditDataFormat = (data: any, id: number) => {
   const newData = data.data.map((d: any) => {
     const year = today.getFullYear();
     const month = today.getMonth();
-    const monthMM = month > 9 ? month : `0${month}`;
     const day = today.getDate();
+    const monthMM = month > 9 ? month : `0${month}`;
+    const dayDD = day > 9 ? day : `0${day}`;
     const getFormat = (id: number) => {
       if (id === 1) {
         if (d.id === 1) {
-          return `${year}年${monthMM}月${day}日`;
+          return `${year}年${monthMM}月${dayDD}日`;
         } else {
-          return `${monthMM}月${day}日`;
+          return `${monthMM}月${dayDD}日`;
         }
       } else if (id === 2) {
         if (d.id === 1) {
-          return `${year}/${monthMM}/${day}`;
+          return `${year}/${monthMM}/${dayDD}`;
         } else {
-          return `${monthMM}/${day}`;
+          return `${monthMM}/${dayDD}`;
         }
       } else {
         if (d.id === 1) {
-          return `${year}-${monthMM}-${day}`;
+          return `${year}-${monthMM}-${dayDD}`;
         } else {
-          return `${monthMM}-${day}`;
+          return `${monthMM}-${dayDD}`;
         }
       }
     };
