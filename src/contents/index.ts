@@ -82,8 +82,8 @@ export const settingData: SettingData[] = [
         {
           label: '画像表示',
           data: [
-            { text: '画像表示あり', id: 1 },
-            { text: '画像表示なし', id: 2 },
+            { text: 'あり', id: 1 },
+            { text: 'なし', id: 2 },
           ],
         },
         {
