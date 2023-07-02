@@ -31,9 +31,9 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
     return (
       <View key={index}>
         <View style={styles.headline}>
-          <Text style={styles.text}>{item[`${key}`].headline}</Text>
+          <Text style={styles.text}>{item[key].headline}</Text>
         </View>
-        {item[`${key}`].item.map((data, index) => (
+        {item[key].item.map((data, index) => (
           <TouchableOpacity
             key={index}
             style={styles.item}
