@@ -9,9 +9,10 @@ import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onRegisterPress } from '../../functions';
 
 type Props = {
-  navigation:
-    | StackNavigationProp<StackPramList, 'registerScreen'>
-    | StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
+  navigation: StackNavigationProp<
+    StackPramList,
+    'registerScreen' | 'updateRegisterScreen'
+  >;
   title: string;
   postData: PostData[];
   setIsVisible: (e: boolean) => void;

@@ -14,11 +14,19 @@ import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { commonSettingAdaptor } from '../adaptor/commonSettingAdaptor';
 import { useRootDispatch } from '../redux/store/store';
 import { onSettingPress } from '../functions';
-import { ListData } from '../types';
+import { ListData, SettingItem, StackPramList } from '../types';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type Props = {
-  navigation: any;
-  route: any;
+  navigation: StackNavigationProp<StackPramList, 'settingDetailScreen'>;
+  route:
+    | {
+        params: {
+          data: SettingItem;
+        };
+      }
+    // ここのany修正する
+    | any;
 };
 
 const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {

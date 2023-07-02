@@ -2,9 +2,14 @@ import React, { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, FONTSIZE } from '../../styles';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { StackPramList } from '../../types';
 
 type Props = {
-  navigation: any;
+  navigation: StackNavigationProp<
+    StackPramList,
+    'settingScreen' | 'settingDetailScreen'
+  >;
   title: string;
 };
 

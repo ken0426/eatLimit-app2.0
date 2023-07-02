@@ -12,12 +12,13 @@ import { COLORS, FONTSIZE, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { LABEL, settingData } from '../contents';
-import { SettingData } from '../types';
+import { SettingData, StackPramList } from '../types';
 import { getEditDataFormat, getKey } from '../utils';
 import { useRootSelector } from '../redux/store/store';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type Props = {
-  navigation: any;
+  navigation: StackNavigationProp<StackPramList, 'settingScreen'>;
 };
 
 const SettingScreen: FC<Props> = ({ navigation }) => {

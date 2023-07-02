@@ -20,9 +20,7 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
   return (
     <View style={styles.contents}>
       <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('settingScreen', { item: [] })}
-        >
+        <TouchableOpacity onPress={() => navigation.navigate('settingScreen')}>
           <Ionicons name='settings-outline' size={24} color='black' />
         </TouchableOpacity>
         <View style={{ marginLeft: SIZE.BASE_WP * 1.5 }}>

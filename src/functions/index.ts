@@ -1,13 +1,15 @@
 import { ActionSheetIOS, Alert, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { ACTION_SHEET, CAMERA_ERROR_MESSAGE, LABEL } from '../contents';
-import { ListData, PostData } from '../types';
+import { ListData, PostData, StackPramList } from '../types';
 import {
   setDateDisplayId,
   setDateFormatDisplayId,
   setDayOfWeekId,
   setImageId,
 } from '../redux/slices/commonSlice';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Dispatch } from '@reduxjs/toolkit';
 
 type Options = {
   options: string[];
@@ -25,18 +27,22 @@ type OnRegisterPress = {
   postData: PostData[];
   setIsVisible: (e: boolean) => void;
   setIsLoading: (e: boolean) => void;
-  navigation: any;
+  navigation: StackNavigationProp<
+    StackPramList,
+    'registerScreen' | 'updateRegisterScreen'
+  >;
 };
 
 /** カメラの起動 */
 const takePhoto = async (setImage: (e: string) => void) => {
   try {
-    const result: any = await ImagePicker.launchCameraAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
+    const result: ImagePicker.ImagePickerResult =
+      await ImagePicker.launchCameraAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
@@ -49,12 +55,13 @@ const takePhoto = async (setImage: (e: string) => void) => {
 /** ライブラリから画像を選択 */
 const pickImage = async (setImage: (e: string) => void) => {
   try {
-    const result: any = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
+    const result: ImagePicker.ImagePickerResult =
+      await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
@@ -140,7 +147,7 @@ export const onRegisterPress = async ({
 
 /** 設定項目を保存するロジック */
 export const onSettingPress = (
-  dispatch: any,
+  dispatch: Dispatch,
   label: string,
   item: ListData
 ) => {

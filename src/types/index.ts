@@ -29,8 +29,8 @@ export type StackPramList = {
   searchScreen: { data: ApiData[] };
   registerScreen: undefined;
   updateRegisterScreen: undefined;
-  settingScreen: { item: any };
-  settingDetailScreen: { data: any };
+  settingScreen: undefined;
+  settingDetailScreen: { data: SettingItem };
 };
 
 export type ModalButton = {
