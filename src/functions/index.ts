@@ -1,7 +1,7 @@
 import { ActionSheetIOS, Alert, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { ACTION_SHEET, CAMERA_ERROR_MESSAGE, LABEL } from '../contents';
-import { PostData } from '../types';
+import { ListData, PostData } from '../types';
 import {
   setDateDisplayId,
   setDateFormatDisplayId,
@@ -139,7 +139,11 @@ export const onRegisterPress = async ({
 };
 
 /** 設定項目を保存するロジック */
-export const onSettingPress = (dispatch: any, label: string, item: any) => {
+export const onSettingPress = (
+  dispatch: any,
+  label: string,
+  item: ListData
+) => {
   if (label === LABEL.IMAGE_DISPLAY) {
     dispatch(setImageId(item.id));
   } else if (label === LABEL.DATE_FORMAT_DISPLAY) {

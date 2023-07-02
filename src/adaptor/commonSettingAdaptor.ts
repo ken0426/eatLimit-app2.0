@@ -1,7 +1,8 @@
 import { LABEL } from '../contents';
 import { useRootSelector } from '../redux/store/store';
+import { SettingItem, SettingItemData } from '../types';
 
-export const commonSettingAdaptor = (data: any) => {
+export const commonSettingAdaptor = (data: SettingItem) => {
   const imageId = useRootSelector((state) => state.common.imageId);
   const dateFormatDisplayId = useRootSelector(
     (state) => state.common.dateFormatDisplayId
@@ -9,7 +10,7 @@ export const commonSettingAdaptor = (data: any) => {
   const dateDisplayId = useRootSelector((state) => state.common.dateDisplayId);
   const dayOfWeekId = useRootSelector((state) => state.common.dayOfWeekId);
 
-  const isCheck = (id: any) => {
+  const isCheck = (id: number) => {
     if (data.label === LABEL.IMAGE_DISPLAY) {
       return id === imageId;
     } else if (data.label === LABEL.DATE_FORMAT_DISPLAY) {
@@ -21,7 +22,7 @@ export const commonSettingAdaptor = (data: any) => {
     }
   };
 
-  const editData = data.data.map((item: any) => {
+  const editData = data.data.map((item: SettingItemData) => {
     return {
       text: item.text,
       check: isCheck(item.id),

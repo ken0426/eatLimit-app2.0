@@ -44,16 +44,27 @@ export type PostData = {
   isRequired: boolean;
 };
 
+export type SettingItem = {
+  label: string;
+  data: SettingItemData[];
+};
+
+export type SettingItemData = {
+  text: string;
+  id: number;
+};
+
 /** 設定のデータ */
 export type SettingData = {
   [key: string]: {
     headline: string;
-    item: {
-      label: string;
-      data: {
-        text: string;
-        id: number;
-      }[];
-    }[];
+    item: SettingItem[];
   };
+};
+
+/** 設定を保存する型 */
+export type ListData = {
+  text: string;
+  check: boolean | undefined;
+  id: number;
 };

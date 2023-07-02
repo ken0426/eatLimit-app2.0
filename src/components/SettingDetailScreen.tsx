@@ -14,6 +14,7 @@ import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { commonSettingAdaptor } from '../adaptor/commonSettingAdaptor';
 import { useRootDispatch } from '../redux/store/store';
 import { onSettingPress } from '../functions';
+import { ListData } from '../types';
 
 type Props = {
   navigation: any;
@@ -27,7 +28,7 @@ const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
 
   const listData = formatData.data;
 
-  const renderItem: ListRenderItem<any> = ({ item, index }) => {
+  const renderItem: ListRenderItem<ListData> = ({ item, index }) => {
     return (
       <TouchableOpacity
         key={index}
