@@ -82,11 +82,9 @@ export const getEditDataFormat = (
         }
       }
     };
+    const text = getFormat(dateFormatDisplayId);
 
-    return {
-      text: getFormat(dateFormatDisplayId),
-      id: d.id,
-    };
+    return { text, id: d.id };
   });
 
   return { data: newData, label: data.label };
