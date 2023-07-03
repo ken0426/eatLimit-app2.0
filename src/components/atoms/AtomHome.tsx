@@ -29,14 +29,16 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
           </Text>
         </View>
       </View>
-      <View style={{ flexDirection: 'row' }}>
+      <View style={styles.touchRightArea}>
         <TouchableOpacity
           onPress={() => navigation.navigate('searchScreen', { data: data })}
         >
           <AntDesign name='search1' size={24} color={COLORS.MAIN_TEXT_COLOR} />
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => {}}>
+          <AntDesign name='filter' size={24} color='black' />
+        </TouchableOpacity>
         <TouchableOpacity
-          style={{ marginLeft: 15 }}
           onPress={() => {
             dispatch(
               setUpdateRegisterData({
@@ -70,5 +72,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
+  },
+  touchRightArea: {
+    flexDirection: 'row',
+    width: SIZE.BASE_WP * 25,
+    justifyContent: 'space-between',
   },
 });
