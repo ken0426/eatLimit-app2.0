@@ -38,7 +38,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
       <TouchableOpacity
         style={[
           styles.contents,
-          index === 0 && { borderTopWidth: SIZE.BASE_HP * 0.05 },
+          index === 0 && { borderTopWidth: SIZE.BASE_HP * 0.06 },
         ]}
         onPress={() => {
           navigation.navigate('detailScreen', { item });
@@ -74,7 +74,7 @@ export default OrgList;
 const styles = StyleSheet.create({
   contents: {
     height: SIZE.BASE_HP * 11,
-    borderBottomWidth: SIZE.BASE_HP * 0.05,
+    borderBottomWidth: SIZE.BASE_HP * 0.06,
     borderColor: COLORS.BORDER_LINE,
     flexDirection: 'row',
   },
