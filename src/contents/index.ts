@@ -163,6 +163,21 @@ export const settingData: SettingData[] = [
         },
       ],
     },
+    register: {
+      headline: '登録関係',
+      item: [
+        {
+          label: 'メモのテンプレート',
+          data: [
+            { text: 'テンプレートA', id: 1 },
+            { text: 'テンプレートB', id: 2 },
+            { text: 'テンプレートC', id: 2 },
+            { text: 'テンプレートD', id: 2 },
+            { text: 'テンプレートE', id: 2 },
+          ],
+        },
+      ],
+    },
   },
   // {
   //   user: {
@@ -186,4 +201,5 @@ export const settingData: SettingData[] = [
   //     ],
   //   },
   // },
+  // {
 ];
