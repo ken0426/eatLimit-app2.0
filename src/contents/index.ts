@@ -86,6 +86,8 @@ export const LABEL = {
   DATE_DISPLAY: '年月日の表示',
   /** 曜日の表示 */
   DAY_OF_THE_WEEK_DISPLAY: '曜日の表示',
+  /** メモのテンプレート */
+  MEMO_TEMPLATE: 'メモのテンプレート',
 };
 
 /** 設定項目で選択するID */
@@ -169,7 +171,7 @@ export const settingData: SettingData[] = [
       headline: '登録関係',
       item: [
         {
-          label: 'メモのテンプレート',
+          label: LABEL.MEMO_TEMPLATE,
           data: [
             { text: 'テンプレートなし', id: 0 },
             { text: 'テンプレートA', id: 1 },
