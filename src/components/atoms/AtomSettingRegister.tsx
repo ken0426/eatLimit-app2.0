@@ -8,7 +8,7 @@ import { StackPramList } from '../../types';
 type Props = {
   navigation: StackNavigationProp<
     StackPramList,
-    'settingScreen' | 'settingDetailScreen'
+    'settingScreen' | 'settingDetailScreen' | 'memoTemplateSettingDetailScreen'
   >;
   title: string;
 };

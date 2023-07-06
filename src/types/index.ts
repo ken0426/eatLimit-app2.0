@@ -31,6 +31,7 @@ export type StackPramList = {
   updateRegisterScreen: undefined;
   settingScreen: undefined;
   settingDetailScreen: { data: SettingItem };
+  memoTemplateSettingDetailScreen: undefined;
 };
 
 export type ModalButton = {

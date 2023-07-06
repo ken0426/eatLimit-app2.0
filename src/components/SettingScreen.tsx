@@ -45,7 +45,7 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
                   data: editFormat,
                 });
               } else if (data.label === LABEL.MEMO_TEMPLATE) {
-                navigation.navigate('');
+                navigation.navigate('memoTemplateSettingDetailScreen');
               } else {
                 navigation.navigate('settingDetailScreen', { data });
               }
