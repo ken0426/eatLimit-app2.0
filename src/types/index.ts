@@ -51,36 +51,36 @@ export type SettingItemData = {
   id: number;
 };
 
-export interface SettingData {
+export type SettingData = {
   list: {
     headline: string;
     item: ListItem[];
   };
-}
+};
 
-export interface ListItem {
+export type ListItem = {
   label: string;
   data: ListData[];
-}
+};
 
-export interface ListData {
+export type ListData = {
   text: string;
   id: number;
-}
+};
 
-export interface RegisterData {
+export type RegisterData = {
   register: {
     headline: string;
     item: RegisterItem[];
   };
-}
+};
 
-export interface RegisterItem {
+export type RegisterItem = {
   label: string;
   data: RegisterDataItem[];
-}
+};
 
-export interface RegisterDataItem {
+export type RegisterDataItem = {
   memoSection?: {
     headline: string;
     item: MemoSectionItem[];
@@ -89,25 +89,25 @@ export interface RegisterDataItem {
     headline: string;
     item: MemoListItem[];
   };
-}
+};
 
-export interface MemoSectionItem {
+export type MemoSectionItem = {
   label: string;
   data: MemoSectionData[];
   isTemplate: boolean;
-}
+};
 
-export interface MemoSectionData {
+export type MemoSectionData = {
   id: number;
   text: string;
-}
+};
 
-export interface MemoListItem {
+export type MemoListItem = {
   label: string;
   isMemoTemplate: boolean;
   id: number;
   input: string;
-}
+};
 
 /** 設定を保存する型 */
 export type ListDataA = {
