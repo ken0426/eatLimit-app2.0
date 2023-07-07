@@ -8,12 +8,22 @@ import { StackPramList } from '../../types';
 type Props = {
   navigation: StackNavigationProp<
     StackPramList,
-    'settingScreen' | 'settingDetailScreen' | 'memoTemplateSettingDetailScreen'
+    | 'settingScreen'
+    | 'settingDetailScreen'
+    | 'memoTemplateRegisterScreen'
+    | 'memoTemplateUpdateScreen'
   >;
   title: string;
+  isRightButton?: boolean;
+  isRightText?: string;
 };
 
-const AtomSettingRegister: FC<Props> = ({ navigation, title }) => {
+const AtomSettingRegister: FC<Props> = ({
+  navigation,
+  title,
+  isRightButton,
+  isRightText = '完了',
+}) => {
   return (
     <View style={styles.header}>
       <TouchableOpacity
@@ -25,7 +35,30 @@ const AtomSettingRegister: FC<Props> = ({ navigation, title }) => {
       <View style={{ width: '80%' }}>
         <Text style={styles.headerText}>{title}</Text>
       </View>
-      <View style={{ width: '10%', alignItems: 'flex-end' }}></View>
+      <View style={{ width: '10%', alignItems: 'flex-end' }}>
+        {isRightButton && (
+          <TouchableOpacity
+            onPress={() => {
+              if (title === 'メモのテンプレート') {
+                navigation.navigate('memoTemplateRegisterScreen', {
+                  data: [
+                    {
+                      label: '',
+                      text: '',
+                    },
+                  ],
+                });
+              } else {
+                navigation.goBack();
+              }
+            }}
+          >
+            <Text style={{ fontSize: FONTSIZE.SIZE15PX, fontWeight: 'bold' }}>
+              {isRightText}
+            </Text>
+          </TouchableOpacity>
+        )}
+      </View>
     </View>
   );
 };

@@ -14,7 +14,7 @@ import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { commonSettingAdaptor } from '../adaptor/commonSettingAdaptor';
 import { useRootDispatch } from '../redux/store/store';
 import { onSettingPress } from '../functions';
-import { ListData, SettingItem, StackPramList } from '../types';
+import { ListDataA, StackPramList } from '../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 type Props = {
@@ -22,7 +22,7 @@ type Props = {
   route:
     | {
         params: {
-          data: SettingItem;
+          data: any;
         };
       }
     // ここのany修正する
@@ -32,11 +32,22 @@ type Props = {
 const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
   const dispatch = useRootDispatch();
   const { data } = route.params;
-  const formatData = commonSettingAdaptor(data);
+  const isTemplate = data.isTemplate;
+  const [useData, setUseData] = useState(data);
+
+  useEffect(() => {
+    if (data.isTemplate) {
+      setUseData({
+        data: [{ id: 0, text: 'テンプレートなし' }, ...useData.data],
+        label: useData.label,
+      });
+    }
+  }, [isTemplate]);
+  const formatData = commonSettingAdaptor(useData);
 
   const listData = formatData.data;
 
-  const renderItem: ListRenderItem<ListData> = ({ item, index }) => {
+  const renderItem: ListRenderItem<ListDataA> = ({ item, index }) => {
     return (
       <TouchableOpacity
         key={index}
@@ -67,7 +78,10 @@ const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={'default'}>
-          <AtomSettingRegister navigation={navigation} title={data.label} />
+          <AtomSettingRegister
+            navigation={navigation}
+            title={isTemplate ? 'テンプレート選択' : data.label}
+          />
         </MolHeader>
 
         <FlatList

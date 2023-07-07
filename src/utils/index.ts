@@ -1,6 +1,5 @@
 import { Dimensions, KeyboardTypeOptions, Platform } from 'react-native';
-import { ApiData, SettingData, SettingItem } from '../types';
-import moment from 'moment';
+import { ApiData, SettingData } from '../types';
 import { SEPTEMBER, SETTING_ITEM_ID } from '../contents';
 
 export const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT } =
@@ -50,12 +49,9 @@ export const getKey = (item: SettingData) => {
 };
 
 /** 設定項目の「年月日の表示」項目でフォーマットに依存した形で項目を表示できるようにするロジック */
-export const getEditDataFormat = (
-  data: SettingItem,
-  dateFormatDisplayId: number
-) => {
+export const getEditDataFormat = (data: any, dateFormatDisplayId: number) => {
   const today = new Date();
-  const newData = data.data.map((d) => {
+  const newData = data.data.map((d: any) => {
     const year = today.getFullYear();
     const month = today.getMonth();
     const day = today.getDate();

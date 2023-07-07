@@ -1,5 +1,11 @@
 import moment from 'moment';
-import { KeepData, ManagementData, ModalButton, SettingData } from '../types';
+import {
+  KeepData,
+  ManagementData,
+  ModalButton,
+  RegisterData,
+  SettingData,
+} from '../types';
 
 /** 9月 */
 export const SEPTEMBER = 9;
@@ -113,7 +119,8 @@ export const SETTING_ITEM_ID = {
 };
 
 /** 設定の情報 */
-export const settingData: SettingData[] = [
+// SettingData[] |
+export const settingData: (SettingData | RegisterData)[] = [
   {
     list: {
       headline: '一覧リスト',
@@ -168,43 +175,70 @@ export const settingData: SettingData[] = [
   },
   {
     register: {
-      headline: '登録関係',
+      headline: '登録',
       item: [
         {
           label: LABEL.MEMO_TEMPLATE,
           data: [
-            { text: 'テンプレートなし', id: 0 },
-            { text: 'テンプレートA', id: 1 },
-            { text: 'テンプレートB', id: 2 },
-            { text: 'テンプレートC', id: 2 },
-            { text: 'テンプレートD', id: 2 },
-            { text: 'テンプレートE', id: 2 },
+            {
+              memoSection: {
+                headline: '選択中のテンプレート',
+                item: [
+                  {
+                    label: '〇〇のテンプレート',
+                    data: [
+                      {
+                        id: 1,
+                        text: 'テンプレートA',
+                      },
+                      {
+                        id: 2,
+                        text: 'テンプレートB',
+                      },
+                    ],
+                    isTemplate: true,
+                  },
+                ],
+              },
+            },
+            {
+              memoList: {
+                headline: 'テンプレート一覧',
+                item: [
+                  {
+                    label: 'テンプレートA',
+                    isMemoTemplate: true,
+                    id: 1,
+                    input: '【メモ】これはテストメモです',
+                  },
+                  {
+                    label: 'テンプレートB',
+                    isMemoTemplate: true,
+                    id: 2,
+                    input: `【改行メモ】改行しました。\n\n\n改行しました。`,
+                  },
+                ],
+              },
+            },
           ],
         },
       ],
     },
   },
-  // {
-  //   user: {
-  //     headline: 'ユーザー未実装設定（この項目はエラーになります）',
-  //     item: [
-  //       {
-  //         label: 'A設定',
-  //         data: [
-  //           { text: '項目1', id: 1 },
-  //           { text: '項目2', id: 2 },
-  //         ],
-  //       },
-  //       {
-  //         label: 'B設定',
-  //         data: [
-  //           { text: '項目1', id: 1 },
-  //           { text: '項目2', id: 2 },
-  //           { text: '項目3', id: 3 },
-  //         ],
-  //       },
-  //     ],
-  //   },
-  // },
-  // {
+];
+
+/** メモのテンプレートのデータ */
+export const memoTemplateData = [
+  {
+    label: 'テンプレートなし',
+    text: '',
+  },
+  {
+    label: 'テンプレートA',
+    text: `【メモ】これはテストメモです\n\n\n【改行】改行しました`,
+  },
+  {
+    label: 'テンプレートB',
+    text: '【テンプレート表示】あああああ',
+  },
 ];

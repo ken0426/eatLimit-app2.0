@@ -19,22 +19,27 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'settingScreen'>;
+  route: any;
 };
 
-const SettingScreen: FC<Props> = ({ navigation }) => {
+const SettingScreen: FC<Props> = ({ navigation, route }) => {
+  const data = route.params?.data;
+  const memoTemplateData = data?.data;
+  const title = route.params?.data?.label;
   const dateFormatDisplayId = useRootSelector(
     (state) => state.common.dateFormatDisplayId
   );
   const id = dateFormatDisplayId;
 
-  const renderItem: ListRenderItem<SettingData> = ({ item, index }) => {
+  const renderItem: ListRenderItem<any> = ({ item, index }) => {
     const key = getKey(item);
+    const headline = item[key].headline;
     return (
       <View key={index}>
         <View style={styles.headline}>
-          <Text style={styles.text}>{item[key].headline}</Text>
+          <Text style={styles.text}>{headline}</Text>
         </View>
-        {item[key].item.map((data, index) => (
+        {item[key].item.map((data: any, index: any) => (
           <TouchableOpacity
             key={index}
             style={styles.item}
@@ -45,7 +50,11 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
                   data: editFormat,
                 });
               } else if (data.label === LABEL.MEMO_TEMPLATE) {
-                navigation.navigate('memoTemplateSettingDetailScreen');
+                navigation.push('settingScreen', {
+                  data,
+                });
+              } else if (data.isMemoTemplate) {
+                navigation.navigate('memoTemplateUpdateScreen', { data });
               } else {
                 navigation.navigate('settingDetailScreen', { data });
               }
@@ -67,11 +76,16 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={'default'}>
-          <AtomSettingRegister navigation={navigation} title={'設定'} />
+          <AtomSettingRegister
+            navigation={navigation}
+            title={title ?? '設定'}
+            isRightText={title && '追加'}
+            isRightButton={title ? true : false}
+          />
         </MolHeader>
 
         <FlatList
-          data={settingData}
+          data={memoTemplateData ?? settingData}
           renderItem={renderItem}
           keyExtractor={(_, index) => index.toString()}
         />

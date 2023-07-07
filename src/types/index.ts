@@ -29,9 +29,10 @@ export type StackPramList = {
   searchScreen: { data: ApiData[] };
   registerScreen: undefined;
   updateRegisterScreen: undefined;
-  settingScreen: undefined;
-  settingDetailScreen: { data: SettingItem };
-  memoTemplateSettingDetailScreen: undefined;
+  settingScreen: undefined | { data: any };
+  settingDetailScreen: { data: any };
+  memoTemplateRegisterScreen: { data: any };
+  memoTemplateUpdateScreen: { data: any };
 };
 
 export type ModalButton = {
@@ -50,21 +51,66 @@ export type SettingItemData = {
   id: number;
 };
 
-export type SettingItem = {
-  label: string;
-  data: SettingItemData[];
-};
-
-/** 設定のデータ */
-export type SettingData = {
-  [key: string]: {
+export interface SettingData {
+  list: {
     headline: string;
-    item: SettingItem[];
+    item: ListItem[];
   };
-};
+}
+
+export interface ListItem {
+  label: string;
+  data: ListData[];
+}
+
+export interface ListData {
+  text: string;
+  id: number;
+}
+
+export interface RegisterData {
+  register: {
+    headline: string;
+    item: RegisterItem[];
+  };
+}
+
+export interface RegisterItem {
+  label: string;
+  data: RegisterDataItem[];
+}
+
+export interface RegisterDataItem {
+  memoSection?: {
+    headline: string;
+    item: MemoSectionItem[];
+  };
+  memoList?: {
+    headline: string;
+    item: MemoListItem[];
+  };
+}
+
+export interface MemoSectionItem {
+  label: string;
+  data: MemoSectionData[];
+  isTemplate: boolean;
+}
+
+export interface MemoSectionData {
+  id: number;
+  text: string;
+}
+
+export interface MemoListItem {
+  label: string;
+  isMemoTemplate: boolean;
+  id: number;
+  input: string;
+}
 
 /** 設定を保存する型 */
-export type ListData = {
+export type ListDataA = {
   text: string;
   check: boolean | undefined;
   id: number;

@@ -1,8 +1,7 @@
 import { LABEL } from '../contents';
 import { useRootSelector } from '../redux/store/store';
-import { SettingItem, SettingItemData } from '../types';
 
-export const commonSettingAdaptor = (data: SettingItem) => {
+export const commonSettingAdaptor = (data: any) => {
   const imageId = useRootSelector((state) => state.common.imageId);
   const dateFormatDisplayId = useRootSelector(
     (state) => state.common.dateFormatDisplayId
@@ -22,7 +21,7 @@ export const commonSettingAdaptor = (data: SettingItem) => {
     }
   };
 
-  const editData = data.data.map((item: SettingItemData) => {
+  const editData = data.data.map((item: any) => {
     return {
       text: item.text,
       check: isCheck(item.id),
