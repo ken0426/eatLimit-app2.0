@@ -12,14 +12,21 @@ import { COLORS, FONTSIZE, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { LABEL, settingData } from '../contents';
-import { SettingData, StackPramList } from '../types';
+import { StackPramList } from '../types';
 import { getEditDataFormat, getKey } from '../utils';
 import { useRootSelector } from '../redux/store/store';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
+
+type RouteItem = {
+  params: any;
+};
+
+type RenderItem = any;
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'settingScreen'>;
-  route: any;
+  route: RouteProp<StackPramList, 'settingScreen'> & RouteItem;
 };
 
 const SettingScreen: FC<Props> = ({ navigation, route }) => {
@@ -31,7 +38,7 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
   );
   const id = dateFormatDisplayId;
 
-  const renderItem: ListRenderItem<any> = ({ item, index }) => {
+  const renderItem: ListRenderItem<RenderItem> = ({ item, index }) => {
     const key = getKey(item);
     const headline = item[key].headline;
     return (

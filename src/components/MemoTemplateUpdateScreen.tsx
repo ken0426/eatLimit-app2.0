@@ -1,17 +1,24 @@
+import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, useState } from 'react';
 import { Button, Keyboard, StyleSheet } from 'react-native';
 import { InputAccessoryView, Platform } from 'react-native';
 import { TextInput, View } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
-import { StackPramList } from '../types';
+import { MemoListItem, StackPramList } from '../types';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import AtomSingleInput from './atoms/AtomSingleInput';
 import MolHeader from './molecules/MolHeader';
 
+type RouteItem = {
+  params: {
+    data: MemoListItem;
+  };
+};
+
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'memoTemplateUpdateScreen'>;
-  route: any;
+  route: RouteProp<StackPramList, 'memoTemplateUpdateScreen'> & RouteItem;
 };
 
 const MemoTemplateUpdateScreen: FC<Props> = ({ navigation, route }) => {
