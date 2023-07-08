@@ -46,45 +46,54 @@ export type PostData = {
   isRequired: boolean;
 };
 
+/** 設定項目の単数項目の一つ一つのリスト */
+export type SettingDataItem = {
+  text: string;
+  id: number;
+};
+
+/** 単数選択の設定項目 */
+export type SettingItem = {
+  label: string;
+  data: SettingDataItem[];
+};
+
+/** 設定項目のメモテンプレートで選択する項目 */
+export type SettingMemoSelectItem = {
+  label: string;
+  data: SettingDataItem[];
+  isTemplate: boolean;
+};
+
+/** 設定項目のメモの編集をする項目 */
+export type SettingMemoEditItem = {
+  label: string;
+  isMemoTemplate: boolean;
+  id: number;
+  input: string;
+};
+
+/** 設定画面の項目 */
+export type SettingMemoItem = {
+  label: string;
+  data: {
+    [key: string]: {
+      headline: string;
+      item: SettingMemoSelectItem[] | SettingMemoEditItem[];
+    };
+  }[];
+};
+
+/** 設定画面 */
 export type SettingData = {
   [key: string]: {
     headline: string;
-    item:
-      | {
-          label: string;
-          data: {
-            text: string;
-            id: number;
-          }[];
-        }[]
-      | {
-          label: string;
-          data: {
-            [key: string]: {
-              headline: string;
-              item:
-                | {
-                    label: string;
-                    data: {
-                      id: number;
-                      text: string;
-                    }[];
-                    isTemplate: boolean;
-                  }[]
-                | {
-                    label: string;
-                    isMemoTemplate: boolean;
-                    id: number;
-                    input: string;
-                  }[];
-            };
-          }[];
-        }[];
+    item: SettingItem[] | SettingMemoItem[];
   };
 };
 
 /** 設定を保存する型 */
-export type ListDataA = {
+export type ListData = {
   text: string;
   check: boolean | undefined;
   id: number;
