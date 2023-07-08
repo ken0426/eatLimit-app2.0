@@ -12,7 +12,14 @@ import { COLORS, FONTSIZE, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { LABEL, settingData } from '../contents';
-import { SettingData, SettingMemoSelectItem, StackPramList } from '../types';
+import {
+  SettingData,
+  SettingDataItem,
+  SettingItem,
+  SettingMemoEditItem,
+  SettingMemoSelectItem,
+  StackPramList,
+} from '../types';
 import { getEditDataFormat, getKey } from '../utils';
 import { useRootSelector } from '../redux/store/store';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -32,10 +39,28 @@ type RouteItem = {
   };
 };
 
-type MemoTemplateData = {
+export type MemoTemplateData = {
   [key: string]: {
     headline: string;
-    item: SettingMemoSelectItem[];
+    item: {
+      label: string;
+      isMemoTemplate: boolean;
+      data: {
+        id: number & {
+          headline: string;
+          item: {
+            data: SettingDataItem[];
+            isTemplate: boolean;
+            label: string;
+            isMemoTemplate: boolean;
+            id: number;
+            input: string;
+          }[];
+        };
+      }[];
+      id: number;
+      input: string;
+    }[];
   };
 };
 
@@ -53,10 +78,7 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
   );
   const id = dateFormatDisplayId;
 
-  const renderItem: ListRenderItem<SettingData | MemoTemplateData> = ({
-    item,
-    index,
-  }) => {
+  const renderItem: ListRenderItem<MemoTemplateData> = ({ item, index }) => {
     const key = getKey(item);
     const headline = item[key].headline;
     return (
@@ -64,7 +86,7 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
         <View style={styles.headline}>
           <Text style={styles.text}>{headline}</Text>
         </View>
-        {item[key].item.map((data: any, index) => (
+        {item[key].item.map((data, index) => (
           <TouchableOpacity
             key={index}
             style={styles.item}

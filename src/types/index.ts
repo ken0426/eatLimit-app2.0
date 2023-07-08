@@ -1,4 +1,5 @@
 import { ImageSourcePropType } from 'react-native';
+import { MemoTemplateData } from '../components/SettingScreen';
 
 export type ApiData = {
   eatName: string;
