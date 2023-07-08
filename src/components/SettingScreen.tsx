@@ -12,41 +12,30 @@ import { COLORS, FONTSIZE, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { LABEL, settingData } from '../contents';
-import { SettingMemoSelectItem, StackPramList } from '../types';
+import { SettingData, SettingMemoSelectItem, StackPramList } from '../types';
 import { getEditDataFormat, getKey } from '../utils';
 import { useRootSelector } from '../redux/store/store';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 
 type RouteItem = {
-  params:
-    | undefined
-    | {
-        data: {
-          data: {
-            [key: string]: {
-              headline: string;
-              item: SettingMemoSelectItem[];
-            };
-          }[];
-          label: string;
+  params?: {
+    data: {
+      data: {
+        [key: string]: {
+          headline: string;
+          item: SettingMemoSelectItem[];
         };
-      };
+      }[];
+      label: string;
+    };
+  };
 };
 
-type RenderItem = {
+type MemoTemplateData = {
   [key: string]: {
     headline: string;
-    item: {
-      // mapの第一引数
-      label: string;
-      data: {
-        id: { headline: string; item: SettingMemoSelectItem[] } & number;
-      }[];
-      isMemoTemplate: boolean;
-      id: number;
-      input: string;
-    }[];
+    item: SettingMemoSelectItem[];
   };
 };
 
@@ -64,7 +53,10 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
   );
   const id = dateFormatDisplayId;
 
-  const renderItem: ListRenderItem<RenderItem | any> = ({ item, index }) => {
+  const renderItem: ListRenderItem<SettingData | MemoTemplateData> = ({
+    item,
+    index,
+  }) => {
     const key = getKey(item);
     const headline = item[key].headline;
     return (

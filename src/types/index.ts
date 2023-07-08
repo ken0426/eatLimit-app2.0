@@ -43,7 +43,7 @@ export type StackPramList = {
         };
       };
   settingDetailScreen: { data: any };
-  memoTemplateRegisterScreen: undefined;
+  memoTemplateRegisterScreen: { data: { label: string; text: string }[] };
   memoTemplateUpdateScreen: { data: SettingMemoEditItem };
 };
 
