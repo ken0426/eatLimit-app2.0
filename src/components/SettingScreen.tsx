@@ -13,10 +13,7 @@ import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { LABEL, settingData } from '../contents';
 import {
-  SettingData,
   SettingDataItem,
-  SettingItem,
-  SettingMemoEditItem,
   SettingMemoSelectItem,
   StackPramList,
 } from '../types';
