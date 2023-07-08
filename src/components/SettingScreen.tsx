@@ -64,7 +64,7 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
         <View style={styles.headline}>
           <Text style={styles.text}>{headline}</Text>
         </View>
-        {item[key].item.map((data: any, index: number) => (
+        {item[key].item.map((data: any, index) => (
           <TouchableOpacity
             key={index}
             style={styles.item}
