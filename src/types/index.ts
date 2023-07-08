@@ -46,67 +46,41 @@ export type PostData = {
   isRequired: boolean;
 };
 
-export type SettingItemData = {
-  text: string;
-  id: number;
-};
-
 export type SettingData = {
-  list: {
+  [key: string]: {
     headline: string;
-    item: ListItem[];
+    item:
+      | {
+          label: string;
+          data: {
+            text: string;
+            id: number;
+          }[];
+        }[]
+      | {
+          label: string;
+          data: {
+            [key: string]: {
+              headline: string;
+              item:
+                | {
+                    label: string;
+                    data: {
+                      id: number;
+                      text: string;
+                    }[];
+                    isTemplate: boolean;
+                  }[]
+                | {
+                    label: string;
+                    isMemoTemplate: boolean;
+                    id: number;
+                    input: string;
+                  }[];
+            };
+          }[];
+        }[];
   };
-};
-
-export type ListItem = {
-  label: string;
-  data: ListData[];
-};
-
-export type ListData = {
-  text: string;
-  id: number;
-};
-
-export type RegisterData = {
-  register: {
-    headline: string;
-    item: RegisterItem[];
-  };
-};
-
-export type RegisterItem = {
-  label: string;
-  data: RegisterDataItem[];
-};
-
-export type RegisterDataItem = {
-  memoSection?: {
-    headline: string;
-    item: MemoSectionItem[];
-  };
-  memoList?: {
-    headline: string;
-    item: MemoListItem[];
-  };
-};
-
-export type MemoSectionItem = {
-  label: string;
-  data: MemoSectionData[];
-  isTemplate: boolean;
-};
-
-export type MemoSectionData = {
-  id: number;
-  text: string;
-};
-
-export type MemoListItem = {
-  label: string;
-  isMemoTemplate: boolean;
-  id: number;
-  input: string;
 };
 
 /** 設定を保存する型 */

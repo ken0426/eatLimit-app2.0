@@ -47,7 +47,7 @@ const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
 
   const listData = formatData.data;
 
-  const renderItem: ListRenderItem<ListDataA> = ({ item, index }) => {
+  const renderItem: ListRenderItem<any> = ({ item, index }) => {
     return (
       <TouchableOpacity
         key={index}

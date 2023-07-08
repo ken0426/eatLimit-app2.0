@@ -5,14 +5,14 @@ import { Button, Keyboard, StyleSheet } from 'react-native';
 import { InputAccessoryView, Platform } from 'react-native';
 import { TextInput, View } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
-import { MemoListItem, StackPramList } from '../types';
+import { StackPramList } from '../types';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import AtomSingleInput from './atoms/AtomSingleInput';
 import MolHeader from './molecules/MolHeader';
 
 type RouteItem = {
   params: {
-    data: MemoListItem;
+    data: any;
   };
 };
 

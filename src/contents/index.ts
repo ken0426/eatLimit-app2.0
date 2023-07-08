@@ -3,8 +3,9 @@ import {
   KeepData,
   ManagementData,
   ModalButton,
-  RegisterData,
   SettingData,
+  // RegisterData,
+  // SettingData,
 } from '../types';
 
 /** 9月 */
@@ -119,8 +120,7 @@ export const SETTING_ITEM_ID = {
 };
 
 /** 設定の情報 */
-// SettingData[] |
-export const settingData: (SettingData | RegisterData)[] = [
+export const settingData: SettingData[] = [
   {
     list: {
       headline: '一覧リスト',
