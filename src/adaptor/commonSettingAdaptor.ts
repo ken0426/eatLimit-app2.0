@@ -1,7 +1,9 @@
 import { LABEL } from '../contents';
 import { useRootSelector } from '../redux/store/store';
+import { ListData, SettingItem } from '../types';
 
-export const commonSettingAdaptor = (data: any) => {
+/** チェックをつけるロジック */
+export const commonSettingAdaptor = (data: SettingItem) => {
   const imageId = useRootSelector((state) => state.common.imageId);
   const dateFormatDisplayId = useRootSelector(
     (state) => state.common.dateFormatDisplayId
@@ -21,7 +23,7 @@ export const commonSettingAdaptor = (data: any) => {
     }
   };
 
-  const editData = data.data.map((item: any) => {
+  const editData = data.data.map((item) => {
     return {
       text: item.text,
       check: isCheck(item.id),

@@ -29,10 +29,22 @@ export type StackPramList = {
   searchScreen: { data: ApiData[] };
   registerScreen: undefined;
   updateRegisterScreen: undefined;
-  settingScreen: undefined | { data: any };
+  settingScreen:
+    | undefined
+    | {
+        data: {
+          data: {
+            [key: string]: {
+              headline: string;
+              item: SettingMemoSelectItem[];
+            };
+          }[];
+          label: string;
+        };
+      };
   settingDetailScreen: { data: any };
-  memoTemplateRegisterScreen: { data: any };
-  memoTemplateUpdateScreen: { data: any };
+  memoTemplateRegisterScreen: undefined;
+  memoTemplateUpdateScreen: { data: SettingMemoEditItem };
 };
 
 export type ModalButton = {

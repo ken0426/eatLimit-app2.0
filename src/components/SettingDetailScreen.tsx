@@ -14,26 +14,31 @@ import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { commonSettingAdaptor } from '../adaptor/commonSettingAdaptor';
 import { useRootDispatch } from '../redux/store/store';
 import { onSettingPress } from '../functions';
-import { ListDataA, StackPramList } from '../types';
+import {
+  ListData,
+  SettingItem,
+  SettingMemoSelectItem,
+  StackPramList,
+} from '../types';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
+
+type RouteItem = {
+  params: {
+    data: SettingItem | SettingMemoSelectItem;
+  };
+};
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'settingDetailScreen'>;
-  route:
-    | {
-        params: {
-          data: any;
-        };
-      }
-    // ここのany修正する
-    | any;
+  route: RouteProp<StackPramList, 'settingDetailScreen'> & RouteItem;
 };
 
 const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
   const dispatch = useRootDispatch();
   const { data } = route.params;
   const isTemplate = data.isTemplate;
-  const [useData, setUseData] = useState(data);
+  const [useData, setUseData] = useState<SettingItem>(data);
 
   useEffect(() => {
     if (data.isTemplate) {
@@ -47,7 +52,7 @@ const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
 
   const listData = formatData.data;
 
-  const renderItem: ListRenderItem<any> = ({ item, index }) => {
+  const renderItem: ListRenderItem<ListData> = ({ item, index }) => {
     return (
       <TouchableOpacity
         key={index}

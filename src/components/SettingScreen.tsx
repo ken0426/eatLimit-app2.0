@@ -12,17 +12,43 @@ import { COLORS, FONTSIZE, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { LABEL, settingData } from '../contents';
-import { StackPramList } from '../types';
+import { SettingMemoSelectItem, StackPramList } from '../types';
 import { getEditDataFormat, getKey } from '../utils';
 import { useRootSelector } from '../redux/store/store';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 
 type RouteItem = {
-  params: any;
+  params:
+    | undefined
+    | {
+        data: {
+          data: {
+            [key: string]: {
+              headline: string;
+              item: SettingMemoSelectItem[];
+            };
+          }[];
+          label: string;
+        };
+      };
 };
 
-type RenderItem = any;
+type RenderItem = {
+  [key: string]: {
+    headline: string;
+    item: {
+      // mapの第一引数
+      label: string;
+      data: {
+        id: { headline: string; item: SettingMemoSelectItem[] } & number;
+      }[];
+      isMemoTemplate: boolean;
+      id: number;
+      input: string;
+    }[];
+  };
+};
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'settingScreen'>;
@@ -38,7 +64,7 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
   );
   const id = dateFormatDisplayId;
 
-  const renderItem: ListRenderItem<RenderItem> = ({ item, index }) => {
+  const renderItem: ListRenderItem<RenderItem | any> = ({ item, index }) => {
     const key = getKey(item);
     const headline = item[key].headline;
     return (
@@ -46,7 +72,7 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
         <View style={styles.headline}>
           <Text style={styles.text}>{headline}</Text>
         </View>
-        {item[key].item.map((data: any, index: any) => (
+        {item[key].item.map((data: any, index: number) => (
           <TouchableOpacity
             key={index}
             style={styles.item}
