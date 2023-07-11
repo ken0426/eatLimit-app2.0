@@ -42,6 +42,7 @@ export type MemoTemplateData = {
     item: {
       label: string;
       isMemoTemplate: boolean;
+      isTemplate: boolean;
       data: {
         id: number & {
           headline: string;
@@ -72,6 +73,9 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
   const title = route.params?.data?.label;
   const dateFormatDisplayId = useRootSelector(
     (state) => state.common.dateFormatDisplayId
+  );
+  const selectMemoTemplateName = useRootSelector(
+    (state) => state.common.selectMemoTemplateName
   );
   const id = dateFormatDisplayId;
 
@@ -104,7 +108,9 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
               }
             }}
           >
-            <Text style={styles.text}>{data.label}</Text>
+            <Text style={styles.text}>
+              {data.isTemplate ? selectMemoTemplateName : data.label}
+            </Text>
             <MaterialIcons
               name='navigate-next'
               size={26}

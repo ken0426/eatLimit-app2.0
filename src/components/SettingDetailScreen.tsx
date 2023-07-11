@@ -34,21 +34,21 @@ type Props = {
   route: RouteProp<StackPramList, 'settingDetailScreen'> & RouteItem;
 };
 
+/** TODO リファクタリング必須項目 */
+type Data = {
+  label: string;
+  isTemplate: boolean;
+  data: {
+    text: string;
+    id: number;
+  }[];
+};
+
 const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
   const dispatch = useRootDispatch();
   const { data } = route.params;
   const isTemplate = data.isTemplate;
-  const [useData, setUseData] = useState<SettingItem>(data);
-
-  useEffect(() => {
-    if (data.isTemplate) {
-      setUseData({
-        data: [{ id: 0, text: 'テンプレートなし' }, ...useData.data],
-        label: useData.label,
-      });
-    }
-  }, [isTemplate]);
-  const formatData = commonSettingAdaptor(useData);
+  const formatData = commonSettingAdaptor(data);
 
   const listData = formatData.data;
 
@@ -64,7 +64,7 @@ const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
           },
         ]}
         onPress={() => {
-          onSettingPress(dispatch, formatData.label, item);
+          onSettingPress(dispatch, formatData.label, item, isTemplate);
           navigation.goBack();
         }}
       >

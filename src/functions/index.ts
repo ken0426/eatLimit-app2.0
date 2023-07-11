@@ -7,6 +7,8 @@ import {
   setDateFormatDisplayId,
   setDayOfWeekId,
   setImageId,
+  setSelectMemoTemplateId,
+  setSelectMemoTemplateName,
 } from '../redux/slices/commonSlice';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Dispatch } from '@reduxjs/toolkit';
@@ -149,7 +151,8 @@ export const onRegisterPress = async ({
 export const onSettingPress = (
   dispatch: Dispatch,
   label: string,
-  item: ListData
+  item: ListData,
+  isTemplate?: boolean
 ) => {
   if (label === LABEL.IMAGE_DISPLAY) {
     dispatch(setImageId(item.id));
@@ -159,5 +162,8 @@ export const onSettingPress = (
     dispatch(setDateDisplayId(item.id));
   } else if (label === LABEL.DAY_OF_THE_WEEK_DISPLAY) {
     dispatch(setDayOfWeekId(item.id));
+  } else if (isTemplate) {
+    dispatch(setSelectMemoTemplateId(item.id));
+    dispatch(setSelectMemoTemplateName(item.text));
   }
 };

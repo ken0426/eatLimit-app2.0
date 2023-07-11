@@ -5,6 +5,8 @@ const commonState = {
   dateFormatDisplayId: 3,
   dateDisplayId: 1,
   dayOfWeekId: 1,
+  selectMemoTemplateId: 0,
+  selectMemoTemplateName: 'テンプレートなし', // 固定では入らないため修正が必要（一旦固定でデータをセット）
 };
 
 export const commonSlice = createSlice({
@@ -27,6 +29,14 @@ export const commonSlice = createSlice({
     setDayOfWeekId: (state, { payload }) => {
       state.dayOfWeekId = payload;
     },
+    /** メモのテンプレートID */
+    setSelectMemoTemplateId: (state, { payload }) => {
+      state.selectMemoTemplateId = payload;
+    },
+    /** メモのテンプレート名 */
+    setSelectMemoTemplateName: (state, { payload }) => {
+      state.selectMemoTemplateName = payload;
+    },
   },
 });
 
@@ -35,4 +45,6 @@ export const {
   setDateFormatDisplayId,
   setDateDisplayId,
   setDayOfWeekId,
+  setSelectMemoTemplateId,
+  setSelectMemoTemplateName,
 } = commonSlice.actions;
