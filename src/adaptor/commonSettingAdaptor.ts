@@ -1,6 +1,5 @@
 import { LABEL } from '../contents';
 import { useRootSelector } from '../redux/store/store';
-import { ListData, SettingItem } from '../types';
 
 /** TODO リファクタリング必須項目 */
 type Data = {

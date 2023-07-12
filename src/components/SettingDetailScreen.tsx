@@ -34,16 +34,6 @@ type Props = {
   route: RouteProp<StackPramList, 'settingDetailScreen'> & RouteItem;
 };
 
-/** TODO リファクタリング必須項目 */
-type Data = {
-  label: string;
-  isTemplate: boolean;
-  data: {
-    text: string;
-    id: number;
-  }[];
-};
-
 const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
   const dispatch = useRootDispatch();
   const { data } = route.params;
