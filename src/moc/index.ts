@@ -24,7 +24,7 @@ export const data: ApiData[] = [
     eatName: 'サーモン',
     image:
       'https://media.delishkitchen.tv/article/105/kmn81saarcn.jpeg?version=1586229518',
-    date: '2023-04-26',
+    date: '2023-04-28',
     placeOfPurchase: 'イオン',
     price: 1200,
     management: '消費期限',
@@ -34,7 +34,7 @@ export const data: ApiData[] = [
     eatName: '納豆',
     image:
       'https://p1-e6eeae93.imageflux.jp/c!/a=2,w=800,h=800/mkdirect/149d22949040b32ff922.png',
-    date: '2023-04-26',
+    date: '2023-08-26',
     placeOfPurchase: 'イオン',
     management: '消費期限',
     keep: '冷蔵',
@@ -67,7 +67,7 @@ export const data: ApiData[] = [
     eatName: 'アイス',
     image:
       'https://www.haagen-dazs.co.jp/products/uploads/images/20190601_08.png',
-    date: '2023-04-26',
+    date: '2023-09-01',
     price: 200,
     management: '消費期限',
     keep: '冷凍',
