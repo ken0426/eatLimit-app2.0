@@ -21,6 +21,7 @@ import { getEditDataFormat, getKey } from '../utils';
 import { useRootSelector } from '../redux/store/store';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
+import AtomSettingLabel from './atoms/AtomSettingLabel';
 
 type RouteItem = {
   params?: {
@@ -84,9 +85,7 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
     const headline = item[key].headline;
     return (
       <View key={index}>
-        <View style={styles.headline}>
-          <Text style={styles.text}>{headline}</Text>
-        </View>
+        <AtomSettingLabel text={headline} />
         {item[key].item.map((data, index) => (
           <TouchableOpacity
             key={index}

@@ -1,17 +1,12 @@
 import React, { FC } from 'react';
-import {
-  FlatList,
-  ListRenderItem,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { MaterialIcons } from '@expo/vector-icons';
 import { settingMemoData } from '../contents';
+import MolSettingList from './molecules/MolSettingList';
+import AtomSettingLabel from './atoms/AtomSettingLabel';
 
 type Props = {
   navigation: any;
@@ -31,44 +26,26 @@ const SettingMemoScreen: FC<Props> = ({ navigation }) => {
         </MolHeader>
 
         <View>
-          <View style={styles.headline}>
-            <Text style={styles.text}>選択中のテンプレート</Text>
-          </View>
-          <TouchableOpacity
-            style={styles.touch}
+          <AtomSettingLabel text={'選択中のテンプレート'} />
+          <MolSettingList
             onPress={() =>
               navigation.navigate('settingDetailScreen', {
                 data: [], // 現状アプリは落ちるが仮実装
               })
             }
-          >
-            <Text style={styles.text}>テンプレートなし</Text>
-            <MaterialIcons
-              name='navigate-next'
-              size={26}
-              color={COLORS.TEXT_COLOR}
-            />
-          </TouchableOpacity>
-          <View style={styles.headline}>
-            <Text style={styles.text}>テンプレート一覧</Text>
-          </View>
+            text={'テンプレートなし'}
+          />
+          <AtomSettingLabel text={'テンプレート一覧'} />
           {settingMemoData.map((memo) => {
             return (
-              <TouchableOpacity
-                style={styles.touch}
+              <MolSettingList
                 onPress={() =>
                   navigation.navigate('memoTemplateUpdateScreen', {
                     data: memo,
                   })
                 }
-              >
-                <Text style={styles.text}>{memo.label}</Text>
-                <MaterialIcons
-                  name='navigate-next'
-                  size={26}
-                  color={COLORS.TEXT_COLOR}
-                />
-              </TouchableOpacity>
+                text={memo.label}
+              />
             );
           })}
         </View>
