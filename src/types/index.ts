@@ -46,6 +46,7 @@ export type StackPramList = {
   settingDetailScreen: { data: any };
   memoTemplateRegisterScreen: { data: { label: string; text: string }[] };
   memoTemplateUpdateScreen: { data: SettingMemoEditItem };
+  settingMemoScreen: undefined;
 };
 
 export type ModalButton = {

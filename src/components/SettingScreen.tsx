@@ -98,9 +98,7 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
                   data: editFormat,
                 });
               } else if (data.label === LABEL.MEMO_TEMPLATE) {
-                navigation.push('settingScreen', {
-                  data,
-                });
+                navigation.push('settingMemoScreen');
               } else if (data.isMemoTemplate) {
                 navigation.navigate('memoTemplateUpdateScreen', { data });
               } else {

@@ -11,6 +11,7 @@ import SettingScreen from '../components/SettingScreen';
 import SettingDetailScreen from '../components/SettingDetailScreen';
 import MemoTemplateUpdateScreen from '../components/MemoTemplateUpdateScreen';
 import MemoTemplateRegisterScreen from '../components/MemoTemplateRegisterScreen';
+import SettingMemoScreen from '../components/SettingMemoScreen';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
@@ -69,6 +70,11 @@ const RootStackScreen = () => {
       <Stack.Screen
         name={'memoTemplateUpdateScreen'}
         component={MemoTemplateUpdateScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={'settingMemoScreen'}
+        component={SettingMemoScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

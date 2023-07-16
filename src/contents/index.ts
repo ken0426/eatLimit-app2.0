@@ -179,66 +179,22 @@ export const settingData: any[] = [
       item: [
         {
           label: LABEL.MEMO_TEMPLATE,
-          data: [
-            {
-              memoSection: {
-                headline: '選択中のテンプレート',
-                item: [
-                  {
-                    label: '〇〇のテンプレート',
-                    data: [
-                      {
-                        id: 1,
-                        text: 'テンプレートA',
-                      },
-                      {
-                        id: 2,
-                        text: 'テンプレートB',
-                      },
-                    ],
-                    isTemplate: true,
-                  },
-                ],
-              },
-            },
-            {
-              memoList: {
-                headline: 'テンプレート一覧',
-                item: [
-                  {
-                    label: 'テンプレートA',
-                    isMemoTemplate: true,
-                    id: 1,
-                    input: '【メモ】これはテストメモです',
-                  },
-                  {
-                    label: 'テンプレートB',
-                    isMemoTemplate: true,
-                    id: 2,
-                    input: `【改行メモ】改行しました。\n\n\n改行しました。`,
-                  },
-                ],
-              },
-            },
-          ],
+          data: [],
         },
       ],
     },
   },
 ];
 
-/** メモのテンプレートのデータ */
-export const memoTemplateData = [
+export const settingMemoData: any[] = [
   {
-    label: 'テンプレートなし',
-    text: '',
-  },
-  {
-    label: 'テンプレートA',
-    text: `【メモ】これはテストメモです\n\n\n【改行】改行しました`,
+    label: 'テンプレートAAA',
+    id: 1,
+    input: '【メモ】これはテストメモです',
   },
   {
     label: 'テンプレートB',
-    text: '【テンプレート表示】あああああ',
+    id: 2,
+    input: `【改行メモ】改行しました。\n\n\n改行しました。`,
   },
 ];
