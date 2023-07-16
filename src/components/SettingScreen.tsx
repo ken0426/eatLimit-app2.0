@@ -22,6 +22,7 @@ import { useRootSelector } from '../redux/store/store';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import AtomSettingLabel from './atoms/AtomSettingLabel';
+import MolSettingList from './molecules/MolSettingList';
 
 type RouteItem = {
   params?: {
@@ -87,9 +88,8 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
       <View key={index}>
         <AtomSettingLabel text={headline} />
         {item[key].item.map((data, index) => (
-          <TouchableOpacity
+          <MolSettingList
             key={index}
-            style={styles.item}
             onPress={() => {
               if (data.label === LABEL.DATE_DISPLAY) {
                 const editFormat = getEditDataFormat(data, id);
@@ -104,16 +104,8 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
                 navigation.navigate('settingDetailScreen', { data });
               }
             }}
-          >
-            <Text style={styles.text}>
-              {data.isTemplate ? selectMemoTemplateName : data.label}
-            </Text>
-            <MaterialIcons
-              name='navigate-next'
-              size={26}
-              color={COLORS.TEXT_COLOR}
-            />
-          </TouchableOpacity>
+            text={data.label}
+          />
         ))}
       </View>
     );
