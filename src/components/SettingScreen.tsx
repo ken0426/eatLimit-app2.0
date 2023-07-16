@@ -105,7 +105,7 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
         </MolHeader>
 
         <FlatList
-          data={memoTemplateData ?? settingData}
+          data={settingData}
           renderItem={renderItem}
           keyExtractor={(_, index) => index.toString()}
         />
