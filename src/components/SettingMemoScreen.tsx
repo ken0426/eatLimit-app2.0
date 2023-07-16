@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
-import { MaterialIcons } from '@expo/vector-icons';
 import { settingMemoData } from '../contents';
 import MolSettingList from './molecules/MolSettingList';
 import AtomSettingLabel from './atoms/AtomSettingLabel';
