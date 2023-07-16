@@ -36,9 +36,10 @@ const SettingMemoScreen: FC<Props> = ({ navigation }) => {
             text={'テンプレートなし'}
           />
           <AtomSettingLabel text={'テンプレート一覧'} />
-          {settingMemoData.map((memo) => {
+          {settingMemoData.map((memo, index) => {
             return (
               <MolSettingList
+                key={index}
                 onPress={() =>
                   navigation.navigate('memoTemplateUpdateScreen', {
                     data: memo,
