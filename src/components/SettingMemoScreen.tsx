@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
-import { COLORS, FONTSIZE, SIZE } from '../styles';
+import { COLORS, SIZE } from '../styles';
 import { settingMemoData } from '../contents';
 import MolSettingList from './molecules/MolSettingList';
 import AtomSettingLabel from './atoms/AtomSettingLabel';
@@ -66,37 +66,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     zIndex: 2,
-  },
-  headline: {
-    width: '100%',
-    backgroundColor: COLORS.SETTING_LABEL,
-    height: SIZE.BASE_HP * 4,
-    justifyContent: 'center',
-    paddingHorizontal: SIZE.BASE_WP * 2,
-  },
-  item: {
-    width: '100%',
-    backgroundColor: COLORS.WHITE,
-    height: SIZE.BASE_HP * 6.5,
-    borderBottomColor: COLORS.DETAIL_BORDER,
-    borderBottomWidth: 0.2,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: SIZE.BASE_WP * 2,
-    flexDirection: 'row',
-  },
-  text: {
-    fontSize: FONTSIZE.SIZE18PX,
-  },
-  touch: {
-    width: '100%',
-    backgroundColor: COLORS.WHITE,
-    height: SIZE.BASE_HP * 6.5,
-    borderBottomColor: COLORS.DETAIL_BORDER,
-    borderBottomWidth: 0.2,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: SIZE.BASE_WP * 2,
-    flexDirection: 'row',
   },
 });

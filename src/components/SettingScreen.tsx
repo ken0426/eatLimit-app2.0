@@ -1,14 +1,6 @@
 import React, { FC } from 'react';
-import {
-  FlatList,
-  ListRenderItem,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-import { COLORS, FONTSIZE, SIZE } from '../styles';
+import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
+import { COLORS, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { LABEL, settingData } from '../contents';
@@ -72,12 +64,8 @@ type Props = {
 const SettingScreen: FC<Props> = ({ navigation, route }) => {
   const data = route.params?.data;
   const memoTemplateData = data?.data;
-  const title = route.params?.data?.label;
   const dateFormatDisplayId = useRootSelector(
     (state) => state.common.dateFormatDisplayId
-  );
-  const selectMemoTemplateName = useRootSelector(
-    (state) => state.common.selectMemoTemplateName
   );
   const id = dateFormatDisplayId;
 
@@ -115,12 +103,7 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={'default'}>
-          <AtomSettingRegister
-            navigation={navigation}
-            title={title ?? '設定'}
-            isRightText={title && '追加'}
-            isRightButton={title ? true : false}
-          />
+          <AtomSettingRegister navigation={navigation} title={'設定'} />
         </MolHeader>
 
         <FlatList
@@ -145,26 +128,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     zIndex: 2,
-  },
-  headline: {
-    width: '100%',
-    backgroundColor: COLORS.SETTING_LABEL,
-    height: SIZE.BASE_HP * 4,
-    justifyContent: 'center',
-    paddingHorizontal: SIZE.BASE_WP * 2,
-  },
-  item: {
-    width: '100%',
-    backgroundColor: COLORS.WHITE,
-    height: SIZE.BASE_HP * 6.5,
-    borderBottomColor: COLORS.DETAIL_BORDER,
-    borderBottomWidth: 0.2,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: SIZE.BASE_WP * 2,
-    flexDirection: 'row',
-  },
-  text: {
-    fontSize: FONTSIZE.SIZE18PX,
   },
 });
