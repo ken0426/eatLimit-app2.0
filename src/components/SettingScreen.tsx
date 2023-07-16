@@ -86,8 +86,6 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
                 });
               } else if (data.label === LABEL.MEMO_TEMPLATE) {
                 navigation.push('settingMemoScreen');
-              } else if (data.isMemoTemplate) {
-                navigation.navigate('memoTemplateUpdateScreen', { data });
               } else {
                 navigation.navigate('settingDetailScreen', { data });
               }
