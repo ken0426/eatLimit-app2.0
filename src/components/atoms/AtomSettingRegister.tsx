@@ -12,6 +12,7 @@ type Props = {
     | 'settingDetailScreen'
     | 'memoTemplateRegisterScreen'
     | 'memoTemplateUpdateScreen'
+    | 'settingMemoScreen'
   >;
   title: string;
   isRightButton?: boolean;

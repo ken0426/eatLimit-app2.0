@@ -6,9 +6,11 @@ import { COLORS, SIZE } from '../styles';
 import { settingMemoData } from '../contents';
 import MolSettingList from './molecules/MolSettingList';
 import AtomSettingLabel from './atoms/AtomSettingLabel';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { StackPramList } from '../types';
 
 type Props = {
-  navigation: any;
+  navigation: StackNavigationProp<StackPramList, 'settingMemoScreen'>;
 };
 
 const SettingMemoScreen: FC<Props> = ({ navigation }) => {
