@@ -5,6 +5,7 @@ import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { LABEL, settingData } from '../contents';
 import {
+  SettingData,
   SettingDataItem,
   SettingMemoSelectItem,
   StackPramList,
@@ -69,7 +70,7 @@ const SettingScreen: FC<Props> = ({ navigation, route }) => {
   );
   const id = dateFormatDisplayId;
 
-  const renderItem: ListRenderItem<MemoTemplateData> = ({ item, index }) => {
+  const renderItem: ListRenderItem<SettingData> = ({ item, index }) => {
     const key = getKey(item);
     const headline = item[key].headline;
     return (

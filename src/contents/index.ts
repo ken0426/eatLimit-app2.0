@@ -120,7 +120,7 @@ export const SETTING_ITEM_ID = {
 };
 
 /** 設定の情報 */
-export const settingData: any[] = [
+export const settingData: SettingData[] = [
   {
     list: {
       headline: '一覧リスト',

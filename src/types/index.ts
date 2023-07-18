@@ -102,7 +102,13 @@ export type SettingMemoItem = {
 export type SettingData = {
   [key: string]: {
     headline: string;
-    item: SettingItem[] | SettingMemoItem[];
+    item: {
+      label: string;
+      data: {
+        text: string;
+        id: number;
+      }[];
+    }[];
   };
 };
 
