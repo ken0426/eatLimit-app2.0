@@ -197,4 +197,9 @@ export const settingMemoData: any[] = [
     id: 2,
     input: `【改行メモ】改行しました。\n\n\n改行しました。`,
   },
+  {
+    label: 'テンプレートC',
+    id: 3,
+    input: `【改行メモ】改行しました。\n\n\n改行しました。\n\n\n\n改行しました。`,
+  },
 ];
