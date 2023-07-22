@@ -1,5 +1,4 @@
 import { ImageSourcePropType } from 'react-native';
-import { MemoTemplateData } from '../components/SettingScreen';
 
 export type ApiData = {
   eatName: string;
@@ -45,7 +44,7 @@ export type StackPramList = {
       };
   settingDetailScreen: { data: any };
   memoTemplateRegisterScreen: { data: { label: string; text: string }[] };
-  memoTemplateUpdateScreen: { data: SettingMemoEditItem };
+  memoTemplateUpdateScreen: { data: MemoTemplateData };
   settingMemoScreen: undefined;
 };
 
@@ -117,4 +116,11 @@ export type ListData = {
   text: string;
   check: boolean | undefined;
   id: number;
+};
+
+/** メモのテンプレートデータ */
+export type MemoTemplateData = {
+  label: string;
+  id: number;
+  input: string;
 };

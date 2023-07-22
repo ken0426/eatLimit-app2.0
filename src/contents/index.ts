@@ -2,6 +2,7 @@ import moment from 'moment';
 import {
   KeepData,
   ManagementData,
+  MemoTemplateData,
   ModalButton,
   SettingData,
   // RegisterData,
@@ -186,7 +187,7 @@ export const settingData: SettingData[] = [
   },
 ];
 
-export const settingMemoData: any[] = [
+export const settingMemoData: MemoTemplateData[] = [
   {
     label: 'テンプレートAAA',
     id: 1,
