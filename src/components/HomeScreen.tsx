@@ -30,6 +30,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
           (item) => item === 'selectMemoTemplate'
         );
         if (selectMemoTemplateKey) {
+          // 選択中のメモのテンプレートを取得
           const selectMemoTemplate: MemoTemplateData =
             await selectMemoTemplateStorage.load({
               key: 'selectMemoTemplate',
