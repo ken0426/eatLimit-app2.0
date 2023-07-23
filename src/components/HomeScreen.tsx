@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { FlatList, ListRenderItem, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { ApiData, StackPramList } from '../types';
+import { ApiData, MemoTemplateData, StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { COLORS, SIZE } from '../styles';
 import { data } from '../moc';
@@ -30,16 +30,17 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
           (item) => item === 'selectMemoTemplate'
         );
         if (selectMemoTemplateKey) {
-          const selectMemoTemplate = await selectMemoTemplateStorage.load({
-            key: 'selectMemoTemplate',
-          });
+          const selectMemoTemplate: MemoTemplateData =
+            await selectMemoTemplateStorage.load({
+              key: 'selectMemoTemplate',
+            });
+          dispatch(setSelectMemoTemplate(selectMemoTemplate));
+
           /** ここでデータベースから全てのメモのテンプレートデータを取得。
            * 取得後、idを元にソートを掛けて並び替えをするロジックを追加。
            * 完了後、reduxに保存する。
+           * ※暫定対応として、一旦ストーレジから取得したデータのみをセット
            */
-          dispatch(setSelectMemoTemplate(selectMemoTemplate));
-
-          // 本来以下のreduxに保存する配列はソートがかけられたものだが、一旦暫定対応として以下のようにする。
           dispatch(
             setSelectMemoTemplateData({
               data: [selectMemoTemplate],
