@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { PostData, StackPramList } from '../../types';
 import { COLORS, FONTSIZE } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
