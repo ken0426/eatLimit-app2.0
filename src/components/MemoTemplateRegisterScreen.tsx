@@ -1,6 +1,13 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, useState } from 'react';
-import { Button, Keyboard, StyleSheet, Text } from 'react-native';
+import {
+  Button,
+  Keyboard,
+  KeyboardAvoidingView,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import { InputAccessoryView, Platform, TextInput, View } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { StackPramList } from '../types';
@@ -16,7 +23,10 @@ const MemoTemplateRegisterScreen: FC<Props> = ({ navigation }) => {
   const [text, setText] = useState('');
   const inputAccessoryViewID = 'uniqueID';
   return (
-    <View style={{ flex: 1 }}>
+    <TouchableWithoutFeedback
+      style={{ flex: 1 }}
+      onPress={() => Keyboard.dismiss()}
+    >
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={'default'}>
           <AtomSettingRegister
@@ -55,7 +65,7 @@ const MemoTemplateRegisterScreen: FC<Props> = ({ navigation }) => {
           </Text>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -79,7 +89,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: '#d6d6d6',
     backgroundColor: '#e9e9e9',
-    height: SIZE.BASE_HP * 75,
+    height: SIZE.BASE_HP * 70,
   },
   textInput: {
     width: '100%',
