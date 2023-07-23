@@ -4,12 +4,7 @@ import { COLORS, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { LABEL, settingData } from '../contents';
-import {
-  SettingData,
-  SettingDataItem,
-  SettingMemoSelectItem,
-  StackPramList,
-} from '../types';
+import { SettingData, SettingMemoSelectItem, StackPramList } from '../types';
 import { getEditDataFormat, getKey } from '../utils';
 import { useRootSelector } from '../redux/store/store';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -28,32 +23,6 @@ type RouteItem = {
       }[];
       label: string;
     };
-  };
-};
-
-export type MemoTemplateData = {
-  [key: string]: {
-    headline: string;
-    item: {
-      label: string;
-      isMemoTemplate: boolean;
-      isTemplate: boolean;
-      data: {
-        id: number & {
-          headline: string;
-          item: {
-            data: SettingDataItem[];
-            isTemplate: boolean;
-            label: string;
-            isMemoTemplate: boolean;
-            id: number;
-            input: string;
-          }[];
-        };
-      }[];
-      id: number;
-      input: string;
-    }[];
   };
 };
 
