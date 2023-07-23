@@ -24,7 +24,7 @@ type Props = {
 const MemoTemplateUpdateScreen: FC<Props> = ({ navigation, route }) => {
   const { data } = route.params;
   const inputAccessoryViewID = 'uniqueID';
-  const [text, setText] = useState(data.input);
+  const [text, setText] = useState(data.text);
   return (
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>

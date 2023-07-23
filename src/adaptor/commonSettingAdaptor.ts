@@ -19,8 +19,8 @@ export const commonSettingAdaptor = (data: Data) => {
   );
   const dateDisplayId = useRootSelector((state) => state.common.dateDisplayId);
   const dayOfWeekId = useRootSelector((state) => state.common.dayOfWeekId);
-  const selectMemoTemplateId = useRootSelector(
-    (state) => state.common.selectMemoTemplateId
+  const selectMemoTemplate = useRootSelector(
+    (state) => state.common.selectMemoTemplate
   );
 
   const isCheck = (id: number) => {
@@ -33,7 +33,7 @@ export const commonSettingAdaptor = (data: Data) => {
     } else if (data.label === LABEL.DAY_OF_THE_WEEK_DISPLAY) {
       return id === dayOfWeekId;
     } else if (data.isTemplate) {
-      return id === selectMemoTemplateId;
+      return id === selectMemoTemplate.id;
     }
   };
 

@@ -78,36 +78,11 @@ export type SettingMemoSelectItem = {
   isTemplate: boolean;
 };
 
-/** 設定項目のメモの編集をする項目 */
-export type SettingMemoEditItem = {
-  label: string;
-  isMemoTemplate: boolean;
-  id: number;
-  input: string;
-};
-
-/** 設定画面の項目 */
-export type SettingMemoItem = {
-  label: string;
-  data: {
-    [key: string]: {
-      headline: string;
-      item: SettingMemoSelectItem[] | SettingMemoEditItem[];
-    };
-  }[];
-};
-
 /** 設定画面 */
 export type SettingData = {
   [key: string]: {
     headline: string;
-    item: {
-      label: string;
-      data: {
-        text: string;
-        id: number;
-      }[];
-    }[];
+    item: SettingItem[];
   };
 };
 
@@ -122,5 +97,5 @@ export type ListData = {
 export type MemoTemplateData = {
   label: string;
   id: number;
-  input: string;
+  text: string;
 };

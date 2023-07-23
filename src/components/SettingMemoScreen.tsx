@@ -3,17 +3,21 @@ import { StyleSheet, View } from 'react-native';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { COLORS, SIZE } from '../styles';
-import { settingMemoData } from '../contents';
 import MolSettingList from './molecules/MolSettingList';
 import AtomSettingLabel from './atoms/AtomSettingLabel';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../types';
+import { useRootSelector } from '../redux/store/store';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'settingMemoScreen'>;
 };
 
 const SettingMemoScreen: FC<Props> = ({ navigation }) => {
+  const selectMemoTemplateData = useRootSelector(
+    (state) => state.common.selectMemoTemplateData
+  );
+
   return (
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
@@ -31,13 +35,13 @@ const SettingMemoScreen: FC<Props> = ({ navigation }) => {
           <MolSettingList
             onPress={() =>
               navigation.navigate('settingDetailScreen', {
-                data: [], // 現状アプリは落ちるが仮実装
+                data: selectMemoTemplateData,
               })
             }
             text={'テンプレートなし'}
           />
           <AtomSettingLabel text={'テンプレート一覧'} />
-          {settingMemoData.map((memo, index) => {
+          {selectMemoTemplateData.data.map((memo, index) => {
             return (
               <MolSettingList
                 key={index}

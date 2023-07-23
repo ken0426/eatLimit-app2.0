@@ -5,8 +5,6 @@ import {
   MemoTemplateData,
   ModalButton,
   SettingData,
-  // RegisterData,
-  // SettingData,
 } from '../types';
 
 /** 9月 */
@@ -191,21 +189,21 @@ export const settingMemoData: MemoTemplateData[] = [
   {
     label: 'テンプレートAAA',
     id: 1,
-    input: '【メモ】これはテストメモです',
+    text: '【メモ】これはテストメモです',
   },
   {
     label: 'テンプレートB',
     id: 2,
-    input: `【改行メモ】改行しました。\n\n\n改行しました。`,
+    text: `【改行メモ】改行しました。\n\n\n改行しました。`,
   },
   {
     label: 'テンプレートC',
     id: 3,
-    input: `【改行メモ】改行しました。\n\n\n改行しました。\n\n\n\n改行しました。`,
+    text: `【改行メモ】改行しました。\n\n\n改行しました。\n\n\n\n改行しました。`,
   },
   {
     label: 'テンプレートD',
     id: 4,
-    input: `【改行メモ】改行しました。\n\n\n改行しました。\n\n\n\n改行しました。`,
+    text: `【改行メモ】改行しました。\n\n\n改行しました。\n\n\n\n改行しました。`,
   },
 ];

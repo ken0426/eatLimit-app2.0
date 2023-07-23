@@ -7,8 +7,7 @@ import {
   setDateFormatDisplayId,
   setDayOfWeekId,
   setImageId,
-  setSelectMemoTemplateId,
-  setSelectMemoTemplateName,
+  setSelectMemoTemplate,
 } from '../redux/slices/commonSlice';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Dispatch } from '@reduxjs/toolkit';
@@ -163,7 +162,6 @@ export const onSettingPress = (
   } else if (label === LABEL.DAY_OF_THE_WEEK_DISPLAY) {
     dispatch(setDayOfWeekId(item.id));
   } else if (isTemplate) {
-    dispatch(setSelectMemoTemplateId(item.id));
-    dispatch(setSelectMemoTemplateName(item.text));
+    dispatch(setSelectMemoTemplate(item));
   }
 };

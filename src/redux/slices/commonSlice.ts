@@ -1,12 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const commonState = {
+type CommonState = {
+  imageId: number;
+  dateFormatDisplayId: number;
+  dateDisplayId: number;
+  dayOfWeekId: number;
+  selectMemoTemplate: { label: string; id: number; text: string };
+  selectMemoTemplateData: {
+    data: [{ label: string; id: number; text: string }] | [];
+    isTemplate: true;
+  };
+};
+
+const commonState: CommonState = {
   imageId: 1,
   dateFormatDisplayId: 3,
   dateDisplayId: 1,
   dayOfWeekId: 1,
-  selectMemoTemplateId: 0,
-  selectMemoTemplateName: 'テンプレートなし', // 固定では入らないため修正が必要（一旦固定でデータをセット）
+  selectMemoTemplate: { label: 'テンプレートなし', id: 0, text: '' },
+  selectMemoTemplateData: { data: [], isTemplate: true },
 };
 
 export const commonSlice = createSlice({
@@ -29,13 +41,13 @@ export const commonSlice = createSlice({
     setDayOfWeekId: (state, { payload }) => {
       state.dayOfWeekId = payload;
     },
-    /** メモのテンプレートID */
-    setSelectMemoTemplateId: (state, { payload }) => {
-      state.selectMemoTemplateId = payload;
+    /** 選択中メモのテンプレート */
+    setSelectMemoTemplate: (state, { payload }) => {
+      state.selectMemoTemplate = payload;
     },
-    /** メモのテンプレート名 */
-    setSelectMemoTemplateName: (state, { payload }) => {
-      state.selectMemoTemplateName = payload;
+    /** すべてのメモのテンプレートデータ */
+    setSelectMemoTemplateData: (state, { payload }) => {
+      state.selectMemoTemplateData = payload;
     },
   },
 });
@@ -45,6 +57,6 @@ export const {
   setDateFormatDisplayId,
   setDateDisplayId,
   setDayOfWeekId,
-  setSelectMemoTemplateId,
-  setSelectMemoTemplateName,
+  setSelectMemoTemplate,
+  setSelectMemoTemplateData,
 } = commonSlice.actions;
