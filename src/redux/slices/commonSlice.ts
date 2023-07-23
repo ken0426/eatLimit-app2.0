@@ -1,13 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { MemoTemplateData } from '../../types';
 
 type CommonState = {
   imageId: number;
   dateFormatDisplayId: number;
   dateDisplayId: number;
   dayOfWeekId: number;
-  selectMemoTemplate: { label: string; id: number; text: string };
+  selectMemoTemplate: MemoTemplateData;
   selectMemoTemplateData: {
-    data: [{ label: string; id: number; text: string }] | [];
+    data: MemoTemplateData[] | [];
     isTemplate: true;
   };
 };
