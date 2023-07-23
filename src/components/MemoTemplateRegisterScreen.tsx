@@ -1,6 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, useState } from 'react';
-import { Button, Keyboard, StyleSheet } from 'react-native';
+import { Button, Keyboard, StyleSheet, Text } from 'react-native';
 import { InputAccessoryView, Platform, TextInput, View } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { StackPramList } from '../types';
@@ -42,15 +42,18 @@ const MemoTemplateRegisterScreen: FC<Props> = ({ navigation }) => {
             multiline
             maxLength={500}
           />
-        </View>
 
-        {Platform.OS === 'ios' && (
-          <InputAccessoryView nativeID={inputAccessoryViewID}>
-            <View pointerEvents='box-none' style={styles.completedArea}>
-              <Button title='完了' onPress={() => Keyboard.dismiss()} />
-            </View>
-          </InputAccessoryView>
-        )}
+          {Platform.OS === 'ios' && (
+            <InputAccessoryView nativeID={inputAccessoryViewID}>
+              <View pointerEvents='box-none' style={styles.completedArea}>
+                <Button title='完了' onPress={() => Keyboard.dismiss()} />
+              </View>
+            </InputAccessoryView>
+          )}
+          <Text style={{ textAlign: 'right', color: COLORS.TEXT_LABEL }}>
+            {`${text.length}／500`}
+          </Text>
+        </View>
       </View>
     </View>
   );
