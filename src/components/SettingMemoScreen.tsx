@@ -27,6 +27,16 @@ const SettingMemoScreen: FC<Props> = ({ navigation }) => {
             title={'メモのテンプレート'}
             isRightText={'追加'}
             isRightButton={true}
+            onRightPress={() => {
+              navigation.navigate('memoTemplateRegisterScreen', {
+                data: [
+                  {
+                    label: '',
+                    text: '',
+                  },
+                ],
+              });
+            }}
           />
         </MolHeader>
 

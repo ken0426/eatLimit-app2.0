@@ -17,6 +17,7 @@ type Props = {
   title: string;
   isRightButton?: boolean;
   isRightText?: string;
+  onRightPress?: () => void;
 };
 
 const AtomSettingRegister: FC<Props> = ({
@@ -24,6 +25,7 @@ const AtomSettingRegister: FC<Props> = ({
   title,
   isRightButton,
   isRightText = '完了',
+  onRightPress,
 }) => {
   return (
     <View style={styles.header}>
@@ -38,22 +40,7 @@ const AtomSettingRegister: FC<Props> = ({
       </View>
       <View style={{ width: '10%', alignItems: 'flex-end' }}>
         {isRightButton && (
-          <TouchableOpacity
-            onPress={() => {
-              if (title === 'メモのテンプレート') {
-                navigation.navigate('memoTemplateRegisterScreen', {
-                  data: [
-                    {
-                      label: '',
-                      text: '',
-                    },
-                  ],
-                });
-              } else {
-                navigation.goBack();
-              }
-            }}
-          >
+          <TouchableOpacity onPress={onRightPress}>
             <Text style={{ fontSize: FONTSIZE.SIZE15PX, fontWeight: 'bold' }}>
               {isRightText}
             </Text>
