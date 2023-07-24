@@ -22,11 +22,11 @@ const RootStackScreen = () => {
         animation: 'slide_from_right',
       }}
     >
-      {/* <Stack.Screen
+      <Stack.Screen
         name={'TopScreen'}
         component={TopScreen}
         options={{ headerShown: false }}
-      /> */}
+      />
       <Stack.Screen
         name={'homeScreen'}
         component={HomeScreen}
