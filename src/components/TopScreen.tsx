@@ -5,10 +5,10 @@ const TopScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {}}>
           <Text>ログイン</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {}}>
           <Text>新規登録</Text>
         </TouchableOpacity>
       </View>
