@@ -40,9 +40,9 @@ const LoginScreen: FC<Props> = ({ route }) => {
           <TouchableOpacity
             style={styles.changeButtonArea}
             onPress={() => {
-              setTargetPostData({ key: 'mailAddress', value: '' });
-              setTargetPostData({ key: 'password', value: '' });
-              setTargetPostData({ key: 'passwordConfirmation', value: '' });
+              postData.map((item) =>
+                setTargetPostData({ key: item.key, value: '' })
+              );
               setIsLoginScreen(!isLoginScreen);
             }}
           >
