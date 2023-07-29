@@ -12,28 +12,11 @@ import { RouteProp } from '@react-navigation/native';
 import AtomSettingLabel from './atoms/AtomSettingLabel';
 import MolSettingList from './molecules/MolSettingList';
 
-type RouteItem = {
-  params?: {
-    data: {
-      data: {
-        [key: string]: {
-          headline: string;
-          item: SettingMemoSelectItem[];
-        };
-      }[];
-      label: string;
-    };
-  };
-};
-
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'settingScreen'>;
-  route: RouteProp<StackPramList, 'settingScreen'> & RouteItem;
 };
 
-const SettingScreen: FC<Props> = ({ navigation, route }) => {
-  const data = route.params?.data;
-  const memoTemplateData = data?.data;
+const SettingScreen: FC<Props> = ({ navigation }) => {
   const dateFormatDisplayId = useRootSelector(
     (state) => state.common.dateFormatDisplayId
   );
