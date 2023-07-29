@@ -53,6 +53,11 @@ export type ModalButton = {
   text: string;
 };
 
+export type AuthPostData = {
+  key: string;
+  value: string;
+};
+
 /** 項目ごとのデータ */
 export type PostData = {
   key: string;

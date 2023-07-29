@@ -9,26 +9,32 @@ import {
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 
 type Props = {
+  value: string;
   text: string;
   keyboardType?: KeyboardTypeOptions;
   secureTextEntry?: boolean;
   placeholder: string;
+  setData: (e: string) => void;
 };
 
 const AtomAuthInput: FC<Props> = ({
+  value,
   text,
   keyboardType,
   secureTextEntry,
   placeholder,
+  setData,
 }) => {
   return (
     <View style={styles.contents}>
       <Text style={styles.text}>{text}</Text>
       <TextInput
+        value={value}
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
         style={styles.textInput}
         placeholder={placeholder}
+        onChangeText={(inputText) => setData(inputText)}
       />
     </View>
   );

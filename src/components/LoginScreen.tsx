@@ -14,6 +14,7 @@ import { StackPramList } from '../types';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomAuthInput from './atoms/AtomAuthInput';
 import AtomAuthButton from './atoms/AtomAuthButton';
+import { useAuthInput } from '../hooks/useAuthInput';
 
 type Props = {
   route: RouteProp<StackPramList, 'loginScreen'>;
@@ -23,6 +24,12 @@ const LoginScreen: FC<Props> = ({ route }) => {
   const navigation = useNavigation();
   const isLogin = route.params.isLogin;
   const [isLoginScreen, setIsLoginScreen] = useState(isLogin);
+
+  const { setTargetPostData, postData } = useAuthInput();
+
+  const getValue = (key: string) =>
+    postData.find((item) => item.key === key)?.value;
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -32,7 +39,12 @@ const LoginScreen: FC<Props> = ({ route }) => {
           </Text>
           <TouchableOpacity
             style={styles.changeButtonArea}
-            onPress={() => setIsLoginScreen(!isLoginScreen)}
+            onPress={() => {
+              setTargetPostData({ key: 'mailAddress', value: '' });
+              setTargetPostData({ key: 'password', value: '' });
+              setTargetPostData({ key: 'passwordConfirmation', value: '' });
+              setIsLoginScreen(!isLoginScreen);
+            }}
           >
             <Text style={styles.changeButton}>
               {isLoginScreen
@@ -45,24 +57,39 @@ const LoginScreen: FC<Props> = ({ route }) => {
               text={'メールアドレス'}
               keyboardType={'email-address'}
               placeholder={'メールアドレスを入力してください'}
+              value={getValue('mailAddress') ?? ''}
+              setData={(data) =>
+                setTargetPostData({ key: 'mailAddress', value: data })
+              }
             />
             <AtomAuthInput
               text={'パスワード'}
               secureTextEntry={true}
               placeholder={'パスワードを入力してください'}
+              value={getValue('password') ?? ''}
+              setData={(data) =>
+                setTargetPostData({ key: 'password', value: data })
+              }
             />
             {!isLoginScreen && (
               <AtomAuthInput
                 text={'パスワード（確認用）'}
                 secureTextEntry={true}
                 placeholder={'パスワードを入力してください'}
+                value={getValue('passwordConfirmation') ?? ''}
+                setData={(data) =>
+                  setTargetPostData({
+                    key: 'passwordConfirmation',
+                    value: data,
+                  })
+                }
               />
             )}
           </View>
 
           <View style={styles.loginButtonArea}>
             <AtomAuthButton
-              onPress={() => {}}
+              onPress={() => console.log(postData)}
               backgroundColor={'#1797ec'}
               textColor={'#fcfcfc'}
               text={isLoginScreen ? 'ログイン' : '新規登録'}
