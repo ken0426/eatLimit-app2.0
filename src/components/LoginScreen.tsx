@@ -40,7 +40,7 @@ const LoginScreen: FC<Props> = ({ route }) => {
           <TouchableOpacity
             style={styles.changeButtonArea}
             onPress={() => {
-              postData.map((item) =>
+              postData.forEach((item) =>
                 setTargetPostData({ key: item.key, value: '' })
               );
               setIsLoginScreen(!isLoginScreen);
