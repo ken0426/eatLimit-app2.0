@@ -23,7 +23,8 @@ export type KeepData = {
 };
 
 export type StackPramList = {
-  TopScreen: undefined;
+  topScreen: undefined;
+  loginScreen: { isLogin: boolean };
   homeScreen: undefined;
   detailScreen: { item: ApiData };
   searchScreen: { data: ApiData[] };
