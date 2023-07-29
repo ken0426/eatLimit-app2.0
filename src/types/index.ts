@@ -30,19 +30,7 @@ export type StackPramList = {
   searchScreen: { data: ApiData[] };
   registerScreen: undefined;
   updateRegisterScreen: undefined;
-  settingScreen:
-    | undefined
-    | {
-        data: {
-          data: {
-            [key: string]: {
-              headline: string;
-              item: SettingMemoSelectItem[];
-            };
-          }[];
-          label: string;
-        };
-      };
+  settingScreen: undefined;
   settingDetailScreen: { data: any };
   memoTemplateRegisterScreen: { data: { label: string; text: string }[] };
   memoTemplateUpdateScreen: { data: MemoTemplateData };
