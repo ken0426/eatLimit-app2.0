@@ -116,7 +116,10 @@ export const handleLogin = ({
   const letterAndNumberRegex = /(?=.*[A-Za-z])(?=.*[0-9])/;
 
   if (isLoginScreen) {
-    if (
+    if (mailAddress === '' && password === '') {
+      setMailAddressErrorMessage('メールアドレスを入力してください');
+      setPasswordErrorMessage('パスワードを入力してください');
+    } else if (
       password.length < 6 ||
       !uppercaseRegex.test(password) ||
       !lowercaseRegex.test(password) ||
