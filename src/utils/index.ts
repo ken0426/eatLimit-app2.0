@@ -154,9 +154,11 @@ export const handleLogin = ({
         );
       }
       if (!letterAndNumberRegex.test(password)) {
-        setPasswordErrorMessage('パスワードには半角英数字を組みあせてください');
+        setPasswordErrorMessage(
+          'パスワードには半角英数字を組み合わせてください'
+        );
         setPasswordConfirmationErrorMessage(
-          'パスワードには半角英数字を組みあせてください'
+          'パスワードには半角英数字を組み合わせてください'
         );
       }
     } else {
