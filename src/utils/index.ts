@@ -133,7 +133,26 @@ export const handleLogin = ({
       } else {
         setPasswordErrorMessage('パスワードが正しくありません');
       }
-    } else {
+    }
+
+    /** 【すべての条件を満たした場合ログインをする】
+     * - メールアドレスが入力されているかどうか
+     * - メールアドレスアドレスになっているか
+     * - パスワードは7文字以上かどうか
+     * - 半角英数字を使用しているかどうか
+     * - 大文字と小文字を使用しているかどうか
+     * - 記号を使用する場合は「@」「-」「_」のいずれかであるかどうか
+     */
+    if (
+      mailAddress !== '' &&
+      emailRegex.test(mailAddress) &&
+      password !== '' &&
+      password.length > 6 &&
+      uppercaseRegex.test(password) &&
+      lowercaseRegex.test(password) &&
+      alphanumericAndSymbolsRegex.test(password) &&
+      letterAndNumberRegex.test(password)
+    ) {
       Alert.alert('ログインできます');
     }
   } else {
@@ -170,18 +189,45 @@ export const handleLogin = ({
           'パスワードには半角英数字を組み合わせてください'
         );
       }
+      if (password !== passwordConfirmation) {
+        setPasswordErrorMessage('パスワードが一致しません');
+        setPasswordConfirmationErrorMessage('パスワードが一致しません');
+      }
+
+      /** 【すべての条件を満たした場合新規登録をする】
+       * - メールアドレスが入力されているかどうか
+       * - メールアドレスアドレスになっているか
+       * - パスワードは7文字以上かどうか
+       * - 半角英数字を使用しているかどうか
+       * - 大文字と小文字を使用しているかどうか
+       * - 記号を使用する場合は「@」「-」「_」のいずれかであるかどうか
+       * - パスワードとパスワード確認用の文字列が一致しているかどうか
+       */
+      if (
+        mailAddress !== '' &&
+        emailRegex.test(mailAddress) &&
+        password !== '' &&
+        passwordConfirmation !== '' &&
+        password === passwordConfirmation &&
+        uppercaseRegex.test(password) &&
+        lowercaseRegex.test(password) &&
+        alphanumericAndSymbolsRegex.test(password) &&
+        letterAndNumberRegex.test(password)
+      ) {
+        Alert.alert('ログインできます');
+      }
     } else {
-      setPasswordErrorMessage('パスワードは7文字以上にしてください');
-      setPasswordConfirmationErrorMessage(
-        'パスワードは7文字以上にしてください'
-      );
+      if (password === '') {
+        setPasswordErrorMessage('必須項目です');
+      } else {
+        setPasswordErrorMessage('パスワードは7文字以上にしてください');
+        setPasswordConfirmationErrorMessage(
+          'パスワードは7文字以上にしてください'
+        );
+      }
     }
     if (passwordConfirmation === '') {
       setPasswordConfirmationErrorMessage('必須項目です');
-    }
-    if (password !== passwordConfirmation) {
-      setPasswordErrorMessage('パスワードが一致しません');
-      setPasswordConfirmationErrorMessage('パスワードが一致しません');
     }
   }
 };
