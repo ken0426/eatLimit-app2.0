@@ -116,17 +116,23 @@ export const handleLogin = ({
   const letterAndNumberRegex = /(?=.*[A-Za-z])(?=.*[0-9])/;
 
   if (isLoginScreen) {
-    if (mailAddress === '' && password === '') {
+    if (mailAddress === '') {
       setMailAddressErrorMessage('メールアドレスを入力してください');
-      setPasswordErrorMessage('パスワードを入力してください');
-    } else if (
+    } else if (!emailRegex.test(mailAddress)) {
+      setMailAddressErrorMessage('メールアドレスが正しくありません');
+    }
+    if (
       password.length < 6 ||
       !uppercaseRegex.test(password) ||
       !lowercaseRegex.test(password) ||
       !alphanumericAndSymbolsRegex.test(password) ||
       !letterAndNumberRegex.test(password)
     ) {
-      setPasswordErrorMessage('パスワードが正しくありません');
+      if (password === '') {
+        setPasswordErrorMessage('パスワードを入力してください');
+      } else {
+        setPasswordErrorMessage('パスワードが正しくありません');
+      }
     } else {
       Alert.alert('ログインできます');
     }
