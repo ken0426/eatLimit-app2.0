@@ -214,7 +214,7 @@ export const handleLogin = ({
         alphanumericAndSymbolsRegex.test(password) &&
         letterAndNumberRegex.test(password)
       ) {
-        Alert.alert('ログインできます');
+        Alert.alert('新規登録ができます');
       }
     } else {
       if (password === '') {
