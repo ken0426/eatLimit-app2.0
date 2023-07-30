@@ -82,8 +82,8 @@ const LoginScreen: FC<Props> = ({ route }) => {
           >
             <Text style={styles.changeButton}>
               {isLoginScreen
-                ? 'アカウントをお持ちでない方は新規登録'
-                : 'アカウントをお持ちの方はログイン'}
+                ? 'アカウントをお持ちでない方はこちらで新規登録'
+                : 'アカウントをお持ちの方はこちらでログイン'}
             </Text>
           </TouchableOpacity>
           <View style={styles.textInputArea}>
