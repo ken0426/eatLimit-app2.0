@@ -34,6 +34,10 @@ export const COLORS = {
   WHITE: '#f8f8f8',
   /** 設定画面のラベルカラー */
   SETTING_LABEL: '#c8c8c8',
+  /** ログイン画面の新規登録ボタンやログインボタンの色 */
+  LOGIN_BUTTON: '#1797ec',
+  /** トップ画面の新規登録ボタンの色 */
+  SIGN_IN_BUTTON: '#fcfcfc',
 };
 
 export const SIZE = {

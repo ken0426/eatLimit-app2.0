@@ -11,7 +11,7 @@ import {
 import { StackPramList } from '../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import AtomAuthButton from './atoms/AtomAuthButton';
-import { FONTSIZE, SIZE } from '../styles';
+import { COLORS, FONTSIZE, SIZE } from '../styles';
 
 const TopScreen = () => {
   const navigation = useNavigation<StackNavigationProp<StackPramList>>();
@@ -26,8 +26,8 @@ const TopScreen = () => {
             onPress={() =>
               navigation.navigate('loginScreen', { isLogin: true })
             }
-            backgroundColor={'#1797ec'}
-            textColor={'#fcfcfc'}
+            backgroundColor={COLORS.LOGIN_BUTTON}
+            textColor={COLORS.SIGN_IN_BUTTON}
             text={'ログイン'}
           />
           <AtomAuthButton

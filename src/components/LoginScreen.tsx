@@ -137,8 +137,8 @@ const LoginScreen: FC<Props> = ({ route }) => {
                   setPasswordConfirmationErrorMessage,
                 })
               }
-              backgroundColor={'#1797ec'}
-              textColor={'#fcfcfc'}
+              backgroundColor={COLORS.LOGIN_BUTTON}
+              textColor={COLORS.SIGN_IN_BUTTON}
               text={isLoginScreen ? 'ログイン' : '新規登録'}
             />
           </View>
