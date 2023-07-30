@@ -1,4 +1,4 @@
-import { Dimensions, KeyboardTypeOptions, Platform } from 'react-native';
+import { Alert, Dimensions, KeyboardTypeOptions, Platform } from 'react-native';
 import { ApiData, HandleLoginType } from '../types';
 import { SEPTEMBER, SETTING_ITEM_ID } from '../contents';
 
@@ -125,7 +125,7 @@ export const handleLogin = ({
     ) {
       setPasswordErrorMessage('パスワードが正しくありません');
     } else {
-      // ログインする処理
+      Alert.alert('ログインできます');
     }
   } else {
     if (mailAddress === '') {
