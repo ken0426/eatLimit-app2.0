@@ -93,3 +93,14 @@ export type MemoTemplateData = {
   id: number;
   text: string;
 };
+
+/** ログインのテキスト入力のエラーメッセージ */
+export type HandleLoginType = {
+  isLoginScreen: boolean;
+  mailAddress: string;
+  password: string;
+  passwordConfirmation: string;
+  setMailAddressErrorMessage: (e: string) => void;
+  setPasswordErrorMessage: (e: string) => void;
+  setPasswordConfirmationErrorMessage: (e: string) => void;
+};

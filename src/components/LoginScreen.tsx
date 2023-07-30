@@ -1,5 +1,5 @@
 import { RouteProp, useNavigation } from '@react-navigation/native';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   Keyboard,
   SafeAreaView,
@@ -15,6 +15,7 @@ import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomAuthInput from './atoms/AtomAuthInput';
 import AtomAuthButton from './atoms/AtomAuthButton';
 import { useAuthInput } from '../hooks/useAuthInput';
+import { handleLogin } from '../utils';
 
 type Props = {
   route: RouteProp<StackPramList, 'loginScreen'>;
@@ -25,10 +26,40 @@ const LoginScreen: FC<Props> = ({ route }) => {
   const isLogin = route.params.isLogin;
   const [isLoginScreen, setIsLoginScreen] = useState(isLogin);
 
+  /** メールアドレスのエラー */
+  const [mailAddressErrorMessage, setMailAddressErrorMessage] = useState<
+    string | null
+  >(null);
+
+  /** パスワードのエラー */
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState<
+    string | null
+  >(null);
+
+  /** パスワードのエラー（確認用） */
+  const [
+    passwordConfirmationErrorMessage,
+    setPasswordConfirmationErrorMessage,
+  ] = useState<string | null>(null);
+
   const { setTargetPostData, postData } = useAuthInput();
+
+  /** 各入力画面のテキストを取得 */
+  const mailAddress =
+    postData.find((item) => item.key === 'mailAddress')?.value ?? '';
+  const password =
+    postData.find((item) => item.key === 'password')?.value ?? '';
+  const passwordConfirmation =
+    postData.find((item) => item.key === 'passwordConfirmation')?.value ?? '';
 
   const getValue = (key: string) =>
     postData.find((item) => item.key === key)?.value;
+
+  useEffect(() => {
+    setMailAddressErrorMessage(null);
+    setPasswordErrorMessage(null);
+    setPasswordConfirmationErrorMessage(null);
+  }, [postData]);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
@@ -43,6 +74,9 @@ const LoginScreen: FC<Props> = ({ route }) => {
               postData.forEach((item) =>
                 setTargetPostData({ key: item.key, value: '' })
               );
+              setMailAddressErrorMessage(null);
+              setPasswordErrorMessage(null);
+              setPasswordConfirmationErrorMessage(null);
               setIsLoginScreen(!isLoginScreen);
             }}
           >
@@ -61,6 +95,7 @@ const LoginScreen: FC<Props> = ({ route }) => {
               setData={(data) =>
                 setTargetPostData({ key: 'mailAddress', value: data })
               }
+              errorMessage={mailAddressErrorMessage}
             />
             <AtomAuthInput
               text={'パスワード'}
@@ -70,6 +105,7 @@ const LoginScreen: FC<Props> = ({ route }) => {
               setData={(data) =>
                 setTargetPostData({ key: 'password', value: data })
               }
+              errorMessage={passwordErrorMessage}
             />
             {!isLoginScreen && (
               <AtomAuthInput
@@ -83,13 +119,24 @@ const LoginScreen: FC<Props> = ({ route }) => {
                     value: data,
                   })
                 }
+                errorMessage={passwordConfirmationErrorMessage}
               />
             )}
           </View>
 
           <View style={styles.loginButtonArea}>
             <AtomAuthButton
-              onPress={() => console.log(postData)}
+              onPress={() =>
+                handleLogin({
+                  isLoginScreen,
+                  mailAddress,
+                  password,
+                  passwordConfirmation,
+                  setMailAddressErrorMessage,
+                  setPasswordErrorMessage,
+                  setPasswordConfirmationErrorMessage,
+                })
+              }
               backgroundColor={'#1797ec'}
               textColor={'#fcfcfc'}
               text={isLoginScreen ? 'ログイン' : '新規登録'}

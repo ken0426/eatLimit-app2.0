@@ -1,5 +1,5 @@
 import { Dimensions, KeyboardTypeOptions, Platform } from 'react-native';
-import { ApiData } from '../types';
+import { ApiData, HandleLoginType } from '../types';
 import { SEPTEMBER, SETTING_ITEM_ID } from '../contents';
 
 export const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT } =
@@ -93,4 +93,29 @@ export const getEditDataFormat = (data: Data, dateFormatDisplayId: number) => {
   });
 
   return { data: newData, label: data.label };
+};
+
+/** ログイン画面のエラーメッセージ */
+export const handleLogin = ({
+  isLoginScreen,
+  mailAddress,
+  password,
+  passwordConfirmation,
+  setMailAddressErrorMessage,
+  setPasswordErrorMessage,
+  setPasswordConfirmationErrorMessage,
+}: HandleLoginType) => {
+  if (mailAddress === '') {
+    setMailAddressErrorMessage('必須項目です');
+  }
+  if (password === '') {
+    setPasswordErrorMessage('必須項目です');
+  }
+  if (passwordConfirmation === '') {
+    setPasswordConfirmationErrorMessage('必須項目です');
+  }
+  if (!isLoginScreen && password !== passwordConfirmation) {
+    setPasswordErrorMessage('パスワードが一致しません');
+    setPasswordConfirmationErrorMessage('パスワードが一致しません');
+  }
 };

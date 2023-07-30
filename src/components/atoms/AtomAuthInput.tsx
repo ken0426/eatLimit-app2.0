@@ -15,6 +15,7 @@ type Props = {
   secureTextEntry?: boolean;
   placeholder: string;
   setData: (e: string) => void;
+  errorMessage: null | string;
 };
 
 const AtomAuthInput: FC<Props> = ({
@@ -24,6 +25,7 @@ const AtomAuthInput: FC<Props> = ({
   secureTextEntry,
   placeholder,
   setData,
+  errorMessage,
 }) => {
   return (
     <View style={styles.contents}>
@@ -32,10 +34,14 @@ const AtomAuthInput: FC<Props> = ({
         value={value}
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
-        style={styles.textInput}
+        style={[
+          styles.textInput,
+          { borderColor: errorMessage ? COLORS.RED : COLORS.MAIN_TEXT_COLOR },
+        ]}
         placeholder={placeholder}
         onChangeText={(inputText) => setData(inputText)}
       />
+      {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
     </View>
   );
 };
@@ -53,10 +59,12 @@ const styles = StyleSheet.create({
   },
   textInput: {
     width: '100%',
-    borderColor: COLORS.MAIN_TEXT_COLOR,
     borderWidth: 0.5,
     borderRadius: 5,
     fontSize: FONTSIZE.SIZE18PX,
     padding: SIZE.BASE_WP * 1.8,
+  },
+  errorText: {
+    color: COLORS.RED,
   },
 });
