@@ -1,5 +1,11 @@
 import React, { FC } from 'react';
-import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
+import {
+  Alert,
+  FlatList,
+  ListRenderItem,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { COLORS, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
@@ -10,6 +16,7 @@ import { useRootSelector } from '../redux/store/store';
 import { StackNavigationProp } from '@react-navigation/stack';
 import AtomSettingLabel from './atoms/AtomSettingLabel';
 import MolSettingList from './molecules/MolSettingList';
+import { auth } from '../firebase';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'settingScreen'>;
@@ -24,6 +31,7 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
   const renderItem: ListRenderItem<SettingData> = ({ item, index }) => {
     const key = getKey(item);
     const headline = item[key].headline;
+
     return (
       <View key={index}>
         <AtomSettingLabel text={headline} />
@@ -38,6 +46,36 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
                 });
               } else if (data.label === LABEL.MEMO_TEMPLATE) {
                 navigation.push('settingMemoScreen');
+              } else if (data.label === 'ログアウト') {
+                // TODO リファクタリング（定数化など）
+                Alert.alert(
+                  'ログアウト',
+                  `ログアウトします。\nよろしいですか？`,
+                  [
+                    {
+                      text: 'キャンセル',
+                      onPress: () => {},
+                    },
+                    {
+                      text: 'OK',
+                      onPress: async () => {
+                        try {
+                          auth.signOut();
+                          navigation.reset({
+                            index: 0,
+                            routes: [{ name: 'topScreen' }],
+                          });
+                        } catch (error) {
+                          Alert.alert(
+                            'ログアウトに失敗',
+                            '時間をおいて再度お試しください',
+                            [{ text: 'OK', onPress: () => {} }]
+                          );
+                        }
+                      },
+                    },
+                  ]
+                );
               } else {
                 navigation.navigate('settingDetailScreen', { data });
               }

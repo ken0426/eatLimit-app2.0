@@ -221,7 +221,6 @@ export const handleLogin = async ({
           letterAndNumberRegex.test(password)
         ) {
           await createUserWithEmailAndPassword(auth, mailAddress, password);
-          Alert.alert('新規登録ができます');
         }
       } else {
         if (password === '') {
@@ -237,8 +236,17 @@ export const handleLogin = async ({
         setPasswordConfirmationErrorMessage('必須項目です');
       }
     }
-  } catch (error) {
-    Alert.alert('エラー');
+  } catch (error: any) {
+    console.log(error.code);
+    if (error.code === 'auth/user-not-found') {
+      Alert.alert('接続エラー', 'メールアドレスまたはパスワードが違います', [
+        { text: 'OK', onPress: () => {} },
+      ]);
+    } else {
+      Alert.alert('接続エラー', '時間をおいて再度お試しください', [
+        { text: 'OK', onPress: () => {} },
+      ]);
+    }
     throw error;
   }
 };

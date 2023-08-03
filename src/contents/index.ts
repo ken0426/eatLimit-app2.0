@@ -183,6 +183,17 @@ export const settingData: SettingData[] = [
       ],
     },
   },
+  {
+    account: {
+      headline: 'アカウント',
+      item: [
+        {
+          label: 'ログアウト',
+          data: [],
+        },
+      ],
+    },
+  },
 ];
 
 export const settingMemoData: MemoTemplateData[] = [
