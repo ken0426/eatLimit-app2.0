@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import HomeScreen from '../components/HomeScreen';
 import DetailScreen from '../components/DetailScreen';
 import SearchScreen from '../components/SearchScreen';
@@ -13,26 +13,26 @@ import MemoTemplateUpdateScreen from '../components/MemoTemplateUpdateScreen';
 import MemoTemplateRegisterScreen from '../components/MemoTemplateRegisterScreen';
 import SettingMemoScreen from '../components/SettingMemoScreen';
 import LoginScreen from '../components/LoginScreen';
+import { auth } from '../firebase';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
 const RootStackScreen = () => {
-  return (
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) setIsLogin(true);
+    });
+    return unsubscribe;
+  }, []);
+
+  return isLogin ? (
     <Stack.Navigator
       screenOptions={{
         animation: 'slide_from_right',
       }}
     >
-      <Stack.Screen
-        name={'topScreen'}
-        component={TopScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name={'loginScreen'}
-        component={LoginScreen}
-        options={{ headerShown: false, presentation: 'fullScreenModal' }}
-      />
       <Stack.Screen
         name={'homeScreen'}
         component={HomeScreen}
@@ -82,6 +82,23 @@ const RootStackScreen = () => {
         name={'settingMemoScreen'}
         component={SettingMemoScreen}
         options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  ) : (
+    <Stack.Navigator
+      screenOptions={{
+        animation: 'slide_from_right',
+      }}
+    >
+      <Stack.Screen
+        name={'topScreen'}
+        component={TopScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={'loginScreen'}
+        component={LoginScreen}
+        options={{ headerShown: false, presentation: 'fullScreenModal' }}
       />
     </Stack.Navigator>
   );

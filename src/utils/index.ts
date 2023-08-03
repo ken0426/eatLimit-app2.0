@@ -1,5 +1,8 @@
 import { Alert, Dimensions, KeyboardTypeOptions, Platform } from 'react-native';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { ApiData, HandleLoginType } from '../types';
 import { SEPTEMBER, SETTING_ITEM_ID } from '../contents';
 import { auth } from '../firebase';
@@ -156,7 +159,7 @@ export const handleLogin = async ({
         alphanumericAndSymbolsRegex.test(password) &&
         letterAndNumberRegex.test(password)
       ) {
-        Alert.alert('ログインできます');
+        await signInWithEmailAndPassword(auth, mailAddress, password);
       }
     } else {
       if (mailAddress === '') {
