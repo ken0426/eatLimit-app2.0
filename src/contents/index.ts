@@ -118,6 +118,8 @@ export const SETTING_ITEM_ID = {
   DATE_DISPLAY: 2,
 };
 
+export const LOG_AUTO = 'ログアウト';
+
 /** 設定の情報 */
 export const settingData: SettingData[] = [
   {
@@ -188,7 +190,7 @@ export const settingData: SettingData[] = [
       headline: 'アカウント',
       item: [
         {
-          label: 'ログアウト',
+          label: LOG_AUTO,
           data: [],
         },
       ],

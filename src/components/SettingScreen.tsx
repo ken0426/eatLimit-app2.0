@@ -9,7 +9,7 @@ import {
 import { COLORS, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
-import { DOUBLE_MODAL_BUTTON, LABEL, settingData } from '../contents';
+import { DOUBLE_MODAL_BUTTON, LABEL, LOG_AUTO, settingData } from '../contents';
 import { SettingData, StackPramList } from '../types';
 import { getEditDataFormat, getKey } from '../utils';
 import { useRootSelector } from '../redux/store/store';
@@ -46,41 +46,37 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
                 });
               } else if (data.label === LABEL.MEMO_TEMPLATE) {
                 navigation.push('settingMemoScreen');
-              } else if (data.label === 'ログアウト') {
+              } else if (data.label === LOG_AUTO) {
                 // TODO リファクタリング（定数化など）
-                Alert.alert(
-                  'ログアウト',
-                  `ログアウトします。\nよろしいですか？`,
-                  [
-                    {
-                      text: DOUBLE_MODAL_BUTTON[0].text,
-                      onPress: () => {},
+                Alert.alert(LOG_AUTO, `ログアウトします。\nよろしいですか？`, [
+                  {
+                    text: DOUBLE_MODAL_BUTTON[0].text,
+                    onPress: () => {},
+                  },
+                  {
+                    text: DOUBLE_MODAL_BUTTON[1].text,
+                    onPress: async () => {
+                      try {
+                        auth.signOut();
+                        navigation.reset({
+                          index: 0,
+                          routes: [{ name: 'topScreen' }],
+                        });
+                      } catch (error) {
+                        Alert.alert(
+                          'ログアウトに失敗',
+                          '時間をおいて再度お試しください',
+                          [
+                            {
+                              text: DOUBLE_MODAL_BUTTON[1].text,
+                              onPress: () => {},
+                            },
+                          ]
+                        );
+                      }
                     },
-                    {
-                      text: DOUBLE_MODAL_BUTTON[1].text,
-                      onPress: async () => {
-                        try {
-                          auth.signOut();
-                          navigation.reset({
-                            index: 0,
-                            routes: [{ name: 'topScreen' }],
-                          });
-                        } catch (error) {
-                          Alert.alert(
-                            'ログアウトに失敗',
-                            '時間をおいて再度お試しください',
-                            [
-                              {
-                                text: DOUBLE_MODAL_BUTTON[1].text,
-                                onPress: () => {},
-                              },
-                            ]
-                          );
-                        }
-                      },
-                    },
-                  ]
-                );
+                  },
+                ]);
               } else {
                 navigation.navigate('settingDetailScreen', { data });
               }
