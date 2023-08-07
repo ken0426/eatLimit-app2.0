@@ -36,6 +36,8 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
 
   const { setTargetPostData, postData } = useRegister();
 
+  const [label, setLabel] = useState('');
+
   return (
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
@@ -85,13 +87,14 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                     label={'管理方法'}
                     data={managementData}
                     isRequired={true}
-                    setData={(data) =>
+                    setData={(data) => {
                       setTargetPostData({
                         key: '管理方法',
                         value: data.value,
                         isRequired: data.isRequired,
-                      })
-                    }
+                      });
+                      setLabel(data.value);
+                    }}
                   />
                   <AtomSingleSelect
                     label={'保存方法'}
@@ -107,6 +110,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                   />
                   <AtomDate
                     isRequired={true}
+                    label={'日付'}
                     setData={(data) =>
                       setTargetPostData({
                         key: '日付',
@@ -115,6 +119,20 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                       })
                     }
                   />
+                  {(label === '購入日' || label === '登録日') && (
+                    <AtomDate
+                      isRequired={true}
+                      label={'期限目安'}
+                      isLimit={true}
+                      setData={(data) =>
+                        setTargetPostData({
+                          key: '期限目安',
+                          value: data.value,
+                          isRequired: data.isRequired,
+                        })
+                      }
+                    />
+                  )}
                   <AtomSingleInput
                     label={'購入場所'}
                     onPressIn={() => setEnabled(true)}

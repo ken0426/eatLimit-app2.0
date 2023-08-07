@@ -9,13 +9,30 @@ import { PostData } from '../../types';
 type Props = {
   date?: string;
   isRequired?: boolean;
+  label: string;
+  isLimit?: boolean;
   setData: ({ key, value }: PostData) => void;
 };
 
-const AtomDate: FC<Props> = ({ date, isRequired = false, setData }) => {
-  const [pickedDate, setPickedDate] = useState<Date>(
-    date ? new Date(date) : new Date()
-  );
+const AtomDate: FC<Props> = ({
+  date,
+  isRequired = false,
+  label,
+  isLimit,
+  setData,
+}) => {
+  const getDate = () => {
+    if (date) {
+      return new Date(date);
+    } else if (isLimit) {
+      const currentDate = new Date();
+      return new Date(currentDate.setDate(currentDate.getDate() + 10));
+    } else {
+      return new Date();
+    }
+  };
+
+  const [pickedDate, setPickedDate] = useState<Date>(getDate());
 
   const handleText = () => {
     const year = pickedDate.getFullYear();
@@ -33,7 +50,7 @@ const AtomDate: FC<Props> = ({ date, isRequired = false, setData }) => {
     }`;
 
     setData({
-      key: '日付',
+      key: label,
       value,
       isRequired,
     });
@@ -41,7 +58,11 @@ const AtomDate: FC<Props> = ({ date, isRequired = false, setData }) => {
 
   return (
     <View style={styles.contents}>
-      {isRequired ? <AtomRequire /> : <Text style={styles.label}>日付：</Text>}
+      {isRequired ? (
+        <AtomRequire label={label} />
+      ) : (
+        <Text style={styles.label}>{label}：</Text>
+      )}
 
       <View style={styles.selectArea}>
         <DatePicker
