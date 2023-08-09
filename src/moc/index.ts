@@ -135,4 +135,10 @@ export const data: ApiData[] = [
     management: '消費期限',
     keep: '常温',
   },
+  {
+    eatName: '画像なし',
+    date: '2023-08-09',
+    management: '消費期限',
+    keep: '常温',
+  },
 ];
