@@ -33,6 +33,7 @@ const AtomAuthInput: FC<Props> = ({
       <TextInput
         value={value}
         secureTextEntry={secureTextEntry}
+        autoCapitalize={'none'}
         keyboardType={keyboardType}
         style={[
           styles.textInput,
