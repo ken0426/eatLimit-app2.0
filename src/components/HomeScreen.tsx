@@ -14,6 +14,7 @@ import {
   setSelectMemoTemplate,
   setSelectMemoTemplateData,
 } from '../redux/slices/commonSlice';
+import { settingMemoData } from '../contents';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
@@ -51,7 +52,9 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
         } else {
           dispatch(
             setSelectMemoTemplateData({
-              data: [],
+              /** ここは最終的にバック側から受け取ったデータを入れる */
+              // data: [],
+              data: settingMemoData,
               isTemplate: true,
             })
           );
