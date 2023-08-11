@@ -33,6 +33,7 @@ const MemoTemplateRegisterScreen: FC<Props> = ({ navigation }) => {
             navigation={navigation}
             title={'テンプレートの追加'}
             isRightButton={true}
+            // TODO このonPressでバック側にメモのテンプレートを保存する
             onRightPress={() => navigation.goBack()}
           />
         </MolHeader>
