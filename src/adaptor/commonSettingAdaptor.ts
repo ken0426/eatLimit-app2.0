@@ -8,6 +8,7 @@ type Data = {
   data: {
     text: string;
     id: number;
+    label?: string;
   }[];
 };
 
@@ -38,12 +39,15 @@ export const commonSettingAdaptor = (data: Data) => {
   };
 
   const selectData = data.isTemplate
-    ? [{ id: 0, text: 'テンプレートなし' }, ...data.data]
+    ? [
+        { id: 0, text: 'テンプレートなし', label: 'テンプレートなし' },
+        ...data.data,
+      ]
     : data.data;
 
   const editData = selectData.map((item) => {
     return {
-      text: item.text,
+      text: data.isTemplate && item.id !== 0 ? item.label ?? '' : item.text,
       check: isCheck(item.id),
       id: item.id,
     };
