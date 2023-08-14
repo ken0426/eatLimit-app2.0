@@ -23,7 +23,12 @@ const AtomDate: FC<Props> = ({
 }) => {
   const getDate = () => {
     if (date) {
-      return new Date(date);
+      if (isLimit) {
+        const currentDate = new Date(date);
+        return new Date(currentDate.setDate(currentDate.getDate() + 10));
+      } else {
+        return new Date(date);
+      }
     } else if (isLimit) {
       const currentDate = new Date();
       return new Date(currentDate.setDate(currentDate.getDate() + 10));
@@ -55,6 +60,8 @@ const AtomDate: FC<Props> = ({
       isRequired,
     });
   }, [pickedDate]);
+
+  // TODO 登録、変更画面で日付項目を入れた際に、期限目安もその日付から＋10日するロジックを追加する
 
   return (
     <View style={styles.contents}>

@@ -40,6 +40,8 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
 
   const { setTargetPostData, postData } = useRegister();
 
+  const [label, setLabel] = useState('');
+
   return (
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
@@ -90,13 +92,14 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     data={managementData}
                     textData={updateData.management}
                     isRequired={true}
-                    setData={(data) =>
+                    setData={(data) => {
                       setTargetPostData({
                         key: '管理方法',
                         value: data.value,
                         isRequired: data.isRequired,
-                      })
-                    }
+                      });
+                      setLabel(data.value);
+                    }}
                   />
                   <AtomSingleSelect
                     label={'保存方法'}
@@ -113,6 +116,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                   />
                   <AtomDate
                     date={updateData.date}
+                    label={'日付'}
                     isRequired={true}
                     setData={(data) =>
                       setTargetPostData({
@@ -122,6 +126,21 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                       })
                     }
                   />
+                  {(label === '購入日' || label === '登録日') && (
+                    <AtomDate
+                      date={updateData.date}
+                      isRequired={true}
+                      label={'期限目安'}
+                      isLimit={true}
+                      setData={(data) =>
+                        setTargetPostData({
+                          key: '期限目安',
+                          value: data.value,
+                          isRequired: data.isRequired,
+                        })
+                      }
+                    />
+                  )}
                   <AtomSingleInput
                     label={'購入場所'}
                     onPressIn={() => setEnabled(true)}
