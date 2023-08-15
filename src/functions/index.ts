@@ -32,6 +32,7 @@ type OnRegisterPress = {
     StackPramList,
     'registerScreen' | 'updateRegisterScreen'
   >;
+  setMessage: (e: string) => void;
 };
 
 /** カメラの起動 */
@@ -123,6 +124,7 @@ export const onRegisterPress = async ({
   setIsVisible,
   setIsLoading,
   navigation,
+  setMessage,
 }: OnRegisterPress) => {
   /** 必須項目を抽出 */
   const filterData = postData.filter((item) => item.isRequired);
@@ -130,6 +132,7 @@ export const onRegisterPress = async ({
   const isTextNull = filterData.find((item) => item.value === '');
   if (isTextNull) {
     setIsVisible(true);
+    setMessage('必須項目が入力されていません');
   } else {
     try {
       console.log('postするデータ（常に監視）', postData);

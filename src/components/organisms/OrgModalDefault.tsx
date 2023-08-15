@@ -32,7 +32,7 @@ const OrgModalDefault: FC<Props> = ({
         {data.map((item, index) => (
           <AtomButton
             key={index}
-            onPress={onPress}
+            onPress={onPress} // TODO onPressを削除し、itemから取得するようにする
             buttonText={item.text}
             fontSize={fontSize}
             borderColor={borderColor}

@@ -33,6 +33,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
   const [enabled, setEnabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [message, setMessage] = useState('');
 
   const { setTargetPostData, postData } = useRegister();
 
@@ -49,6 +50,8 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
             setIsLoading={setIsLoading}
             isVisible={isVisible}
             setIsVisible={setIsVisible}
+            message={message}
+            setMessage={setMessage}
           />
         </MolHeader>
 
@@ -175,6 +178,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                         setIsVisible,
                         setIsLoading,
                         navigation,
+                        setMessage,
                       })
                     }
                     color={COLORS.WHITE}

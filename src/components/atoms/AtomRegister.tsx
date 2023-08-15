@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
@@ -7,6 +7,7 @@ import { PostData, StackPramList } from '../../types';
 import { COLORS, FONTSIZE } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onRegisterPress } from '../../functions';
+import moment from 'moment';
 
 type Props = {
   navigation: StackNavigationProp<
@@ -18,6 +19,8 @@ type Props = {
   setIsVisible: (e: boolean) => void;
   isVisible: boolean;
   setIsLoading: (e: boolean) => void;
+  message: string;
+  setMessage: (e: string) => void;
 };
 
 const AtomRegister: FC<Props> = ({
@@ -27,12 +30,28 @@ const AtomRegister: FC<Props> = ({
   setIsLoading,
   isVisible,
   setIsVisible,
+  message,
+  setMessage,
 }) => {
   return (
     <View style={styles.header}>
       <TouchableOpacity
         style={{ width: '33%' }}
-        onPress={() => navigation.goBack()}
+        onPress={() => {
+          const isRegisterData = postData.some((item) => {
+            if (
+              item.value !== moment().format('YYYY-MM-DD') &&
+              item.value !== ''
+            )
+              return true;
+          });
+          if (isRegisterData) {
+            setIsVisible(isRegisterData);
+            setMessage('データが保存されませんがキャンセルしますか？');
+          } else {
+            navigation.goBack();
+          }
+        }}
       >
         <AntDesign
           name='close'
@@ -46,7 +65,13 @@ const AtomRegister: FC<Props> = ({
       </View>
       <TouchableOpacity
         onPress={() =>
-          onRegisterPress({ postData, setIsVisible, setIsLoading, navigation })
+          onRegisterPress({
+            postData,
+            setIsVisible,
+            setIsLoading,
+            navigation,
+            setMessage,
+          })
         }
         style={{ width: '33%', alignItems: 'flex-end' }}
       >
@@ -61,8 +86,12 @@ const AtomRegister: FC<Props> = ({
         isVisible={isVisible}
         cancelOnPress={() => setIsVisible(false)}
         onPress={() => setIsVisible(false)}
-        message={'必須項目が入力されていません'}
-        data={[{ text: '閉じる' }]}
+        message={message}
+        data={
+          message === 'データが保存されませんがキャンセルしますか？'
+            ? [{ text: 'OK' }, { text: 'キャンセル' }]
+            : [{ text: '閉じる' }]
+        }
       />
     </View>
   );

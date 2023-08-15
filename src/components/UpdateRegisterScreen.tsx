@@ -46,6 +46,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={'default'}>
+          {/* TODO 必要なPropsを渡し、修正する（※登録画面できたら実装する） */}
           <AtomRegister
             navigation={navigation}
             title={'変更'}
