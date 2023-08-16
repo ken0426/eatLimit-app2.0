@@ -37,6 +37,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
   const [enabled, setEnabled] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [message, setMessage] = useState('');
 
   const { setTargetPostData, postData } = useRegister();
 
@@ -46,7 +47,6 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={'default'}>
-          {/* TODO 必要なPropsを渡し、修正する（※登録画面できたら実装する） */}
           <AtomRegister
             navigation={navigation}
             title={'変更'}
@@ -54,6 +54,8 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
             setIsLoading={setIsLoading}
             isVisible={isVisible}
             setIsVisible={setIsVisible}
+            message={message}
+            setMessage={setMessage}
           />
         </MolHeader>
         <ScrollView>
@@ -186,6 +188,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                         setIsVisible,
                         setIsLoading,
                         navigation,
+                        setMessage,
                       })
                     }
                     color={COLORS.WHITE}
