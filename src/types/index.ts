@@ -39,6 +39,7 @@ export type StackPramList = {
 
 export type ModalButton = {
   text: string;
+  onPress: () => void;
 };
 
 export type AuthPostData = {

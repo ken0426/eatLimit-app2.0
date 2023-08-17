@@ -86,12 +86,20 @@ const AtomRegister: FC<Props> = ({
       <OrgModalDefault
         isVisible={isVisible}
         cancelOnPress={() => setIsVisible(false)}
-        onPress={() => setIsVisible(false)}
         message={message}
         data={
           message === 'データが保存されませんがキャンセルしますか？'
-            ? [{ text: 'OK' }, { text: 'キャンセル' }]
-            : [{ text: '閉じる' }]
+            ? [
+                {
+                  text: 'OK',
+                  onPress: () => {
+                    setIsVisible(false);
+                    navigation.goBack();
+                  },
+                },
+                { text: 'キャンセル', onPress: () => setIsVisible(false) },
+              ]
+            : [{ text: '閉じる', onPress: () => setIsVisible(false) }]
         }
       />
     </View>

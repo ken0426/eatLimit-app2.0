@@ -15,9 +15,8 @@ import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onPressAction } from '../../functions';
 import { WINDOW_WIDTH } from '../../utils';
-import { SINGLE_MODAL_BUTTON } from '../../contents';
 import { useRootSelector } from '../../redux/store/store';
-import { PostData } from '../../types';
+import { ModalButton, PostData } from '../../types';
 
 type Props = {
   setData: ({ key, value }: PostData) => void;
@@ -34,6 +33,10 @@ const AtomFileSelect: FC<Props> = ({ setData }) => {
   const [hasPermission, setHasPermission] = useState(false);
   /** 画像があるかどうか判定するフラグ */
   const [image, setImage] = useState(imageText ?? '');
+
+  const SINGLE_MODAL_BUTTON: ModalButton[] = [
+    { text: '閉じる', onPress: () => setIsVisible(false) },
+  ];
 
   /** 初めてこの画面を開いた際にカメラへのアクセス権限を聞くロジック */
   useEffect(() => {
@@ -96,7 +99,6 @@ const AtomFileSelect: FC<Props> = ({ setData }) => {
       <OrgModalDefault
         isVisible={isVisible}
         cancelOnPress={() => setIsVisible(false)}
-        onPress={() => setIsVisible(false)}
         message={`画像を追加することができます。\n画像を追加できない場合はアプリへの画像の権限を許可してください。`}
         data={SINGLE_MODAL_BUTTON}
       />

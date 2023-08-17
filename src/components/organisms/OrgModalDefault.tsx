@@ -9,7 +9,6 @@ import { ModalButton } from '../../types';
 type Props = {
   isVisible: boolean;
   cancelOnPress: () => void;
-  onPress: () => void;
   message: string;
   data: ModalButton[];
   fontSize?: number;
@@ -19,7 +18,6 @@ type Props = {
 const OrgModalDefault: FC<Props> = ({
   isVisible,
   cancelOnPress,
-  onPress,
   message,
   data,
   fontSize = FONTSIZE.SIZE30PX,
@@ -32,7 +30,7 @@ const OrgModalDefault: FC<Props> = ({
         {data.map((item, index) => (
           <AtomButton
             key={index}
-            onPress={onPress} // TODO onPressを削除し、itemから取得するようにする
+            onPress={item.onPress}
             buttonText={item.text}
             fontSize={fontSize}
             borderColor={borderColor}

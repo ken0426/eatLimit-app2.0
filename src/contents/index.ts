@@ -3,7 +3,6 @@ import {
   KeepData,
   ManagementData,
   MemoTemplateData,
-  ModalButton,
   SettingData,
 } from '../types';
 
@@ -60,17 +59,6 @@ export const keepData: KeepData[] = [
     text: '常温',
     image: require('../images/salt.png'),
     selectColor: 'rgb(232, 154, 98)',
-  },
-];
-
-/** モーダルのボタン */
-export const SINGLE_MODAL_BUTTON: ModalButton[] = [{ text: '閉じる' }];
-export const DOUBLE_MODAL_BUTTON: ModalButton[] = [
-  {
-    text: 'キャンセル',
-  },
-  {
-    text: 'OK',
   },
 ];
 

@@ -9,7 +9,7 @@ import {
 import { COLORS, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
-import { DOUBLE_MODAL_BUTTON, LABEL, LOG_AUTO, settingData } from '../contents';
+import { LABEL, LOG_AUTO, settingData } from '../contents';
 import { SettingData, StackPramList } from '../types';
 import { getEditDataFormat, getKey } from '../utils';
 import { useRootSelector } from '../redux/store/store';
@@ -50,11 +50,11 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
                 // TODO リファクタリング（定数化など）
                 Alert.alert(LOG_AUTO, `ログアウトします。\nよろしいですか？`, [
                   {
-                    text: DOUBLE_MODAL_BUTTON[0].text,
+                    text: 'キャンセル',
                     onPress: () => {},
                   },
                   {
-                    text: DOUBLE_MODAL_BUTTON[1].text,
+                    text: 'OK',
                     onPress: async () => {
                       try {
                         auth.signOut();
@@ -68,7 +68,7 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
                           '時間をおいて再度お試しください',
                           [
                             {
-                              text: DOUBLE_MODAL_BUTTON[1].text,
+                              text: 'キャンセル',
                               onPress: () => {},
                             },
                           ]
