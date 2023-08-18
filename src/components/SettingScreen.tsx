@@ -9,7 +9,7 @@ import {
 import { COLORS, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
-import { LABEL, LOG_AUTO, settingData } from '../contents';
+import { BUTTON_TEXT, LABEL, LOG_AUTO, settingData } from '../contents';
 import { SettingData, StackPramList } from '../types';
 import { getEditDataFormat, getKey } from '../utils';
 import { useRootSelector } from '../redux/store/store';
@@ -50,11 +50,11 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
                 // TODO リファクタリング（定数化など）
                 Alert.alert(LOG_AUTO, `ログアウトします。\nよろしいですか？`, [
                   {
-                    text: 'キャンセル',
+                    text: BUTTON_TEXT.CANCEL,
                     onPress: () => {},
                   },
                   {
-                    text: 'OK',
+                    text: BUTTON_TEXT.OK,
                     onPress: async () => {
                       try {
                         auth.signOut();
@@ -68,7 +68,7 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
                           '時間をおいて再度お試しください',
                           [
                             {
-                              text: 'キャンセル',
+                              text: BUTTON_TEXT.CANCEL,
                               onPress: () => {},
                             },
                           ]

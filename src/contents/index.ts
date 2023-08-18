@@ -106,6 +106,11 @@ export const SETTING_ITEM_ID = {
   DATE_DISPLAY: 2,
 };
 
+export const BUTTON_TEXT = {
+  CANCEL: 'キャンセル',
+  OK: 'OK',
+  CLOSE: '閉じる',
+};
 export const LOG_AUTO = 'ログアウト';
 
 /** 設定の情報 */
