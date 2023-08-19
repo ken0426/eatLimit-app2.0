@@ -142,6 +142,8 @@ export const onRegisterPress = async ({
       console.log('DBに保存完了'); // 非同期処理
       navigation.goBack();
     } catch (error) {
+      setIsVisible(true);
+      setMessage('送信に失敗しました');
       throw error;
     } finally {
       setIsLoading(false);
