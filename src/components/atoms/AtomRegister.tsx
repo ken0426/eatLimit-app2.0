@@ -33,6 +33,21 @@ const AtomRegister: FC<Props> = ({
   message,
   setMessage,
 }) => {
+  /** モーダルで使用するボタンのデータ */
+  const buttonData =
+    message === 'データが保存されませんがキャンセルしますか？'
+      ? [
+          { text: 'キャンセル', onPress: () => setIsVisible(false) },
+          {
+            text: 'OK',
+            onPress: () => {
+              setIsVisible(false);
+              navigation.goBack();
+            },
+          },
+        ]
+      : [{ text: '閉じる', onPress: () => setIsVisible(false) }];
+
   return (
     <View style={styles.header}>
       <TouchableOpacity
@@ -87,20 +102,7 @@ const AtomRegister: FC<Props> = ({
         isVisible={isVisible}
         cancelOnPress={() => setIsVisible(false)}
         message={message}
-        data={
-          message === 'データが保存されませんがキャンセルしますか？'
-            ? [
-                { text: 'キャンセル', onPress: () => setIsVisible(false) },
-                {
-                  text: 'OK',
-                  onPress: () => {
-                    setIsVisible(false);
-                    navigation.goBack();
-                  },
-                },
-              ]
-            : [{ text: '閉じる', onPress: () => setIsVisible(false) }]
-        }
+        data={buttonData}
       />
     </View>
   );
