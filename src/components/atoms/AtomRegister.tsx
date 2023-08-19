@@ -90,6 +90,7 @@ const AtomRegister: FC<Props> = ({
         data={
           message === 'データが保存されませんがキャンセルしますか？'
             ? [
+                { text: 'キャンセル', onPress: () => setIsVisible(false) },
                 {
                   text: 'OK',
                   onPress: () => {
@@ -97,7 +98,6 @@ const AtomRegister: FC<Props> = ({
                     navigation.goBack();
                   },
                 },
-                { text: 'キャンセル', onPress: () => setIsVisible(false) },
               ]
             : [{ text: '閉じる', onPress: () => setIsVisible(false) }]
         }

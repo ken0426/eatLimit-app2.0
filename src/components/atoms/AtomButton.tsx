@@ -48,6 +48,7 @@ export default AtomButton;
 
 const styles = StyleSheet.create({
   contents: {
+    marginHorizontal: SIZE.BASE_WP * 3,
     alignItems: 'center',
     borderRadius: SIZE.BASE_WP * 20,
     paddingVertical: 2,

@@ -27,19 +27,21 @@ const OrgModalDefault: FC<Props> = ({
     <Modal isVisible={isVisible} onBackdropPress={cancelOnPress}>
       <View style={styles.modal}>
         <Text style={{ fontSize: FONTSIZE.SIZE20PX }}>{message}</Text>
-        {data.map((item, index) => (
-          <AtomButton
-            key={index}
-            onPress={item.onPress}
-            buttonText={item.text}
-            fontSize={fontSize}
-            borderColor={borderColor}
-            color='#000000'
-            backgroundColor='white'
-            width={150}
-            borderWidth={1}
-          />
-        ))}
+        <View style={styles.buttonArea}>
+          {data.map((item, index) => (
+            <AtomButton
+              key={index}
+              onPress={item.onPress}
+              buttonText={item.text}
+              fontSize={fontSize}
+              borderColor={borderColor}
+              color='#000000'
+              backgroundColor='white'
+              width={150}
+              borderWidth={1}
+            />
+          ))}
+        </View>
       </View>
     </Modal>
   );
@@ -57,5 +59,8 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     paddingHorizontal: 10,
     paddingVertical: 10,
+  },
+  buttonArea: {
+    flexDirection: 'row',
   },
 });
