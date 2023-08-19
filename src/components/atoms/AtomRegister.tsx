@@ -8,6 +8,7 @@ import { COLORS, FONTSIZE } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onRegisterPress } from '../../functions';
 import moment from 'moment';
+import { BUTTON_TEXT } from '../../contents';
 
 type Props = {
   navigation: StackNavigationProp<
@@ -37,16 +38,16 @@ const AtomRegister: FC<Props> = ({
   const buttonData =
     message === 'データが保存されませんがキャンセルしますか？'
       ? [
-          { text: 'キャンセル', onPress: () => setIsVisible(false) },
+          { text: BUTTON_TEXT.CANCEL, onPress: () => setIsVisible(false) },
           {
-            text: 'OK',
+            text: BUTTON_TEXT.OK,
             onPress: () => {
               setIsVisible(false);
               navigation.goBack();
             },
           },
         ]
-      : [{ text: '閉じる', onPress: () => setIsVisible(false) }];
+      : [{ text: BUTTON_TEXT.CLOSE, onPress: () => setIsVisible(false) }];
 
   return (
     <View style={styles.header}>
