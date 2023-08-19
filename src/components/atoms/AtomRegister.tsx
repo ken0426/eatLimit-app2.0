@@ -98,7 +98,6 @@ const AtomRegister: FC<Props> = ({
         />
       </TouchableOpacity>
 
-      {/* TODO onPressのPropsを削除し、ロジックを作り直す */}
       <OrgModalDefault
         isVisible={isVisible}
         cancelOnPress={() => setIsVisible(false)}
