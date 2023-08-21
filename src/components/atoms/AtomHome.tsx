@@ -80,10 +80,7 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
         </View>
       </View>
 
-      <OrgFilterModal
-        isVisible={isVisible}
-        cancelOnPress={() => setIsVisible(false)}
-      />
+      <OrgFilterModal isVisible={isVisible} setIsVisible={setIsVisible} />
     </>
   );
 };
