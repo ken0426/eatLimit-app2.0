@@ -23,41 +23,14 @@ const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
     <Modal isVisible={isVisible}>
       <View style={styles.modal}>
         <View style={{ justifyContent: 'space-between', flex: 1 }}>
-          <View
-            style={{
-              width: '100%',
-              borderTopStartRadius: 20,
-              borderTopEndRadius: 20,
-              borderBottomWidth: 1,
-              borderBottomColor: COLORS.BORDER_LINE,
-            }}
-          >
-            <Text style={{ textAlign: 'center', paddingVertical: 30 }}>
-              フィルターまたは並び替え
-            </Text>
+          <View style={styles.header}>
+            <Text style={styles.headerText}>フィルターまたは並び替え</Text>
           </View>
           <ScrollView style={{ flex: 1 }}>
             <Text>aa</Text>
           </ScrollView>
-          <View
-            style={{
-              width: '100%',
-              height: 100,
-              borderBottomStartRadius: 20,
-              borderBottomEndRadius: 20,
-              borderTopWidth: 1,
-              borderTopColor: COLORS.BORDER_LINE,
-            }}
-          >
-            <View
-              style={{
-                alignItems: 'center',
-                flex: 1,
-                borderBottomStartRadius: 20,
-                borderBottomEndRadius: 20,
-                justifyContent: 'center',
-              }}
-            >
+          <View style={styles.footer}>
+            <View style={styles.footerButtonArea}>
               <AtomButton
                 onPress={() => setIsVisible(false)}
                 buttonText={'検索する'}
@@ -78,11 +51,38 @@ const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
 
 export default OrgFilterModal;
 
+// TODO iOSとAndroidでUIが崩れないように数値の箇所を修正する
 const styles = StyleSheet.create({
   modal: {
     backgroundColor: COLORS.WHITE,
     width: '100%',
     height: WINDOW_HEIGHT * 0.9,
     borderRadius: 20,
+  },
+  header: {
+    width: '100%',
+    borderTopStartRadius: 20,
+    borderTopEndRadius: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.BORDER_LINE,
+  },
+  headerText: {
+    textAlign: 'center',
+    paddingVertical: 30,
+  },
+  footer: {
+    width: '100%',
+    height: 100,
+    borderBottomStartRadius: 20,
+    borderBottomEndRadius: 20,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.BORDER_LINE,
+  },
+  footerButtonArea: {
+    alignItems: 'center',
+    flex: 1,
+    borderBottomStartRadius: 20,
+    borderBottomEndRadius: 20,
+    justifyContent: 'center',
   },
 });
