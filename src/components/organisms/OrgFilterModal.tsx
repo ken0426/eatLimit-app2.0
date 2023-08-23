@@ -27,7 +27,9 @@ const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
             <Text style={styles.headerText}>フィルターまたは並び替え</Text>
           </View>
           <ScrollView style={{ flex: 1 }}>
-            <Text>aa</Text>
+            <Text>画像のあり</Text>
+            <Text>表示する</Text>
+            <Text>表示しない</Text>
           </ScrollView>
           <View style={styles.footer}>
             <View style={styles.footerButtonArea}>
