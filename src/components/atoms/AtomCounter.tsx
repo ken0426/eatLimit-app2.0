@@ -34,14 +34,12 @@ const AtomCounter: FC<Props> = ({ onPressIn }) => {
               onPressIn={onPressIn}
               style={[
                 styles.textInput,
-                text > 998 && { backgroundColor: COLORS.CAVEAT },
+                text > 999 && { backgroundColor: COLORS.CAVEAT },
               ]}
               value={String(text)}
               onChangeText={(inputText) =>
                 setText(() => {
-                  if (Number(inputText) > 998) {
-                    return Number(999);
-                  } else if (Number(inputText) < 1) {
+                  if (Number(inputText) < 1) {
                     return Number(1);
                   } else {
                     return Number(inputText);
@@ -52,14 +50,14 @@ const AtomCounter: FC<Props> = ({ onPressIn }) => {
             />
             <TouchableOpacity
               style={{ borderWidth: 1, borderRadius: 5 }}
-              onPress={() => setText((e) => (e > 998 ? e : e + 1))}
+              onPress={() => setText((e) => e + 1)}
             >
               <AntDesign name='plus' size={24} color='black' />
             </TouchableOpacity>
           </View>
         </View>
       </View>
-      {text > 998 && (
+      {text > 999 && (
         <Text
           style={{
             color: COLORS.RED,
