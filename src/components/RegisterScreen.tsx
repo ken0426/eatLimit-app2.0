@@ -23,6 +23,7 @@ import AtomButton from './atoms/AtomButton';
 import { useRegister } from '../hooks/useRegister';
 import AtomLoading from './atoms/AtomLoading';
 import { onRegisterPress } from '../functions';
+import AtomCounter from './atoms/AtomCounter';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
@@ -86,6 +87,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                       })
                     }
                   />
+                  <AtomCounter />
                   <AtomSingleSelect
                     label={'管理方法'}
                     data={managementData}

@@ -38,6 +38,8 @@ export const COLORS = {
   LOGIN_BUTTON: '#1797ec',
   /** トップ画面の新規登録ボタンの色 */
   SIGN_IN_BUTTON: '#fcfcfc',
+  /** 警告の色 */
+  CAVEAT: '#ff9191',
 };
 
 export const SIZE = {
