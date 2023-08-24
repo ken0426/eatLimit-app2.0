@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -10,7 +10,11 @@ import { AntDesign } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import AtomRequire from './AtomRequire';
 
-const AtomCounter = () => {
+type Props = {
+  onPressIn: () => void;
+};
+
+const AtomCounter: FC<Props> = ({ onPressIn }) => {
   const [text, setText] = useState<number>(1);
   return (
     <View style={styles.itemArea}>
@@ -27,6 +31,7 @@ const AtomCounter = () => {
               <AntDesign name='minus' size={24} color='black' />
             </TouchableOpacity>
             <TextInput
+              onPressIn={onPressIn}
               style={[
                 styles.textInput,
                 text > 998 && { backgroundColor: COLORS.CAVEAT },

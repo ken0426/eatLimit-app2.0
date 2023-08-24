@@ -87,7 +87,7 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                       })
                     }
                   />
-                  <AtomCounter />
+                  <AtomCounter onPressIn={() => setEnabled(false)} />
                   <AtomSingleSelect
                     label={'管理方法'}
                     data={managementData}
