@@ -57,18 +57,7 @@ const AtomCounter: FC<Props> = ({ onPressIn }) => {
           </View>
         </View>
       </View>
-      {text > 999 && (
-        <Text
-          style={{
-            color: COLORS.RED,
-            marginTop: 10,
-            width: '100%',
-            textAlign: 'right',
-          }}
-        >
-          個数は999までです
-        </Text>
-      )}
+      {text > 999 && <Text style={styles.errorMessage}>個数は999までです</Text>}
     </View>
   );
 };
@@ -104,5 +93,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingVertical: 2,
     paddingHorizontal: 5,
+  },
+  errorMessage: {
+    color: COLORS.RED,
+    marginTop: 10,
+    width: '100%',
+    textAlign: 'right',
   },
 });
