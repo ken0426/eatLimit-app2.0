@@ -25,7 +25,7 @@ const AtomCounter: FC<Props> = ({ onPressIn }) => {
         <View style={{ flex: 1 }}>
           <View style={styles.counterArea}>
             <TouchableOpacity
-              style={{ borderWidth: 1, borderRadius: 5 }}
+              style={styles.countTouchArea}
               onPress={() => setText((e) => (e > 1 ? e - 1 : e))}
             >
               <AntDesign name='minus' size={24} color='black' />
@@ -49,7 +49,7 @@ const AtomCounter: FC<Props> = ({ onPressIn }) => {
               keyboardType={'numeric'}
             />
             <TouchableOpacity
-              style={{ borderWidth: 1, borderRadius: 5 }}
+              style={styles.countTouchArea}
               onPress={() => setText((e) => e + 1)}
             >
               <AntDesign name='plus' size={24} color='black' />
@@ -99,5 +99,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     width: '100%',
     textAlign: 'right',
+  },
+  countTouchArea: {
+    borderWidth: 1,
+    borderRadius: 5,
   },
 });
