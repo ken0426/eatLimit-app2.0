@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -9,13 +9,20 @@ import {
 import { AntDesign } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import AtomRequire from './AtomRequire';
+import { PostData } from '../../types';
 
 type Props = {
   onPressIn: () => void;
+  setData: ({ key, value }: PostData) => void;
 };
 
-const AtomCounter: FC<Props> = ({ onPressIn }) => {
+const AtomCounter: FC<Props> = ({ onPressIn, setData }) => {
   const [text, setText] = useState<number>(1);
+
+  useEffect(() => {
+    setData({ key: '個数', value: String(text), isRequired: true });
+  }, [text]);
+
   return (
     <View style={styles.itemArea}>
       <View style={{ flexDirection: 'row' }}>

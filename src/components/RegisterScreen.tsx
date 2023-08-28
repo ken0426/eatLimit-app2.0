@@ -87,7 +87,16 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                       })
                     }
                   />
-                  <AtomCounter onPressIn={() => setEnabled(false)} />
+                  <AtomCounter
+                    onPressIn={() => setEnabled(false)}
+                    setData={(data) => {
+                      setTargetPostData({
+                        key: '個数',
+                        value: data.value,
+                        isRequired: data.isRequired,
+                      });
+                    }}
+                  />
                   <AtomSingleSelect
                     label={'管理方法'}
                     data={managementData}
