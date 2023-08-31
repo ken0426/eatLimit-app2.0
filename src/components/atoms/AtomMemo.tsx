@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { PostData } from '../../types';
+import { LABEL_NAME } from '../../contents';
 
 type Props = {
   onPress: () => void;
@@ -22,7 +23,7 @@ const AtomMemo: FC<Props> = ({ onPress, setData }) => {
   const [text, setText] = useState('');
 
   useEffect(() => {
-    setData({ key: 'メモ', value: text, isRequired: false });
+    setData({ key: LABEL_NAME.MEMO, value: text, isRequired: false });
   }, [text]);
 
   return (

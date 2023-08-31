@@ -19,7 +19,7 @@ import AtomSingleSelect from './atoms/AtomSingleSelect';
 import AtomDate from './atoms/AtomDate';
 import AtomMemo from './atoms/AtomMemo';
 import AtomButton from './atoms/AtomButton';
-import { keepData, managementData } from '../contents';
+import { LABEL_NAME, keepData, managementData } from '../contents';
 import { useRootSelector } from '../redux/store/store';
 import { useRegister } from '../hooks/useRegister';
 import AtomLoading from './atoms/AtomLoading';
@@ -71,7 +71,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                 <AtomFileSelect
                   setData={(data) =>
                     setTargetPostData({
-                      key: '画像',
+                      key: LABEL_NAME.IMAGE,
                       value: data.value,
                       isRequired: data.isRequired,
                     })
@@ -85,7 +85,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     isRequired={true}
                     setData={(data) =>
                       setTargetPostData({
-                        key: '商品名',
+                        key: LABEL_NAME.PRODUCT,
                         value: data.value,
                         isRequired: data.isRequired,
                       })
@@ -95,7 +95,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     onPressIn={() => setEnabled(false)}
                     setData={(data) => {
                       setTargetPostData({
-                        key: '個数',
+                        key: LABEL_NAME.QUANTITY,
                         value: data.value,
                         isRequired: data.isRequired,
                       });
@@ -108,7 +108,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     isRequired={true}
                     setData={(data) => {
                       setTargetPostData({
-                        key: '管理方法',
+                        key: LABEL_NAME.MANAGEMENT,
                         value: data.value,
                         isRequired: data.isRequired,
                       });
@@ -122,7 +122,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     isRequired={true}
                     setData={(data) =>
                       setTargetPostData({
-                        key: '保存方法',
+                        key: LABEL_NAME.PRESERVATION,
                         value: data.value,
                         isRequired: data.isRequired,
                       })
@@ -134,7 +134,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     isRequired={true}
                     setData={(data) =>
                       setTargetPostData({
-                        key: '日付',
+                        key: LABEL_NAME.DATE,
                         value: data.value,
                         isRequired: data.isRequired,
                       })
@@ -148,7 +148,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                       isLimit={true}
                       setData={(data) =>
                         setTargetPostData({
-                          key: '期限目安',
+                          key: LABEL_NAME.APPROXIMATE_DEADLINE,
                           value: data.value,
                           isRequired: data.isRequired,
                         })
@@ -161,7 +161,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     textData={updateData.placeOfPurchase}
                     setData={(data) =>
                       setTargetPostData({
-                        key: '購入場所',
+                        key: LABEL_NAME.PLACE_OF_PURCHASE,
                         value: data.value,
                         isRequired: data.isRequired,
                       })
@@ -174,7 +174,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     textData={updateData.price ? String(updateData.price) : ''}
                     setData={(data) =>
                       setTargetPostData({
-                        key: '金額',
+                        key: LABEL_NAME.AMOUNT_OF_MONEY,
                         value: data.value,
                         isRequired: data.isRequired,
                       })
@@ -184,7 +184,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     onPress={() => setEnabled(true)}
                     setData={(data) =>
                       setTargetPostData({
-                        key: 'メモ',
+                        key: LABEL_NAME.MEMO,
                         value: data.value,
                         isRequired: data.isRequired,
                       })

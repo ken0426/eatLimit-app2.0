@@ -17,6 +17,7 @@ import { onPressAction } from '../../functions';
 import { WINDOW_WIDTH } from '../../utils';
 import { useRootSelector } from '../../redux/store/store';
 import { ModalButton, PostData } from '../../types';
+import { LABEL_NAME } from '../../contents';
 
 type Props = {
   setData: ({ key, value }: PostData) => void;
@@ -50,7 +51,7 @@ const AtomFileSelect: FC<Props> = ({ setData }) => {
   const isImage = useMemo(() => image !== '', [image]);
 
   useEffect(() => {
-    setData({ key: '画像', value: image, isRequired: false });
+    setData({ key: LABEL_NAME.IMAGE, value: image, isRequired: false });
   }, [image]);
 
   return (

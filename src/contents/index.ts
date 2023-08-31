@@ -19,6 +19,30 @@ export const SEARCH_BAR_TEXT = 20;
 export const CAMERA_ERROR_MESSAGE =
   'カメラの起動に失敗しました。\n設定からカメラへの権限を許可してください';
 
+/** 登録画面の項目定義 */
+export const LABEL_NAME = {
+  /** 画像 */
+  IMAGE: 'image',
+  /** 商品名 */
+  PRODUCT: 'product',
+  /** 個数 */
+  QUANTITY: 'quantity',
+  /** 管理方法 */
+  MANAGEMENT: 'management',
+  /** 保存方法 */
+  PRESERVATION: 'preservation',
+  /** 日付 */
+  DATE: 'date',
+  /** 期限目安 */
+  APPROXIMATE_DEADLINE: 'approximateDeadline',
+  /** 購入場所 */
+  PLACE_OF_PURCHASE: 'placeOfPurchase',
+  /** 金額 */
+  AMOUNT_OF_MONEY: 'amountOfMoney',
+  /** メモ */
+  MEMO: 'memo',
+};
+
 /** 管理方法のデータ */
 export const managementData: ManagementData[] = [
   {
