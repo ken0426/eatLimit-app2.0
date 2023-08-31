@@ -24,6 +24,7 @@ import { useRootSelector } from '../redux/store/store';
 import { useRegister } from '../hooks/useRegister';
 import AtomLoading from './atoms/AtomLoading';
 import { onRegisterPress } from '../functions';
+import AtomCounter from './atoms/AtomCounter';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
@@ -89,6 +90,16 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                         isRequired: data.isRequired,
                       })
                     }
+                  />
+                  <AtomCounter
+                    onPressIn={() => setEnabled(false)}
+                    setData={(data) => {
+                      setTargetPostData({
+                        key: '個数',
+                        value: data.value,
+                        isRequired: data.isRequired,
+                      });
+                    }}
                   />
                   <AtomSingleSelect
                     label={'管理方法'}
