@@ -1,6 +1,11 @@
 import { ActionSheetIOS, Alert, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { ACTION_SHEET, CAMERA_ERROR_MESSAGE, LABEL } from '../contents';
+import {
+  ACTION_SHEET,
+  CAMERA_ERROR_MESSAGE,
+  LABEL,
+  LABEL_NAME,
+} from '../contents';
 import { ListData, PostData, StackPramList } from '../types';
 import {
   setDateDisplayId,
@@ -130,12 +135,25 @@ export const onRegisterPress = async ({
   const filterData = postData.filter((item) => item.isRequired);
   /** 必須項目の中で1つでも空文字がある場合はtrueにする */
   const isTextNull = filterData.find((item) => item.value === '');
+  /** 管理方法を取得 */
+  const managementData = postData.find(
+    (item) => item.key === LABEL_NAME.MANAGEMENT
+  );
+  /** 管理方法が「消費期限」または「賞味期限」の場合は期限目安の項目を削除し、条件を満たした場合は期限目安の項目を削除する */
+  const newPostData = postData.filter(
+    (item) =>
+      !(
+        item.key === LABEL_NAME.APPROXIMATE_DEADLINE &&
+        (managementData?.value === '賞味期限' ||
+          managementData?.value === '消費期限')
+      )
+  );
   if (isTextNull) {
     setIsVisible(true);
     setMessage('必須項目が入力されていません');
   } else {
     try {
-      console.log('postするデータ（常に監視）', postData);
+      console.log('postするデータ（常に監視）', newPostData);
       setIsLoading(true);
       console.log('リクエストを送信中・・・');
       await new Promise((resolve) => setTimeout(resolve, 2500)); // 2.5秒待機（見た目として実装）
