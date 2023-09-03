@@ -26,7 +26,7 @@ const AtomCounter: FC<Props> = ({ onPressIn, setData }) => {
   return (
     <View style={styles.itemArea}>
       <View style={{ flexDirection: 'row' }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={styles.labelArea}>
           <AtomRequire label={'個数'} />
         </View>
         <View style={{ flex: 1 }}>
@@ -78,6 +78,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.3,
     borderBottomColor: COLORS.DETAIL_BORDER,
     justifyContent: 'center',
+  },
+  labelArea: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   label: {
     fontSize: FONTSIZE.SIZE18PX,
