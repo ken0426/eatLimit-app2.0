@@ -16,6 +16,7 @@ import {
 } from '../redux/slices/commonSlice';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Dispatch } from '@reduxjs/toolkit';
+import moment from 'moment';
 
 type Options = {
   options: string[];
@@ -148,6 +149,13 @@ export const onRegisterPress = async ({
           managementData?.value === '消費期限')
       )
   );
+
+  newPostData.push({
+    key: 'registerDate',
+    value: moment().format('YYYY-MM-DD'),
+    isRequired: true,
+  });
+
   if (isTextNull) {
     setIsVisible(true);
     setMessage('必須項目が入力されていません');
