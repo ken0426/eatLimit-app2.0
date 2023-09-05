@@ -50,6 +50,12 @@ const DetailScreen: FC<Props> = ({ navigation, route }) => {
         <View style={styles.scrollViewContent}>
           <AtomSingleItem value={item.eatName} label={'商品名'} />
           <AtomSingleItem value={item.date} label={item.management} />
+          {item?.approximateDeadline && (
+            <AtomSingleItem
+              value={item.approximateDeadline}
+              label={'期限目安'}
+            />
+          )}
           <AtomSingleItem value={item.keep} label={'保存方法'} />
           {item?.placeOfPurchase && (
             <AtomSingleItem value={item.placeOfPurchase} label={'購入場所'} />

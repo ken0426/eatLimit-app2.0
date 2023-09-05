@@ -112,10 +112,11 @@ export const data: ApiData[] = [
     keep: '常温',
   },
   {
-    eatName: '画像なし',
+    eatName: '登録日の仮データ',
     date: '2023-04-26',
-    management: '消費期限',
+    management: '登録日',
     keep: '常温',
+    approximateDeadline: '2023-09-05',
   },
   {
     eatName: '画像なし',

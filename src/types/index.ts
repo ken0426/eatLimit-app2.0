@@ -4,6 +4,7 @@ export type ApiData = {
   eatName: string;
   image?: string;
   date: string;
+  approximateDeadline?: string;
   placeOfPurchase?: string;
   price?: number;
   management: '消費期限' | '賞味期限' | '購入日' | '登録日';
