@@ -2,6 +2,7 @@ import { ImageSourcePropType } from 'react-native';
 
 export type ApiData = {
   eatName: string;
+  count: number;
   image?: string;
   date: string;
   approximateDeadline?: string;
