@@ -134,10 +134,11 @@ export const data: ApiData[] = [
   },
   {
     eatName: '画像なし',
-    count: 1,
+    count: 10,
     date: '2023-04-26',
     management: '消費期限',
     keep: '常温',
+    approximateDeadline: '2023-09-07',
   },
   {
     eatName: '画像なし',
