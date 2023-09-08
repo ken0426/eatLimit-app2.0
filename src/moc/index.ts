@@ -141,8 +141,8 @@ export const data: ApiData[] = [
     approximateDeadline: '2023-09-07',
   },
   {
-    eatName: '画像なし',
-    count: 1,
+    eatName: '99個のアイテム',
+    count: 99,
     date: '2023-07-26',
     management: '消費期限',
     keep: '常温',
