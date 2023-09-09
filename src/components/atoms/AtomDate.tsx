@@ -12,6 +12,7 @@ type Props = {
   label: string;
   isLimit?: boolean;
   setData: ({ key, value }: PostData) => void;
+  errorMessage: string;
 };
 
 const AtomDate: FC<Props> = ({
@@ -20,6 +21,7 @@ const AtomDate: FC<Props> = ({
   label,
   isLimit,
   setData,
+  errorMessage,
 }) => {
   const getDate = () => {
     if (date) {
@@ -99,7 +101,7 @@ const AtomDate: FC<Props> = ({
         </View>
       </View>
       {/* TODO 日付の計算をしてエラーメッセージを表示する */}
-      <Text style={styles.errorMessage}>エラーメッセージを表示する</Text>
+      {errorMessage && <Text style={styles.errorMessage}>{errorMessage}</Text>}
     </View>
   );
 };

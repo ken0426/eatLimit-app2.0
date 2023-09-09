@@ -19,12 +19,18 @@ import AtomSingleSelect from './atoms/AtomSingleSelect';
 import AtomDate from './atoms/AtomDate';
 import AtomMemo from './atoms/AtomMemo';
 import AtomButton from './atoms/AtomButton';
-import { LABEL_NAME, keepData, managementData } from '../contents';
+import {
+  DATE_ERROR_MESSAGE,
+  LABEL_NAME,
+  keepData,
+  managementData,
+} from '../contents';
 import { useRootSelector } from '../redux/store/store';
 import { useRegister } from '../hooks/useRegister';
 import AtomLoading from './atoms/AtomLoading';
 import { onRegisterPress } from '../functions';
 import AtomCounter from './atoms/AtomCounter';
+import { useDateError } from '../hooks/useDateError';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
@@ -39,10 +45,10 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [message, setMessage] = useState('');
+  const [label, setLabel] = useState('');
 
   const { setTargetPostData, postData } = useRegister();
-
-  const [label, setLabel] = useState('');
+  const { isDateErrorMessage } = useDateError(postData, label);
 
   return (
     <View style={{ flex: 1 }}>
@@ -139,6 +145,9 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                         isRequired: data.isRequired,
                       })
                     }
+                    errorMessage={
+                      isDateErrorMessage ? DATE_ERROR_MESSAGE.DATE : ''
+                    }
                   />
                   {(label === '購入日' || label === '登録日') && (
                     <AtomDate
@@ -152,6 +161,11 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                           value: data.value,
                           isRequired: data.isRequired,
                         })
+                      }
+                      errorMessage={
+                        isDateErrorMessage
+                          ? DATE_ERROR_MESSAGE.APPROXIMATE_DEADLINE
+                          : ''
                       }
                     />
                   )}

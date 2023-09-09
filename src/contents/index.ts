@@ -67,6 +67,12 @@ export const managementData: ManagementData[] = [
   },
 ];
 
+/** 登録変更画面での日付のエラーメッセージ */
+export const DATE_ERROR_MESSAGE = {
+  DATE: '日付は期限目安より前の日付にしてください',
+  APPROXIMATE_DEADLINE: '期限目安は日付より後の日付にしてください',
+};
+
 /** 保存方法のデータ */
 export const keepData: KeepData[] = [
   {
