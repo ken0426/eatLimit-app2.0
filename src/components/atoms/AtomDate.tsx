@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { DatePicker } from 'react-native-woodpicker';
 import { MaterialIcons } from '@expo/vector-icons';
-import { COLORS, FONTSIZE, INPUT_HEIGHT, SIZE } from '../../styles';
+import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import AtomRequire from './AtomRequire';
 import { PostData } from '../../types';
 
@@ -61,40 +61,45 @@ const AtomDate: FC<Props> = ({
     });
   }, [pickedDate]);
 
-  // TODO 登録、変更画面で日付項目を入れた際に、期限目安もその日付から＋10日するロジックを追加する
-
   return (
     <View style={styles.contents}>
-      {isRequired ? (
-        <AtomRequire label={label} />
-      ) : (
-        <Text style={styles.label}>{label}：</Text>
-      )}
+      <View style={{ flexDirection: 'row', flex: 1 }}>
+        <View style={styles.labelArea}>
+          {isRequired ? (
+            <AtomRequire label={label} />
+          ) : (
+            <Text style={styles.label}>{label}：</Text>
+          )}
+        </View>
 
-      <View style={styles.selectArea}>
-        <DatePicker
-          textColor='#000000'
-          textInputStyle={{ fontWeight: 'bold' }}
-          value={pickedDate}
-          doneButtonLabel={'完了'}
-          text={handleText()}
-          iosDisplay='spinner'
-          androidDisplay='spinner'
-          minimumDate={new Date('2000')}
-          maximumDate={new Date('2100')}
-          onDateChange={(e) => e && setPickedDate(e)}
-          style={styles.datePicker}
-          backdropAnimation={{ opacity: 0, duration: 0.3, delay: 1 }}
-          // textInputStyle={{ color: 'red' }} ※消費期限または賞味期限が切れている場合は赤で表示する
-        />
-        <View style={styles.icon}>
-          <MaterialIcons
-            name='keyboard-arrow-down'
-            size={20}
-            color={COLORS.TEXT_COLOR}
-          />
+        <View style={styles.selectArea}>
+          <View style={{ flexDirection: 'row' }}>
+            <DatePicker
+              textColor='#000000'
+              textInputStyle={{ fontWeight: 'bold' }}
+              value={pickedDate}
+              doneButtonLabel={'完了'}
+              text={handleText()}
+              iosDisplay='spinner'
+              androidDisplay='spinner'
+              minimumDate={new Date('2000')}
+              maximumDate={new Date('2100')}
+              onDateChange={(e) => e && setPickedDate(e)}
+              style={styles.datePicker}
+              backdropAnimation={{ opacity: 0, duration: 0.3, delay: 1 }}
+            />
+            <View style={styles.icon}>
+              <MaterialIcons
+                name='keyboard-arrow-down'
+                size={20}
+                color={COLORS.TEXT_COLOR}
+              />
+            </View>
+          </View>
         </View>
       </View>
+      {/* TODO 日付の計算をしてエラーメッセージを表示する */}
+      <Text style={styles.errorMessage}>エラーメッセージを表示する</Text>
     </View>
   );
 };
@@ -103,11 +108,14 @@ export default AtomDate;
 
 const styles = StyleSheet.create({
   contents: {
-    flexDirection: 'row',
-    height: INPUT_HEIGHT,
+    paddingVertical: 10,
     alignItems: 'center',
     borderBottomWidth: 0.3,
     borderBottomColor: COLORS.DETAIL_BORDER,
+  },
+  labelArea: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   label: {
     fontSize: FONTSIZE.SIZE18PX,
@@ -128,8 +136,7 @@ const styles = StyleSheet.create({
   },
   selectArea: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
   },
   datePicker: {
     height: '100%',
@@ -138,5 +145,11 @@ const styles = StyleSheet.create({
   icon: {
     height: '100%',
     justifyContent: 'center',
+  },
+  errorMessage: {
+    color: COLORS.RED,
+    marginTop: 10,
+    width: '100%',
+    textAlign: 'right',
   },
 });
