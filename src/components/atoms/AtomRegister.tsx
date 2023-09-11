@@ -34,6 +34,9 @@ const AtomRegister: FC<Props> = ({
   message,
   setMessage,
 }) => {
+  /** 今日の日付と登録する日付を比較して登録する日付が過去の日付の場合はモーダルを表示するためのフラグ */
+  const [isDateBefore, setIsDateBefore] = useState(false);
+
   /** モーダルで使用するボタンのデータ */
   const buttonData =
     message === 'データが保存されませんがキャンセルしますか？'
@@ -48,6 +51,27 @@ const AtomRegister: FC<Props> = ({
           },
         ]
       : [{ text: BUTTON_TEXT.CLOSE, onPress: () => setIsVisible(false) }];
+
+  /** 日付項目で日付と登録する日付を比較して登録する日付が過去の日付の場合、表示するモーダルデータ */
+  const dateData = [
+    {
+      text: BUTTON_TEXT.CANCEL,
+      onPress: () => setIsDateBefore(false),
+    },
+    {
+      text: BUTTON_TEXT.OK,
+      onPress: () => {
+        setIsDateBefore(false);
+        onRegisterPress({
+          postData,
+          setIsVisible,
+          setIsLoading,
+          navigation,
+          setMessage,
+        });
+      },
+    },
+  ];
 
   return (
     <View style={styles.header}>
@@ -80,15 +104,20 @@ const AtomRegister: FC<Props> = ({
         <Text style={styles.headerText}>{title}</Text>
       </View>
       <TouchableOpacity
-        onPress={() =>
-          onRegisterPress({
-            postData,
-            setIsVisible,
-            setIsLoading,
-            navigation,
-            setMessage,
-          })
-        }
+        onPress={() => {
+          const registerDate = postData.find((item) => item.key === 'date');
+          if (registerDate && moment().isAfter(registerDate.value, 'day')) {
+            setIsDateBefore(true);
+          } else {
+            onRegisterPress({
+              postData,
+              setIsVisible,
+              setIsLoading,
+              navigation,
+              setMessage,
+            });
+          }
+        }}
         style={{ width: '33%', alignItems: 'flex-end' }}
       >
         <FontAwesome
@@ -103,6 +132,12 @@ const AtomRegister: FC<Props> = ({
         cancelOnPress={() => setIsVisible(false)}
         message={message}
         data={buttonData}
+      />
+      <OrgModalDefault
+        isVisible={isDateBefore}
+        cancelOnPress={() => setIsDateBefore(false)}
+        message={'登録する日付が過去の日付です。それでもよいですか？'}
+        data={dateData}
       />
     </View>
   );
