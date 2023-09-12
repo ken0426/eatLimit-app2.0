@@ -22,6 +22,8 @@ type Props = {
   setIsLoading: (e: boolean) => void;
   message: string;
   setMessage: (e: string) => void;
+  isDateBefore: boolean;
+  setIsDateBefore: (e: boolean) => void;
 };
 
 const AtomRegister: FC<Props> = ({
@@ -33,10 +35,9 @@ const AtomRegister: FC<Props> = ({
   setIsVisible,
   message,
   setMessage,
+  isDateBefore,
+  setIsDateBefore,
 }) => {
-  /** 今日の日付と登録する日付を比較して登録する日付が過去の日付の場合はモーダルを表示するためのフラグ */
-  const [isDateBefore, setIsDateBefore] = useState(false);
-
   /** モーダルで使用するボタンのデータ */
   const buttonData =
     message === 'データが保存されませんがキャンセルしますか？'
@@ -68,6 +69,7 @@ const AtomRegister: FC<Props> = ({
           setIsLoading,
           navigation,
           setMessage,
+          setIsDateBefore,
         });
       },
     },
@@ -105,18 +107,14 @@ const AtomRegister: FC<Props> = ({
       </View>
       <TouchableOpacity
         onPress={() => {
-          const registerDate = postData.find((item) => item.key === 'date');
-          if (registerDate && moment().isAfter(registerDate.value, 'day')) {
-            setIsDateBefore(true);
-          } else {
-            onRegisterPress({
-              postData,
-              setIsVisible,
-              setIsLoading,
-              navigation,
-              setMessage,
-            });
-          }
+          onRegisterPress({
+            postData,
+            setIsVisible,
+            setIsLoading,
+            navigation,
+            setMessage,
+            setIsDateBefore,
+          });
         }}
         style={{ width: '33%', alignItems: 'flex-end' }}
       >

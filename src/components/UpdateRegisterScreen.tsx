@@ -46,6 +46,8 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [message, setMessage] = useState('');
   const [label, setLabel] = useState('');
+  /** 今日の日付と登録する日付を比較して登録する日付が過去の日付の場合はモーダルを表示するためのフラグ */
+  const [isDateBefore, setIsDateBefore] = useState(false);
 
   const { setTargetPostData, postData } = useRegister();
   const { isDateErrorMessage } = useDateError(postData, label);
@@ -63,6 +65,8 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
             setIsVisible={setIsVisible}
             message={message}
             setMessage={setMessage}
+            isDateBefore={isDateBefore}
+            setIsDateBefore={setIsDateBefore}
           />
         </MolHeader>
         <ScrollView>
@@ -214,6 +218,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                         setIsLoading,
                         navigation,
                         setMessage,
+                        setIsDateBefore,
                       })
                     }
                     color={COLORS.WHITE}

@@ -39,6 +39,7 @@ type OnRegisterPress = {
     'registerScreen' | 'updateRegisterScreen'
   >;
   setMessage: (e: string) => void;
+  setIsDateBefore: (e: boolean) => void;
 };
 
 /** カメラの起動 */
@@ -131,6 +132,7 @@ export const onRegisterPress = async ({
   setIsLoading,
   navigation,
   setMessage,
+  setIsDateBefore,
 }: OnRegisterPress) => {
   /** 必須項目を抽出 */
   const filterData = postData.filter((item) => item.isRequired);
@@ -149,6 +151,7 @@ export const onRegisterPress = async ({
           managementData?.value === '消費期限')
       )
   );
+  const registerDate = postData.find((item) => item.key === 'date');
 
   newPostData.push({
     key: 'registerDate',
@@ -159,6 +162,8 @@ export const onRegisterPress = async ({
   if (isTextNull) {
     setIsVisible(true);
     setMessage('必須項目が入力されていません');
+  } else if (registerDate && moment().isAfter(registerDate.value, 'day')) {
+    setIsDateBefore(true);
   } else {
     try {
       console.log('postするデータ（常に監視）', newPostData);
