@@ -151,6 +151,7 @@ export const onRegisterPress = async ({
           managementData?.value === '消費期限')
       )
   );
+  /** 消費期限などの登録する日付を取得 */
   const registerDate = postData.find((item) => item.key === 'date');
 
   newPostData.push({
