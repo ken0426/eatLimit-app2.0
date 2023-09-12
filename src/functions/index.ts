@@ -167,8 +167,6 @@ export const onRegisterPress = async ({
   if (isTextNull) {
     setIsVisible(true);
     setMessage('必須項目が入力されていません');
-  } else if (registerDate && moment().isAfter(registerDate.value, 'day')) {
-    setIsDateBefore(true);
   } else if (
     approximateDeadlineData &&
     registerDate &&
@@ -176,6 +174,8 @@ export const onRegisterPress = async ({
   ) {
     setIsVisible(true);
     setMessage('日付項目を正しく入力してください');
+  } else if (registerDate && moment().isAfter(registerDate.value, 'day')) {
+    setIsDateBefore(true);
   } else {
     try {
       console.log('postするデータ（常に監視）', newPostData);
