@@ -110,7 +110,7 @@ export default AtomDate;
 
 const styles = StyleSheet.create({
   contents: {
-    paddingVertical: 10,
+    paddingVertical: SIZE.BASE_WP * 3.5,
     alignItems: 'center',
     borderBottomWidth: 0.3,
     borderBottomColor: COLORS.DETAIL_BORDER,
