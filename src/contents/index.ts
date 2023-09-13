@@ -143,6 +143,11 @@ export const BUTTON_TEXT = {
 };
 export const LOG_AUTO = 'ログアウト';
 
+/** モーダルメッセージ */
+export const MODAL_MESSAGE = {
+  REQUIRED: '必須項目が入力されていません',
+};
+
 /** 設定の情報 */
 export const settingData: SettingData[] = [
   {

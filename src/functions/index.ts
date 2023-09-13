@@ -5,6 +5,7 @@ import {
   CAMERA_ERROR_MESSAGE,
   LABEL,
   LABEL_NAME,
+  MODAL_MESSAGE,
 } from '../contents';
 import { ListData, PostData, StackPramList } from '../types';
 import {
@@ -166,7 +167,7 @@ export const onRegisterPress = async ({
 
   if (isTextNull) {
     setIsVisible(true);
-    setMessage('必須項目が入力されていません');
+    setMessage(MODAL_MESSAGE.REQUIRED);
   } else if (
     approximateDeadlineData &&
     registerDate &&
