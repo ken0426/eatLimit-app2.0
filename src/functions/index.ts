@@ -174,7 +174,7 @@ export const onRegisterPress = async ({
     !moment(registerDate.value).isSameOrBefore(approximateDeadlineData.value)
   ) {
     setIsVisible(true);
-    setMessage('日付項目を正しく入力してください');
+    setMessage(MODAL_MESSAGE.DATE_ERROR);
   } else if (registerDate && moment().isAfter(registerDate.value, 'day')) {
     setIsDateBefore(true);
   } else {
