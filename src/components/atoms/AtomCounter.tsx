@@ -10,7 +10,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import AtomRequire from './AtomRequire';
 import { PostData } from '../../types';
-import { LABEL_TEXT } from '../../contents';
+import { LABEL_TEXT, REGISTER_COUNT_TEXT } from '../../contents';
 
 type Props = {
   onPressIn: () => void;
@@ -46,12 +46,14 @@ const AtomCounter: FC<Props> = ({ onPressIn, setData }) => {
               onPressIn={onPressIn}
               style={[
                 styles.textInput,
-                text > 999 && { backgroundColor: COLORS.CAVEAT },
+                text > REGISTER_COUNT_TEXT.MAX && {
+                  backgroundColor: COLORS.CAVEAT,
+                },
               ]}
               value={String(text)}
               onChangeText={(inputText) =>
                 setText(() => {
-                  if (Number(inputText) < 1) {
+                  if (Number(inputText) < REGISTER_COUNT_TEXT.MIN) {
                     return Number(1);
                   } else {
                     return Number(inputText);
@@ -69,7 +71,9 @@ const AtomCounter: FC<Props> = ({ onPressIn, setData }) => {
           </View>
         </View>
       </View>
-      {text > 999 && <Text style={styles.errorMessage}>個数は999までです</Text>}
+      {text > REGISTER_COUNT_TEXT.MAX && (
+        <Text style={styles.errorMessage}>個数は999までです</Text>
+      )}
     </View>
   );
 };

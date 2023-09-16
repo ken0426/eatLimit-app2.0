@@ -104,6 +104,14 @@ export const managementData: ManagementData[] = [
   },
 ];
 
+/** カウントにセットできるテキスト */
+export const REGISTER_COUNT_TEXT = {
+  /** 最大値 */
+  MAX: 999,
+  /** 最小値 */
+  MIN: 1,
+};
+
 /** 登録変更画面での日付のエラーメッセージ */
 export const DATE_ERROR_MESSAGE = {
   DATE: '日付は期限目安より前の日付にしてください',
