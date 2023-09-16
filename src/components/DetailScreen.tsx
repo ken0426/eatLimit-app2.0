@@ -9,6 +9,7 @@ import { useDetailAnimation } from '../hooks/useDetailAnimation';
 import AtomSingleItem from './atoms/AtomSingleItem';
 import MolDetailHeader from './molecules/MolDetailHeader';
 import { COLORS, DETAIL_IMAGE_HEIGHT, SIZE } from '../styles';
+import { LABEL_TEXT } from '../contents';
 
 type RouteItem = {
   params: {
@@ -48,20 +49,28 @@ const DetailScreen: FC<Props> = ({ navigation, route }) => {
       <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {item.image && <View style={styles.paddingForBanner} />}
         <View style={styles.scrollViewContent}>
-          <AtomSingleItem value={item.eatName} label={'商品名'} />
-          <AtomSingleItem value={`${item.count}`} label={'個数'} />
+          <AtomSingleItem value={item.eatName} label={LABEL_TEXT.PRODUCT} />
+          <AtomSingleItem value={`${item.count}`} label={LABEL_TEXT.QUANTITY} />
           <AtomSingleItem value={item.date} label={item.management} />
           {item?.approximateDeadline && (
             <AtomSingleItem
               value={item.approximateDeadline}
-              label={'期限目安'}
+              label={LABEL_TEXT.APPROXIMATE_DEADLINE}
             />
           )}
-          <AtomSingleItem value={item.keep} label={'保存方法'} />
+          <AtomSingleItem value={item.keep} label={LABEL_TEXT.PRESERVATION} />
           {item?.placeOfPurchase && (
-            <AtomSingleItem value={item.placeOfPurchase} label={'購入場所'} />
+            <AtomSingleItem
+              value={item.placeOfPurchase}
+              label={LABEL_TEXT.PLACE_OF_PURCHASE}
+            />
           )}
-          {item?.price && <AtomSingleItem value={item.price} label={'金額'} />}
+          {item?.price && (
+            <AtomSingleItem
+              value={item.price}
+              label={LABEL_TEXT.AMOUNT_OF_MONEY}
+            />
+          )}
         </View>
       </ScrollView>
     </View>

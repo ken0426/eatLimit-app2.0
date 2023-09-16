@@ -10,6 +10,7 @@ import { COLORS, FONTSIZE, INPUT_HEIGHT, SIZE } from '../../styles';
 import { getText } from '../../utils';
 import AtomRequire from './AtomRequire';
 import { PostData } from '../../types';
+import { LABEL_TEXT } from '../../contents';
 
 type Props = {
   label: string;
@@ -31,7 +32,7 @@ const AtomSingleInput: FC<Props> = ({
   const [text, setText] = useState<string>(textData);
 
   useEffect(() => {
-    if (label === '金額') {
+    if (label === LABEL_TEXT.AMOUNT_OF_MONEY) {
       const pattern = /,/g;
       const ediText = text.replace(pattern, '');
       setData({ key: label, value: ediText, isRequired });

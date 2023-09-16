@@ -14,7 +14,7 @@ import {
   setSelectMemoTemplate,
   setSelectMemoTemplateData,
 } from '../redux/slices/commonSlice';
-import { settingMemoData } from '../contents';
+import { HEADER_TYPE, settingMemoData } from '../contents';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
@@ -81,7 +81,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
           alignItems: 'center',
           flexDirection: 'row',
         }}
-        type={'default'}
+        type={HEADER_TYPE.DEFAULT}
       >
         <AtomHome navigation={navigation} data={data} />
       </MolHeader>

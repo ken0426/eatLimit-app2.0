@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { StackPramList } from '../../types';
 import MolDetailHeader from './MolDetailHeader';
 import { StyleSheet } from 'react-native';
+import { HEADER_TYPE } from '../../contents';
 
 type HeaderProp = {
   children?: ReactNode;
@@ -15,9 +16,9 @@ type HeaderProp = {
 const MolHeader: FC<HeaderProp> = ({ children, style, type }) => {
   const navigation = useNavigation<StackNavigationProp<StackPramList>>();
   switch (type) {
-    case 'default':
+    case HEADER_TYPE.DEFAULT:
       return <View style={[style, styles.default]}>{children}</View>;
-    case 'detail':
+    case HEADER_TYPE.DETAIL:
       return <MolDetailHeader navigation={navigation} />;
     default:
       return null;

@@ -19,6 +19,11 @@ export const SEARCH_BAR_TEXT = 20;
 export const CAMERA_ERROR_MESSAGE =
   'カメラの起動に失敗しました。\n設定からカメラへの権限を許可してください';
 
+export const HEADER_TYPE = {
+  DEFAULT: 'default',
+  DETAIL: 'detail',
+} as const;
+
 /** 登録画面の項目定義 */
 export const LABEL_NAME = {
   /** 画像 */
@@ -43,25 +48,57 @@ export const LABEL_NAME = {
   MEMO: 'memo',
 };
 
+/** 登録画面に表示するラベルのテキスト */
+export const LABEL_TEXT = {
+  /** 商品名 */
+  PRODUCT: '商品名',
+  /** 個数 */
+  QUANTITY: '個数',
+  /** 管理方法 */
+  MANAGEMENT: '管理方法',
+  /** 日付 */
+  DATE: '日付',
+  /** 期限目安 */
+  APPROXIMATE_DEADLINE: '期限目安',
+  /** 保存方法 */
+  PRESERVATION: '保存方法',
+  /** 購入場所 */
+  PLACE_OF_PURCHASE: '購入場所',
+  /** 金額 */
+  AMOUNT_OF_MONEY: '金額',
+};
+
+/** 管理方法の選択するテキスト */
+export const MANAGEMENT_SELECTED_TEXT = {
+  /** 消費期限 */
+  USE_BY_DATE: '消費期限',
+  /** 賞味期限 */
+  BEST_BEFORE_DATE: '賞味期限',
+  /** 購入日 */
+  PURCHASE_DATE: '購入日',
+  /** 登録日 */
+  REGISTRATION_DATE: '登録日',
+} as const;
+
 /** 管理方法のデータ */
 export const managementData: ManagementData[] = [
   {
-    text: '消費期限',
+    text: MANAGEMENT_SELECTED_TEXT.USE_BY_DATE,
     image: undefined,
     selectColor: undefined,
   },
   {
-    text: '賞味期限',
+    text: MANAGEMENT_SELECTED_TEXT.BEST_BEFORE_DATE,
     image: undefined,
     selectColor: undefined,
   },
   {
-    text: '購入日',
+    text: MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE,
     image: undefined,
     selectColor: undefined,
   },
   {
-    text: '登録日',
+    text: MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE,
     image: undefined,
     selectColor: undefined,
   },
@@ -141,6 +178,7 @@ export const BUTTON_TEXT = {
   OK: 'OK',
   CLOSE: '閉じる',
 };
+
 export const LOG_AUTO = 'ログアウト';
 
 /** モーダルメッセージ */

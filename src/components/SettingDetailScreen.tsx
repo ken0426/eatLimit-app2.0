@@ -22,6 +22,7 @@ import {
 } from '../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
+import { HEADER_TYPE } from '../contents';
 
 type RouteItem = {
   params: {
@@ -72,7 +73,7 @@ const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
-        <MolHeader style={styles.header} type={'default'}>
+        <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomSettingRegister
             navigation={navigation}
             title={isTemplate ? 'テンプレート選択' : data.label}

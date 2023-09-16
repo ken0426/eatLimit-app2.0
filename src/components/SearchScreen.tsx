@@ -14,6 +14,7 @@ import { ApiData, StackPramList } from '../types';
 import { COLORS, SIZE } from '../styles';
 import OrgList from './organisms/OrgList';
 import { filterData } from '../utils';
+import { HEADER_TYPE } from '../contents';
 
 type RouteItem = {
   params: {
@@ -44,7 +45,7 @@ const SearchScreen: FC<Props> = ({ navigation, route }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <MolHeader style={styles.header} type={'default'}>
+      <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
         <AtomSearch navigation={navigation} text={text} setText={setText} />
       </MolHeader>
 

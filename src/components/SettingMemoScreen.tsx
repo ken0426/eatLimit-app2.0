@@ -8,6 +8,7 @@ import AtomSettingLabel from './atoms/AtomSettingLabel';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../types';
 import { useRootSelector } from '../redux/store/store';
+import { HEADER_TYPE } from '../contents';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'settingMemoScreen'>;
@@ -21,7 +22,7 @@ const SettingMemoScreen: FC<Props> = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
-        <MolHeader style={styles.header} type={'default'}>
+        <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomSettingRegister
             navigation={navigation}
             title={'メモのテンプレート'}

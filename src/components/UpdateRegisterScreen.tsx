@@ -21,7 +21,10 @@ import AtomMemo from './atoms/AtomMemo';
 import AtomButton from './atoms/AtomButton';
 import {
   DATE_ERROR_MESSAGE,
+  HEADER_TYPE,
   LABEL_NAME,
+  LABEL_TEXT,
+  MANAGEMENT_SELECTED_TEXT,
   keepData,
   managementData,
 } from '../contents';
@@ -55,7 +58,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
-        <MolHeader style={styles.header} type={'default'}>
+        <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomRegister
             navigation={navigation}
             title={'変更'}
@@ -89,7 +92,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                 />
                 <View style={styles.inputForm}>
                   <AtomSingleInput
-                    label={'商品名'}
+                    label={LABEL_TEXT.PRODUCT}
                     onPressIn={() => setEnabled(false)}
                     textData={updateData.eatName}
                     isRequired={true}
@@ -112,7 +115,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     }}
                   />
                   <AtomSingleSelect
-                    label={'管理方法'}
+                    label={LABEL_TEXT.MANAGEMENT}
                     data={managementData}
                     textData={updateData.management}
                     isRequired={true}
@@ -126,7 +129,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     }}
                   />
                   <AtomSingleSelect
-                    label={'保存方法'}
+                    label={LABEL_TEXT.PRESERVATION}
                     data={keepData}
                     textData={updateData.keep}
                     isRequired={true}
@@ -140,7 +143,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                   />
                   <AtomDate
                     date={updateData.date}
-                    label={'日付'}
+                    label={LABEL_TEXT.DATE}
                     isRequired={true}
                     setData={(data) =>
                       setTargetPostData({
@@ -153,11 +156,12 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                       isDateErrorMessage ? DATE_ERROR_MESSAGE.DATE : ''
                     }
                   />
-                  {(label === '購入日' || label === '登録日') && (
+                  {(label === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+                    label === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE) && (
                     <AtomDate
                       date={updateData.date}
                       isRequired={true}
-                      label={'期限目安'}
+                      label={LABEL_TEXT.APPROXIMATE_DEADLINE}
                       isLimit={true}
                       setData={(data) =>
                         setTargetPostData({
@@ -174,7 +178,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     />
                   )}
                   <AtomSingleInput
-                    label={'購入場所'}
+                    label={LABEL_TEXT.PLACE_OF_PURCHASE}
                     onPressIn={() => setEnabled(true)}
                     textData={updateData.placeOfPurchase}
                     setData={(data) =>
@@ -186,7 +190,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     }
                   />
                   <AtomSingleInput
-                    label={'金額'}
+                    label={LABEL_TEXT.AMOUNT_OF_MONEY}
                     onPressIn={() => setEnabled(true)}
                     keyboardType={'number-pad'}
                     textData={updateData.price ? String(updateData.price) : ''}

@@ -10,6 +10,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import AtomRequire from './AtomRequire';
 import { PostData } from '../../types';
+import { LABEL_TEXT } from '../../contents';
 
 type Props = {
   onPressIn: () => void;
@@ -20,14 +21,18 @@ const AtomCounter: FC<Props> = ({ onPressIn, setData }) => {
   const [text, setText] = useState<number>(1);
 
   useEffect(() => {
-    setData({ key: '個数', value: String(text), isRequired: true });
+    setData({
+      key: LABEL_TEXT.QUANTITY,
+      value: String(text),
+      isRequired: true,
+    });
   }, [text]);
 
   return (
     <View style={styles.itemArea}>
       <View style={{ flexDirection: 'row' }}>
         <View style={styles.labelArea}>
-          <AtomRequire label={'個数'} />
+          <AtomRequire label={LABEL_TEXT.QUANTITY} />
         </View>
         <View style={{ flex: 1 }}>
           <View style={styles.counterArea}>

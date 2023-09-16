@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import moment from 'moment';
-import { LABEL_NAME } from '../contents';
+import { LABEL_NAME, MANAGEMENT_SELECTED_TEXT } from '../contents';
 import { PostData } from '../types';
 
 export const useDateError = (postData: PostData[], label: string) => {
@@ -15,7 +15,8 @@ export const useDateError = (postData: PostData[], label: string) => {
       approximateDeadlineData &&
       dateData &&
       !moment(dateData.value).isSameOrBefore(approximateDeadlineData.value) &&
-      (label === '購入日' || label === '登録日')
+      (label === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+        label === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE)
     ) {
       setIsDateErrorMessage(true);
     } else {

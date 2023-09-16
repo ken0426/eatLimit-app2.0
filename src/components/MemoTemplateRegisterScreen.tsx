@@ -14,6 +14,7 @@ import { StackPramList } from '../types';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import AtomSingleInput from './atoms/AtomSingleInput';
 import MolHeader from './molecules/MolHeader';
+import { HEADER_TYPE } from '../contents';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'memoTemplateRegisterScreen'>;
@@ -28,7 +29,7 @@ const MemoTemplateRegisterScreen: FC<Props> = ({ navigation }) => {
       onPress={() => Keyboard.dismiss()}
     >
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
-        <MolHeader style={styles.header} type={'default'}>
+        <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomSettingRegister
             navigation={navigation}
             title={'テンプレートの追加'}

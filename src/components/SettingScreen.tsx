@@ -9,7 +9,13 @@ import {
 import { COLORS, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
-import { BUTTON_TEXT, LABEL, LOG_AUTO, settingData } from '../contents';
+import {
+  BUTTON_TEXT,
+  HEADER_TYPE,
+  LABEL,
+  LOG_AUTO,
+  settingData,
+} from '../contents';
 import { SettingData, StackPramList } from '../types';
 import { getEditDataFormat, getKey } from '../utils';
 import { useRootSelector } from '../redux/store/store';
@@ -91,7 +97,7 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
-        <MolHeader style={styles.header} type={'default'}>
+        <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomSettingRegister navigation={navigation} title={'設定'} />
         </MolHeader>
 
