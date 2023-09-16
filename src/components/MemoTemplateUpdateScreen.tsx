@@ -1,7 +1,7 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC, useState } from 'react';
-import { Button, Keyboard, StyleSheet } from 'react-native';
+import { Button, Keyboard, StyleSheet, Text } from 'react-native';
 import { InputAccessoryView, Platform } from 'react-native';
 import { TextInput, View } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
@@ -53,6 +53,9 @@ const MemoTemplateUpdateScreen: FC<Props> = ({ navigation, route }) => {
             multiline
             maxLength={500}
           />
+          <Text style={{ textAlign: 'right', color: COLORS.TEXT_LABEL }}>
+            {`${text.length}／500`}
+          </Text>
         </View>
 
         {Platform.OS === 'ios' && (
