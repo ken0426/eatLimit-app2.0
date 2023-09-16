@@ -8,7 +8,7 @@ import { COLORS, FONTSIZE } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onRegisterPress } from '../../functions';
 import moment from 'moment';
-import { BUTTON_TEXT } from '../../contents';
+import { BUTTON_TEXT, LABEL_NAME } from '../../contents';
 
 type Props = {
   navigation: StackNavigationProp<
@@ -107,14 +107,22 @@ const AtomRegister: FC<Props> = ({
       </View>
       <TouchableOpacity
         onPress={() => {
-          onRegisterPress({
-            postData,
-            setIsVisible,
-            setIsLoading,
-            navigation,
-            setMessage,
-            setIsDateBefore,
-          });
+          const registerDate = postData.find(
+            (item) => item.key === LABEL_NAME.DATE
+          );
+          // もし、日付項目が今日の日付より前の日付の場合は、警告モーダルを表示し、一旦POSTはしないロジックを追加
+          if (registerDate && moment().isAfter(registerDate.value, 'day')) {
+            return setIsDateBefore(true);
+          } else {
+            onRegisterPress({
+              postData,
+              setIsVisible,
+              setIsLoading,
+              navigation,
+              setMessage,
+              setIsDateBefore,
+            });
+          }
         }}
         style={{ width: '33%', alignItems: 'flex-end' }}
       >

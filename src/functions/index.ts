@@ -175,8 +175,6 @@ export const onRegisterPress = async ({
   ) {
     setIsVisible(true);
     setMessage(MODAL_MESSAGE.DATE_ERROR);
-  } else if (registerDate && moment().isAfter(registerDate.value, 'day')) {
-    setIsDateBefore(true);
   } else {
     try {
       console.log('postするデータ（常に監視）', newPostData);
