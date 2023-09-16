@@ -32,6 +32,7 @@ import AtomLoading from './atoms/AtomLoading';
 import { onRegisterPress } from '../functions';
 import AtomCounter from './atoms/AtomCounter';
 import { useDateError } from '../hooks/useDateError';
+import moment from 'moment';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
@@ -207,16 +208,27 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
                 </View>
                 <View style={styles.buttonArea}>
                   <AtomButton
-                    onPress={() =>
-                      onRegisterPress({
-                        postData,
-                        setIsVisible,
-                        setIsLoading,
-                        navigation,
-                        setMessage,
-                        setIsDateBefore,
-                      })
-                    }
+                    onPress={() => {
+                      const registerDate = postData.find(
+                        (item) => item.key === LABEL_NAME.DATE
+                      );
+                      // もし、日付項目が今日の日付より前の日付の場合は、警告モーダルを表示し、一旦POSTはしないロジックを追加
+                      if (
+                        registerDate &&
+                        moment().isAfter(registerDate.value, 'day')
+                      ) {
+                        return setIsDateBefore(true);
+                      } else {
+                        onRegisterPress({
+                          postData,
+                          setIsVisible,
+                          setIsLoading,
+                          navigation,
+                          setMessage,
+                          setIsDateBefore,
+                        });
+                      }
+                    }}
                     color={COLORS.WHITE}
                     fontSize={FONTSIZE.SIZE30PX}
                     backgroundColor={COLORS.BLUE}
