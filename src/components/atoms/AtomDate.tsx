@@ -13,6 +13,7 @@ type Props = {
   isLimit?: boolean;
   setData: ({ key, value }: PostData) => void;
   errorMessage: string;
+  selectedDate?: string;
 };
 
 const AtomDate: FC<Props> = ({
@@ -22,17 +23,18 @@ const AtomDate: FC<Props> = ({
   isLimit,
   setData,
   errorMessage,
+  selectedDate,
 }) => {
   const getDate = () => {
     if (date) {
-      if (isLimit) {
-        const currentDate = new Date(date);
+      if (isLimit && selectedDate) {
+        const currentDate = new Date(selectedDate);
         return new Date(currentDate.setDate(currentDate.getDate() + 10));
       } else {
         return new Date(date);
       }
-    } else if (isLimit) {
-      const currentDate = new Date();
+    } else if (isLimit && selectedDate) {
+      const currentDate = new Date(selectedDate);
       return new Date(currentDate.setDate(currentDate.getDate() + 10));
     } else {
       return new Date();

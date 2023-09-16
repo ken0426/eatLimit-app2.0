@@ -175,6 +175,10 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                           ? DATE_ERROR_MESSAGE.APPROXIMATE_DEADLINE
                           : ''
                       }
+                      selectedDate={
+                        postData.find((item) => item.key === LABEL_NAME.DATE)
+                          ?.value
+                      }
                     />
                   )}
                   <AtomSingleInput
