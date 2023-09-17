@@ -37,6 +37,14 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA = [
           { text: 'なし', id: '2' },
         ],
       },
+      {
+        LABEL: 'テストボタン2',
+        DATA: [
+          { text: '選択1', id: '1' },
+          { text: '選択2', id: '2' },
+          { text: '選択3', id: '3' },
+        ],
+      },
     ],
   },
 ];
