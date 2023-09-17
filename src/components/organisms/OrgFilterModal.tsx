@@ -28,19 +28,19 @@ const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
 
   // TODO 以下のデータは仮のため修正必須
   const buttonData1 = [
-    { text: 'あり', id: uuidv4() },
-    { text: 'なし', id: uuidv4() },
+    { text: 'あり', id: '1' },
+    { text: 'なし', id: '2' },
   ];
   const buttonData2 = [
-    { text: '消費期限', id: uuidv4() },
-    { text: '賞味期限', id: uuidv4() },
-    { text: '購入日', id: uuidv4() },
-    { text: '登録日', id: uuidv4() },
+    { text: '消費期限', id: '1' },
+    { text: '賞味期限', id: '2' },
+    { text: '購入日', id: '3' },
+    { text: '登録日', id: '4' },
   ];
   const buttonData3 = [
-    { text: '冷蔵', id: uuidv4() },
-    { text: '冷凍', id: uuidv4() },
-    { text: '常温', id: uuidv4() },
+    { text: '冷蔵', id: '1' },
+    { text: '冷凍', id: '2' },
+    { text: '常温', id: '3' },
   ];
 
   return (
@@ -58,18 +58,22 @@ const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
               paddingHorizontal: SIZE.BASE_HP,
             }}
           >
-            {selectBar === FILTER_TAB_BAR.FILTER && (
-              <View>
-                <MolModalSelectItem label={'画像の表示'} data={buttonData1} />
-                <MolModalSelectItem label={'管理方法'} data={buttonData2} />
-                <MolModalSelectItem label={'保存方法'} data={buttonData3} />
-              </View>
-            )}
-            {selectBar === FILTER_TAB_BAR.SORT && (
-              <View>
-                <Text>これは並び替えの画面です</Text>
-              </View>
-            )}
+            <View
+              style={{
+                display: selectBar === FILTER_TAB_BAR.FILTER ? 'flex' : 'none',
+              }}
+            >
+              <MolModalSelectItem label={'画像の表示'} data={buttonData1} />
+              <MolModalSelectItem label={'管理方法'} data={buttonData2} />
+              <MolModalSelectItem label={'保存方法'} data={buttonData3} />
+            </View>
+            <View
+              style={{
+                display: selectBar === FILTER_TAB_BAR.SORT ? 'flex' : 'none',
+              }}
+            >
+              <Text>これは並び替えの画面です</Text>
+            </View>
           </ScrollView>
           <View style={styles.footer}>
             <View style={styles.footerButtonArea}>

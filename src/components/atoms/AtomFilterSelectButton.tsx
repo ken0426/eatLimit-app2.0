@@ -8,6 +8,8 @@ type Props = {
   data: { text: string; id: string }[];
   selectedId: string;
   setSelectedId: (e: string) => void;
+  multiSelectedId: string[];
+  setMultiSelectedId: (e: any) => void; // TODO 型定義をする
 };
 
 const AtomFilterSelectButton: FC<Props> = ({
@@ -16,14 +18,13 @@ const AtomFilterSelectButton: FC<Props> = ({
   data,
   selectedId,
   setSelectedId,
+  multiSelectedId,
+  setMultiSelectedId,
 }) => {
-  /** 複数選択の場合 */
-  const [isSelected, setIsSelected] = useState(false);
-
   /** ボタンの背景色を計算 */
   const getBackGroundColor = () => {
     if (data.length > 2) {
-      if (isSelected) {
+      if (multiSelectedId.find((selectedId) => selectedId === id)) {
         return { backgroundColor: COLORS.TEXT_LABEL };
       } else {
         return { backgroundColor: COLORS.TEXT_INPUT };
@@ -40,7 +41,7 @@ const AtomFilterSelectButton: FC<Props> = ({
   /** ボタンの文字の色を計算 */
   const getTextColor = () => {
     if (data.length > 2) {
-      if (isSelected) {
+      if (multiSelectedId.find((selectedId) => selectedId === id)) {
         return { color: COLORS.SIGN_IN_BUTTON };
       } else {
         return { color: COLORS.MAIN_TEXT_COLOR };
@@ -56,7 +57,14 @@ const AtomFilterSelectButton: FC<Props> = ({
 
   const onPress = () => {
     if (data.length > 2) {
-      setIsSelected(!isSelected);
+      if (multiSelectedId.find((selectedId) => selectedId === id)) {
+        const newMultiSelectedId = multiSelectedId.filter(
+          (selectedId) => selectedId !== id
+        );
+        setMultiSelectedId(newMultiSelectedId);
+      } else {
+        setMultiSelectedId([...multiSelectedId, id]);
+      }
     } else {
       setSelectedId(id);
     }
