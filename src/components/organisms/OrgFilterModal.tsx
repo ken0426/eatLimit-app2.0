@@ -1,9 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import Modal from 'react-native-modal';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { COLORS } from '../../styles';
+import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { WINDOW_HEIGHT } from '../../utils';
 import AtomButton from '../atoms/AtomButton';
+import MolFilterTabBar from '../molecules/MolFilterTabBar';
+import { FILTER_TAB_BAR } from '../../contents';
 
 /** フィルターとして実装する機能
  * - 画像が存在するもの
@@ -19,17 +21,28 @@ type Props = {
 };
 
 const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
+  const [selectBar, setSelectBar] = useState<0 | 1>(0);
   return (
     <Modal isVisible={isVisible}>
       <View style={styles.modal}>
         <View style={{ justifyContent: 'space-between', flex: 1 }}>
           <View style={styles.header}>
-            <Text style={styles.headerText}>フィルターまたは並び替え</Text>
+            <Text style={styles.headerText}>絞り込み</Text>
           </View>
+          <MolFilterTabBar selectBar={selectBar} setSelectBar={setSelectBar} />
           <ScrollView style={{ flex: 1 }}>
-            <Text>画像のあり</Text>
-            <Text>表示する</Text>
-            <Text>表示しない</Text>
+            {selectBar === FILTER_TAB_BAR.FILTER && (
+              <View>
+                <Text>画像のあり</Text>
+                <Text>表示する</Text>
+                <Text>表示しない</Text>
+              </View>
+            )}
+            {selectBar === FILTER_TAB_BAR.SORT && (
+              <View>
+                <Text>これは並び替えの画面です</Text>
+              </View>
+            )}
           </ScrollView>
           <View style={styles.footer}>
             <View style={styles.footerButtonArea}>
@@ -70,7 +83,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     textAlign: 'center',
-    paddingVertical: 30,
+    paddingVertical: SIZE.BASE_HP * 1.6,
+    fontSize: FONTSIZE.SIZE25PX,
   },
   footer: {
     width: '100%',

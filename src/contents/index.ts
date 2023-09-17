@@ -112,6 +112,14 @@ export const REGISTER_COUNT_TEXT = {
   MIN: 1,
 };
 
+/** 絞り込み検索モーダル */
+export const FILTER_TAB_BAR = {
+  /** フィルタータブ */
+  FILTER: 0,
+  /** 並び替えタブ */
+  SORT: 1,
+} as const;
+
 /** 登録変更画面での日付のエラーメッセージ */
 export const DATE_ERROR_MESSAGE = {
   DATE: '日付は期限目安より前の日付にしてください',
