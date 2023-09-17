@@ -12,7 +12,7 @@ const MolModalSelectItem: FC<Props> = ({ label, data }) => {
   /** 単数選択の場合 */
   const [selectedId, setSelectedId] = useState(data[0].id);
   /** 複数選択の場合 */
-  const [multiSelectedId, setMultiSelectedId] = useState([]);
+  const [multiSelectedId, setMultiSelectedId] = useState<string[]>([]);
 
   return (
     <View style={styles.contents}>
