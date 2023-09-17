@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 import 'react-native-get-random-values';
-import { v4 as uuidv4 } from 'uuid';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { WINDOW_HEIGHT } from '../../utils';
 import AtomButton from '../atoms/AtomButton';
