@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FONTSIZE, SIZE } from '../../styles';
 import AtomFilterSelectButton from '../atoms/AtomFilterSelectButton';
@@ -9,6 +9,9 @@ type Props = {
 };
 
 const MolModalSelectItem: FC<Props> = ({ label, data }) => {
+  /** 単数選択の場合 */
+  const [selectedId, setSelectedId] = useState(data[0].id);
+
   return (
     <View style={styles.contents}>
       <View>
@@ -16,7 +19,14 @@ const MolModalSelectItem: FC<Props> = ({ label, data }) => {
       </View>
       <View style={styles.touchArea}>
         {data.map((item) => (
-          <AtomFilterSelectButton key={item.id} text={item.text} id={item.id} />
+          <AtomFilterSelectButton
+            key={item.id}
+            text={item.text}
+            id={item.id}
+            data={data}
+            selectedId={selectedId}
+            setSelectedId={setSelectedId}
+          />
         ))}
       </View>
     </View>
