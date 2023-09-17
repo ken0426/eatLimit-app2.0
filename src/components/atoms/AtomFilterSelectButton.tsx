@@ -9,7 +9,7 @@ type Props = {
   selectedId: string;
   setSelectedId: (e: string) => void;
   multiSelectedId: string[];
-  setMultiSelectedId: (e: string[]) => void; // TODO 型定義をする
+  setMultiSelectedId: (e: string[]) => void;
 };
 
 const AtomFilterSelectButton: FC<Props> = ({
