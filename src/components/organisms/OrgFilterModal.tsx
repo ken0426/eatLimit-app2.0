@@ -8,6 +8,7 @@ import AtomButton from '../atoms/AtomButton';
 import MolFilterTabBar from '../molecules/MolFilterTabBar';
 import { FILTER_TAB_BAR } from '../../contents';
 import MolModalSelectItem from '../molecules/MolModalSelectItem';
+import { FILTER_MODAL_SELECT_BUTTON_DATA } from '../../contents/filterModalSelectButtonData';
 
 /** フィルターとして実装する機能
  * - 画像が存在するもの
@@ -24,23 +25,6 @@ type Props = {
 
 const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
   const [selectBar, setSelectBar] = useState<0 | 1>(0);
-
-  // TODO 以下のデータは仮のため修正必須
-  const buttonData1 = [
-    { text: 'あり', id: '1' },
-    { text: 'なし', id: '2' },
-  ];
-  const buttonData2 = [
-    { text: '消費期限', id: '1' },
-    { text: '賞味期限', id: '2' },
-    { text: '購入日', id: '3' },
-    { text: '登録日', id: '4' },
-  ];
-  const buttonData3 = [
-    { text: '冷蔵', id: '1' },
-    { text: '冷凍', id: '2' },
-    { text: '常温', id: '3' },
-  ];
 
   return (
     <Modal isVisible={isVisible}>
@@ -62,16 +46,22 @@ const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
                 display: selectBar === FILTER_TAB_BAR.FILTER ? 'flex' : 'none',
               }}
             >
-              <MolModalSelectItem label={'画像の表示'} data={buttonData1} />
-              <MolModalSelectItem label={'管理方法'} data={buttonData2} />
-              <MolModalSelectItem label={'保存方法'} data={buttonData3} />
+              {FILTER_MODAL_SELECT_BUTTON_DATA.map((item) =>
+                item.FILTER.map((itm) => (
+                  <MolModalSelectItem label={itm.LABEL} data={itm.DATA} />
+                ))
+              )}
             </View>
             <View
               style={{
                 display: selectBar === FILTER_TAB_BAR.SORT ? 'flex' : 'none',
               }}
             >
-              <Text>これは並び替えの画面です</Text>
+              {FILTER_MODAL_SELECT_BUTTON_DATA.map((item) =>
+                item.SORT.map((itm) => (
+                  <MolModalSelectItem label={itm.LABEL} data={itm.DATA} />
+                ))
+              )}
             </View>
           </ScrollView>
           <View style={styles.footer}>
