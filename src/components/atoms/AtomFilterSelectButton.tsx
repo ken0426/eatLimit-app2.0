@@ -19,7 +19,7 @@ export default AtomFilterSelectButton;
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 6,
+    borderRadius: 4,
     width: '49%',
     alignItems: 'center',
     justifyContent: 'center',
