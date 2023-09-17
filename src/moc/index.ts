@@ -1,8 +1,21 @@
+import moment from 'moment';
 import { ApiData } from '../types';
 
 export const noImage = 'https://bpbd.sumbarprov.go.id/images/noimage.png';
 
+const getRandomNumber = (min: number, max: number) =>
+  Math.floor(Math.random() * (max - min + 1)) + min;
+
+const randomNumber = getRandomNumber(1, 99);
+
 export const data: ApiData[] = [
+  {
+    eatName: '動的リスト',
+    count: randomNumber,
+    date: moment().format('YYYY-MM-DD'),
+    management: '消費期限',
+    keep: '常温',
+  },
   {
     eatName: 'たらこ',
     count: 1,
@@ -151,13 +164,6 @@ export const data: ApiData[] = [
     eatName: '画像なし',
     count: 1,
     date: '2023-07-26',
-    management: '消費期限',
-    keep: '常温',
-  },
-  {
-    eatName: '画像なし',
-    count: 1,
-    date: '2023-08-09',
     management: '消費期限',
     keep: '常温',
   },
