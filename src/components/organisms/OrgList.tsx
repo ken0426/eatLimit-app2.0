@@ -2,6 +2,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
+import moment from 'moment';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { noImage } from '../../moc';
 import { ApiData, StackPramList } from '../../types';
@@ -24,6 +25,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
   );
   const dateDisplayId = useRootSelector((state) => state.common.dateDisplayId);
   const dayOfWeekId = useRootSelector((state) => state.common.dayOfWeekId);
+  const isBeforeDate = moment().isAfter(item.date, 'day');
 
   const { isImage, dateText } = useListEdit(
     imageId,
@@ -55,7 +57,10 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
         )}
         <View style={[styles.textArea, { paddingLeft: isImage ? 0 : 20 }]}>
           <Text style={styles.eatName}>{item.eatName}</Text>
-          <Text style={styles.date}>{dateText}</Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={styles.date}>{dateText}</Text>
+            {isBeforeDate && <Text style={styles.caveatText}>期限切れ</Text>}
+          </View>
         </View>
         <View style={styles.arrow}>
           <MaterialIcons
@@ -101,5 +106,9 @@ const styles = StyleSheet.create({
   },
   date: {
     fontSize: FONTSIZE.SIZE15PX,
+  },
+  caveatText: {
+    marginLeft: SIZE.BASE_WP,
+    color: COLORS.RED,
   },
 });
