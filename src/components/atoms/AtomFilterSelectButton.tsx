@@ -95,5 +95,6 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.SIZE15PX,
     paddingHorizontal: SIZE.BASE_WP * 3,
     paddingVertical: SIZE.BASE_HP * 1.5,
+    fontWeight: 'bold',
   },
 });
