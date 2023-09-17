@@ -10,9 +10,9 @@ type Props = {
 
 const MolModalSelectItem: FC<Props> = ({ label, data }) => {
   /** 単数選択の場合 */
-  const [selectedId, setSelectedId] = useState(data[0].id);
+  const [selectedId, setSelectedId] = useState(data[0].id); // TODO reduxからのデータを取得→なければ初期値をセットする
   /** 複数選択の場合 */
-  const [multiSelectedId, setMultiSelectedId] = useState<string[]>([]);
+  const [multiSelectedId, setMultiSelectedId] = useState<string[]>([]); // TODO reduxからのデータを取得→なければ初期値をセットする
 
   return (
     <View style={styles.contents}>
