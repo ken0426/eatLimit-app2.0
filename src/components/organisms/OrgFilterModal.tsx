@@ -1,11 +1,14 @@
 import React, { FC, useState } from 'react';
-import Modal from 'react-native-modal';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import Modal from 'react-native-modal';
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { WINDOW_HEIGHT } from '../../utils';
 import AtomButton from '../atoms/AtomButton';
 import MolFilterTabBar from '../molecules/MolFilterTabBar';
 import { FILTER_TAB_BAR } from '../../contents';
+import MolModalSelectItem from '../molecules/MolModalSelectItem';
 
 /** フィルターとして実装する機能
  * - 画像が存在するもの
@@ -22,6 +25,24 @@ type Props = {
 
 const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
   const [selectBar, setSelectBar] = useState<0 | 1>(0);
+
+  // TODO 以下のデータは仮のため修正必須
+  const buttonData1 = [
+    { text: 'あり', id: uuidv4() },
+    { text: 'なし', id: uuidv4() },
+  ];
+  const buttonData2 = [
+    { text: '消費期限', id: uuidv4() },
+    { text: '賞味期限', id: uuidv4() },
+    { text: '購入日', id: uuidv4() },
+    { text: '登録日', id: uuidv4() },
+  ];
+  const buttonData3 = [
+    { text: '冷蔵', id: uuidv4() },
+    { text: '冷凍', id: uuidv4() },
+    { text: '常温', id: uuidv4() },
+  ];
+
   return (
     <Modal isVisible={isVisible}>
       <View style={styles.modal}>
@@ -30,12 +51,18 @@ const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
             <Text style={styles.headerText}>絞り込み</Text>
           </View>
           <MolFilterTabBar selectBar={selectBar} setSelectBar={setSelectBar} />
-          <ScrollView style={{ flex: 1, paddingTop: SIZE.BASE_HP * 2 }}>
+          <ScrollView
+            style={{
+              flex: 1,
+              paddingTop: SIZE.BASE_HP * 2,
+              paddingHorizontal: SIZE.BASE_HP,
+            }}
+          >
             {selectBar === FILTER_TAB_BAR.FILTER && (
               <View>
-                <Text>画像のあり</Text>
-                <Text>表示する</Text>
-                <Text>表示しない</Text>
+                <MolModalSelectItem label={'画像の表示'} data={buttonData1} />
+                <MolModalSelectItem label={'管理方法'} data={buttonData2} />
+                <MolModalSelectItem label={'保存方法'} data={buttonData3} />
               </View>
             )}
             {selectBar === FILTER_TAB_BAR.SORT && (
