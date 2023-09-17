@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 
@@ -8,9 +8,28 @@ type Props = {
 };
 
 const AtomFilterSelectButton: FC<Props> = ({ text, id }) => {
+  // TODO 一旦複数選択の挙動のみ実装
+  const [isSelected, setIsSelected] = useState(false);
   return (
-    <TouchableOpacity style={[styles.button]}>
-      <Text style={styles.buttonText}>{text}</Text>
+    <TouchableOpacity
+      onPress={() => setIsSelected(!isSelected)}
+      style={[
+        styles.button,
+        isSelected
+          ? { backgroundColor: COLORS.TEXT_LABEL }
+          : { backgroundColor: COLORS.TEXT_INPUT },
+      ]}
+    >
+      <Text
+        style={[
+          styles.buttonText,
+          isSelected
+            ? { color: COLORS.SIGN_IN_BUTTON }
+            : { color: COLORS.MAIN_TEXT_COLOR },
+        ]}
+      >
+        {text}
+      </Text>
     </TouchableOpacity>
   );
 };
