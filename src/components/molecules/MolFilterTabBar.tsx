@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
   tabArea: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: SIZE.BASE_HP * 2,
     backgroundColor: COLORS.SETTING_LABEL,
   },
   touchArea: {

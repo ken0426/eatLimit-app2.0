@@ -30,7 +30,7 @@ const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
             <Text style={styles.headerText}>絞り込み</Text>
           </View>
           <MolFilterTabBar selectBar={selectBar} setSelectBar={setSelectBar} />
-          <ScrollView style={{ flex: 1 }}>
+          <ScrollView style={{ flex: 1, paddingTop: SIZE.BASE_HP * 2 }}>
             {selectBar === FILTER_TAB_BAR.FILTER && (
               <View>
                 <Text>画像のあり</Text>
