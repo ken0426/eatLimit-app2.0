@@ -1,9 +1,12 @@
+import { LABEL_NAME } from '.';
+
 /** 絞り込み画面のボタンデータ */
 export const FILTER_MODAL_SELECT_BUTTON_DATA = [
   {
     /** フィルター画面用 */
     FILTER: [
       {
+        ELEMENT_NAME: LABEL_NAME.IMAGE,
         LABEL: '画像の表示',
         DATA: [
           { text: 'あり', id: '1' },
@@ -11,6 +14,7 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA = [
         ],
       },
       {
+        ELEMENT_NAME: LABEL_NAME.MANAGEMENT,
         LABEL: '管理方法',
         DATA: [
           { text: '消費期限', id: '1' },
@@ -20,6 +24,7 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA = [
         ],
       },
       {
+        ELEMENT_NAME: LABEL_NAME.PRESERVATION,
         LABEL: '保存方法',
         DATA: [
           { text: '冷蔵', id: '1' },
@@ -31,6 +36,7 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA = [
     /** 並び替えの画面用 */
     SORT: [
       {
+        ELEMENT_NAME: 'test',
         LABEL: 'テスト',
         DATA: [
           { text: 'あり', id: '1' },
@@ -38,6 +44,7 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA = [
         ],
       },
       {
+        ELEMENT_NAME: 'test2',
         LABEL: 'テストボタン2',
         DATA: [
           { text: '選択1', id: '1' },

@@ -2,17 +2,29 @@ import React, { FC, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FONTSIZE, SIZE } from '../../styles';
 import AtomFilterSelectButton from '../atoms/AtomFilterSelectButton';
+import { useRootSelector } from '../../redux/store/store';
 
 type Props = {
   label: string;
   data: { text: string; id: string }[];
+  elementName: string;
 };
 
-const MolModalSelectItem: FC<Props> = ({ label, data }) => {
+const MolModalSelectItem: FC<Props> = ({ label, data, elementName }) => {
+  const singleData = useRootSelector(
+    (state) => state.filterModal.filterSelectedData.single
+  );
+  const multiData = useRootSelector(
+    (state) => state.filterModal.filterSelectedData.multi
+  );
   /** 単数選択の場合 */
-  const [selectedId, setSelectedId] = useState(data[0].id); // TODO reduxからのデータを取得→なければ初期値をセットする
+  const [selectedId, setSelectedId] = useState(
+    singleData[elementName] === '' ? data[0].id : singleData[elementName]
+  );
   /** 複数選択の場合 */
-  const [multiSelectedId, setMultiSelectedId] = useState<string[]>([]); // TODO reduxからのデータを取得→なければ初期値をセットする
+  const [multiSelectedId, setMultiSelectedId] = useState<string[]>(
+    multiData[elementName]?.length ? multiData[elementName] : []
+  );
 
   return (
     <View style={styles.contents}>
@@ -30,6 +42,7 @@ const MolModalSelectItem: FC<Props> = ({ label, data }) => {
             setSelectedId={setSelectedId}
             multiSelectedId={multiSelectedId}
             setMultiSelectedId={setMultiSelectedId}
+            elementName={elementName}
           />
         ))}
       </View>

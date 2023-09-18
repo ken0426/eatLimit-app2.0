@@ -1,6 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
+import { useRootDispatch } from '../../redux/store/store';
+import { setFilterSelectedData } from '../../redux/slices/filterModalSlice';
 
 type Props = {
   text: string;
@@ -10,6 +12,7 @@ type Props = {
   setSelectedId: (e: string) => void;
   multiSelectedId: string[];
   setMultiSelectedId: (e: string[]) => void;
+  elementName: string;
 };
 
 const AtomFilterSelectButton: FC<Props> = ({
@@ -20,7 +23,9 @@ const AtomFilterSelectButton: FC<Props> = ({
   setSelectedId,
   multiSelectedId,
   setMultiSelectedId,
+  elementName,
 }) => {
+  const dispatch = useRootDispatch();
   /** ボタンの背景色を計算 */
   const getBackGroundColor = () => {
     if (data.length > 2) {
@@ -57,16 +62,32 @@ const AtomFilterSelectButton: FC<Props> = ({
 
   const onPress = () => {
     if (data.length > 2) {
+      // 複数選択
       if (multiSelectedId.find((selectedId) => selectedId === id)) {
+        // 選択を解除
         const newMultiSelectedId = multiSelectedId.filter(
           (selectedId) => selectedId !== id
         );
         setMultiSelectedId(newMultiSelectedId);
+        dispatch(
+          setFilterSelectedData({
+            multi: {
+              [elementName]: newMultiSelectedId,
+            },
+          })
+        );
       } else {
+        // 選択した時
         setMultiSelectedId([...multiSelectedId, id]);
+        const selectedData: string[] = [...multiSelectedId, id];
+        dispatch(
+          setFilterSelectedData({ multi: { [elementName]: selectedData } })
+        );
       }
     } else {
+      // 単数選択
       setSelectedId(id);
+      dispatch(setFilterSelectedData({ single: { [elementName]: id } }));
     }
   };
 

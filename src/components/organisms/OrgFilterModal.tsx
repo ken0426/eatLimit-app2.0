@@ -47,8 +47,13 @@ const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
               }}
             >
               {FILTER_MODAL_SELECT_BUTTON_DATA.map((item) =>
-                item.FILTER.map((itm) => (
-                  <MolModalSelectItem label={itm.LABEL} data={itm.DATA} />
+                item.FILTER.map((itm, index) => (
+                  <MolModalSelectItem
+                    key={index}
+                    label={itm.LABEL}
+                    data={itm.DATA}
+                    elementName={itm.ELEMENT_NAME}
+                  />
                 ))
               )}
             </View>
@@ -58,8 +63,13 @@ const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
               }}
             >
               {FILTER_MODAL_SELECT_BUTTON_DATA.map((item) =>
-                item.SORT.map((itm) => (
-                  <MolModalSelectItem label={itm.LABEL} data={itm.DATA} />
+                item.SORT.map((itm, index) => (
+                  <MolModalSelectItem
+                    key={index}
+                    label={itm.LABEL}
+                    data={itm.DATA}
+                    elementName={itm.ELEMENT_NAME}
+                  />
                 ))
               )}
             </View>
