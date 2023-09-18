@@ -32,6 +32,14 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA = [
           { text: '常温', id: '3' },
         ],
       },
+      {
+        ELEMENT_NAME: 'isBeforeDate',
+        LABEL: '期限切れの表示',
+        DATA: [
+          { text: 'する', id: '1' },
+          { text: 'しない', id: '2' },
+        ],
+      },
     ],
     /** 並び替えの画面用 */
     SORT: [
