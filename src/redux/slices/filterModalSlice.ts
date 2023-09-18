@@ -12,7 +12,6 @@ type FilterSelectedData = {
   };
 };
 
-/** 絞り込み検索の選択したボタンのデータを保存するRedux */
 const filterModalState: FilterSelectedData = {
   filterSelectedData: {
     single: {
@@ -27,6 +26,7 @@ const filterModalState: FilterSelectedData = {
   },
 };
 
+/** 絞り込み検索の選択したボタンのデータを保存するRedux */
 export const filterModalSlice = createSlice({
   name: 'filterModal',
   initialState: filterModalState,
