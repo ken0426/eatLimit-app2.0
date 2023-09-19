@@ -45,7 +45,7 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA = [
     SORT: [
       {
         ELEMENT_NAME: 'test',
-        LABEL: 'テスト',
+        LABEL: '単数選択',
         DATA: [
           { text: 'あり', id: '1' },
           { text: 'なし', id: '2' },
@@ -53,7 +53,7 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA = [
       },
       {
         ELEMENT_NAME: 'test2',
-        LABEL: 'テストボタン2',
+        LABEL: '複数選択',
         DATA: [
           { text: '選択1', id: '1' },
           { text: '選択2', id: '2' },
