@@ -131,10 +131,10 @@ export const data: ApiData[] = [
     keep: '冷蔵',
   },
   {
-    eatName: '画像なし',
+    eatName: '購入日を確認するデータ',
     count: 1,
-    date: '2023-04-26',
-    management: '消費期限',
+    date: '2023-11-26',
+    management: '購入日',
     keep: '常温',
   },
   {
