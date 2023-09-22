@@ -152,6 +152,8 @@ export const data: ApiData[] = [
     management: '消費期限',
     keep: '常温',
     approximateDeadline: '2023-09-07',
+    placeOfPurchase: 'イオン',
+    price: 1200,
   },
   {
     eatName: '99個のアイテム',
