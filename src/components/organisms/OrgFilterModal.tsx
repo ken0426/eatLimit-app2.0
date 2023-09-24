@@ -9,6 +9,7 @@ import MolFilterTabBar from '../molecules/MolFilterTabBar';
 import { FILTER_TAB_BAR } from '../../contents';
 import MolModalSelectItem from '../molecules/MolModalSelectItem';
 import { FILTER_MODAL_SELECT_BUTTON_DATA } from '../../contents/filterModalSelectButtonData';
+import { TargetFilterData } from '../../types';
 
 /** フィルターとして実装する機能
  * - 画像が存在するもの
@@ -21,9 +22,16 @@ import { FILTER_MODAL_SELECT_BUTTON_DATA } from '../../contents/filterModalSelec
 type Props = {
   isVisible: boolean;
   setIsVisible: (e: boolean) => void;
+  setTargetFilterData: (e: TargetFilterData) => void;
+  filterData: TargetFilterData[];
 };
 
-const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
+const OrgFilterModal: FC<Props> = ({
+  isVisible,
+  setIsVisible,
+  setTargetFilterData,
+  filterData,
+}) => {
   const [selectBar, setSelectBar] = useState<0 | 1>(0);
 
   return (
@@ -53,6 +61,7 @@ const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
                     label={itm.LABEL}
                     data={itm.DATA}
                     elementName={itm.ELEMENT_NAME}
+                    setTargetFilterData={setTargetFilterData}
                   />
                 ))
               )}
@@ -69,6 +78,7 @@ const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
                     label={itm.LABEL}
                     data={itm.DATA}
                     elementName={itm.ELEMENT_NAME}
+                    setTargetFilterData={setTargetFilterData}
                   />
                 ))
               )}
@@ -77,7 +87,10 @@ const OrgFilterModal: FC<Props> = ({ isVisible, setIsVisible }) => {
           <View style={styles.footer}>
             <View style={styles.footerButtonArea}>
               <AtomButton
-                onPress={() => setIsVisible(false)}
+                onPress={() => {
+                  setIsVisible(false);
+                  console.log(filterData); // 確認のため残す
+                }}
                 buttonText={'検索する'}
                 color={COLORS.MAIN_TEXT_COLOR}
                 backgroundColor={COLORS.MAIN_COLOR}

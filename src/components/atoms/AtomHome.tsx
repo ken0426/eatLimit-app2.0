@@ -9,6 +9,7 @@ import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { useRootDispatch } from '../../redux/store/store';
 import { setUpdateRegisterData } from '../../redux/slices/commonRegisterSlice';
 import OrgFilterModal from '../organisms/OrgFilterModal';
+import { useFilterRegister } from '../../hooks/useFilterRegister';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
@@ -18,6 +19,9 @@ type Props = {
 const AtomHome: FC<Props> = ({ navigation, data }) => {
   const dispatch = useRootDispatch();
   const [isVisible, setIsVisible] = useState(false);
+
+  /** フィルター用のhooks */
+  const { setTargetFilterData, filterData } = useFilterRegister();
 
   return (
     <>
@@ -40,7 +44,9 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
         <View style={styles.touchRightArea}>
           {/* 検索 */}
           <TouchableOpacity
-            onPress={() => navigation.navigate('searchScreen', { data: data })}
+            onPress={() => {
+              navigation.navigate('searchScreen', { data: data });
+            }}
           >
             <AntDesign
               name='search1'
@@ -80,7 +86,12 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
         </View>
       </View>
 
-      <OrgFilterModal isVisible={isVisible} setIsVisible={setIsVisible} />
+      <OrgFilterModal
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+        setTargetFilterData={setTargetFilterData}
+        filterData={filterData}
+      />
     </>
   );
 };

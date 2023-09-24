@@ -97,6 +97,32 @@ export type MemoTemplateData = {
   text: string;
 };
 
+/** フィルター用の型 */
+export type FilterData = {
+  FILTER: {
+    ELEMENT_NAME: string;
+    LABEL: string;
+    DATA: {
+      text: string;
+      id: string;
+    }[];
+  }[];
+  SORT: {
+    ELEMENT_NAME: string;
+    LABEL: string;
+    DATA: {
+      text: string;
+      id: string;
+    }[];
+  }[];
+};
+
+/** フィルターで選択したボタンのデータを保存し検索適用する型 */
+export type TargetFilterData = {
+  elementName: string;
+  id: string | string[];
+};
+
 /** ログインのテキスト入力のエラーメッセージ */
 export type HandleLoginType = {
   isLoginScreen: boolean;

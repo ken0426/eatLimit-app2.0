@@ -1,7 +1,8 @@
 import { LABEL_NAME } from '.';
+import { FilterData } from '../types';
 
 /** 絞り込み画面のボタンデータ */
-export const FILTER_MODAL_SELECT_BUTTON_DATA = [
+export const FILTER_MODAL_SELECT_BUTTON_DATA: FilterData[] = [
   {
     /** フィルター画面用 */
     FILTER: [

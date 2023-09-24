@@ -8,9 +8,15 @@ type Props = {
   label: string;
   data: { text: string; id: string }[];
   elementName: string;
+  setTargetFilterData: (e: any) => void;
 };
 
-const MolModalSelectItem: FC<Props> = ({ label, data, elementName }) => {
+const MolModalSelectItem: FC<Props> = ({
+  label,
+  data,
+  elementName,
+  setTargetFilterData,
+}) => {
   const singleData = useRootSelector(
     (state) => state.filterModal.filterSelectedData.single
   );
@@ -43,6 +49,7 @@ const MolModalSelectItem: FC<Props> = ({ label, data, elementName }) => {
             multiSelectedId={multiSelectedId}
             setMultiSelectedId={setMultiSelectedId}
             elementName={elementName}
+            setTargetFilterData={setTargetFilterData}
           />
         ))}
       </View>
