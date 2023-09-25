@@ -71,7 +71,7 @@ export const data: ApiData[] = [
     count: 1,
     image:
       'https://img.benesse-cms.jp/thank-you/item/image/normal/resized/resized_619b0fdf-b61c-472a-92f8-623153f27c0e.jpg',
-    date: '2023-04-26',
+    date: '2023-09-26',
     management: '消費期限',
     keep: '常温',
   },
