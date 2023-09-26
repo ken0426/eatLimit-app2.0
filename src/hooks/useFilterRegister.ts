@@ -6,26 +6,34 @@ export const useFilterRegister = () => {
 
   const setTargetFilterData = useCallback(
     (post: TargetFilterData) => {
-      setFilterData((prevData) => {
-        const hasPostData = filterData.find(
-          (item) => item.elementName === post.elementName
+      if (Array.isArray(post.id) && post.id.length === 0) {
+        // 複数選択で選択したものが消えた時は元のデータからpostのデータを削除
+        const newFilterData = filterData.filter(
+          (item) => item.elementName !== post.elementName
         );
-        if (hasPostData) {
-          const newPostData = prevData.map((item) => {
-            if (item.elementName === hasPostData.elementName) {
-              return {
-                elementName: post.elementName,
-                id: post.id,
-              };
-            } else {
-              return item;
-            }
-          });
-          return newPostData;
-        } else {
-          return [...prevData, post];
-        }
-      });
+        setFilterData(newFilterData);
+      } else {
+        setFilterData((prevData) => {
+          const hasPostData = filterData.find(
+            (item) => item.elementName === post.elementName
+          );
+          if (hasPostData) {
+            const newPostData = prevData.map((item) => {
+              if (item.elementName === hasPostData.elementName) {
+                return {
+                  elementName: post.elementName,
+                  id: post.id,
+                };
+              } else {
+                return item;
+              }
+            });
+            return newPostData;
+          } else {
+            return [...prevData, post];
+          }
+        });
+      }
     },
     [filterData]
   );
