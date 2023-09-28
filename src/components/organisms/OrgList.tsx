@@ -50,7 +50,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
         {isImage && (
           <View style={styles.imageArea}>
             <Image
-              style={{ width: '90%', height: '90%' }}
+              style={styles.image}
               source={{ uri: item.image ?? noImage }}
             />
           </View>
@@ -88,6 +88,10 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  image: {
+    width: '90%',
+    height: '90%',
   },
   textArea: {
     justifyContent: 'space-around',
