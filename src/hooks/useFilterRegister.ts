@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
 import { TargetFilterData } from '../types';
-import { LABEL_NAME } from '../contents';
 import { FILTER_MODAL_SELECT_BUTTON_DATA } from '../contents/filterModalSelectButtonData';
 
 export const useFilterRegister = () => {
