@@ -1,8 +1,23 @@
 import { useCallback, useState } from 'react';
 import { TargetFilterData } from '../types';
+import { LABEL_NAME } from '../contents';
+import { FILTER_MODAL_SELECT_BUTTON_DATA } from '../contents/filterModalSelectButtonData';
 
 export const useFilterRegister = () => {
-  const [filterData, setFilterData] = useState<TargetFilterData[]>([]);
+  const firstFilterData = FILTER_MODAL_SELECT_BUTTON_DATA[0].FILTER.filter(
+    (item) => item.DATA.length === 2
+  );
+  const firstSortData = FILTER_MODAL_SELECT_BUTTON_DATA[0].SORT.filter(
+    (item) => item.DATA.length === 2
+  );
+  const singleData = [...firstFilterData, ...firstSortData];
+  const singleEditData = singleData.map((item) => ({
+    elementName: item.ELEMENT_NAME,
+    id: '1',
+  }));
+  const [filterData, setFilterData] = useState<TargetFilterData[]>([
+    ...singleEditData,
+  ]);
 
   const setTargetFilterData = useCallback(
     (post: TargetFilterData) => {
