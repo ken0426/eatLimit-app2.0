@@ -45,11 +45,19 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA: FilterData[] = [
     /** 並び替えの画面用 */
     SORT: [
       {
-        ELEMENT_NAME: 'test',
-        LABEL: '単数選択',
+        ELEMENT_NAME: 'date',
+        LABEL: '日付',
         DATA: [
-          { text: 'あり', id: '1' },
-          { text: 'なし', id: '2' },
+          { text: '登録日順', id: '1' },
+          { text: '消費期限順', id: '2' },
+        ],
+      },
+      {
+        ELEMENT_NAME: 'AscendingDescending',
+        LABEL: '昇順/降順',
+        DATA: [
+          { text: '新しい順', id: '1' },
+          { text: '古い順', id: '2' },
         ],
       },
       {
