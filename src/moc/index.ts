@@ -3,10 +3,15 @@ import { ApiData } from '../types';
 
 export const noImage = 'https://bpbd.sumbarprov.go.id/images/noimage.png';
 
+type KeepData = '常温' | '冷蔵' | '冷凍';
+
 const getRandomNumber = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
 const randomNumber = getRandomNumber(1, 99);
+const keepData: KeepData[] = ['常温', '冷蔵', '冷凍'];
+const randomIndex: number = Math.floor(Math.random() * keepData.length);
+const randomValue = keepData[randomIndex];
 
 export const data: ApiData[] = [
   {
@@ -14,7 +19,7 @@ export const data: ApiData[] = [
     count: randomNumber,
     date: moment().format('YYYY-MM-DD'),
     management: '消費期限',
-    keep: '常温',
+    keep: randomValue,
   },
   {
     eatName: 'たらこ',
