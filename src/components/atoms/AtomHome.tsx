@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import moment from 'moment';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -10,18 +10,28 @@ import { useRootDispatch } from '../../redux/store/store';
 import { setUpdateRegisterData } from '../../redux/slices/commonRegisterSlice';
 import OrgFilterModal from '../organisms/OrgFilterModal';
 import { useFilterRegister } from '../../hooks/useFilterRegister';
+import { useListFilter } from '../../hooks/useListFilter';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
-  data: ApiData[];
+  setListData: (e: ApiData[]) => void;
+  responseData: ApiData[];
 };
 
-const AtomHome: FC<Props> = ({ navigation, data }) => {
+const AtomHome: FC<Props> = ({ navigation, setListData, responseData }) => {
   const dispatch = useRootDispatch();
   const [isVisible, setIsVisible] = useState(false);
 
-  /** フィルター用のhooks */
+  /** フィルターした内容を管理するhooks */
   const { setTargetFilterData, filterData } = useFilterRegister();
+
+  /** 一覧画面用 */
+  const listFilterData = useListFilter(
+    responseData,
+    filterData,
+    setListData,
+    isVisible
+  );
 
   return (
     <>
@@ -45,7 +55,7 @@ const AtomHome: FC<Props> = ({ navigation, data }) => {
           {/* 検索 */}
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('searchScreen', { data: data });
+              navigation.navigate('searchScreen', { data: listFilterData });
             }}
           >
             <AntDesign

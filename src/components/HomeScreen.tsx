@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { FlatList, ListRenderItem, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ApiData, MemoTemplateData, StackPramList } from '../types';
@@ -22,6 +22,10 @@ type Props = {
 
 const HomeScreen: FC<Props> = ({ navigation }) => {
   const dispatch = useRootDispatch();
+  const [listData, setListData] = useState<ApiData[]>([]);
+
+  // 本来ならDBからのデータをここで受け取る（現在は一旦仮のデータとする）
+  const responseData = data;
 
   useEffect(() => {
     (async () => {
@@ -83,10 +87,14 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
         }}
         type={HEADER_TYPE.DEFAULT}
       >
-        <AtomHome navigation={navigation} data={data} />
+        <AtomHome
+          navigation={navigation}
+          setListData={setListData}
+          responseData={responseData}
+        />
       </MolHeader>
       <FlatList
-        data={data}
+        data={listData}
         renderItem={renderItem}
         keyExtractor={(_, index) => index.toString()}
       />
