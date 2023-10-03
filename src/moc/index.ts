@@ -3,22 +3,40 @@ import { ApiData } from '../types';
 
 export const noImage = 'https://bpbd.sumbarprov.go.id/images/noimage.png';
 
-type KeepData = '常温' | '冷蔵' | '冷凍';
+const getRandomNumber = <T>(data: readonly T[]) => {
+  return Math.floor(Math.random() * data.length);
+};
 
-const getRandomNumber = (min: number, max: number) =>
+/** 個数の動的処理 */
+const getCountRandomNumber = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
+const randomNumber = getCountRandomNumber(1, 99);
 
-const randomNumber = getRandomNumber(1, 99);
-const keepData: KeepData[] = ['常温', '冷蔵', '冷凍'];
-const randomIndex: number = Math.floor(Math.random() * keepData.length);
-const randomValue = keepData[randomIndex];
+/** 管理方法の動的処理 */
+const managementData = ['消費期限', '賞味期限', '購入日', '登録日'] as const;
+const managementIndex: number = getRandomNumber(managementData);
+const managementValue = managementData[managementIndex];
+
+/** 保存方法の動的処理 */
+const keepData = ['常温', '冷蔵', '冷凍'] as const;
+const keepDataIndex: number = getRandomNumber(keepData);
+const randomValue = keepData[keepDataIndex];
 
 export const data: ApiData[] = [
   {
-    eatName: '動的リスト',
+    eatName: '動的リスト画像なし',
     count: randomNumber,
     date: moment().format('YYYY-MM-DD'),
-    management: '消費期限',
+    management: managementValue,
+    keep: randomValue,
+  },
+  {
+    eatName: '動的リスト画像あり',
+    count: randomNumber,
+    image:
+      'https://www.y-koseiren.jp/web/wp-content/uploads/2021/11/%E9%87%8E%E8%8F%9C.jpg',
+    date: moment().format('YYYY-MM-DD'),
+    management: managementValue,
     keep: randomValue,
   },
   {
