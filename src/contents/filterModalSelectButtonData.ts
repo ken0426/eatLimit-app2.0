@@ -8,7 +8,7 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA: FilterData[] = [
     FILTER: [
       {
         ELEMENT_NAME: LABEL_NAME.IMAGE,
-        LABEL: '画像のみの表示',
+        LABEL: '画像のみ表示',
         DATA: [
           { text: 'しない', id: '1' },
           { text: 'する', id: '2' },
@@ -35,7 +35,7 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA: FilterData[] = [
       },
       {
         ELEMENT_NAME: 'isBeforeDate',
-        LABEL: '期限切れのみの表示',
+        LABEL: '期限切れのみ表示',
         DATA: [
           { text: 'しない', id: '1' },
           { text: 'する', id: '2' },
