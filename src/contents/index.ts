@@ -24,6 +24,17 @@ export const HEADER_TYPE = {
   DETAIL: 'detail',
 } as const;
 
+/** 管理方法の文字列のデータ */
+export const managementTextData = [
+  '消費期限',
+  '賞味期限',
+  '購入日',
+  '登録日',
+] as const;
+
+/** 保存方法の文字列のデータ */
+export const preservationTextData = ['冷蔵', '冷凍', '常温'] as const;
+
 /** 登録画面の項目定義 */
 export const LABEL_NAME = {
   /** 画像 */

@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
-import { LABEL_NAME } from '../contents';
+import {
+  LABEL_NAME,
+  managementTextData,
+  preservationTextData,
+} from '../contents';
 import { ApiData, TargetFilterData } from '../types';
 import moment from 'moment';
 
@@ -16,6 +20,7 @@ export const useListFilter = (
   const [listFilterData, setListFilterData] = useState<ApiData[]>(responseData);
 
   /** ================= フィルター ================= */
+  // TODO 単数選択のfilterをするロジックは共通化できるため複数選択と同じように共通化の処理にする
   useEffect(() => {
     let listData: ApiData[] = responseData;
     /** ================= 画像表示 ================= */
@@ -36,6 +41,48 @@ export const useListFilter = (
       listData = listData.filter((item) => moment().isAfter(item.date, 'day'));
     } else {
       listData = [...listData];
+    }
+
+    /** ================= ここから複数選択 ================= */
+    if (filterData.find((item) => Array.isArray(item.id))) {
+      /** 管理方法のボタンのIDを取得  */
+      const managementIds = filterData.find(
+        (item) => item.elementName === LABEL_NAME.MANAGEMENT
+      )?.id;
+      /** 保存方法のボタンのIDを取得 */
+      const keepIds = filterData.find(
+        (item) => item.elementName === LABEL_NAME.PRESERVATION
+      )?.id;
+
+      /** 複数選択で何を選択しどのリストを表示するか決める共通ロジック */
+      const getMultiSelectedData = (
+        multiSelectedData: string[],
+        type: string
+      ) => {
+        if (Array.isArray(multiSelectedData)) {
+          const managementData: ApiData[] = [];
+          multiSelectedData.forEach((item) => {
+            const filterDisplayData = listData.filter((itm) => {
+              if (type === LABEL_NAME.MANAGEMENT) {
+                return itm.management === managementTextData[Number(item) - 1];
+              } else {
+                return itm.keep === preservationTextData[Number(item) - 1];
+              }
+            });
+            managementData.push(...filterDisplayData);
+          });
+          listData = managementData;
+        } else {
+          listData = [...listData];
+        }
+      };
+
+      if (Array.isArray(managementIds)) {
+        getMultiSelectedData(managementIds, LABEL_NAME.MANAGEMENT);
+      }
+      if (Array.isArray(keepIds)) {
+        getMultiSelectedData(keepIds, LABEL_NAME.PRESERVATION);
+      }
     }
 
     setListFilterData(listData);
