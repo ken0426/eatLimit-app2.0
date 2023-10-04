@@ -161,7 +161,7 @@ export const onRegisterPress = async ({
 
   newPostData.push({
     key: 'registerDate',
-    value: moment().format('YYYY-MM-DD'),
+    value: moment().format('YYYY-MM-DD HH:mm:ss'),
     isRequired: true,
   });
 
