@@ -23,12 +23,12 @@ export const useListFilter = (
   useEffect(() => {
     let listData: ApiData[] = responseData;
 
-    /** ================= 画像表示 ================= */
+    /** 画像表示のボタンのIDを取得  */
     const imageId = filterData.find(
       (item) => item.elementName === LABEL_NAME.IMAGE
     )?.id;
 
-    /** ================= 期限切れのみ表示 ================= */
+    /** 期限切れのみ表示のボタンのIDを取得 */
     const beforeDateId = filterData.find(
       (item) => item.elementName === 'isBeforeDate'
     )?.id;
@@ -60,6 +60,7 @@ export const useListFilter = (
       const managementIds = filterData.find(
         (item) => item.elementName === LABEL_NAME.MANAGEMENT
       )?.id;
+
       /** 保存方法のボタンのIDを取得 */
       const keepIds = filterData.find(
         (item) => item.elementName === LABEL_NAME.PRESERVATION
