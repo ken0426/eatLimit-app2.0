@@ -20,28 +20,39 @@ export const useListFilter = (
   const [listFilterData, setListFilterData] = useState<ApiData[]>(responseData);
 
   /** ================= フィルター ================= */
-  // TODO 単数選択のfilterをするロジックは共通化できるため複数選択と同じように共通化の処理にする
   useEffect(() => {
     let listData: ApiData[] = responseData;
+
     /** ================= 画像表示 ================= */
     const imageId = filterData.find(
       (item) => item.elementName === LABEL_NAME.IMAGE
     )?.id;
-    if (imageId && imageId === '2') {
-      listData = listData.filter((item) => item.image);
-    } else {
-      listData = [...listData];
-    }
 
     /** ================= 期限切れのみ表示 ================= */
-    const isBeforeDateId = filterData.find(
+    const beforeDateId = filterData.find(
       (item) => item.elementName === 'isBeforeDate'
     )?.id;
-    if (isBeforeDateId && isBeforeDateId === '2') {
-      listData = listData.filter((item) => moment().isAfter(item.date, 'day'));
-    } else {
-      listData = [...listData];
-    }
+
+    /** 単数選択で何を選択しどのリストを表示するか決める共通ロジック */
+    const getSingleSelectedData = (
+      singleSelectedData: string,
+      type: string
+    ) => {
+      listData = listData.filter((item) => {
+        if (type === LABEL_NAME.IMAGE && singleSelectedData === '2') {
+          return item.image;
+        } else if (type === 'isBeforeDate' && singleSelectedData === '2') {
+          return moment().isAfter(item.date, 'day');
+        } else {
+          return [...listData];
+        }
+      });
+    };
+
+    if (typeof imageId === 'string')
+      getSingleSelectedData(imageId, LABEL_NAME.IMAGE);
+    if (typeof beforeDateId === 'string')
+      getSingleSelectedData(beforeDateId, 'isBeforeDate');
 
     /** ================= ここから複数選択 ================= */
     if (filterData.find((item) => Array.isArray(item.id))) {
