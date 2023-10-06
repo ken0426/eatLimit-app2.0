@@ -78,7 +78,9 @@ export const useListFilter = (
               if (type === LABEL_NAME.MANAGEMENT) {
                 return itm.management === managementTextData[Number(item) - 1];
               } else {
-                return itm.keep === preservationTextData[Number(item) - 1];
+                return (
+                  itm.preservation === preservationTextData[Number(item) - 1]
+                );
               }
             });
             managementData.push(...filterDisplayData);

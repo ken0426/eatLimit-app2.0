@@ -82,7 +82,7 @@ const AtomHome: FC<Props> = ({
                   price: undefined,
                   placeOfPurchase: undefined,
                   management: '',
-                  keep: '',
+                  preservation: '',
                 })
               );
               navigation.navigate('registerScreen');

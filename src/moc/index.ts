@@ -28,7 +28,7 @@ export const data: ApiData[] = [
     count: randomNumber,
     date: moment().format('YYYY-MM-DD'),
     management: managementValue,
-    keep: randomValue,
+    preservation: randomValue,
     registerDate: '2023-01-01 00:00:01',
   },
   {
@@ -38,7 +38,7 @@ export const data: ApiData[] = [
       'https://www.y-koseiren.jp/web/wp-content/uploads/2021/11/%E9%87%8E%E8%8F%9C.jpg',
     date: moment().format('YYYY-MM-DD'),
     management: managementValue,
-    keep: randomValue,
+    preservation: randomValue,
     registerDate: '2023-01-02 00:00:02',
   },
   {
@@ -46,7 +46,7 @@ export const data: ApiData[] = [
     count: 1,
     date: '2023-04-27',
     management: '消費期限',
-    keep: '冷蔵',
+    preservation: '冷蔵',
     registerDate: '2023-01-03 00:00:03',
   },
   {
@@ -54,7 +54,7 @@ export const data: ApiData[] = [
     count: 1,
     date: '2023-04-27',
     management: '賞味期限',
-    keep: '冷蔵',
+    preservation: '冷蔵',
     registerDate: '2023-01-04 00:00:04',
   },
   {
@@ -62,7 +62,7 @@ export const data: ApiData[] = [
     count: 1,
     date: '2023-04-27',
     management: '登録日',
-    keep: '冷蔵',
+    preservation: '冷蔵',
     registerDate: '2023-01-05 00:00:05',
   },
   {
@@ -70,7 +70,7 @@ export const data: ApiData[] = [
     count: 1,
     date: '2023-04-27',
     management: '購入日',
-    keep: '冷蔵',
+    preservation: '冷蔵',
     registerDate: '2023-01-06 00:00:06',
   },
   {
@@ -78,7 +78,7 @@ export const data: ApiData[] = [
     count: 1,
     date: '2023-04-27',
     management: '購入日',
-    keep: '冷蔵',
+    preservation: '冷蔵',
     registerDate: '2023-01-07 00:00:07',
   },
   {
@@ -86,7 +86,7 @@ export const data: ApiData[] = [
     count: 1,
     date: '2023-04-27',
     management: '購入日',
-    keep: '冷凍',
+    preservation: '冷凍',
     registerDate: '2023-01-08 00:00:08',
   },
   {
@@ -94,7 +94,7 @@ export const data: ApiData[] = [
     count: 1,
     date: '2023-04-27',
     management: '購入日',
-    keep: '常温',
+    preservation: '常温',
     registerDate: '2023-01-09 00:00:09',
   },
   {
@@ -104,7 +104,7 @@ export const data: ApiData[] = [
       'https://p1-e6eeae93.imageflux.jp/c!/w=800,h=800,a=2/michiba-suisan/9a7ac9aa6985a45b860a.jpg',
     date: '2023-04-27',
     management: '消費期限',
-    keep: '冷蔵',
+    preservation: '冷蔵',
     registerDate: '2023-01-10 00:00:10',
   },
   {
@@ -115,7 +115,7 @@ export const data: ApiData[] = [
     price: 2500,
     placeOfPurchase: 'イオン',
     management: '消費期限',
-    keep: '冷蔵',
+    preservation: '冷蔵',
     registerDate: '2023-01-11 00:00:11',
   },
   {
@@ -127,7 +127,7 @@ export const data: ApiData[] = [
     placeOfPurchase: 'イオン',
     price: 1200,
     management: '消費期限',
-    keep: '冷蔵',
+    preservation: '冷蔵',
     registerDate: '2023-01-12 00:00:12',
   },
   {
@@ -138,7 +138,7 @@ export const data: ApiData[] = [
     date: '2023-08-26',
     placeOfPurchase: 'イオン',
     management: '消費期限',
-    keep: '冷蔵',
+    preservation: '冷蔵',
     registerDate: '2023-01-13 00:00:13',
   },
   {
@@ -149,7 +149,7 @@ export const data: ApiData[] = [
     date: '2023-04-26',
     placeOfPurchase: 'イオン',
     management: '消費期限',
-    keep: '常温',
+    preservation: '常温',
     registerDate: '2023-01-14 00:00:14',
   },
   {
@@ -159,7 +159,7 @@ export const data: ApiData[] = [
       'https://img.benesse-cms.jp/thank-you/item/image/normal/resized/resized_619b0fdf-b61c-472a-92f8-623153f27c0e.jpg',
     date: '2023-09-26',
     management: '消費期限',
-    keep: '常温',
+    preservation: '常温',
     registerDate: '2023-01-15 00:00:15',
   },
   {
@@ -168,7 +168,7 @@ export const data: ApiData[] = [
     image: 'https://life.ja-group.jp/upload/food/vegetable/main/27_1.jpg',
     date: '2023-04-26',
     management: '消費期限',
-    keep: '冷蔵',
+    preservation: '冷蔵',
     registerDate: '2023-01-16 00:00:16',
   },
   {
@@ -179,7 +179,7 @@ export const data: ApiData[] = [
     date: '2023-09-01',
     price: 200,
     management: '消費期限',
-    keep: '冷凍',
+    preservation: '冷凍',
     registerDate: '2023-01-17 00:00:17',
   },
   {
@@ -189,7 +189,7 @@ export const data: ApiData[] = [
     image:
       'https://ok-netsuper.com/images/sku/d4ae3eb6b068e/d4ae3eb6b068e_01.jpg',
     management: '消費期限',
-    keep: '冷蔵',
+    preservation: '冷蔵',
     registerDate: '2023-01-18 00:00:18',
   },
   {
@@ -200,7 +200,7 @@ export const data: ApiData[] = [
       'https://shop.odakyu-dept.co.jp/storage/ex_product_sku_image/1/1052011853.jpg',
     placeOfPurchase: 'イオン',
     management: '消費期限',
-    keep: '冷蔵',
+    preservation: '冷蔵',
     registerDate: '2023-01-19 00:00:19',
   },
   {
@@ -210,7 +210,7 @@ export const data: ApiData[] = [
     image:
       'https://housefoods.jp/_sys/catimages/recipe/hfrecipe/items/00023060/0.jpeg',
     management: '消費期限',
-    keep: '冷凍',
+    preservation: '冷凍',
     registerDate: '2023-01-20 00:00:20',
   },
   {
@@ -220,7 +220,7 @@ export const data: ApiData[] = [
     image:
       'https://tk.ismcdn.jp/mwimgs/5/5/1200w/img_55da7d47b72b81c3e63e872b5cd5965e320650.jpg',
     management: '消費期限',
-    keep: '冷蔵',
+    preservation: '冷蔵',
     registerDate: '2023-01-21 00:00:21',
   },
   {
@@ -228,7 +228,7 @@ export const data: ApiData[] = [
     count: 1,
     date: moment().add(1, 'day').format('YYYY-MM-DD'),
     management: '購入日',
-    keep: '常温',
+    preservation: '常温',
     registerDate: '2023-01-22 00:00:22',
   },
   {
@@ -236,7 +236,7 @@ export const data: ApiData[] = [
     count: 1,
     date: '2023-04-26',
     management: '登録日',
-    keep: '常温',
+    preservation: '常温',
     approximateDeadline: '2023-09-05',
     registerDate: '2023-01-23 00:00:23',
   },
@@ -245,7 +245,7 @@ export const data: ApiData[] = [
     count: 10,
     date: '2023-04-26',
     management: '消費期限',
-    keep: '常温',
+    preservation: '常温',
     placeOfPurchase: 'イオン',
     price: 1200,
     registerDate: '2023-01-24 00:00:24',
@@ -255,7 +255,7 @@ export const data: ApiData[] = [
     count: 99,
     date: '2023-07-26',
     management: '消費期限',
-    keep: '常温',
+    preservation: '常温',
     registerDate: '2023-01-25 00:00:25',
   },
   {
@@ -263,7 +263,7 @@ export const data: ApiData[] = [
     count: 1,
     date: '2023-07-26',
     management: '登録日',
-    keep: '常温',
+    preservation: '常温',
     registerDate: '2023-01-26 00:00:26',
   },
   {
@@ -271,7 +271,7 @@ export const data: ApiData[] = [
     count: 1,
     date: '2023-08-09',
     management: '消費期限',
-    keep: '常温',
+    preservation: '常温',
     registerDate: '2023-01-27 00:00:27',
   },
 ];

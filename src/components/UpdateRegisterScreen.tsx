@@ -131,7 +131,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                   <AtomSingleSelect
                     label={LABEL_TEXT.PRESERVATION}
                     data={keepData}
-                    textData={updateData.keep}
+                    textData={updateData.preservation}
                     isRequired={true}
                     setData={(data) =>
                       setTargetPostData({

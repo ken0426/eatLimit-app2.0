@@ -58,7 +58,10 @@ const DetailScreen: FC<Props> = ({ navigation, route }) => {
               label={LABEL_TEXT.APPROXIMATE_DEADLINE}
             />
           )}
-          <AtomSingleItem value={item.keep} label={LABEL_TEXT.PRESERVATION} />
+          <AtomSingleItem
+            value={item.preservation}
+            label={LABEL_TEXT.PRESERVATION}
+          />
           {item?.placeOfPurchase && (
             <AtomSingleItem
               value={item.placeOfPurchase}
