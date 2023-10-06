@@ -17,7 +17,7 @@ const filterModalState: FilterSelectedData = {
     single: {
       [LABEL_NAME.IMAGE]: '',
       date: '',
-      AscendingDescending: '',
+      ascendingDescending: '',
       isBeforeDate: '',
     },
     multi: {
@@ -44,9 +44,9 @@ export const filterModalSlice = createSlice({
           /** 日付 */
           date: payload?.single?.date ?? state.filterSelectedData.single.date,
           /** 昇順/降順 */
-          AscendingDescending:
-            payload?.single?.AscendingDescending ??
-            state.filterSelectedData.single.AscendingDescending,
+          ascendingDescending:
+            payload?.single?.ascendingDescending ??
+            state.filterSelectedData.single.ascendingDescending,
           isBeforeDate:
             payload?.single?.isBeforeDate ??
             state.filterSelectedData.single.isBeforeDate,
@@ -61,8 +61,6 @@ export const filterModalSlice = createSlice({
           [LABEL_NAME.PRESERVATION]:
             payload?.multi?.[LABEL_NAME.PRESERVATION] ??
             state.filterSelectedData.multi[LABEL_NAME.PRESERVATION],
-          /** テスト2 */
-          test2: payload?.multi?.test2 ?? state.filterSelectedData.multi.test2,
         },
       };
     },

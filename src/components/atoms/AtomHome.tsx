@@ -16,9 +16,15 @@ type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
   setListData: (e: ApiData[]) => void;
   responseData: ApiData[];
+  listData: ApiData[];
 };
 
-const AtomHome: FC<Props> = ({ navigation, setListData, responseData }) => {
+const AtomHome: FC<Props> = ({
+  navigation,
+  setListData,
+  responseData,
+  listData,
+}) => {
   const dispatch = useRootDispatch();
   const [isVisible, setIsVisible] = useState(false);
 
@@ -26,12 +32,7 @@ const AtomHome: FC<Props> = ({ navigation, setListData, responseData }) => {
   const { setTargetFilterData, filterData } = useFilterRegister();
 
   /** 一覧画面用 */
-  const listFilterData = useListFilter(
-    responseData,
-    filterData,
-    setListData,
-    isVisible
-  );
+  useListFilter(responseData, filterData, setListData, isVisible);
 
   return (
     <>
@@ -55,7 +56,7 @@ const AtomHome: FC<Props> = ({ navigation, setListData, responseData }) => {
           {/* 検索 */}
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('searchScreen', { data: listFilterData });
+              navigation.navigate('searchScreen', { data: listData });
             }}
           >
             <AntDesign

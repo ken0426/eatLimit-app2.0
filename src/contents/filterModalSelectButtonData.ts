@@ -48,25 +48,16 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA: FilterData[] = [
         ELEMENT_NAME: 'date',
         LABEL: '日付',
         DATA: [
-          { text: '登録日順', id: '1' },
+          { text: '最終更新日順', id: '1' },
           { text: '消費期限順', id: '2' },
         ],
       },
       {
-        ELEMENT_NAME: 'AscendingDescending',
+        ELEMENT_NAME: 'ascendingDescending',
         LABEL: '昇順/降順',
         DATA: [
           { text: '新しい順', id: '1' },
           { text: '古い順', id: '2' },
-        ],
-      },
-      {
-        ELEMENT_NAME: 'test2',
-        LABEL: '複数選択',
-        DATA: [
-          { text: '選択1', id: '1' },
-          { text: '選択2', id: '2' },
-          { text: '選択3', id: '3' },
         ],
       },
     ],

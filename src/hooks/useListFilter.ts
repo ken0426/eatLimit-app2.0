@@ -103,9 +103,40 @@ export const useListFilter = (
   /** 最終的に一覧画面に表示するデータをセット */
   useEffect(() => {
     // TODO 最終的には「listFilterData」はフィルターをするので、別の変数に格納した値をセットする
-    setListData(listFilterData);
-  }, [listFilterData]);
+    let listData = listFilterData;
 
-  /** 検索画面に渡すデータ */
-  return listFilterData;
+    /** 最終更新日順のIDを取得 */
+    const dateId = filterData.find(
+      (item) => item.elementName === LABEL_NAME.DATE
+    )?.id;
+
+    /** 昇順降順のIDを取得 */
+    const ascendingDescendingId = filterData.find(
+      (item) => item.elementName === 'ascendingDescending'
+    )?.id;
+
+    if (ascendingDescendingId === '1') {
+      listData = listData.sort((a, b) => {
+        if (dateId === '1') {
+          return moment(a.registerDate).isAfter(b.registerDate, 'second')
+            ? -1
+            : 1;
+        } else {
+          return moment(a.date).isAfter(b.date, 'day') ? -1 : 1;
+        }
+      });
+    } else {
+      listData = listData.sort((a, b) => {
+        if (dateId === '1') {
+          return moment(a.registerDate).isAfter(b.registerDate, 'second')
+            ? 1
+            : -1;
+        } else {
+          return moment(a.date).isAfter(b.date, 'day') ? 1 : -1;
+        }
+      });
+    }
+
+    setListData(listData);
+  }, [listFilterData]);
 };

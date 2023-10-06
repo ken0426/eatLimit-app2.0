@@ -29,6 +29,7 @@ export const data: ApiData[] = [
     date: moment().format('YYYY-MM-DD'),
     management: managementValue,
     keep: randomValue,
+    registerDate: '2023-01-01 00:00:01',
   },
   {
     eatName: '動的リスト画像あり',
@@ -38,6 +39,7 @@ export const data: ApiData[] = [
     date: moment().format('YYYY-MM-DD'),
     management: managementValue,
     keep: randomValue,
+    registerDate: '2023-01-02 00:00:02',
   },
   {
     eatName: '消費期限固定リスト',
@@ -45,6 +47,7 @@ export const data: ApiData[] = [
     date: '2023-04-27',
     management: '消費期限',
     keep: '冷蔵',
+    registerDate: '2023-01-03 00:00:03',
   },
   {
     eatName: '賞味期限固定リスト',
@@ -52,6 +55,7 @@ export const data: ApiData[] = [
     date: '2023-04-27',
     management: '賞味期限',
     keep: '冷蔵',
+    registerDate: '2023-01-04 00:00:04',
   },
   {
     eatName: '登録日固定リスト',
@@ -59,6 +63,7 @@ export const data: ApiData[] = [
     date: '2023-04-27',
     management: '登録日',
     keep: '冷蔵',
+    registerDate: '2023-01-05 00:00:05',
   },
   {
     eatName: '購入日固定リスト',
@@ -66,6 +71,7 @@ export const data: ApiData[] = [
     date: '2023-04-27',
     management: '購入日',
     keep: '冷蔵',
+    registerDate: '2023-01-06 00:00:06',
   },
   {
     eatName: '冷蔵固定リスト',
@@ -73,6 +79,7 @@ export const data: ApiData[] = [
     date: '2023-04-27',
     management: '購入日',
     keep: '冷蔵',
+    registerDate: '2023-01-07 00:00:07',
   },
   {
     eatName: '冷凍固定リスト',
@@ -80,6 +87,7 @@ export const data: ApiData[] = [
     date: '2023-04-27',
     management: '購入日',
     keep: '冷凍',
+    registerDate: '2023-01-08 00:00:08',
   },
   {
     eatName: '常温固定リスト',
@@ -87,6 +95,7 @@ export const data: ApiData[] = [
     date: '2023-04-27',
     management: '購入日',
     keep: '常温',
+    registerDate: '2023-01-09 00:00:09',
   },
   {
     eatName: 'たらこ',
@@ -96,6 +105,7 @@ export const data: ApiData[] = [
     date: '2023-04-27',
     management: '消費期限',
     keep: '冷蔵',
+    registerDate: '2023-01-10 00:00:10',
   },
   {
     eatName: 'いくら',
@@ -106,6 +116,7 @@ export const data: ApiData[] = [
     placeOfPurchase: 'イオン',
     management: '消費期限',
     keep: '冷蔵',
+    registerDate: '2023-01-11 00:00:11',
   },
   {
     eatName: 'サーモン',
@@ -117,6 +128,7 @@ export const data: ApiData[] = [
     price: 1200,
     management: '消費期限',
     keep: '冷蔵',
+    registerDate: '2023-01-12 00:00:12',
   },
   {
     eatName: '納豆',
@@ -127,6 +139,7 @@ export const data: ApiData[] = [
     placeOfPurchase: 'イオン',
     management: '消費期限',
     keep: '冷蔵',
+    registerDate: '2023-01-13 00:00:13',
   },
   {
     eatName: 'りんご',
@@ -137,6 +150,7 @@ export const data: ApiData[] = [
     placeOfPurchase: 'イオン',
     management: '消費期限',
     keep: '常温',
+    registerDate: '2023-01-14 00:00:14',
   },
   {
     eatName: 'バナナ',
@@ -146,6 +160,7 @@ export const data: ApiData[] = [
     date: '2023-09-26',
     management: '消費期限',
     keep: '常温',
+    registerDate: '2023-01-15 00:00:15',
   },
   {
     eatName: 'いちご',
@@ -154,6 +169,7 @@ export const data: ApiData[] = [
     date: '2023-04-26',
     management: '消費期限',
     keep: '冷蔵',
+    registerDate: '2023-01-16 00:00:16',
   },
   {
     eatName: 'アイス',
@@ -164,6 +180,7 @@ export const data: ApiData[] = [
     price: 200,
     management: '消費期限',
     keep: '冷凍',
+    registerDate: '2023-01-17 00:00:17',
   },
   {
     eatName: 'オレンジジュース',
@@ -173,6 +190,7 @@ export const data: ApiData[] = [
       'https://ok-netsuper.com/images/sku/d4ae3eb6b068e/d4ae3eb6b068e_01.jpg',
     management: '消費期限',
     keep: '冷蔵',
+    registerDate: '2023-01-18 00:00:18',
   },
   {
     eatName: 'メロン',
@@ -183,6 +201,7 @@ export const data: ApiData[] = [
     placeOfPurchase: 'イオン',
     management: '消費期限',
     keep: '冷蔵',
+    registerDate: '2023-01-19 00:00:19',
   },
   {
     eatName: 'うどん',
@@ -192,6 +211,7 @@ export const data: ApiData[] = [
       'https://housefoods.jp/_sys/catimages/recipe/hfrecipe/items/00023060/0.jpeg',
     management: '消費期限',
     keep: '冷凍',
+    registerDate: '2023-01-20 00:00:20',
   },
   {
     eatName: 'ケーキ',
@@ -201,13 +221,15 @@ export const data: ApiData[] = [
       'https://tk.ismcdn.jp/mwimgs/5/5/1200w/img_55da7d47b72b81c3e63e872b5cd5965e320650.jpg',
     management: '消費期限',
     keep: '冷蔵',
+    registerDate: '2023-01-21 00:00:21',
   },
   {
     eatName: '購入日を確認するデータ',
     count: 1,
-    date: '2023-11-26',
+    date: moment().add(1, 'day').format('YYYY-MM-DD'),
     management: '購入日',
     keep: '常温',
+    registerDate: '2023-01-22 00:00:22',
   },
   {
     eatName: '登録日の仮データ',
@@ -216,6 +238,7 @@ export const data: ApiData[] = [
     management: '登録日',
     keep: '常温',
     approximateDeadline: '2023-09-05',
+    registerDate: '2023-01-23 00:00:23',
   },
   {
     eatName: '画像なし',
@@ -225,6 +248,7 @@ export const data: ApiData[] = [
     keep: '常温',
     placeOfPurchase: 'イオン',
     price: 1200,
+    registerDate: '2023-01-24 00:00:24',
   },
   {
     eatName: '99個のアイテム',
@@ -232,6 +256,7 @@ export const data: ApiData[] = [
     date: '2023-07-26',
     management: '消費期限',
     keep: '常温',
+    registerDate: '2023-01-25 00:00:25',
   },
   {
     eatName: '画像なし',
@@ -239,6 +264,7 @@ export const data: ApiData[] = [
     date: '2023-07-26',
     management: '登録日',
     keep: '常温',
+    registerDate: '2023-01-26 00:00:26',
   },
   {
     eatName: '画像なし',
@@ -246,5 +272,6 @@ export const data: ApiData[] = [
     date: '2023-08-09',
     management: '消費期限',
     keep: '常温',
+    registerDate: '2023-01-27 00:00:27',
   },
 ];

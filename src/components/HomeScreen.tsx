@@ -91,6 +91,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
           navigation={navigation}
           setListData={setListData}
           responseData={responseData}
+          listData={listData}
         />
       </MolHeader>
       <FlatList
