@@ -104,7 +104,6 @@ export const useListFilter = (
 
   /** 最終的に一覧画面に表示するデータをセット */
   useEffect(() => {
-    // TODO 最終的には「listFilterData」はフィルターをするので、別の変数に格納した値をセットする
     let listData = listFilterData;
 
     /** 最終更新日順のIDを取得 */
