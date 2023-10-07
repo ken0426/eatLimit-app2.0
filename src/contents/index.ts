@@ -59,6 +59,8 @@ export const LABEL_NAME = {
   MEMO: 'memo',
   /** 期限切れのみ表示 */
   BEFORE_DATE: 'beforeDate',
+  /** 昇順/降順 */
+  ASCENDING_DESCENDING: 'ascendingDescending',
 };
 
 /** 登録画面に表示するラベルのテキスト */

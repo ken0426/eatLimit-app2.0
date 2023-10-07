@@ -45,7 +45,7 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA: FilterData[] = [
     /** 並び替えの画面用 */
     SORT: [
       {
-        ELEMENT_NAME: 'date',
+        ELEMENT_NAME: LABEL_NAME.DATE,
         LABEL: '日付',
         DATA: [
           { text: '最終更新日順', id: '1' },
@@ -53,7 +53,7 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA: FilterData[] = [
         ],
       },
       {
-        ELEMENT_NAME: 'ascendingDescending',
+        ELEMENT_NAME: LABEL_NAME.ASCENDING_DESCENDING,
         LABEL: '昇順/降順',
         DATA: [
           { text: '新しい順', id: '1' },

@@ -116,7 +116,7 @@ export const useListFilter = (
 
     /** 昇順降順のIDを取得 */
     const ascendingDescendingId = filterData.find(
-      (item) => item.elementName === 'ascendingDescending'
+      (item) => item.elementName === LABEL_NAME.ASCENDING_DESCENDING
     )?.id;
 
     if (ascendingDescendingId === '1') {
