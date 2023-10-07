@@ -57,6 +57,8 @@ export const LABEL_NAME = {
   AMOUNT_OF_MONEY: 'amountOfMoney',
   /** メモ */
   MEMO: 'memo',
+  /** 期限切れのみ表示 */
+  BEFORE_DATE: 'beforeDate',
 };
 
 /** 登録画面に表示するラベルのテキスト */

@@ -25,7 +25,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
   );
   const dateDisplayId = useRootSelector((state) => state.common.dateDisplayId);
   const dayOfWeekId = useRootSelector((state) => state.common.dayOfWeekId);
-  const isBeforeDate = moment().isAfter(item.date, 'day');
+  const beforeDate = moment().isAfter(item.date, 'day');
 
   const { isImage, dateText } = useListEdit(
     imageId,
@@ -59,7 +59,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
           <Text style={styles.eatName}>{item.eatName}</Text>
           <View style={{ flexDirection: 'row' }}>
             <Text style={styles.date}>{dateText}</Text>
-            {isBeforeDate && <Text style={styles.caveatText}>期限切れ</Text>}
+            {beforeDate && <Text style={styles.caveatText}>期限切れ</Text>}
           </View>
         </View>
         <View style={styles.arrow}>

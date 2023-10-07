@@ -30,7 +30,7 @@ export const useListFilter = (
 
     /** 期限切れのみ表示のボタンのIDを取得 */
     const beforeDateId = filterData.find(
-      (item) => item.elementName === 'isBeforeDate'
+      (item) => item.elementName === LABEL_NAME.BEFORE_DATE
     )?.id;
 
     /** 単数選択で何を選択しどのリストを表示するか決める共通ロジック */
@@ -41,7 +41,10 @@ export const useListFilter = (
       listData = listData.filter((item) => {
         if (type === LABEL_NAME.IMAGE && singleSelectedData === '2') {
           return item.image;
-        } else if (type === 'isBeforeDate' && singleSelectedData === '2') {
+        } else if (
+          type === LABEL_NAME.BEFORE_DATE &&
+          singleSelectedData === '2'
+        ) {
           return moment().isAfter(item.date, 'day');
         } else {
           return [...listData];
@@ -52,7 +55,7 @@ export const useListFilter = (
     if (typeof imageId === 'string')
       getSingleSelectedData(imageId, LABEL_NAME.IMAGE);
     if (typeof beforeDateId === 'string')
-      getSingleSelectedData(beforeDateId, 'isBeforeDate');
+      getSingleSelectedData(beforeDateId, LABEL_NAME.BEFORE_DATE);
 
     /** ================= ここから複数選択 ================= */
     if (filterData.find((item) => Array.isArray(item.id))) {

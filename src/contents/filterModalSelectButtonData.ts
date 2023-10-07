@@ -34,7 +34,7 @@ export const FILTER_MODAL_SELECT_BUTTON_DATA: FilterData[] = [
         ],
       },
       {
-        ELEMENT_NAME: 'isBeforeDate',
+        ELEMENT_NAME: LABEL_NAME.BEFORE_DATE,
         LABEL: '期限切れのみ表示',
         DATA: [
           { text: 'しない', id: '1' },

@@ -18,7 +18,7 @@ const filterModalState: FilterSelectedData = {
       [LABEL_NAME.IMAGE]: '',
       date: '',
       ascendingDescending: '',
-      isBeforeDate: '',
+      [LABEL_NAME.BEFORE_DATE]: '',
     },
     multi: {
       [LABEL_NAME.MANAGEMENT]: [],
@@ -47,9 +47,9 @@ export const filterModalSlice = createSlice({
           ascendingDescending:
             payload?.single?.ascendingDescending ??
             state.filterSelectedData.single.ascendingDescending,
-          isBeforeDate:
-            payload?.single?.isBeforeDate ??
-            state.filterSelectedData.single.isBeforeDate,
+          [LABEL_NAME.BEFORE_DATE]:
+            payload?.single?.beforeDate ??
+            state.filterSelectedData.single.beforeDate,
         },
         /** 複数選択 */
         multi: {
