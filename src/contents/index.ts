@@ -35,7 +35,7 @@ export const managementTextData = [
 /** 保存方法の文字列のデータ */
 export const preservationTextData = ['冷蔵', '冷凍', '常温'] as const;
 
-/** 登録画面の項目定義 */
+/** 登録画面や絞り込み検索のモーダルで使用する項目の定義 */
 export const LABEL_NAME = {
   /** 画像 */
   IMAGE: 'image',
