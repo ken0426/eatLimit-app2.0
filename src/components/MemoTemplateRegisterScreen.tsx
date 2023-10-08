@@ -1,16 +1,13 @@
-import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Keyboard,
-  KeyboardAvoidingView,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
 } from 'react-native';
 import { InputAccessoryView, Platform, TextInput, View } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
-import { StackPramList } from '../types';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import AtomSingleInput from './atoms/AtomSingleInput';
 import MolHeader from './molecules/MolHeader';
