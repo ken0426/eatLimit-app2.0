@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { FlatList, ListRenderItem, View } from 'react-native';
+import { FlatList, ListRenderItem, Text, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ApiData, MemoTemplateData, StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
@@ -15,6 +15,7 @@ import {
   setSelectMemoTemplateData,
 } from '../redux/slices/commonSlice';
 import { HEADER_TYPE, settingMemoData } from '../contents';
+import NoListScreen from './organisms/NoListScreen';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
@@ -94,11 +95,15 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
           listData={listData}
         />
       </MolHeader>
-      <FlatList
-        data={listData}
-        renderItem={renderItem}
-        keyExtractor={(_, index) => index.toString()}
-      />
+      {listData.length ? (
+        <FlatList
+          data={listData}
+          renderItem={renderItem}
+          keyExtractor={(_, index) => index.toString()}
+        />
+      ) : (
+        <NoListScreen />
+      )}
     </View>
   );
 };
