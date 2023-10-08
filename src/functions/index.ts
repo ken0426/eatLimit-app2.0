@@ -1,5 +1,7 @@
 import { ActionSheetIOS, Alert, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { Dispatch } from '@reduxjs/toolkit';
+import { StackNavigationProp } from '@react-navigation/stack';
 import {
   ACTION_SHEET,
   CAMERA_ERROR_MESSAGE,
@@ -15,8 +17,6 @@ import {
   setImageId,
   setSelectMemoTemplate,
 } from '../redux/slices/commonSlice';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { Dispatch } from '@reduxjs/toolkit';
 import moment from 'moment';
 
 type Options = {

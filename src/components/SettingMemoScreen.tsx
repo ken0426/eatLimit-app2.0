@@ -1,15 +1,15 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { COLORS, SIZE } from '../styles';
 import MolSettingList from './molecules/MolSettingList';
 import AtomSettingLabel from './atoms/AtomSettingLabel';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../types';
 import { useRootSelector } from '../redux/store/store';
 import { HEADER_TYPE } from '../contents';
-import { useNavigation } from '@react-navigation/native';
 
 const SettingMemoScreen = () => {
   const navigation =

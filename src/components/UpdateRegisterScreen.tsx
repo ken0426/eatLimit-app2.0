@@ -8,9 +8,9 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import MolHeader from './molecules/MolHeader';
 import AtomRegister from './atoms/AtomRegister';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../types';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomFileSelect from './atoms/AtomFileSelect';

@@ -7,12 +7,12 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import { InputAccessoryView, Platform, TextInput, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import AtomSingleInput from './atoms/AtomSingleInput';
 import MolHeader from './molecules/MolHeader';
 import { HEADER_TYPE } from '../contents';
-import { useNavigation } from '@react-navigation/native';
 
 const MemoTemplateRegisterScreen = () => {
   const navigation = useNavigation();

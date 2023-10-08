@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { COLORS, SIZE } from '../../styles';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../../types';
-import { useNavigation } from '@react-navigation/native';
 
 type Props = {
   top?: number;

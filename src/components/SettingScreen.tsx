@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import {
   Alert,
   FlatList,
@@ -6,6 +6,8 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 import { COLORS, SIZE } from '../styles';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
@@ -19,11 +21,9 @@ import {
 import { SettingData, StackPramList } from '../types';
 import { getEditDataFormat, getKey } from '../utils';
 import { useRootSelector } from '../redux/store/store';
-import { StackNavigationProp } from '@react-navigation/stack';
 import AtomSettingLabel from './atoms/AtomSettingLabel';
 import MolSettingList from './molecules/MolSettingList';
 import { auth } from '../firebase';
-import { useNavigation } from '@react-navigation/native';
 
 const SettingScreen = () => {
   const navigation =

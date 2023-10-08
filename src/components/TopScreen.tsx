@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
   Alert,
@@ -8,8 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { StackPramList } from '../types';
+import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { StackPramList } from '../types';
 import AtomAuthButton from './atoms/AtomAuthButton';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 

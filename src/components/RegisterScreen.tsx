@@ -1,4 +1,3 @@
-import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import {
   Keyboard,
@@ -9,6 +8,8 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
@@ -33,7 +34,6 @@ import { onRegisterPress } from '../functions';
 import AtomCounter from './atoms/AtomCounter';
 import { useDateError } from '../hooks/useDateError';
 import moment from 'moment';
-import { useNavigation } from '@react-navigation/native';
 
 const RegisterScreen = () => {
   const navigation =
