@@ -9,6 +9,8 @@ type Props = {
   data: { text: string; id: string }[];
   elementName: string;
   setTargetFilterData: (e: any) => void;
+  isRestButton: boolean;
+  setIsRestButton: (e: boolean) => void;
 };
 
 const MolModalSelectItem: FC<Props> = ({
@@ -16,6 +18,8 @@ const MolModalSelectItem: FC<Props> = ({
   data,
   elementName,
   setTargetFilterData,
+  isRestButton,
+  setIsRestButton,
 }) => {
   const singleData = useRootSelector(
     (state) => state.filterModal.filterSelectedData.single
@@ -50,6 +54,8 @@ const MolModalSelectItem: FC<Props> = ({
             setMultiSelectedId={setMultiSelectedId}
             elementName={elementName}
             setTargetFilterData={setTargetFilterData}
+            isRestButton={isRestButton}
+            setIsRestButton={setIsRestButton}
           />
         ))}
       </View>

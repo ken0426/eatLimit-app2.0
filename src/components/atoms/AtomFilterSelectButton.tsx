@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { useRootDispatch } from '../../redux/store/store';
@@ -15,6 +15,8 @@ type Props = {
   setMultiSelectedId: (e: string[]) => void;
   elementName: string;
   setTargetFilterData: (e: TargetFilterData) => void;
+  setIsRestButton: (e: boolean) => void;
+  isRestButton: boolean;
 };
 
 const AtomFilterSelectButton: FC<Props> = ({
@@ -27,6 +29,8 @@ const AtomFilterSelectButton: FC<Props> = ({
   setMultiSelectedId,
   elementName,
   setTargetFilterData,
+  setIsRestButton,
+  isRestButton,
 }) => {
   const dispatch = useRootDispatch();
 
@@ -65,6 +69,7 @@ const AtomFilterSelectButton: FC<Props> = ({
   };
 
   const onPress = () => {
+    setIsRestButton(false);
     if (data.length > 2) {
       // 複数選択
       if (multiSelectedId.find((selectedId) => selectedId === id)) {
@@ -97,6 +102,19 @@ const AtomFilterSelectButton: FC<Props> = ({
       setTargetFilterData({ elementName, id });
     }
   };
+
+  /** リセットボタンの発火用hook */
+  useEffect(() => {
+    if (isRestButton) {
+      if (data.length > 2) {
+        setMultiSelectedId([]);
+        dispatch(setFilterSelectedData({ multi: { [elementName]: [] } }));
+      } else {
+        setSelectedId('1');
+        dispatch(setFilterSelectedData({ single: { [elementName]: '1' } }));
+      }
+    }
+  }, [isRestButton]);
 
   return (
     <TouchableOpacity

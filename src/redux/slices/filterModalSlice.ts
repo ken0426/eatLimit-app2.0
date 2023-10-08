@@ -23,7 +23,6 @@ const filterModalState: FilterSelectedData = {
     multi: {
       [LABEL_NAME.MANAGEMENT]: [],
       [LABEL_NAME.PRESERVATION]: [],
-      test2: [],
     },
   },
 };

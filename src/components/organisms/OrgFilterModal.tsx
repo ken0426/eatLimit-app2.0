@@ -33,6 +33,7 @@ const OrgFilterModal: FC<Props> = ({
   filterData,
 }) => {
   const [selectBar, setSelectBar] = useState<0 | 1>(0);
+  const [isRestButton, setIsRestButton] = useState(false);
 
   return (
     <Modal isVisible={isVisible}>
@@ -62,6 +63,8 @@ const OrgFilterModal: FC<Props> = ({
                     data={itm.DATA}
                     elementName={itm.ELEMENT_NAME}
                     setTargetFilterData={setTargetFilterData}
+                    isRestButton={isRestButton}
+                    setIsRestButton={setIsRestButton}
                   />
                 ))
               )}
@@ -79,6 +82,8 @@ const OrgFilterModal: FC<Props> = ({
                     data={itm.DATA}
                     elementName={itm.ELEMENT_NAME}
                     setTargetFilterData={setTargetFilterData}
+                    isRestButton={isRestButton}
+                    setIsRestButton={setIsRestButton}
                   />
                 ))
               )}
@@ -86,6 +91,18 @@ const OrgFilterModal: FC<Props> = ({
           </ScrollView>
           <View style={styles.footer}>
             <View style={styles.footerButtonArea}>
+              <View style={{ position: 'absolute', top: 8, right: -2 }}>
+                <AtomButton
+                  onPress={() => setIsRestButton(true)}
+                  buttonText={'リセット'}
+                  color={COLORS.MAIN_TEXT_COLOR}
+                  backgroundColor={COLORS.MAIN_COLOR}
+                  borderColor={COLORS.MAIN_TEXT_COLOR}
+                  borderWidth={1}
+                  width={90}
+                  fontSize={20}
+                />
+              </View>
               <AtomButton
                 onPress={() => {
                   setIsVisible(false);
