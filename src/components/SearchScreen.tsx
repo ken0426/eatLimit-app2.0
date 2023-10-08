@@ -15,6 +15,7 @@ import { COLORS, SIZE } from '../styles';
 import OrgList from './organisms/OrgList';
 import { filterData } from '../utils';
 import { HEADER_TYPE } from '../contents';
+import AtomCountDisplay from './atoms/AtomCountDisplay';
 
 type RouteItem = {
   params: {
@@ -49,6 +50,7 @@ const SearchScreen: FC<Props> = ({ navigation, route }) => {
         <AtomSearch navigation={navigation} text={text} setText={setText} />
       </MolHeader>
 
+      <AtomCountDisplay listData={getData()} />
       <FlatList
         data={getData()}
         renderItem={renderItem}

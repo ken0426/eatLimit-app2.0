@@ -16,6 +16,7 @@ import {
 } from '../redux/slices/commonSlice';
 import { HEADER_TYPE, settingMemoData } from '../contents';
 import NoListScreen from './organisms/NoListScreen';
+import AtomCountDisplay from './atoms/AtomCountDisplay';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
@@ -95,6 +96,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
           listData={listData}
         />
       </MolHeader>
+      <AtomCountDisplay listData={listData} />
       {listData.length ? (
         <FlatList
           data={listData}
