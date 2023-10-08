@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { FlatList, ListRenderItem, Text, View } from 'react-native';
+import { FlatList, ListRenderItem, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ApiData, MemoTemplateData, StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
