@@ -1,7 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import moment from 'moment';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { ApiData, StackPramList } from '../../types';
@@ -13,19 +14,15 @@ import { useFilterRegister } from '../../hooks/useFilterRegister';
 import { useListFilter } from '../../hooks/useListFilter';
 
 type Props = {
-  navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
   setListData: (e: ApiData[]) => void;
   responseData: ApiData[];
   listData: ApiData[];
 };
 
-const AtomHome: FC<Props> = ({
-  navigation,
-  setListData,
-  responseData,
-  listData,
-}) => {
+const AtomHome: FC<Props> = ({ setListData, responseData, listData }) => {
   const dispatch = useRootDispatch();
+  const navigation =
+    useNavigation<StackNavigationProp<StackPramList, 'homeScreen'>>();
   const [isVisible, setIsVisible] = useState(false);
 
   /** フィルターした内容を管理するhooks */

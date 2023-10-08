@@ -15,12 +15,10 @@ import AtomSettingRegister from './atoms/AtomSettingRegister';
 import AtomSingleInput from './atoms/AtomSingleInput';
 import MolHeader from './molecules/MolHeader';
 import { HEADER_TYPE } from '../contents';
+import { useNavigation } from '@react-navigation/native';
 
-type Props = {
-  navigation: StackNavigationProp<StackPramList, 'memoTemplateRegisterScreen'>;
-};
-
-const MemoTemplateRegisterScreen: FC<Props> = ({ navigation }) => {
+const MemoTemplateRegisterScreen = () => {
+  const navigation = useNavigation();
   const [text, setText] = useState('');
   const inputAccessoryViewID = 'uniqueID';
   return (
@@ -31,7 +29,6 @@ const MemoTemplateRegisterScreen: FC<Props> = ({ navigation }) => {
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomSettingRegister
-            navigation={navigation}
             title={'テンプレートの追加'}
             isRightButton={true}
             // TODO このonPressでバック側にメモのテンプレートを保存する

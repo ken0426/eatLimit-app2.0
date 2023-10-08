@@ -1,5 +1,4 @@
-import { RouteProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import React, { FC, useState } from 'react';
 import { Button, Keyboard, StyleSheet, Text } from 'react-native';
 import { InputAccessoryView, Platform } from 'react-native';
@@ -18,11 +17,11 @@ type RouteItem = {
 };
 
 type Props = {
-  navigation: StackNavigationProp<StackPramList, 'memoTemplateUpdateScreen'>;
   route: RouteProp<StackPramList, 'memoTemplateUpdateScreen'> & RouteItem;
 };
 
-const MemoTemplateUpdateScreen: FC<Props> = ({ navigation, route }) => {
+const MemoTemplateUpdateScreen: FC<Props> = ({ route }) => {
+  const navigation = useNavigation();
   const { data } = route.params;
   const inputAccessoryViewID = 'uniqueID';
   const [text, setText] = useState(data.text);
@@ -31,7 +30,6 @@ const MemoTemplateUpdateScreen: FC<Props> = ({ navigation, route }) => {
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomSettingRegister
-            navigation={navigation}
             title={'テンプレート編集'}
             isRightButton={true}
           />

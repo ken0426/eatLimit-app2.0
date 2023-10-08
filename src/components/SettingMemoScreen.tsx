@@ -9,12 +9,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../types';
 import { useRootSelector } from '../redux/store/store';
 import { HEADER_TYPE } from '../contents';
+import { useNavigation } from '@react-navigation/native';
 
-type Props = {
-  navigation: StackNavigationProp<StackPramList, 'settingMemoScreen'>;
-};
-
-const SettingMemoScreen: FC<Props> = ({ navigation }) => {
+const SettingMemoScreen = () => {
+  const navigation =
+    useNavigation<StackNavigationProp<StackPramList, 'settingMemoScreen'>>();
   const selectMemoTemplateData = useRootSelector(
     (state) => state.common.selectMemoTemplateData
   );
@@ -24,7 +23,6 @@ const SettingMemoScreen: FC<Props> = ({ navigation }) => {
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomSettingRegister
-            navigation={navigation}
             title={'メモのテンプレート'}
             isRightText={'追加'}
             isRightButton={true}

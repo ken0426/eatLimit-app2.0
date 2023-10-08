@@ -23,12 +23,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import AtomSettingLabel from './atoms/AtomSettingLabel';
 import MolSettingList from './molecules/MolSettingList';
 import { auth } from '../firebase';
+import { useNavigation } from '@react-navigation/native';
 
-type Props = {
-  navigation: StackNavigationProp<StackPramList, 'settingScreen'>;
-};
-
-const SettingScreen: FC<Props> = ({ navigation }) => {
+const SettingScreen = () => {
+  const navigation =
+    useNavigation<StackNavigationProp<StackPramList, 'settingScreen'>>();
   const dateFormatDisplayId = useRootSelector(
     (state) => state.common.dateFormatDisplayId
   );
@@ -98,7 +97,7 @@ const SettingScreen: FC<Props> = ({ navigation }) => {
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
-          <AtomSettingRegister navigation={navigation} title={'設定'} />
+          <AtomSettingRegister title={'設定'} />
         </MolHeader>
 
         <FlatList

@@ -20,8 +20,7 @@ import {
   SettingMemoSelectItem,
   StackPramList,
 } from '../types';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import { HEADER_TYPE } from '../contents';
 
 type RouteItem = {
@@ -31,12 +30,12 @@ type RouteItem = {
 };
 
 type Props = {
-  navigation: StackNavigationProp<StackPramList, 'settingDetailScreen'>;
   route: RouteProp<StackPramList, 'settingDetailScreen'> & RouteItem;
 };
 
-const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
+const SettingDetailScreen: FC<Props> = ({ route }) => {
   const dispatch = useRootDispatch();
+  const navigation = useNavigation();
   const { data } = route.params;
   const isTemplate = data.isTemplate;
   const formatData = commonSettingAdaptor(data);
@@ -75,7 +74,6 @@ const SettingDetailScreen: FC<Props> = ({ navigation, route }) => {
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomSettingRegister
-            navigation={navigation}
             title={isTemplate ? 'テンプレート選択' : data.label}
           />
         </MolHeader>

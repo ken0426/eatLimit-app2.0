@@ -5,16 +5,14 @@ import { Entypo } from '@expo/vector-icons';
 import { COLORS, SIZE } from '../../styles';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../../types';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {
-  navigation: StackNavigationProp<StackPramList>;
   top?: number;
 };
 
-const MolDetailHeader: FC<Props> = ({
-  navigation,
-  top = SIZE.BASE_HP * 3.8,
-}) => {
+const MolDetailHeader: FC<Props> = ({ top = SIZE.BASE_HP * 3.8 }) => {
+  const navigation = useNavigation<StackNavigationProp<StackPramList>>();
   return (
     <View style={[styles.header, { top }]}>
       <TouchableOpacity

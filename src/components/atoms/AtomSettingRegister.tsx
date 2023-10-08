@@ -4,16 +4,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { COLORS, FONTSIZE } from '../../styles';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../../types';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {
-  navigation: StackNavigationProp<
-    StackPramList,
-    | 'settingScreen'
-    | 'settingDetailScreen'
-    | 'memoTemplateRegisterScreen'
-    | 'memoTemplateUpdateScreen'
-    | 'settingMemoScreen'
-  >;
   title: string;
   isRightButton?: boolean;
   isRightText?: string;
@@ -21,12 +14,12 @@ type Props = {
 };
 
 const AtomSettingRegister: FC<Props> = ({
-  navigation,
   title,
   isRightButton,
   isRightText = '完了',
   onRightPress,
 }) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.header}>
       <TouchableOpacity

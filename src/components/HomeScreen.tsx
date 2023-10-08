@@ -90,7 +90,6 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
         type={HEADER_TYPE.DEFAULT}
       >
         <AtomHome
-          navigation={navigation}
           setListData={setListData}
           responseData={responseData}
           listData={listData}

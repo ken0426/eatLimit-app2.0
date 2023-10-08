@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import AtomSearch from './atoms/AtomSearch';
 import MolHeader from './molecules/MolHeader';
 import { ApiData, StackPramList } from '../types';
@@ -24,11 +24,12 @@ type RouteItem = {
 };
 
 type Props = {
-  navigation: StackNavigationProp<StackPramList, 'searchScreen'>;
   route: RouteProp<StackPramList, 'searchScreen'> & RouteItem;
 };
 
-const SearchScreen: FC<Props> = ({ navigation, route }) => {
+const SearchScreen: FC<Props> = ({ route }) => {
+  const navigation =
+    useNavigation<StackNavigationProp<StackPramList, 'searchScreen'>>();
   const { data } = route.params;
   const [text, setText] = useState('');
 

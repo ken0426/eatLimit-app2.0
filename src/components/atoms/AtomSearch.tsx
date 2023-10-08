@@ -6,6 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { COLORS } from '../../styles';
 import { SEARCH_BAR_HIGHT, SEARCH_BAR_TEXT } from '../../contents';
 import { StackPramList } from '../../types';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'searchScreen'>;
@@ -13,7 +14,9 @@ type Props = {
   setText: (e: string) => void;
 };
 
-const AtomSearch: FC<Props> = ({ navigation, text, setText }) => {
+const AtomSearch: FC<Props> = ({ text, setText }) => {
+  const navigation =
+    useNavigation<StackNavigationProp<StackPramList, 'searchScreen'>>();
   const inputRef = useRef<TextInput>(null);
 
   useEffect(() => {

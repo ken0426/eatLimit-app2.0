@@ -60,7 +60,6 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomRegister
-            navigation={navigation}
             title={'変更'}
             postData={postData}
             setIsLoading={setIsLoading}

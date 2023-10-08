@@ -1,5 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { FC, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -33,12 +33,11 @@ import { onRegisterPress } from '../functions';
 import AtomCounter from './atoms/AtomCounter';
 import { useDateError } from '../hooks/useDateError';
 import moment from 'moment';
+import { useNavigation } from '@react-navigation/native';
 
-type Props = {
-  navigation: StackNavigationProp<StackPramList, 'registerScreen'>;
-};
-
-const RegisterScreen: FC<Props> = ({ navigation }) => {
+const RegisterScreen = () => {
+  const navigation =
+    useNavigation<StackNavigationProp<StackPramList, 'registerScreen'>>();
   /** キーボードで入力するエリアで高さを調整するフラグ */
   const [enabled, setEnabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -56,7 +55,6 @@ const RegisterScreen: FC<Props> = ({ navigation }) => {
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomRegister
-            navigation={navigation}
             title={'登録'}
             postData={postData}
             setIsLoading={setIsLoading}

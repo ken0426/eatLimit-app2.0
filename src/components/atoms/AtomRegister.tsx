@@ -9,12 +9,9 @@ import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onRegisterPress } from '../../functions';
 import moment from 'moment';
 import { BUTTON_TEXT, LABEL_NAME } from '../../contents';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {
-  navigation: StackNavigationProp<
-    StackPramList,
-    'registerScreen' | 'updateRegisterScreen'
-  >;
   title: string;
   postData: PostData[];
   setIsVisible: (e: boolean) => void;
@@ -27,7 +24,6 @@ type Props = {
 };
 
 const AtomRegister: FC<Props> = ({
-  navigation,
   title,
   postData,
   setIsLoading,
@@ -38,6 +34,13 @@ const AtomRegister: FC<Props> = ({
   isDateBefore,
   setIsDateBefore,
 }) => {
+  const navigation =
+    useNavigation<
+      StackNavigationProp<
+        StackPramList,
+        'registerScreen' | 'updateRegisterScreen'
+      >
+    >();
   /** モーダルで使用するボタンのデータ */
   const buttonData =
     message === 'データが保存されませんがキャンセルしますか？'

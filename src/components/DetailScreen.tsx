@@ -43,7 +43,7 @@ const DetailScreen: FC<Props> = ({ navigation, route }) => {
       )}
       {!item.image && (
         <View style={styles.noImageHeader}>
-          <MolDetailHeader navigation={navigation} top={SIZE.BASE_HP * 1.2} />
+          <MolDetailHeader top={SIZE.BASE_HP * 1.2} />
         </View>
       )}
       <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
