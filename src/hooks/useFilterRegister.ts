@@ -1,8 +1,8 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { TargetFilterData } from '../types';
 import { FILTER_MODAL_SELECT_BUTTON_DATA } from '../contents/filterModalSelectButtonData';
 
-export const useFilterRegister = () => {
+export const useFilterRegister = (isRestButton: boolean) => {
   const firstFilterData = FILTER_MODAL_SELECT_BUTTON_DATA[0].FILTER.filter(
     (item) => item.DATA.length === 2
   );
@@ -51,6 +51,13 @@ export const useFilterRegister = () => {
     },
     [filterData]
   );
+
+  /** リセットボタンが押された時に初期状態のリストに戻すためのhook */
+  useEffect(() => {
+    if (isRestButton) {
+      setFilterData([...singleEditData]);
+    }
+  }, [isRestButton]);
 
   return {
     setTargetFilterData,

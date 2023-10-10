@@ -25,8 +25,11 @@ const AtomHome: FC<Props> = ({ setListData, responseData, listData }) => {
     useNavigation<StackNavigationProp<StackPramList, 'homeScreen'>>();
   const [isVisible, setIsVisible] = useState(false);
 
+  /** リセットボタンを押したかどうかのフラグ */
+  const [isRestButton, setIsRestButton] = useState(false);
+
   /** フィルターした内容を管理するhooks */
-  const { setTargetFilterData, filterData } = useFilterRegister();
+  const { setTargetFilterData, filterData } = useFilterRegister(isRestButton);
 
   /** 一覧画面用 */
   useListFilter(responseData, filterData, setListData, isVisible);
@@ -99,6 +102,8 @@ const AtomHome: FC<Props> = ({ setListData, responseData, listData }) => {
         setIsVisible={setIsVisible}
         setTargetFilterData={setTargetFilterData}
         filterData={filterData}
+        isRestButton={isRestButton}
+        setIsRestButton={setIsRestButton}
       />
     </>
   );

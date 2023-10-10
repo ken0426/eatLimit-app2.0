@@ -24,6 +24,8 @@ type Props = {
   setIsVisible: (e: boolean) => void;
   setTargetFilterData: (e: TargetFilterData) => void;
   filterData: TargetFilterData[];
+  isRestButton: boolean;
+  setIsRestButton: (e: boolean) => void;
 };
 
 const OrgFilterModal: FC<Props> = ({
@@ -31,9 +33,10 @@ const OrgFilterModal: FC<Props> = ({
   setIsVisible,
   setTargetFilterData,
   filterData,
+  isRestButton,
+  setIsRestButton,
 }) => {
   const [selectBar, setSelectBar] = useState<0 | 1>(0);
-  const [isRestButton, setIsRestButton] = useState(false);
 
   return (
     <Modal isVisible={isVisible}>
