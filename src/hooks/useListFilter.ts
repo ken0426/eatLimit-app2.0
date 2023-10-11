@@ -7,6 +7,14 @@ import {
 import { ApiData, TargetFilterData } from '../types';
 import moment from 'moment';
 
+/** 画像のみ表示 */
+const IMAGE_SELECT = {
+  /** しない */
+  IS_SHOW_NOT: '1',
+  /** する */
+  IS_SHOW: '2',
+};
+
 export const useListFilter = (
   /** DBからのレスポンスデータ */
   responseData: ApiData[],
@@ -39,7 +47,10 @@ export const useListFilter = (
       type: string
     ) => {
       listData = listData.filter((item) => {
-        if (type === LABEL_NAME.IMAGE && singleSelectedData === '2') {
+        if (
+          type === LABEL_NAME.IMAGE &&
+          singleSelectedData === IMAGE_SELECT.IS_SHOW
+        ) {
           return item.image;
         } else if (
           type === LABEL_NAME.BEFORE_DATE &&
