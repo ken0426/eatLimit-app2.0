@@ -15,6 +15,13 @@ const IMAGE_SELECT = {
   IS_SHOW: '2',
 };
 
+const BEFORE_DATE_SELECT = {
+  /** しない */
+  IS_SHOW_NOT: '1',
+  /** する */
+  IS_SHOW: '2',
+};
+
 export const useListFilter = (
   /** DBからのレスポンスデータ */
   responseData: ApiData[],
@@ -54,7 +61,7 @@ export const useListFilter = (
           return item.image;
         } else if (
           type === LABEL_NAME.BEFORE_DATE &&
-          singleSelectedData === '2'
+          singleSelectedData === BEFORE_DATE_SELECT.IS_SHOW
         ) {
           return moment().isAfter(item.date, 'day');
         } else {
