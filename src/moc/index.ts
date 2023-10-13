@@ -206,7 +206,7 @@ export const data: ApiData[] = [
   {
     eatName: 'うどん',
     count: 1,
-    date: '2023-04-26',
+    date: '2023-10-26',
     image:
       'https://housefoods.jp/_sys/catimages/recipe/hfrecipe/items/00023060/0.jpeg',
     management: '消費期限',
