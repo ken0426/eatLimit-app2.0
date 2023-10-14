@@ -41,7 +41,7 @@ const OrgFilterModal: FC<Props> = ({
   return (
     <Modal isVisible={isVisible}>
       <View style={styles.modal}>
-        <View style={{ justifyContent: 'space-between', flex: 1 }}>
+        <View style={styles.modalContents}>
           <View style={styles.header}>
             <Text style={styles.headerText}>絞り込み</Text>
           </View>
@@ -136,6 +136,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: WINDOW_HEIGHT * 0.9,
     borderRadius: 20,
+  },
+  modalContents: {
+    justifyContent: 'space-between',
+    flex: 1,
   },
   header: {
     width: '100%',
