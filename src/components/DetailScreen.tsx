@@ -1,6 +1,5 @@
 import React, { FC, useRef } from 'react';
 import { StyleSheet, View, ScrollView, Animated } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import { WINDOW_HEIGHT } from '../utils';
 import MolHeader from './molecules/MolHeader';
@@ -18,11 +17,10 @@ type RouteItem = {
 };
 
 type Props = {
-  navigation: StackNavigationProp<StackPramList, 'detailScreen'>;
   route: RouteProp<StackPramList, 'detailScreen'> & RouteItem;
 };
 
-const DetailScreen: FC<Props> = ({ navigation, route }) => {
+const DetailScreen: FC<Props> = ({ route }) => {
   const { item } = route.params;
   const animatedValue = useRef(new Animated.Value(0)).current;
 
