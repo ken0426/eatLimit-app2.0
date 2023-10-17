@@ -115,7 +115,11 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       });
                     }}
-                    textData={Number(getTextData(LABEL_NAME.QUANTITY)) ?? 1}
+                    textData={
+                      route.params
+                        ? Number(getTextData(LABEL_NAME.QUANTITY)) ?? 1
+                        : undefined
+                    }
                   />
                   <AtomSingleSelect
                     label={LABEL_TEXT.MANAGEMENT}
@@ -157,14 +161,11 @@ const RegisterScreen = () => {
                     errorMessage={
                       isDateErrorMessage ? DATE_ERROR_MESSAGE.DATE : ''
                     }
-                    // date={
-                    //   postData.find((item) => item.key === LABEL_NAME.DATE)
-                    //     ?.value
-                    // }
-                    // selectedDate={
-                    //   postData.find((item) => item.key === LABEL_NAME.DATE)
-                    //     ?.value
-                    // }
+                    copyDate={
+                      route.params
+                        ? new Date(getTextData(LABEL_NAME.DATE) ?? '')
+                        : undefined
+                    }
                   />
                   {(label === '購入日' || label === '登録日') && (
                     <AtomDate

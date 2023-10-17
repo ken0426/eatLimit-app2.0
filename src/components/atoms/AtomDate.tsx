@@ -14,6 +14,7 @@ type Props = {
   setData: ({ key, value }: PostData) => void;
   errorMessage: string;
   selectedDate?: string;
+  copyDate?: Date;
 };
 
 const AtomDate: FC<Props> = ({
@@ -24,24 +25,37 @@ const AtomDate: FC<Props> = ({
   setData,
   errorMessage,
   selectedDate,
+  copyDate,
 }) => {
   const getDate = () => {
-    if (date) {
-      if (isLimit && selectedDate) {
+    if (copyDate) {
+      return copyDate;
+    } else {
+      if (date) {
+        if (isLimit && selectedDate) {
+          const currentDate = new Date(selectedDate);
+          return new Date(currentDate.setDate(currentDate.getDate() + 10));
+        } else {
+          return new Date(date);
+        }
+      } else if (isLimit && selectedDate) {
         const currentDate = new Date(selectedDate);
         return new Date(currentDate.setDate(currentDate.getDate() + 10));
       } else {
-        return new Date(date);
+        return new Date();
       }
-    } else if (isLimit && selectedDate) {
-      const currentDate = new Date(selectedDate);
-      return new Date(currentDate.setDate(currentDate.getDate() + 10));
-    } else {
-      return new Date();
     }
   };
 
   const [pickedDate, setPickedDate] = useState<Date>(getDate());
+  const [isCopy, setIsCopy] = useState(copyDate ? true : false);
+
+  useEffect(() => {
+    if (copyDate && !isNaN(Number(copyDate)) && isCopy) {
+      setPickedDate(copyDate);
+      setIsCopy(false);
+    }
+  }, [copyDate]);
 
   const handleText = () => {
     const year = pickedDate.getFullYear();
