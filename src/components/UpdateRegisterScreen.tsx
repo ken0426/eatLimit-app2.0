@@ -112,6 +112,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                         isRequired: data.isRequired,
                       });
                     }}
+                    textData={Number(updateData.count)}
                   />
                   <AtomSingleSelect
                     label={LABEL_TEXT.MANAGEMENT}

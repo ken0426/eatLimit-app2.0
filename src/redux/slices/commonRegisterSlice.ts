@@ -18,6 +18,7 @@ const commonRegisterState = {
     placeOfPurchase: undefined,
     management: '',
     preservation: '',
+    count: '',
   },
 };
 

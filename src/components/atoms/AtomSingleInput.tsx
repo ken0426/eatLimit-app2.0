@@ -53,7 +53,7 @@ const AtomSingleInput: FC<Props> = ({
         onPressIn={onPressIn}
         onChangeText={(inputText) => setText(inputText)}
         style={styles.textValue}
-        value={getText(text, keyboardType)}
+        value={text ? getText(text, keyboardType) : textData}
         keyboardType={keyboardType}
       />
       {keyboardType === 'number-pad' && <Text style={styles.label}>円</Text>}

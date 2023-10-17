@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -9,8 +9,8 @@ import {
   View,
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
-import { StackPramList } from '../types';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { ApiData, PostData, StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomRegister from './atoms/AtomRegister';
@@ -35,9 +35,18 @@ import AtomCounter from './atoms/AtomCounter';
 import { useDateError } from '../hooks/useDateError';
 import moment from 'moment';
 
+type RouteItem = {
+  params: {
+    data: ApiData;
+  };
+};
+
 const RegisterScreen = () => {
   const navigation =
     useNavigation<StackNavigationProp<StackPramList, 'registerScreen'>>();
+  const route = useRoute<
+    RouteProp<StackPramList, 'registerScreen'> & RouteItem
+  >();
   /** キーボードで入力するエリアで高さを調整するフラグ */
   const [enabled, setEnabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -46,9 +55,65 @@ const RegisterScreen = () => {
   const [label, setLabel] = useState('');
   /** 今日の日付と登録する日付を比較して登録する日付が過去の日付の場合はモーダルを表示するためのフラグ */
   const [isDateBefore, setIsDateBefore] = useState(false);
+  /** コピーからのデータをセットする時に無限ループを停止する */
+  const [isRoute, setIsRoute] = useState(route.params ? true : false);
 
   const { setTargetPostData, postData } = useRegister();
   const { isDateErrorMessage } = useDateError(postData, label);
+
+  useEffect(() => {
+    if (route.params) {
+      const data = route.params.data;
+      const getValue = (item: PostData) => {
+        switch (item.key) {
+          /** 商品名 */
+          case LABEL_NAME.PRODUCT:
+            return data.eatName;
+          /** 個数 */
+          case LABEL_NAME.QUANTITY:
+            return String(data.count);
+          /** 管理方法 */
+          case LABEL_NAME.MANAGEMENT:
+            return data.management;
+          /** 保存方法 */
+          case LABEL_NAME.PRESERVATION:
+            return data.preservation;
+          /** 日付 */
+          case LABEL_NAME.DATE:
+            return data.date;
+          /** 期限目安 */
+          case LABEL_NAME.APPROXIMATE_DEADLINE:
+            return data.approximateDeadline;
+          /** 購入場所 */
+          case LABEL_NAME.PLACE_OF_PURCHASE:
+            return data.placeOfPurchase;
+          /** 金額 */
+          case LABEL_NAME.AMOUNT_OF_MONEY:
+            return String(data.price ?? '');
+          default:
+            return item.value;
+        }
+      };
+
+      if (postData.length && isRoute) {
+        const postEditData = postData.map((item) => ({
+          key: item.key,
+          value: getValue(item),
+          isRequired: item.isRequired,
+        }));
+
+        postEditData.map((item) =>
+          setTargetPostData({
+            key: item.key,
+            value: item.value ?? '',
+            isRequired: item.isRequired,
+          })
+        );
+
+        setIsRoute(false);
+      }
+    }
+  }, [route, postData]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -97,6 +162,13 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       })
                     }
+                    textData={
+                      postData.length
+                        ? postData.find(
+                            (item) => item.key === LABEL_NAME.PRODUCT
+                          )?.value
+                        : ''
+                    }
                   />
                   <AtomCounter
                     onPressIn={() => setEnabled(false)}
@@ -107,6 +179,15 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       });
                     }}
+                    textData={
+                      postData.length
+                        ? Number(
+                            postData.find(
+                              (item) => item.key === LABEL_NAME.QUANTITY
+                            )?.value
+                          )
+                        : 1
+                    }
                   />
                   <AtomSingleSelect
                     label={LABEL_TEXT.MANAGEMENT}
@@ -120,6 +201,13 @@ const RegisterScreen = () => {
                       });
                       setLabel(data.value);
                     }}
+                    textData={
+                      postData.length
+                        ? postData.find(
+                            (item) => item.key === LABEL_NAME.MANAGEMENT
+                          )?.value
+                        : ''
+                    }
                   />
                   <AtomSingleSelect
                     label={LABEL_TEXT.PRESERVATION}
@@ -131,6 +219,13 @@ const RegisterScreen = () => {
                         value: data.value,
                         isRequired: data.isRequired,
                       })
+                    }
+                    textData={
+                      postData.length
+                        ? postData.find(
+                            (item) => item.key === LABEL_NAME.PRESERVATION
+                          )?.value
+                        : ''
                     }
                   />
                   <AtomDate
@@ -146,6 +241,14 @@ const RegisterScreen = () => {
                     errorMessage={
                       isDateErrorMessage ? DATE_ERROR_MESSAGE.DATE : ''
                     }
+                    // date={
+                    //   postData.find((item) => item.key === LABEL_NAME.DATE)
+                    //     ?.value
+                    // }
+                    // selectedDate={
+                    //   postData.find((item) => item.key === LABEL_NAME.DATE)
+                    //     ?.value
+                    // }
                   />
                   {(label === '購入日' || label === '登録日') && (
                     <AtomDate
@@ -180,6 +283,13 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       })
                     }
+                    textData={
+                      postData.length
+                        ? postData.find(
+                            (item) => item.key === LABEL_NAME.PLACE_OF_PURCHASE
+                          )?.value
+                        : ''
+                    }
                   />
                   <AtomSingleInput
                     label={LABEL_TEXT.AMOUNT_OF_MONEY}
@@ -191,6 +301,13 @@ const RegisterScreen = () => {
                         value: data.value,
                         isRequired: data.isRequired,
                       })
+                    }
+                    textData={
+                      postData.length
+                        ? postData.find(
+                            (item) => item.key === LABEL_NAME.AMOUNT_OF_MONEY
+                          )?.value
+                        : ''
                     }
                   />
                   <AtomMemo

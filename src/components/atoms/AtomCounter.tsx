@@ -15,10 +15,11 @@ import { LABEL_TEXT, REGISTER_COUNT_TEXT } from '../../contents';
 type Props = {
   onPressIn: () => void;
   setData: ({ key, value }: PostData) => void;
+  textData?: number;
 };
 
-const AtomCounter: FC<Props> = ({ onPressIn, setData }) => {
-  const [text, setText] = useState<number>(1);
+const AtomCounter: FC<Props> = ({ onPressIn, setData, textData = 1 }) => {
+  const [text, setText] = useState<number>(Number(textData));
 
   useEffect(() => {
     setData({
@@ -38,7 +39,17 @@ const AtomCounter: FC<Props> = ({ onPressIn, setData }) => {
           <View style={styles.counterArea}>
             <TouchableOpacity
               style={styles.countTouchArea}
-              onPress={() => setText((e) => (e > 1 ? e - 1 : e))}
+              onPress={() =>
+                setText((e) => {
+                  if (e > 1) {
+                    return e - 1;
+                  } else if (textData === 1) {
+                    return 1;
+                  } else {
+                    return textData - 1;
+                  }
+                })
+              }
             >
               <AntDesign name='minus' size={24} color='black' />
             </TouchableOpacity>
@@ -50,7 +61,7 @@ const AtomCounter: FC<Props> = ({ onPressIn, setData }) => {
                   backgroundColor: COLORS.CAVEAT,
                 },
               ]}
-              value={String(text)}
+              value={text > 1 ? String(text) : String(textData)}
               onChangeText={(inputText) =>
                 setText(() => {
                   if (Number(inputText) < REGISTER_COUNT_TEXT.MIN) {
@@ -64,7 +75,15 @@ const AtomCounter: FC<Props> = ({ onPressIn, setData }) => {
             />
             <TouchableOpacity
               style={styles.countTouchArea}
-              onPress={() => setText((e) => e + 1)}
+              onPress={() => {
+                setText((e) => {
+                  if (e > 1) {
+                    return e + 1;
+                  } else {
+                    return textData + 1;
+                  }
+                });
+              }}
             >
               <AntDesign name='plus' size={24} color='black' />
             </TouchableOpacity>

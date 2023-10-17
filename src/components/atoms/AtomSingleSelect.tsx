@@ -55,7 +55,7 @@ const AtomSingleSelect: FC<Props> = ({
           <Text style={styles.label}>{`${label}：`}</Text>
         )}
         <View style={{ flexDirection: 'row', flex: 1 }}>
-          <Text style={styles.textValue}>{text}</Text>
+          <Text style={styles.textValue}>{text === '' ? textData : text}</Text>
           <View>
             <MaterialIcons
               name='keyboard-arrow-down'

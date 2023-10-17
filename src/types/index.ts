@@ -31,7 +31,7 @@ export type StackPramList = {
   homeScreen: undefined;
   detailScreen: { item: ApiData };
   searchScreen: { data: ApiData[] };
-  registerScreen: undefined;
+  registerScreen: undefined | { data: ApiData };
   updateRegisterScreen: undefined;
   settingScreen: undefined;
   settingDetailScreen: { data: any };

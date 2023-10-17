@@ -1,6 +1,6 @@
 import React, { FC, useRef } from 'react';
 import { StyleSheet, View, ScrollView, Animated } from 'react-native';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import { WINDOW_HEIGHT } from '../utils';
 import MolHeader from './molecules/MolHeader';
 import { ApiData, StackPramList } from '../types';
@@ -10,6 +10,7 @@ import MolDetailHeader from './molecules/MolDetailHeader';
 import { COLORS, DETAIL_IMAGE_HEIGHT, FONTSIZE, SIZE } from '../styles';
 import { LABEL_TEXT } from '../contents';
 import AtomButton from './atoms/AtomButton';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type RouteItem = {
   params: {
@@ -22,6 +23,8 @@ type Props = {
 };
 
 const DetailScreen: FC<Props> = ({ route }) => {
+  const navigation =
+    useNavigation<StackNavigationProp<StackPramList, 'detailScreen'>>();
   const { item } = route.params;
   const animatedValue = useRef(new Animated.Value(0)).current;
 
@@ -76,7 +79,9 @@ const DetailScreen: FC<Props> = ({ route }) => {
 
           <View style={{ alignItems: 'center', marginTop: SIZE.BASE_WP * 10 }}>
             <AtomButton
-              onPress={() => {}}
+              onPress={() =>
+                navigation.navigate('registerScreen', { data: item })
+              }
               color={COLORS.WHITE}
               fontSize={FONTSIZE.SIZE30PX}
               backgroundColor={COLORS.ORANGE}
