@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -8,9 +8,10 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import moment from 'moment';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import { ApiData, PostData, StackPramList } from '../types';
+import { useNavigation } from '@react-navigation/native';
+import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomRegister from './atoms/AtomRegister';
@@ -33,20 +34,11 @@ import AtomLoading from './atoms/AtomLoading';
 import { onRegisterPress } from '../functions';
 import AtomCounter from './atoms/AtomCounter';
 import { useDateError } from '../hooks/useDateError';
-import moment from 'moment';
-
-type RouteItem = {
-  params: {
-    data: ApiData;
-  };
-};
+import { useCopyEdit } from '../hooks/useCopyEdit';
 
 const RegisterScreen = () => {
   const navigation =
     useNavigation<StackNavigationProp<StackPramList, 'registerScreen'>>();
-  const route = useRoute<
-    RouteProp<StackPramList, 'registerScreen'> & RouteItem
-  >();
   /** キーボードで入力するエリアで高さを調整するフラグ */
   const [enabled, setEnabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -56,64 +48,12 @@ const RegisterScreen = () => {
   /** 今日の日付と登録する日付を比較して登録する日付が過去の日付の場合はモーダルを表示するためのフラグ */
   const [isDateBefore, setIsDateBefore] = useState(false);
   /** コピーからのデータをセットする時に無限ループを停止する */
-  const [isRoute, setIsRoute] = useState(route.params ? true : false);
+  // const [isRoute, setIsRoute] = useState(route.params ? true : false);
 
   const { setTargetPostData, postData } = useRegister();
   const { isDateErrorMessage } = useDateError(postData, label);
 
-  useEffect(() => {
-    if (route.params) {
-      const data = route.params.data;
-      const getValue = (item: PostData) => {
-        switch (item.key) {
-          /** 商品名 */
-          case LABEL_NAME.PRODUCT:
-            return data.eatName;
-          /** 個数 */
-          case LABEL_NAME.QUANTITY:
-            return String(data.count);
-          /** 管理方法 */
-          case LABEL_NAME.MANAGEMENT:
-            return data.management;
-          /** 保存方法 */
-          case LABEL_NAME.PRESERVATION:
-            return data.preservation;
-          /** 日付 */
-          case LABEL_NAME.DATE:
-            return data.date;
-          /** 期限目安 */
-          case LABEL_NAME.APPROXIMATE_DEADLINE:
-            return data.approximateDeadline;
-          /** 購入場所 */
-          case LABEL_NAME.PLACE_OF_PURCHASE:
-            return data.placeOfPurchase;
-          /** 金額 */
-          case LABEL_NAME.AMOUNT_OF_MONEY:
-            return String(data.price ?? '');
-          default:
-            return item.value;
-        }
-      };
-
-      if (postData.length && isRoute) {
-        const postEditData = postData.map((item) => ({
-          key: item.key,
-          value: getValue(item),
-          isRequired: item.isRequired,
-        }));
-
-        postEditData.map((item) =>
-          setTargetPostData({
-            key: item.key,
-            value: item.value ?? '',
-            isRequired: item.isRequired,
-          })
-        );
-
-        setIsRoute(false);
-      }
-    }
-  }, [route, postData]);
+  useCopyEdit(postData, setTargetPostData);
 
   return (
     <View style={{ flex: 1 }}>
