@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import moment from 'moment';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
@@ -39,6 +39,7 @@ import { useCopyEdit } from '../hooks/useCopyEdit';
 const RegisterScreen = () => {
   const navigation =
     useNavigation<StackNavigationProp<StackPramList, 'registerScreen'>>();
+  const route = useRoute();
   /** キーボードで入力するエリアで高さを調整するフラグ */
   const [enabled, setEnabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -47,8 +48,6 @@ const RegisterScreen = () => {
   const [label, setLabel] = useState('');
   /** 今日の日付と登録する日付を比較して登録する日付が過去の日付の場合はモーダルを表示するためのフラグ */
   const [isDateBefore, setIsDateBefore] = useState(false);
-  /** コピーからのデータをセットする時に無限ループを停止する */
-  // const [isRoute, setIsRoute] = useState(route.params ? true : false);
 
   const { setTargetPostData, postData } = useRegister();
   const { isDateErrorMessage } = useDateError(postData, label);
@@ -63,7 +62,7 @@ const RegisterScreen = () => {
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomRegister
-            title={'登録'}
+            title={route.params ? 'コピー' : '登録'}
             postData={postData}
             setIsLoading={setIsLoading}
             isVisible={isVisible}
