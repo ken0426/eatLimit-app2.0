@@ -55,6 +55,9 @@ const RegisterScreen = () => {
 
   useCopyEdit(postData, setTargetPostData);
 
+  const getTextData = (key: string) =>
+    postData.find((item) => item.key === key)?.value;
+
   return (
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
@@ -102,13 +105,7 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       })
                     }
-                    textData={
-                      postData.length
-                        ? postData.find(
-                            (item) => item.key === LABEL_NAME.PRODUCT
-                          )?.value
-                        : ''
-                    }
+                    textData={getTextData(LABEL_NAME.PRODUCT) ?? ''}
                   />
                   <AtomCounter
                     onPressIn={() => setEnabled(false)}
@@ -119,15 +116,7 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       });
                     }}
-                    textData={
-                      postData.length
-                        ? Number(
-                            postData.find(
-                              (item) => item.key === LABEL_NAME.QUANTITY
-                            )?.value
-                          )
-                        : 1
-                    }
+                    textData={Number(getTextData(LABEL_NAME.QUANTITY)) ?? 1}
                   />
                   <AtomSingleSelect
                     label={LABEL_TEXT.MANAGEMENT}
@@ -141,13 +130,7 @@ const RegisterScreen = () => {
                       });
                       setLabel(data.value);
                     }}
-                    textData={
-                      postData.length
-                        ? postData.find(
-                            (item) => item.key === LABEL_NAME.MANAGEMENT
-                          )?.value
-                        : ''
-                    }
+                    textData={getTextData(LABEL_NAME.MANAGEMENT) ?? ''}
                   />
                   <AtomSingleSelect
                     label={LABEL_TEXT.PRESERVATION}
@@ -160,13 +143,7 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       })
                     }
-                    textData={
-                      postData.length
-                        ? postData.find(
-                            (item) => item.key === LABEL_NAME.PRESERVATION
-                          )?.value
-                        : ''
-                    }
+                    textData={getTextData(LABEL_NAME.PRESERVATION) ?? ''}
                   />
                   <AtomDate
                     isRequired={true}
@@ -223,13 +200,7 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       })
                     }
-                    textData={
-                      postData.length
-                        ? postData.find(
-                            (item) => item.key === LABEL_NAME.PLACE_OF_PURCHASE
-                          )?.value
-                        : ''
-                    }
+                    textData={getTextData(LABEL_NAME.PLACE_OF_PURCHASE) ?? ''}
                   />
                   <AtomSingleInput
                     label={LABEL_TEXT.AMOUNT_OF_MONEY}
@@ -242,13 +213,7 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       })
                     }
-                    textData={
-                      postData.length
-                        ? postData.find(
-                            (item) => item.key === LABEL_NAME.AMOUNT_OF_MONEY
-                          )?.value
-                        : ''
-                    }
+                    textData={getTextData(LABEL_NAME.AMOUNT_OF_MONEY) ?? ''}
                   />
                   <AtomMemo
                     onPress={() => setEnabled(true)}
