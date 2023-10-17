@@ -7,8 +7,9 @@ import { ApiData, StackPramList } from '../types';
 import { useDetailAnimation } from '../hooks/useDetailAnimation';
 import AtomSingleItem from './atoms/AtomSingleItem';
 import MolDetailHeader from './molecules/MolDetailHeader';
-import { COLORS, DETAIL_IMAGE_HEIGHT, SIZE } from '../styles';
+import { COLORS, DETAIL_IMAGE_HEIGHT, FONTSIZE, SIZE } from '../styles';
 import { LABEL_TEXT } from '../contents';
+import AtomButton from './atoms/AtomButton';
 
 type RouteItem = {
   params: {
@@ -72,6 +73,18 @@ const DetailScreen: FC<Props> = ({ route }) => {
               label={LABEL_TEXT.AMOUNT_OF_MONEY}
             />
           )}
+
+          <View style={{ alignItems: 'center', marginTop: SIZE.BASE_WP * 10 }}>
+            <AtomButton
+              onPress={() => {}}
+              color={COLORS.WHITE}
+              fontSize={FONTSIZE.SIZE30PX}
+              backgroundColor={COLORS.ORANGE}
+              width={200}
+              buttonText={'コピー'}
+              fontWeight={'bold'}
+            />
+          </View>
         </View>
       </ScrollView>
     </View>

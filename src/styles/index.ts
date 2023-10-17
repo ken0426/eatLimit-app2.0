@@ -40,6 +40,8 @@ export const COLORS = {
   SIGN_IN_BUTTON: '#fcfcfc',
   /** 警告の色 */
   CAVEAT: '#ff9191',
+  /** コピーボタンの色 */
+  ORANGE: '#ee7800',
 };
 
 export const SIZE = {
