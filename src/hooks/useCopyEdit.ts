@@ -11,7 +11,8 @@ type RouteItem = {
 
 export const useCopyEdit = (
   postData: PostData[],
-  setTargetPostData: (post: PostData) => void
+  setTargetPostData: (post: PostData) => void,
+  setLabel: (e: string) => void
 ) => {
   const route = useRoute<
     RouteProp<StackPramList, 'registerScreen'> & RouteItem
@@ -67,6 +68,9 @@ export const useCopyEdit = (
             isRequired: item.isRequired,
           })
         );
+
+        if (data.management === '購入日' || data.management === '登録日')
+          setLabel(data.management);
 
         setIsRoute(false);
       }

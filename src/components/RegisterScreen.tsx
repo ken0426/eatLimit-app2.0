@@ -52,7 +52,7 @@ const RegisterScreen = () => {
   const { setTargetPostData, postData } = useRegister();
   const { isDateErrorMessage } = useDateError(postData, label);
 
-  useCopyEdit(postData, setTargetPostData);
+  useCopyEdit(postData, setTargetPostData, setLabel);
 
   const getTextData = (key: string) =>
     postData.find((item) => item.key === key)?.value;
