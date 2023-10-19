@@ -135,7 +135,7 @@ export const data: ApiData[] = [
     count: 1,
     image:
       'https://p1-e6eeae93.imageflux.jp/c!/a=2,w=800,h=800/mkdirect/149d22949040b32ff922.png',
-    date: '2023-08-26',
+    date: '2023-08-20',
     placeOfPurchase: 'イオン',
     management: '消費期限',
     preservation: '冷蔵',
