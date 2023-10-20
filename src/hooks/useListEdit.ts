@@ -7,7 +7,7 @@ export const useListEdit = (
   dayOfWeekId: number,
   date: string
 ) => {
-  moment.locale('ja', {
+  moment.updateLocale('ja', {
     weekdaysShort: ['日', '月', '火', '水', '木', '金', '土'],
   });
   const isImage = imageId == 1;
