@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 import moment from 'moment';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import { StackPramList } from '../types';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { ApiData, StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomRegister from './atoms/AtomRegister';
@@ -36,10 +36,18 @@ import AtomCounter from './atoms/AtomCounter';
 import { useDateError } from '../hooks/useDateError';
 import { useCopyEdit } from '../hooks/useCopyEdit';
 
+type RouteItem = {
+  params: {
+    data: ApiData;
+  };
+};
+
 const RegisterScreen = () => {
   const navigation =
     useNavigation<StackNavigationProp<StackPramList, 'registerScreen'>>();
-  const route = useRoute();
+  const route = useRoute<
+    RouteProp<StackPramList, 'registerScreen'> & RouteItem
+  >();
   /** キーボードで入力するエリアで高さを調整するフラグ */
   const [enabled, setEnabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -57,6 +65,8 @@ const RegisterScreen = () => {
   const getTextData = (key: string) =>
     postData.find((item) => item.key === key)?.value;
 
+  const isCopyRegister = route.params;
+
   return (
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
@@ -71,6 +81,7 @@ const RegisterScreen = () => {
             setMessage={setMessage}
             isDateBefore={isDateBefore}
             setIsDateBefore={setIsDateBefore}
+            isCopyRegister={isCopyRegister}
           />
         </MolHeader>
 
@@ -245,12 +256,15 @@ const RegisterScreen = () => {
                           setIsLoading,
                           navigation,
                           setMessage,
+                          isCopyRegister,
                         });
                       }
                     }}
                     color={COLORS.WHITE}
                     fontSize={FONTSIZE.SIZE30PX}
-                    backgroundColor={COLORS.BLUE}
+                    backgroundColor={
+                      isCopyRegister ? COLORS.ORANGE : COLORS.BLUE
+                    }
                     width={200}
                     buttonText={'登録'}
                     fontWeight={'bold'}

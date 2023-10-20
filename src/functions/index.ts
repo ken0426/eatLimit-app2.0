@@ -2,6 +2,7 @@ import { ActionSheetIOS, Alert, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Dispatch } from '@reduxjs/toolkit';
 import { StackNavigationProp } from '@react-navigation/stack';
+import moment from 'moment';
 import {
   ACTION_SHEET,
   CAMERA_ERROR_MESSAGE,
@@ -9,7 +10,7 @@ import {
   LABEL_NAME,
   MODAL_MESSAGE,
 } from '../contents';
-import { ListData, PostData, StackPramList } from '../types';
+import { ApiData, ListData, PostData, StackPramList } from '../types';
 import {
   setDateDisplayId,
   setDateFormatDisplayId,
@@ -17,7 +18,6 @@ import {
   setImageId,
   setSelectMemoTemplate,
 } from '../redux/slices/commonSlice';
-import moment from 'moment';
 
 type Options = {
   options: string[];
@@ -40,6 +40,7 @@ type OnRegisterPress = {
     'registerScreen' | 'updateRegisterScreen'
   >;
   setMessage: (e: string) => void;
+  isCopyRegister?: { data: ApiData };
 };
 
 /** カメラの起動 */
@@ -132,6 +133,7 @@ export const onRegisterPress = async ({
   setIsLoading,
   navigation,
   setMessage,
+  isCopyRegister,
 }: OnRegisterPress) => {
   /** 必須項目を抽出 */
   const filterData = postData.filter((item) => item.isRequired);
@@ -180,7 +182,11 @@ export const onRegisterPress = async ({
       console.log('リクエストを送信中・・・');
       await new Promise((resolve) => setTimeout(resolve, 2500)); // 2.5秒待機（見た目として実装）
       console.log('DBに保存完了'); // 非同期処理
-      navigation.goBack();
+      if (isCopyRegister) {
+        navigation.pop(2);
+      } else {
+        navigation.goBack();
+      }
     } catch (error) {
       setIsVisible(true);
       setMessage('送信に失敗しました');

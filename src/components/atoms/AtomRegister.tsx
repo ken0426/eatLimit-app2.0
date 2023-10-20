@@ -3,7 +3,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { PostData, StackPramList } from '../../types';
+import { ApiData, PostData, StackPramList } from '../../types';
 import { COLORS, FONTSIZE } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onRegisterPress } from '../../functions';
@@ -21,6 +21,7 @@ type Props = {
   setMessage: (e: string) => void;
   isDateBefore: boolean;
   setIsDateBefore: (e: boolean) => void;
+  isCopyRegister?: { data: ApiData };
 };
 
 const AtomRegister: FC<Props> = ({
@@ -33,6 +34,7 @@ const AtomRegister: FC<Props> = ({
   setMessage,
   isDateBefore,
   setIsDateBefore,
+  isCopyRegister,
 }) => {
   const navigation =
     useNavigation<
@@ -72,6 +74,7 @@ const AtomRegister: FC<Props> = ({
           setIsLoading,
           navigation,
           setMessage,
+          isCopyRegister,
         });
       },
     },
@@ -122,6 +125,7 @@ const AtomRegister: FC<Props> = ({
               setIsLoading,
               navigation,
               setMessage,
+              isCopyRegister,
             });
           }
         }}
