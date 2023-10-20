@@ -245,7 +245,6 @@ const RegisterScreen = () => {
                           setIsLoading,
                           navigation,
                           setMessage,
-                          setIsDateBefore,
                         });
                       }
                     }}

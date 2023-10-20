@@ -40,7 +40,6 @@ type OnRegisterPress = {
     'registerScreen' | 'updateRegisterScreen'
   >;
   setMessage: (e: string) => void;
-  setIsDateBefore: (e: boolean) => void;
 };
 
 /** カメラの起動 */
@@ -133,7 +132,6 @@ export const onRegisterPress = async ({
   setIsLoading,
   navigation,
   setMessage,
-  setIsDateBefore,
 }: OnRegisterPress) => {
   /** 必須項目を抽出 */
   const filterData = postData.filter((item) => item.isRequired);

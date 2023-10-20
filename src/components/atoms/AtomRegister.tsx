@@ -72,7 +72,6 @@ const AtomRegister: FC<Props> = ({
           setIsLoading,
           navigation,
           setMessage,
-          setIsDateBefore,
         });
       },
     },
@@ -123,7 +122,6 @@ const AtomRegister: FC<Props> = ({
               setIsLoading,
               navigation,
               setMessage,
-              setIsDateBefore,
             });
           }
         }}
