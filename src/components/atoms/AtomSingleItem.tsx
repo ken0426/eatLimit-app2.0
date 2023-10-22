@@ -11,7 +11,7 @@ const AtomSingleItem: FC<Props> = ({ value, label }) => {
   return (
     <View style={styles.itemArea}>
       <Text style={styles.label}>{label}</Text>
-      <Text style={{ fontSize: FONTSIZE.SIZE20PX, fontWeight: 'bold' }}>
+      <Text style={styles.text}>
         {typeof value === 'string' ? value : `${value}円`}
       </Text>
     </View>
@@ -33,5 +33,9 @@ const styles = StyleSheet.create({
   label: {
     width: '40%',
     fontSize: FONTSIZE.SIZE20PX,
+  },
+  text: {
+    fontSize: FONTSIZE.SIZE20PX,
+    fontWeight: 'bold',
   },
 });
