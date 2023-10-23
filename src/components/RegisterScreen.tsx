@@ -127,11 +127,7 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       });
                     }}
-                    textData={
-                      route.params
-                        ? Number(getTextData(LABEL_NAME.QUANTITY)) ?? 1
-                        : undefined
-                    }
+                    textData={route.params?.data?.count ?? undefined}
                   />
                   <AtomSingleSelect
                     label={LABEL_TEXT.MANAGEMENT}

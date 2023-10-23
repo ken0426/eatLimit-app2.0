@@ -43,10 +43,8 @@ const AtomCounter: FC<Props> = ({ onPressIn, setData, textData = 1 }) => {
                 setText((e) => {
                   if (e > 1) {
                     return e - 1;
-                  } else if (textData === 1) {
-                    return 1;
                   } else {
-                    return textData - 1;
+                    return 1;
                   }
                 })
               }
@@ -61,7 +59,7 @@ const AtomCounter: FC<Props> = ({ onPressIn, setData, textData = 1 }) => {
                   backgroundColor: COLORS.CAVEAT,
                 },
               ]}
-              value={text > 1 ? String(text) : String(textData)}
+              value={String(text)}
               onChangeText={(inputText) =>
                 setText(() => {
                   if (Number(inputText) < REGISTER_COUNT_TEXT.MIN) {
@@ -75,15 +73,7 @@ const AtomCounter: FC<Props> = ({ onPressIn, setData, textData = 1 }) => {
             />
             <TouchableOpacity
               style={styles.countTouchArea}
-              onPress={() => {
-                setText((e) => {
-                  if (e > 1) {
-                    return e + 1;
-                  } else {
-                    return textData + 1;
-                  }
-                });
-              }}
+              onPress={() => setText((e) => e + 1)}
             >
               <AntDesign name='plus' size={24} color='black' />
             </TouchableOpacity>

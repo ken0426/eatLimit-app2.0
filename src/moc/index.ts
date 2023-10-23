@@ -274,4 +274,12 @@ export const data: ApiData[] = [
     preservation: '常温',
     registerDate: '2023-01-27 00:00:27',
   },
+  {
+    eatName: 'カウンターの不具合対応用',
+    count: 5,
+    date: '2023-10-23',
+    management: '消費期限',
+    preservation: '常温',
+    registerDate: '2023-10-23 22:07:00',
+  },
 ];
