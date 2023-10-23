@@ -8,7 +8,7 @@ import { COLORS, FONTSIZE } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onRegisterPress } from '../../functions';
 import moment from 'moment';
-import { BUTTON_TEXT, LABEL_NAME } from '../../contents';
+import { BUTTON_TEXT, LABEL_NAME, MODAL_MESSAGE } from '../../contents';
 import { useNavigation } from '@react-navigation/native';
 
 type Props = {
@@ -115,8 +115,19 @@ const AtomRegister: FC<Props> = ({
           const registerDate = postData.find(
             (item) => item.key === LABEL_NAME.DATE
           );
+          /** 個数を取得するロジック */
+          const count = postData.find(
+            (item) => item.key === LABEL_NAME.QUANTITY
+          )?.value;
+          if (count && Number(count) > 999) {
+            setIsVisible(true);
+            setMessage(MODAL_MESSAGE.QUANTITY);
+          }
           // もし、日付項目が今日の日付より前の日付の場合は、警告モーダルを表示し、一旦POSTはしないロジックを追加
-          if (registerDate && moment().isAfter(registerDate.value, 'day')) {
+          else if (
+            registerDate &&
+            moment().isAfter(registerDate.value, 'day')
+          ) {
             return setIsDateBefore(true);
           } else {
             onRegisterPress({

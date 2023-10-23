@@ -25,6 +25,7 @@ import {
   LABEL_NAME,
   LABEL_TEXT,
   MANAGEMENT_SELECTED_TEXT,
+  MODAL_MESSAGE,
   keepData,
   managementData,
 } from '../contents';
@@ -34,6 +35,7 @@ import AtomLoading from './atoms/AtomLoading';
 import { onRegisterPress } from '../functions';
 import AtomCounter from './atoms/AtomCounter';
 import { useDateError } from '../hooks/useDateError';
+import moment from 'moment';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
@@ -219,16 +221,34 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                 </View>
                 <View style={styles.buttonArea}>
                   <AtomButton
-                    onPress={() =>
-                      onRegisterPress({
-                        postData,
-                        setIsVisible,
-                        setIsLoading,
-                        navigation,
-                        setMessage,
-                        setIsDateBefore,
-                      })
-                    }
+                    onPress={() => {
+                      /** 個数を取得するロジック */
+                      const count = postData.find(
+                        (item) => item.key === LABEL_NAME.QUANTITY
+                      )?.value;
+                      const registerDate = postData.find(
+                        (item) => item.key === LABEL_NAME.DATE
+                      );
+                      if (count && Number(count) > 999) {
+                        setIsVisible(true);
+                        setMessage(MODAL_MESSAGE.QUANTITY);
+                      }
+                      // もし、日付項目が今日の日付より前の日付の場合は、警告モーダルを表示し、一旦POSTはしないロジックを追加
+                      else if (
+                        registerDate &&
+                        moment().isAfter(registerDate.value, 'day')
+                      ) {
+                        return setIsDateBefore(true);
+                      } else {
+                        onRegisterPress({
+                          postData,
+                          setIsVisible,
+                          setIsLoading,
+                          navigation,
+                          setMessage,
+                        });
+                      }
+                    }}
                     color={COLORS.WHITE}
                     fontSize={FONTSIZE.SIZE30PX}
                     backgroundColor={COLORS.BLUE}

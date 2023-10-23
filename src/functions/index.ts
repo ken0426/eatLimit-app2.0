@@ -158,6 +158,11 @@ export const onRegisterPress = async ({
   const approximateDeadlineData = newPostData.find(
     (item) => item.key === LABEL_NAME.APPROXIMATE_DEADLINE
   );
+  /** 個数を取得するロジック */
+  const count = newPostData.find(
+    (item) => item.key === LABEL_NAME.QUANTITY
+  )?.value;
+  if (!count && typeof Number(count) !== 'number') return;
 
   newPostData.push({
     key: 'registerDate',
@@ -175,6 +180,9 @@ export const onRegisterPress = async ({
   ) {
     setIsVisible(true);
     setMessage(MODAL_MESSAGE.DATE_ERROR);
+  } else if (Number(count) > 999) {
+    setIsVisible(true);
+    setMessage(MODAL_MESSAGE.QUANTITY);
   } else {
     try {
       console.log('postするデータ（常に監視）', newPostData);

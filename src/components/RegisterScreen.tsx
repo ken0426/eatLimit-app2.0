@@ -24,6 +24,7 @@ import {
   HEADER_TYPE,
   LABEL_NAME,
   LABEL_TEXT,
+  MODAL_MESSAGE,
   keepData,
   managementData,
 } from '../contents';
@@ -240,11 +241,19 @@ const RegisterScreen = () => {
                 <View style={styles.buttonArea}>
                   <AtomButton
                     onPress={() => {
+                      /** 個数を取得するロジック */
+                      const count = postData.find(
+                        (item) => item.key === LABEL_NAME.QUANTITY
+                      )?.value;
                       const registerDate = postData.find(
                         (item) => item.key === LABEL_NAME.DATE
                       );
+                      if (count && Number(count) > 999) {
+                        setIsVisible(true);
+                        setMessage(MODAL_MESSAGE.QUANTITY);
+                      }
                       // もし、日付項目が今日の日付より前の日付の場合は、警告モーダルを表示し、一旦POSTはしないロジックを追加
-                      if (
+                      else if (
                         registerDate &&
                         moment().isAfter(registerDate.value, 'day')
                       ) {
