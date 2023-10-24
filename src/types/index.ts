@@ -1,3 +1,4 @@
+import { StackNavigationProp } from '@react-navigation/stack';
 import { ImageSourcePropType } from 'react-native';
 
 export type ApiData = {
@@ -133,4 +134,18 @@ export type HandleLoginType = {
   setMailAddressErrorMessage: (e: string) => void;
   setPasswordErrorMessage: (e: string) => void;
   setPasswordConfirmationErrorMessage: (e: string) => void;
+};
+
+/** 「登録」「変更」「コピー」のボタンを押したときの共通処理の型 */
+export type HandleRegistrationPress = {
+  postData: PostData[];
+  setIsVisible: (e: boolean) => void;
+  setMessage: (e: string) => void;
+  setIsDateBefore: (e: boolean) => void;
+  setIsLoading: (e: boolean) => void;
+  isCopyRegister?: { data: ApiData };
+  navigation: StackNavigationProp<
+    StackPramList,
+    'registerScreen' | 'updateRegisterScreen'
+  >;
 };

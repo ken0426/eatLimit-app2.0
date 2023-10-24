@@ -10,7 +10,13 @@ import {
   LABEL_NAME,
   MODAL_MESSAGE,
 } from '../contents';
-import { ApiData, ListData, PostData, StackPramList } from '../types';
+import {
+  ApiData,
+  HandleRegistrationPress,
+  ListData,
+  PostData,
+  StackPramList,
+} from '../types';
 import {
   setDateDisplayId,
   setDateFormatDisplayId,
@@ -223,5 +229,39 @@ export const onSettingPress = (
     dispatch(setDayOfWeekId(item.id));
   } else if (isTemplate) {
     dispatch(setSelectMemoTemplate(item));
+  }
+};
+
+/** 「登録」「変更」「コピー」のボタンを押したときの共通処理 */
+export const handleRegistrationPress = ({
+  postData,
+  setIsVisible,
+  setMessage,
+  setIsDateBefore,
+  setIsLoading,
+  isCopyRegister,
+  navigation,
+}: HandleRegistrationPress) => {
+  /** 個数を取得するロジック */
+  const count = postData.find(
+    (item) => item.key === LABEL_NAME.QUANTITY
+  )?.value;
+  const registerDate = postData.find((item) => item.key === LABEL_NAME.DATE);
+  if (count && Number(count) > 999) {
+    setIsVisible(true);
+    setMessage(MODAL_MESSAGE.QUANTITY);
+  }
+  // もし、日付項目が今日の日付より前の日付の場合は、警告モーダルを表示し、一旦POSTはしないロジックを追加
+  else if (registerDate && moment().isAfter(registerDate.value, 'day')) {
+    return setIsDateBefore(true);
+  } else {
+    onRegisterPress({
+      postData,
+      setIsVisible,
+      setIsLoading,
+      navigation,
+      setMessage,
+      isCopyRegister,
+    });
   }
 };
