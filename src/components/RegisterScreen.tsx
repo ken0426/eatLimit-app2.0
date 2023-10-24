@@ -8,7 +8,6 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import moment from 'moment';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { ApiData, StackPramList } from '../types';
@@ -24,7 +23,6 @@ import {
   HEADER_TYPE,
   LABEL_NAME,
   LABEL_TEXT,
-  MODAL_MESSAGE,
   keepData,
   managementData,
 } from '../contents';

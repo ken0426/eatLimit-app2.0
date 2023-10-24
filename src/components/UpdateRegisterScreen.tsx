@@ -25,7 +25,6 @@ import {
   LABEL_NAME,
   LABEL_TEXT,
   MANAGEMENT_SELECTED_TEXT,
-  MODAL_MESSAGE,
   keepData,
   managementData,
 } from '../contents';
@@ -35,7 +34,6 @@ import AtomLoading from './atoms/AtomLoading';
 import { handleRegistrationPress } from '../functions';
 import AtomCounter from './atoms/AtomCounter';
 import { useDateError } from '../hooks/useDateError';
-import moment from 'moment';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'updateRegisterScreen'>;

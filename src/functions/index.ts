@@ -1,8 +1,8 @@
 import { ActionSheetIOS, Alert, Platform } from 'react-native';
+import moment from 'moment';
 import * as ImagePicker from 'expo-image-picker';
 import { Dispatch } from '@reduxjs/toolkit';
 import { StackNavigationProp } from '@react-navigation/stack';
-import moment from 'moment';
 import {
   ACTION_SHEET,
   CAMERA_ERROR_MESSAGE,
