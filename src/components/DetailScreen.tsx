@@ -77,7 +77,7 @@ const DetailScreen: FC<Props> = ({ route }) => {
             />
           )}
 
-          <View style={{ alignItems: 'center', marginTop: SIZE.BASE_WP * 10 }}>
+          <View style={styles.button}>
             <AtomButton
               onPress={() =>
                 navigation.navigate('registerScreen', { data: item })
@@ -129,5 +129,9 @@ const styles = StyleSheet.create({
   banner: {
     width: '100%',
     height: DETAIL_IMAGE_HEIGHT,
+  },
+  button: {
+    alignItems: 'center',
+    marginTop: SIZE.BASE_WP * 10,
   },
 });
