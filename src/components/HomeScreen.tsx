@@ -17,6 +17,7 @@ import {
 import { HEADER_TYPE, settingMemoData } from '../contents';
 import NoListScreen from './organisms/NoListScreen';
 import AtomCountDisplay from './atoms/AtomCountDisplay';
+import { StyleSheet } from 'react-native';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
@@ -76,19 +77,8 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
   );
 
   return (
-    <View style={{ flex: 1 }}>
-      <MolHeader
-        style={{
-          height: SIZE.BASE_HP * 12,
-          paddingHorizontal: SIZE.BASE_WP * 5,
-          paddingTop: SIZE.BASE_HP * 4,
-          backgroundColor: COLORS.MAIN_COLOR,
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexDirection: 'row',
-        }}
-        type={HEADER_TYPE.DEFAULT}
-      >
+    <View style={styles.contents}>
+      <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
         <AtomHome
           setListData={setListData}
           responseData={responseData}
@@ -110,3 +100,18 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
 };
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  contents: {
+    flex: 1,
+  },
+  header: {
+    height: SIZE.BASE_HP * 12,
+    paddingHorizontal: SIZE.BASE_WP * 5,
+    paddingTop: SIZE.BASE_HP * 4,
+    backgroundColor: COLORS.MAIN_COLOR,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+});
