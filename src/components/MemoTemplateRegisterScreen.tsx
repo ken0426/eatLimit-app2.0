@@ -23,7 +23,7 @@ const MemoTemplateRegisterScreen = () => {
       style={{ flex: 1 }}
       onPress={() => Keyboard.dismiss()}
     >
-      <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
+      <View style={styles.contents}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomSettingRegister
             title={'テンプレートの追加'}
@@ -69,6 +69,10 @@ const MemoTemplateRegisterScreen = () => {
 export default MemoTemplateRegisterScreen;
 
 const styles = StyleSheet.create({
+  contents: {
+    backgroundColor: COLORS.WHITE,
+    flex: 1,
+  },
   header: {
     height: SIZE.BASE_HP * 12,
     paddingHorizontal: SIZE.BASE_WP * 5,
