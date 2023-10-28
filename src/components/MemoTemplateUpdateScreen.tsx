@@ -26,44 +26,39 @@ const MemoTemplateUpdateScreen: FC<Props> = ({ route }) => {
   const inputAccessoryViewID = 'uniqueID';
   const [text, setText] = useState(data.text);
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
-        <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
-          <AtomSettingRegister
-            title={'テンプレート編集'}
-            isRightButton={true}
-          />
-        </MolHeader>
+    <View style={styles.contents}>
+      <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
+        <AtomSettingRegister title={'テンプレート編集'} isRightButton={true} />
+      </MolHeader>
 
-        <View style={{ paddingHorizontal: 10 }}>
-          <AtomSingleInput
-            label={'項目名'}
-            onPressIn={() => {}}
-            setData={() => {}}
-            textData={data.label}
-          />
-        </View>
-        <View style={styles.memoArea}>
-          <TextInput
-            value={text}
-            onChangeText={(e) => setText(e)}
-            style={styles.textInput}
-            multiline
-            maxLength={500}
-          />
-          <Text style={{ textAlign: 'right', color: COLORS.TEXT_LABEL }}>
-            {`${text.length}／500`}
-          </Text>
-        </View>
-
-        {Platform.OS === 'ios' && (
-          <InputAccessoryView nativeID={inputAccessoryViewID}>
-            <View pointerEvents='box-none' style={styles.completedArea}>
-              <Button title='完了' onPress={() => Keyboard.dismiss()} />
-            </View>
-          </InputAccessoryView>
-        )}
+      <View style={{ paddingHorizontal: 10 }}>
+        <AtomSingleInput
+          label={'項目名'}
+          onPressIn={() => {}}
+          setData={() => {}}
+          textData={data.label}
+        />
       </View>
+      <View style={styles.memoArea}>
+        <TextInput
+          value={text}
+          onChangeText={(e) => setText(e)}
+          style={styles.textInput}
+          multiline
+          maxLength={500}
+        />
+        <Text style={{ textAlign: 'right', color: COLORS.TEXT_LABEL }}>
+          {`${text.length}／500`}
+        </Text>
+      </View>
+
+      {Platform.OS === 'ios' && (
+        <InputAccessoryView nativeID={inputAccessoryViewID}>
+          <View pointerEvents='box-none' style={styles.completedArea}>
+            <Button title='完了' onPress={() => Keyboard.dismiss()} />
+          </View>
+        </InputAccessoryView>
+      )}
     </View>
   );
 };
@@ -71,6 +66,10 @@ const MemoTemplateUpdateScreen: FC<Props> = ({ route }) => {
 export default MemoTemplateUpdateScreen;
 
 const styles = StyleSheet.create({
+  contents: {
+    flex: 1,
+    backgroundColor: COLORS.WHITE,
+  },
   header: {
     height: SIZE.BASE_HP * 12,
     paddingHorizontal: SIZE.BASE_WP * 5,
