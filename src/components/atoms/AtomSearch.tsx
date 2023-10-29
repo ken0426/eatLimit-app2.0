@@ -36,7 +36,7 @@ const AtomSearch: FC<Props> = ({ text, setText }) => {
           />
         </TouchableOpacity>
       </View>
-      <View style={{ width: '100%' }}>
+      <View style={styles.textArea}>
         <TextInput
           ref={inputRef}
           value={text}
@@ -59,6 +59,9 @@ const styles = StyleSheet.create({
   contents: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  textArea: {
+    width: '100%',
   },
   textInput: {
     height: SEARCH_BAR_HIGHT,
