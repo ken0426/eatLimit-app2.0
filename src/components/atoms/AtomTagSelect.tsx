@@ -8,8 +8,10 @@ const AtomTagSelect = () => {
     <TouchableOpacity onPress={() => {}} style={styles.itemArea}>
       <Text style={styles.label}>タグ：</Text>
       <View style={styles.displayTagAra}>
-        {/* TODO ここはループさせ、タグが2つ以上の場合は最後のタグ以外はカンマを付ける */}
-        <Text style={styles.text}>タグテスト</Text>
+        {/* TODO ここはループさせる */}
+        <View style={styles.tag}>
+          <Text style={styles.text}>タグテスト</Text>
+        </View>
       </View>
       <View>
         <MaterialIcons
@@ -27,10 +29,11 @@ export default AtomTagSelect;
 const styles = StyleSheet.create({
   itemArea: {
     flexDirection: 'row',
-    minHeight: INPUT_HEIGHT,
+    minHeight: INPUT_HEIGHT - SIZE.BASE_WP,
     alignItems: 'center',
     borderBottomWidth: 0.3,
     borderBottomColor: COLORS.DETAIL_BORDER,
+    paddingVertical: SIZE.BASE_WP,
   },
   label: {
     fontSize: FONTSIZE.SIZE18PX,
@@ -43,6 +46,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
+  },
+  tag: {
+    borderRadius: 7,
+    backgroundColor: COLORS.TAG,
+    paddingHorizontal: SIZE.BASE_WP * 1.2,
+    marginVertical: SIZE.BASE_WP,
+    marginHorizontal: SIZE.BASE_WP,
   },
   text: {
     fontSize: FONTSIZE.SIZE18PX,

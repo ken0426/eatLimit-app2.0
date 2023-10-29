@@ -42,6 +42,8 @@ export const COLORS = {
   CAVEAT: '#ff9191',
   /** コピーボタンの色 */
   ORANGE: '#ee7800',
+  /** タグの色 */
+  TAG: '#dadada',
 };
 
 export const SIZE = {
