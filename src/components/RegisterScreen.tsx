@@ -34,6 +34,7 @@ import { handleRegistrationPress } from '../functions';
 import AtomCounter from './atoms/AtomCounter';
 import { useDateError } from '../hooks/useDateError';
 import { useCopyEdit } from '../hooks/useCopyEdit';
+import AtomTagSelect from './atoms/AtomTagSelect';
 
 type RouteItem = {
   params: {
@@ -196,6 +197,7 @@ const RegisterScreen = () => {
                       }
                     />
                   )}
+                  <AtomTagSelect />
                   <AtomSingleInput
                     label={LABEL_TEXT.PLACE_OF_PURCHASE}
                     onPressIn={() => setEnabled(true)}
