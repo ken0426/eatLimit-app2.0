@@ -39,6 +39,7 @@ export type StackPramList = {
   memoTemplateRegisterScreen: { data: { label: string; text: string }[] };
   memoTemplateUpdateScreen: { data: MemoTemplateData };
   settingMemoScreen: undefined;
+  tagScreen: undefined;
 };
 
 export type ModalButton = {

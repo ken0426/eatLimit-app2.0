@@ -2,10 +2,18 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, INPUT_HEIGHT, SIZE } from '../../styles';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { StackPramList } from '../../types';
 
 const AtomTagSelect = () => {
+  const navigation =
+    useNavigation<StackNavigationProp<StackPramList, 'registerScreen'>>();
   return (
-    <TouchableOpacity onPress={() => {}} style={styles.itemArea}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('tagScreen')}
+      style={styles.itemArea}
+    >
       <Text style={styles.label}>タグ：</Text>
       <View style={styles.displayTagAra}>
         {/* TODO ここはループさせる */}

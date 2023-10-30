@@ -16,6 +16,7 @@ import MemoTemplateRegisterScreen from '../components/MemoTemplateRegisterScreen
 import SettingMemoScreen from '../components/SettingMemoScreen';
 import LoginScreen from '../components/LoginScreen';
 import { auth } from '../firebase';
+import TagScreen from '../components/TagScreen';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
@@ -95,6 +96,14 @@ const RootStackScreen = () => {
         name={'settingMemoScreen'}
         component={SettingMemoScreen}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={'tagScreen'}
+        component={TagScreen}
+        options={{
+          headerShown: false,
+          presentation: 'formSheet',
+        }}
       />
     </Stack.Navigator>
   );
