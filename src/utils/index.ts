@@ -15,7 +15,7 @@ export const getText = (text: string, keyboardType: KeyboardTypeOptions) => {
   if (keyboardType === 'number-pad' && text !== '') {
     const newText = text.replace(/\D/g, '');
     if (Platform.OS === 'ios') {
-      return Number(newText).toLocaleString();
+      return Number(newText).toLocaleString('ja-JP');
     } else if (Platform.OS === 'android') {
       return Number(newText)
         .toString()

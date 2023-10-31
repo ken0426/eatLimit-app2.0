@@ -51,7 +51,9 @@ const AtomSingleInput: FC<Props> = ({
 
       <TextInput
         onPressIn={onPressIn}
-        onChangeText={(inputText) => setText(inputText)}
+        onChangeText={(inputText) =>
+          inputText !== '' ? setText(inputText) : setText('')
+        }
         style={styles.textValue}
         value={text ? getText(text, keyboardType) : textData}
         keyboardType={keyboardType}
