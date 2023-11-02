@@ -47,9 +47,7 @@ const MemoTemplateUpdateScreen: FC<Props> = ({ route }) => {
           multiline
           maxLength={500}
         />
-        <Text style={{ textAlign: 'right', color: COLORS.TEXT_LABEL }}>
-          {`${text.length}／500`}
-        </Text>
+        <Text style={styles.lengthText}>{`${text.length}／500`}</Text>
       </View>
 
       {Platform.OS === 'ios' && (
@@ -96,6 +94,10 @@ const styles = StyleSheet.create({
     color: 'black',
     justifyContent: 'flex-start',
     textAlignVertical: 'top',
+  },
+  lengthText: {
+    textAlign: 'right',
+    color: COLORS.TEXT_LABEL,
   },
   completedArea: {
     backgroundColor: '#f1f1f1',
