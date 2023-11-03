@@ -23,6 +23,7 @@ import {
   HEADER_TYPE,
   LABEL_NAME,
   LABEL_TEXT,
+  MANAGEMENT_SELECTED_TEXT,
   keepData,
   managementData,
 } from '../contents';
@@ -174,7 +175,8 @@ const RegisterScreen = () => {
                         : undefined
                     }
                   />
-                  {(label === '購入日' || label === '登録日') && (
+                  {(label === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+                    label === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE) && (
                     <AtomDate
                       isRequired={true}
                       label={LABEL_TEXT.APPROXIMATE_DEADLINE}
