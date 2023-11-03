@@ -44,6 +44,8 @@ export const COLORS = {
   ORANGE: '#ee7800',
   /** タグの色 */
   TAG: '#dadada',
+  /** 影の色 */
+  BLACK: '#000000',
 };
 
 export const SIZE = {

@@ -1,5 +1,12 @@
 import React, { FC } from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import {
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextStyle,
+  TouchableOpacity,
+  ViewStyle,
+} from 'react-native';
 import { SIZE } from '../../styles';
 
 type Props = {
@@ -12,6 +19,8 @@ type Props = {
   borderColor?: string;
   borderWidth?: number;
   fontWeight?: 'normal' | 'bold';
+  textStyle?: StyleProp<TextStyle>;
+  buttonStyle?: StyleProp<ViewStyle>;
 };
 
 const AtomButton: FC<Props> = ({
@@ -24,6 +33,8 @@ const AtomButton: FC<Props> = ({
   borderColor,
   borderWidth = 0,
   fontWeight = 'normal',
+  textStyle,
+  buttonStyle,
 }) => {
   return (
     <TouchableOpacity
@@ -35,11 +46,14 @@ const AtomButton: FC<Props> = ({
           borderColor,
           borderWidth,
         },
+        buttonStyle,
       ]}
       onPress={onPress}
       activeOpacity={1}
     >
-      <Text style={{ fontSize, color, fontWeight }}>{buttonText}</Text>
+      <Text style={[{ fontSize }, { color }, { fontWeight }, textStyle]}>
+        {buttonText}
+      </Text>
     </TouchableOpacity>
   );
 };
