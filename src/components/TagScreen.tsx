@@ -25,7 +25,7 @@ const TagScreen = () => {
       <View style={styles.buttonArea}>
         <AtomButton
           onPress={() => navigation.goBack()}
-          buttonText={BUTTON_TEXT.OK}
+          buttonText={`${BUTTON_TEXT.OK}(${0})`}
           color={COLORS.WHITE}
           fontSize={FONTSIZE.SIZE30PX}
           backgroundColor={COLORS.BLUE}
@@ -70,5 +70,6 @@ const styles = StyleSheet.create({
   },
   registerButtonText: {
     padding: SIZE.BASE_WP * 1.3,
+    fontFamily: 'HiraginoSans-W3',
   },
 });
