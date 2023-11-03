@@ -37,6 +37,8 @@ const TagScreen = () => {
         />
       </MolHeader>
 
+      {/* TODO 検索のUIを追加 */}
+
       <View style={styles.selectArea}>
         <FlatList
           data={tagData}
@@ -51,7 +53,7 @@ const TagScreen = () => {
           onPress={() => navigation.goBack()}
           buttonText={`${BUTTON_TEXT.OK}(${0})`}
           color={COLORS.WHITE}
-          fontSize={FONTSIZE.SIZE30PX}
+          fontSize={FONTSIZE.SIZE25PX}
           backgroundColor={COLORS.BLUE}
           width={wp('90%')}
           buttonStyle={styles.registerButton}
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   registerButtonText: {
-    padding: SIZE.BASE_WP * 1.3,
+    paddingVertical: SIZE.BASE_WP * 2.7,
     fontFamily: 'HiraginoSans-W3',
   },
   selectArea: {
