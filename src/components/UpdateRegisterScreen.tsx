@@ -34,6 +34,7 @@ import AtomLoading from './atoms/AtomLoading';
 import { handleRegistrationPress } from '../functions';
 import AtomCounter from './atoms/AtomCounter';
 import { useDateError } from '../hooks/useDateError';
+import AtomTagSelect from './atoms/AtomTagSelect';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
@@ -181,6 +182,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                       }
                     />
                   )}
+                  <AtomTagSelect />
                   <AtomSingleInput
                     label={LABEL_TEXT.PLACE_OF_PURCHASE}
                     onPressIn={() => setEnabled(true)}
