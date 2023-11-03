@@ -7,7 +7,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { AntDesign } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { StyleSheet } from 'react-native';
 
@@ -20,11 +20,7 @@ const AtomTagCheckSelect: FC<Props> = ({ name, style }) => {
   return (
     <TouchableOpacity style={[styles.tagTouchArea, style]}>
       <View style={styles.checkArea}>
-        <AntDesign
-          name='check'
-          size={FONTSIZE.SIZE20PX}
-          color={COLORS.MAIN_TEXT_COLOR}
-        />
+        <Feather name='check' size={FONTSIZE.SIZE20PX} color={COLORS.BLUE} />
       </View>
       <Text style={styles.text}>{name}</Text>
     </TouchableOpacity>
