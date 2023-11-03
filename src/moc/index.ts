@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { ApiData } from '../types';
+import { v4 as uuidv4 } from 'uuid';
 
 export const noImage = 'https://bpbd.sumbarprov.go.id/images/noimage.png';
 
@@ -283,3 +284,13 @@ export const data: ApiData[] = [
     registerDate: '2023-10-23 22:07:00',
   },
 ];
+
+/** タグのデータ */
+export const tagData = [
+  { name: 'お弁当用' },
+  { name: '息子用' },
+  { name: '調味料' },
+].map((item) => ({
+  id: uuidv4(),
+  name: item.name,
+}));

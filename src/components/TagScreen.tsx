@@ -1,15 +1,30 @@
 import React from 'react';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { useNavigation } from '@react-navigation/native';
 import MolHeader from './molecules/MolHeader';
 import { BUTTON_TEXT, HEADER_TYPE } from '../contents';
-import { StyleSheet, View } from 'react-native';
+import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import AtomButton from './atoms/AtomButton';
-import { useNavigation } from '@react-navigation/native';
+import AtomTagCheckSelect from './atoms/AtomTagCheckSelect';
+import { tagData } from '../moc';
+
+type RenderItem = {
+  name: string;
+  id: string;
+};
 
 const TagScreen = () => {
   const navigation = useNavigation();
+
+  const renderItem: ListRenderItem<RenderItem> = ({ item, index }) => (
+    <AtomTagCheckSelect
+      key={item.id}
+      name={item.name}
+      style={index === tagData.length - 1 && styles.lastItem}
+    />
+  );
 
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.WHITE }}>
@@ -21,6 +36,15 @@ const TagScreen = () => {
           onRightPress={() => {}}
         />
       </MolHeader>
+
+      <View style={styles.selectArea}>
+        <FlatList
+          data={tagData}
+          renderItem={renderItem}
+          style={styles.tagList}
+          keyExtractor={(_, index) => index.toString()}
+        />
+      </View>
 
       <View style={styles.buttonArea}>
         <AtomButton
@@ -71,5 +95,16 @@ const styles = StyleSheet.create({
   registerButtonText: {
     padding: SIZE.BASE_WP * 1.3,
     fontFamily: 'HiraginoSans-W3',
+  },
+  selectArea: {
+    flex: 1,
+    alignItems: 'center',
+    paddingVertical: SIZE.BASE_WP * 10,
+  },
+  tagList: {
+    flex: 1,
+  },
+  lastItem: {
+    marginBottom: SIZE.BASE_WP * 20,
   },
 });
