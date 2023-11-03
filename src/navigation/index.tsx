@@ -102,7 +102,7 @@ const RootStackScreen = () => {
         component={TagScreen}
         options={{
           headerShown: false,
-          presentation: 'formSheet',
+          presentation: 'fullScreenModal',
         }}
       />
     </Stack.Navigator>
