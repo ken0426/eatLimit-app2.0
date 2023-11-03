@@ -1,8 +1,14 @@
-import { RouteProp, useNavigation } from '@react-navigation/native';
 import React, { FC, useState } from 'react';
-import { Button, Keyboard, StyleSheet, Text } from 'react-native';
+import {
+  Button,
+  Keyboard,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
+import { RouteProp } from '@react-navigation/native';
 import { InputAccessoryView, Platform } from 'react-native';
-import { TextInput, View } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { MemoTemplateData, StackPramList } from '../types';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
@@ -21,7 +27,6 @@ type Props = {
 };
 
 const MemoTemplateUpdateScreen: FC<Props> = ({ route }) => {
-  const navigation = useNavigation();
   const { data } = route.params;
   const inputAccessoryViewID = 'uniqueID';
   const [text, setText] = useState(data.text);
