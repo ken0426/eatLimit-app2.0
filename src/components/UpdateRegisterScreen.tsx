@@ -28,19 +28,21 @@ import {
   keepData,
   managementData,
 } from '../contents';
-import { useRootSelector } from '../redux/store/store';
+import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { useRegister } from '../hooks/useRegister';
 import AtomLoading from './atoms/AtomLoading';
 import { handleRegistrationPress } from '../functions';
 import AtomCounter from './atoms/AtomCounter';
 import { useDateError } from '../hooks/useDateError';
 import AtomTagSelect from './atoms/AtomTagSelect';
+import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
 };
 
 const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
+  const dispatch = useRootDispatch();
   const updateData = useRootSelector(
     (state) => state.commonRegister.updateRegisterData
   );
@@ -230,16 +232,17 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                 </View>
                 <View style={styles.buttonArea}>
                   <AtomButton
-                    onPress={() =>
-                      handleRegistrationPress({
+                    onPress={async () => {
+                      const finish = await handleRegistrationPress({
                         postData,
                         setIsVisible,
                         setMessage,
                         setIsDateBefore,
                         setIsLoading,
                         navigation,
-                      })
-                    }
+                      });
+                      if (finish) dispatch(setTagSelectedIds([]));
+                    }}
                     color={COLORS.WHITE}
                     fontSize={FONTSIZE.SIZE30PX}
                     backgroundColor={COLORS.BLUE}

@@ -75,16 +75,21 @@ const AtomRegister: FC<Props> = ({
     },
     {
       text: BUTTON_TEXT.OK,
-      onPress: () => {
-        setIsDateBefore(false);
-        onRegisterPress({
-          postData,
-          setIsVisible,
-          setIsLoading,
-          navigation,
-          setMessage,
-          isCopyRegister,
-        });
+      onPress: async () => {
+        try {
+          setIsDateBefore(false);
+          const finish = await onRegisterPress({
+            postData,
+            setIsVisible,
+            setIsLoading,
+            navigation,
+            setMessage,
+            isCopyRegister,
+          });
+
+          /** 選択しているタグのIDをリセット */
+          if (finish) dispatch(setTagSelectedIds([]));
+        } catch (error) {}
       },
     },
   ];
@@ -120,7 +125,7 @@ const AtomRegister: FC<Props> = ({
         <Text style={styles.headerText}>{title}</Text>
       </View>
       <TouchableOpacity
-        onPress={() => {
+        onPress={async () => {
           const registerDate = postData.find(
             (item) => item.key === LABEL_NAME.DATE
           );
@@ -139,14 +144,19 @@ const AtomRegister: FC<Props> = ({
           ) {
             return setIsDateBefore(true);
           } else {
-            onRegisterPress({
-              postData,
-              setIsVisible,
-              setIsLoading,
-              navigation,
-              setMessage,
-              isCopyRegister,
-            });
+            try {
+              const finish = await onRegisterPress({
+                postData,
+                setIsVisible,
+                setIsLoading,
+                navigation,
+                setMessage,
+                isCopyRegister,
+              });
+
+              /** 選択しているタグのIDをリセット */
+              if (finish) dispatch(setTagSelectedIds([]));
+            } catch (error) {}
           }
         }}
         style={{ width: '33%', alignItems: 'flex-end' }}

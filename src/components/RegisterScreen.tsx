@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import { useRootSelector } from '../redux/store/store';
+import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { ApiData, StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
@@ -37,6 +37,7 @@ import AtomCounter from './atoms/AtomCounter';
 import { useDateError } from '../hooks/useDateError';
 import { useCopyEdit } from '../hooks/useCopyEdit';
 import AtomTagSelect from './atoms/AtomTagSelect';
+import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
 
 type RouteItem = {
   params: {
@@ -45,6 +46,7 @@ type RouteItem = {
 };
 
 const RegisterScreen = () => {
+  const dispatch = useRootDispatch();
   const navigation =
     useNavigation<StackNavigationProp<StackPramList, 'registerScreen'>>();
   const route = useRoute<
@@ -248,8 +250,8 @@ const RegisterScreen = () => {
                 </View>
                 <View style={styles.buttonArea}>
                   <AtomButton
-                    onPress={() =>
-                      handleRegistrationPress({
+                    onPress={async () => {
+                      const finish = await handleRegistrationPress({
                         postData,
                         setIsVisible,
                         setMessage,
@@ -257,8 +259,9 @@ const RegisterScreen = () => {
                         setIsLoading,
                         isCopyRegister,
                         navigation,
-                      })
-                    }
+                      });
+                      if (finish) dispatch(setTagSelectedIds([]));
+                    }}
                     color={COLORS.WHITE}
                     fontSize={FONTSIZE.SIZE30PX}
                     backgroundColor={

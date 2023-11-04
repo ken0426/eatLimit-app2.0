@@ -143,7 +143,6 @@ export const onRegisterPress = async ({
   setMessage,
   isCopyRegister,
 }: OnRegisterPress) => {
-  const dispatch = useRootDispatch();
   /** 必須項目を抽出 */
   const filterData = postData.filter((item) => item.isRequired);
   /** 必須項目の中で1つでも空文字がある場合はtrueにする */
@@ -194,9 +193,6 @@ export const onRegisterPress = async ({
     setMessage(MODAL_MESSAGE.QUANTITY);
   } else {
     try {
-      /** 選択しているタグのIDをリセット */
-      dispatch(setTagSelectedIds([]));
-
       console.log('postするデータ（常に監視）', newPostData);
       setIsLoading(true);
       console.log('リクエストを送信中・・・');
@@ -207,6 +203,8 @@ export const onRegisterPress = async ({
       } else {
         navigation.goBack();
       }
+
+      return true;
     } catch (error) {
       setIsVisible(true);
       setMessage('送信に失敗しました');
@@ -239,7 +237,7 @@ export const onSettingPress = (
 };
 
 /** 「登録」「変更」「コピー」のボタンを押したときの共通処理 */
-export const handleRegistrationPress = ({
+export const handleRegistrationPress = async ({
   postData,
   setIsVisible,
   setMessage,
@@ -261,7 +259,7 @@ export const handleRegistrationPress = ({
   else if (registerDate && moment().isAfter(registerDate.value, 'day')) {
     return setIsDateBefore(true);
   } else {
-    onRegisterPress({
+    const finish = await onRegisterPress({
       postData,
       setIsVisible,
       setIsLoading,
@@ -269,5 +267,7 @@ export const handleRegistrationPress = ({
       setMessage,
       isCopyRegister,
     });
+
+    return finish;
   }
 };
