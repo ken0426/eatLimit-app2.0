@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { useNavigation } from '@react-navigation/native';
-import { setTagSelected } from '../redux/slices/commonRegisterSlice';
+import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
 import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import MolHeader from './molecules/MolHeader';
 import { BUTTON_TEXT, HEADER_TYPE } from '../contents';
@@ -21,11 +21,11 @@ const TagScreen = () => {
   const dispatch = useRootDispatch();
   const navigation = useNavigation();
   /** 選択しているタグのID */
-  const tagSelected = useRootSelector(
-    (state) => state.commonRegister.tagSelected
+  const tagSelectedIds = useRootSelector(
+    (state) => state.commonRegister.tagSelectedIds
   );
 
-  const [tagChecked, setTagChecked] = useState<string[]>(tagSelected);
+  const [tagChecked, setTagChecked] = useState<string[]>(tagSelectedIds);
 
   const renderItem: ListRenderItem<RenderItem> = ({ item, index }) => (
     <AtomTagCheckSelect
@@ -64,7 +64,7 @@ const TagScreen = () => {
         <View style={styles.buttonArea}>
           <AtomButton
             onPress={() => {
-              dispatch(setTagSelected(tagChecked));
+              dispatch(setTagSelectedIds(tagChecked));
               navigation.goBack();
             }}
             buttonText={`${BUTTON_TEXT.OK}(${tagChecked.length})`}

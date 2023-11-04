@@ -25,7 +25,7 @@ import {
   setSelectMemoTemplate,
 } from '../redux/slices/commonSlice';
 import { useRootDispatch } from '../redux/store/store';
-import { setTagSelected } from '../redux/slices/commonRegisterSlice';
+import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
 
 type Options = {
   options: string[];
@@ -194,7 +194,9 @@ export const onRegisterPress = async ({
     setMessage(MODAL_MESSAGE.QUANTITY);
   } else {
     try {
-      dispatch(setTagSelected([]));
+      /** 選択しているタグのIDをリセット */
+      dispatch(setTagSelectedIds([]));
+
       console.log('postするデータ（常に監視）', newPostData);
       setIsLoading(true);
       console.log('リクエストを送信中・・・');

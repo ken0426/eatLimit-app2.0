@@ -11,7 +11,7 @@ import moment from 'moment';
 import { BUTTON_TEXT, LABEL_NAME, MODAL_MESSAGE } from '../../contents';
 import { useNavigation } from '@react-navigation/native';
 import { useRootDispatch } from '../../redux/store/store';
-import { setTagSelected } from '../../redux/slices/commonRegisterSlice';
+import { setTagSelectedIds } from '../../redux/slices/commonRegisterSlice';
 
 type Props = {
   title: string;
@@ -59,7 +59,7 @@ const AtomRegister: FC<Props> = ({
           {
             text: BUTTON_TEXT.OK,
             onPress: () => {
-              dispatch(setTagSelected([]));
+              dispatch(setTagSelectedIds([]));
               setIsVisible(false);
               navigation.goBack();
             },

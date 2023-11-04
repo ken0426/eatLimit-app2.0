@@ -7,17 +7,17 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../../types';
 
 type Props = {
-  tagSelected: string[];
+  tagSelectedIds: string[];
   tagList: { id: string; name: string }[];
 };
 
-const AtomTagSelect: FC<Props> = ({ tagSelected, tagList }) => {
+const AtomTagSelect: FC<Props> = ({ tagSelectedIds, tagList }) => {
   const navigation =
     useNavigation<StackNavigationProp<StackPramList, 'registerScreen'>>();
 
   const tagData = useMemo(
-    () => tagList.filter((item) => tagSelected.includes(item.id)),
-    [tagSelected, tagList]
+    () => tagList.filter((item) => tagSelectedIds.includes(item.id)),
+    [tagSelectedIds, tagList]
   );
 
   return (

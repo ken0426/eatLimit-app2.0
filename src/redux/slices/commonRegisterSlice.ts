@@ -20,7 +20,7 @@ const commonRegisterState = {
     preservation: '',
     count: '',
   },
-  tagSelected: [],
+  tagSelectedIds: [],
 };
 
 export const commonRegisterSlice = createSlice({
@@ -36,11 +36,11 @@ export const commonRegisterSlice = createSlice({
       state.updateRegisterData = payload;
     },
     /** タグ選択で選択したタグのデータを保持 */
-    setTagSelected: (state, { payload }) => {
-      state.tagSelected = payload;
+    setTagSelectedIds: (state, { payload }) => {
+      state.tagSelectedIds = payload;
     },
   },
 });
 
-export const { setRegisterData, setUpdateRegisterData, setTagSelected } =
+export const { setRegisterData, setUpdateRegisterData, setTagSelectedIds } =
   commonRegisterSlice.actions;
