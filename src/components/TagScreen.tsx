@@ -60,25 +60,21 @@ const TagScreen = () => {
         />
       </View>
 
-      {tagChecked.length ? (
-        <View style={styles.buttonArea}>
-          <AtomButton
-            onPress={() => {
-              dispatch(setTagSelectedIds(tagChecked));
-              navigation.goBack();
-            }}
-            buttonText={`${BUTTON_TEXT.OK}(${tagChecked.length})`}
-            color={COLORS.WHITE}
-            fontSize={FONTSIZE.SIZE25PX}
-            backgroundColor={COLORS.BLUE}
-            width={wp('90%')}
-            buttonStyle={styles.registerButton}
-            textStyle={styles.registerButtonText}
-          />
-        </View>
-      ) : (
-        <></>
-      )}
+      <View style={styles.buttonArea}>
+        <AtomButton
+          onPress={() => {
+            dispatch(setTagSelectedIds(tagChecked));
+            navigation.goBack();
+          }}
+          buttonText={`${BUTTON_TEXT.OK}(${tagChecked.length})`}
+          color={COLORS.WHITE}
+          fontSize={FONTSIZE.SIZE25PX}
+          backgroundColor={COLORS.BLUE}
+          width={wp('90%')}
+          buttonStyle={styles.registerButton}
+          textStyle={styles.registerButtonText}
+        />
+      </View>
     </View>
   );
 };
