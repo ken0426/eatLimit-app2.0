@@ -27,7 +27,6 @@ const AtomTagSelect: FC<Props> = ({ tagSelectedIds, tagList }) => {
     >
       <Text style={styles.label}>タグ：</Text>
       <View style={styles.displayTagAra}>
-        {/* TODO ここはループさせる */}
         {tagData.length ? (
           tagData.map((item) => (
             <View key={item.id} style={styles.tag}>
