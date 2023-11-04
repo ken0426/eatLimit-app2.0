@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { useNavigation } from '@react-navigation/native';
 import MolHeader from './molecules/MolHeader';
@@ -18,11 +18,16 @@ type RenderItem = {
 const TagScreen = () => {
   const navigation = useNavigation();
 
+  const [tagChecked, setTagChecked] = useState<string[]>([]);
+
   const renderItem: ListRenderItem<RenderItem> = ({ item, index }) => (
     <AtomTagCheckSelect
       key={item.id}
       name={item.name}
+      id={item.id}
       style={index === tagData.length - 1 && styles.lastItem}
+      tagChecked={tagChecked}
+      setTagChecked={setTagChecked}
     />
   );
 
@@ -48,18 +53,22 @@ const TagScreen = () => {
         />
       </View>
 
-      <View style={styles.buttonArea}>
-        <AtomButton
-          onPress={() => navigation.goBack()}
-          buttonText={`${BUTTON_TEXT.OK}(${0})`}
-          color={COLORS.WHITE}
-          fontSize={FONTSIZE.SIZE25PX}
-          backgroundColor={COLORS.BLUE}
-          width={wp('90%')}
-          buttonStyle={styles.registerButton}
-          textStyle={styles.registerButtonText}
-        />
-      </View>
+      {tagChecked.length ? (
+        <View style={styles.buttonArea}>
+          <AtomButton
+            onPress={() => navigation.goBack()}
+            buttonText={`${BUTTON_TEXT.OK}(${tagChecked.length})`}
+            color={COLORS.WHITE}
+            fontSize={FONTSIZE.SIZE25PX}
+            backgroundColor={COLORS.BLUE}
+            width={wp('90%')}
+            buttonStyle={styles.registerButton}
+            textStyle={styles.registerButtonText}
+          />
+        </View>
+      ) : (
+        <></>
+      )}
     </View>
   );
 };

@@ -14,14 +14,38 @@ import { StyleSheet } from 'react-native';
 type Props = {
   name: string;
   style?: StyleProp<ViewStyle>;
+  id: string;
+  tagChecked: string[];
+  setTagChecked: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-const AtomTagCheckSelect: FC<Props> = ({ name, style }) => {
+const AtomTagCheckSelect: FC<Props> = ({
+  name,
+  style,
+  id,
+  tagChecked,
+  setTagChecked,
+}) => {
+  const isCheck = tagChecked.find((selectId) => selectId === id);
+
+  const onPress = () => {
+    if (isCheck) {
+      setTagChecked((prevId) =>
+        prevId.filter((selectedId) => selectedId !== id)
+      );
+    } else {
+      setTagChecked((prevId) => [...(prevId ?? []), id]);
+    }
+  };
+
   return (
-    <TouchableOpacity style={[styles.tagTouchArea, style]}>
+    <TouchableOpacity onPress={onPress} style={[styles.tagTouchArea, style]}>
       <View style={styles.checkArea}>
-        <Feather name='check' size={FONTSIZE.SIZE20PX} color={COLORS.BLUE} />
+        {isCheck && (
+          <Feather name='check' size={FONTSIZE.SIZE20PX} color={COLORS.BLUE} />
+        )}
       </View>
+
       <Text style={styles.text}>{name}</Text>
     </TouchableOpacity>
   );
