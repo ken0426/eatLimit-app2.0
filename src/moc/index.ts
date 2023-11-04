@@ -290,6 +290,10 @@ export const tagData = [
   { name: 'お弁当用' },
   { name: '息子用' },
   { name: '調味料' },
+  { name: '果物' },
+  { name: '野菜' },
+  { name: '保存食' },
+  { name: '緊急用' },
 ].map((item) => ({
   id: uuidv4(),
   name: item.name,
