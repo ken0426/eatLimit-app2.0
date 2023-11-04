@@ -11,6 +11,7 @@ type CommonState = {
     data: MemoTemplateData[] | [];
     isTemplate: true;
   };
+  tagList: { id: string; name: string }[];
 };
 
 const commonState: CommonState = {
@@ -20,6 +21,7 @@ const commonState: CommonState = {
   dayOfWeekId: 1,
   selectMemoTemplate: { label: 'テンプレートなし', id: 0, text: '' },
   selectMemoTemplateData: { data: [], isTemplate: true },
+  tagList: [],
 };
 
 export const commonSlice = createSlice({
@@ -50,6 +52,10 @@ export const commonSlice = createSlice({
     setSelectMemoTemplateData: (state, { payload }) => {
       state.selectMemoTemplateData = payload;
     },
+    /** ユーザーが保存しているタグ情報 */
+    setTagList: (state, { payload }) => {
+      state.tagList = payload;
+    },
   },
 });
 
@@ -60,4 +66,5 @@ export const {
   setDayOfWeekId,
   setSelectMemoTemplate,
   setSelectMemoTemplateData,
+  setTagList,
 } = commonSlice.actions;

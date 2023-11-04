@@ -44,6 +44,12 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
   const updateData = useRootSelector(
     (state) => state.commonRegister.updateRegisterData
   );
+  /** ユーザーが保存したタグのデータ */
+  const tagList = useRootSelector((state) => state.common.tagList);
+  /** 選択しているタグのID */
+  const tagSelected = useRootSelector(
+    (state) => state.commonRegister.tagSelected
+  );
   /** キーボードで入力するエリアで高さを調整するフラグ */
   const [enabled, setEnabled] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -182,7 +188,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                       }
                     />
                   )}
-                  <AtomTagSelect />
+                  <AtomTagSelect tagList={tagList} tagSelected={tagSelected} />
                   <AtomSingleInput
                     label={LABEL_TEXT.PLACE_OF_PURCHASE}
                     onPressIn={() => setEnabled(true)}

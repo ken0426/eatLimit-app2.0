@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { useRootSelector } from '../redux/store/store';
 import { ApiData, StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
@@ -49,6 +50,12 @@ const RegisterScreen = () => {
   const route = useRoute<
     RouteProp<StackPramList, 'registerScreen'> & RouteItem
   >();
+  /** ユーザーが保存したタグのデータ */
+  const tagList = useRootSelector((state) => state.common.tagList);
+  /** 選択しているタグのID */
+  const tagSelected = useRootSelector(
+    (state) => state.commonRegister.tagSelected
+  );
   /** キーボードで入力するエリアで高さを調整するフラグ */
   const [enabled, setEnabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -199,7 +206,7 @@ const RegisterScreen = () => {
                       }
                     />
                   )}
-                  <AtomTagSelect />
+                  <AtomTagSelect tagSelected={tagSelected} tagList={tagList} />
                   <AtomSingleInput
                     label={LABEL_TEXT.PLACE_OF_PURCHASE}
                     onPressIn={() => setEnabled(true)}

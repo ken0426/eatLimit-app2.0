@@ -10,6 +10,8 @@ import { onRegisterPress } from '../../functions';
 import moment from 'moment';
 import { BUTTON_TEXT, LABEL_NAME, MODAL_MESSAGE } from '../../contents';
 import { useNavigation } from '@react-navigation/native';
+import { useRootDispatch } from '../../redux/store/store';
+import { setTagSelected } from '../../redux/slices/commonRegisterSlice';
 
 type Props = {
   title: string;
@@ -36,6 +38,7 @@ const AtomRegister: FC<Props> = ({
   setIsDateBefore,
   isCopyRegister,
 }) => {
+  const dispatch = useRootDispatch();
   const navigation =
     useNavigation<
       StackNavigationProp<
@@ -47,10 +50,16 @@ const AtomRegister: FC<Props> = ({
   const buttonData =
     message === 'データが保存されませんがキャンセルしますか？'
       ? [
-          { text: BUTTON_TEXT.CANCEL, onPress: () => setIsVisible(false) },
+          {
+            text: BUTTON_TEXT.CANCEL,
+            onPress: () => {
+              setIsVisible(false);
+            },
+          },
           {
             text: BUTTON_TEXT.OK,
             onPress: () => {
+              dispatch(setTagSelected([]));
               setIsVisible(false);
               navigation.goBack();
             },

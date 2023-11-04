@@ -15,6 +15,7 @@ import { COLORS, FONTSIZE, SIZE } from '../styles';
 
 const TopScreen = () => {
   const navigation = useNavigation<StackNavigationProp<StackPramList>>();
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.contents}>

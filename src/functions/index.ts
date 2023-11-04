@@ -24,6 +24,8 @@ import {
   setImageId,
   setSelectMemoTemplate,
 } from '../redux/slices/commonSlice';
+import { useRootDispatch } from '../redux/store/store';
+import { setTagSelected } from '../redux/slices/commonRegisterSlice';
 
 type Options = {
   options: string[];
@@ -141,6 +143,7 @@ export const onRegisterPress = async ({
   setMessage,
   isCopyRegister,
 }: OnRegisterPress) => {
+  const dispatch = useRootDispatch();
   /** 必須項目を抽出 */
   const filterData = postData.filter((item) => item.isRequired);
   /** 必須項目の中で1つでも空文字がある場合はtrueにする */
@@ -191,6 +194,7 @@ export const onRegisterPress = async ({
     setMessage(MODAL_MESSAGE.QUANTITY);
   } else {
     try {
+      dispatch(setTagSelected([]));
       console.log('postするデータ（常に監視）', newPostData);
       setIsLoading(true);
       console.log('リクエストを送信中・・・');

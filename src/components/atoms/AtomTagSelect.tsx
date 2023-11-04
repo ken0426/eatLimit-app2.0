@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, useMemo } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, INPUT_HEIGHT, SIZE } from '../../styles';
@@ -6,9 +6,20 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../../types';
 
-const AtomTagSelect = () => {
+type Props = {
+  tagSelected: string[];
+  tagList: { id: string; name: string }[];
+};
+
+const AtomTagSelect: FC<Props> = ({ tagSelected, tagList }) => {
   const navigation =
     useNavigation<StackNavigationProp<StackPramList, 'registerScreen'>>();
+
+  const tagData = useMemo(
+    () => tagList.filter((item) => tagSelected.includes(item.id)),
+    [tagSelected, tagList]
+  );
+
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate('tagScreen')}
@@ -17,9 +28,15 @@ const AtomTagSelect = () => {
       <Text style={styles.label}>タグ：</Text>
       <View style={styles.displayTagAra}>
         {/* TODO ここはループさせる */}
-        <View style={styles.tag}>
-          <Text style={styles.text}>タグテスト</Text>
-        </View>
+        {tagData.length ? (
+          tagData.map((item) => (
+            <View key={item.id} style={styles.tag}>
+              <Text style={styles.text}>{item.name}</Text>
+            </View>
+          ))
+        ) : (
+          <></>
+        )}
       </View>
       <View>
         <MaterialIcons

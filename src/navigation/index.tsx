@@ -17,21 +17,36 @@ import SettingMemoScreen from '../components/SettingMemoScreen';
 import LoginScreen from '../components/LoginScreen';
 import { auth } from '../firebase';
 import TagScreen from '../components/TagScreen';
+import { fetchTag } from '../api';
+import { useDispatch } from 'react-redux';
+import { setTagList } from '../redux/slices/commonSlice';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
 const RootStackScreen = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation<StackNavigationProp<StackPramList>>();
 
+  /** 自動ログイン */
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'homeScreen' }],
-        });
-      }
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      try {
+        if (user) {
+          /** ログイン情報が取得できたらユーザーが保存しているタグ情報を取得する */
+          const tagDataRes = await fetchTag();
+          if (tagDataRes?.length) {
+            dispatch(setTagList(tagDataRes));
+          }
+
+          /** ユーザー情報を取得できたらホーム画面へ遷移する */
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'homeScreen' }],
+          });
+        }
+      } catch (error) {}
     });
+
     return unsubscribe;
   }, []);
 
