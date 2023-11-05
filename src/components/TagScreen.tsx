@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { useNavigation } from '@react-navigation/native';
+import { AntDesign } from '@expo/vector-icons';
 import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
 import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import MolHeader from './molecules/MolHeader';
 import { BUTTON_TEXT, HEADER_TYPE } from '../contents';
-import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
+import {
+  FlatList,
+  ListRenderItem,
+  StyleSheet,
+  TextInput,
+  View,
+} from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import AtomButton from './atoms/AtomButton';
 import AtomTagCheckSelect from './atoms/AtomTagCheckSelect';
 import { tagData } from '../moc';
+import { filterTagData } from '../utils';
 
 type RenderItem = {
   name: string;
@@ -26,6 +34,7 @@ const TagScreen = () => {
   );
 
   const [tagChecked, setTagChecked] = useState<string[]>(tagSelectedIds);
+  const [searchText, setSearchText] = useState('');
 
   const renderItem: ListRenderItem<RenderItem> = ({ item, index }) => (
     <AtomTagCheckSelect
@@ -38,6 +47,14 @@ const TagScreen = () => {
     />
   );
 
+  const getData = () => {
+    if (searchText === '') {
+      return tagData;
+    } else {
+      return filterTagData(tagData, searchText);
+    }
+  };
+
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.WHITE }}>
       <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
@@ -49,11 +66,18 @@ const TagScreen = () => {
         />
       </MolHeader>
 
-      {/* TODO 検索のUIを追加 */}
+      <View style={styles.searchArea}>
+        <AntDesign name='search1' size={24} color={COLORS.MAIN_TEXT_COLOR} />
+        <TextInput
+          value={searchText}
+          onChangeText={(text) => setSearchText(text)}
+          style={styles.textInput}
+        />
+      </View>
 
       <View style={styles.selectArea}>
         <FlatList
-          data={tagData}
+          data={getData()}
           renderItem={renderItem}
           style={styles.tagList}
           keyExtractor={(_, index) => index.toString()}
@@ -91,6 +115,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     zIndex: 2,
+    marginBottom: SIZE.BASE_WP * 5,
+  },
+  searchArea: {
+    borderBottomWidth: 0.3,
+    borderBottomColor: COLORS.DETAIL_BORDER,
+    marginHorizontal: wp('5%'),
+    flexDirection: 'row',
+    paddingBottom: SIZE.BASE_WP * 2,
+  },
+  textInput: {
+    fontSize: FONTSIZE.SIZE20PX,
+    paddingLeft: SIZE.BASE_WP * 3.5,
+    flex: 1,
   },
   buttonArea: {
     alignItems: 'center',
@@ -116,7 +153,8 @@ const styles = StyleSheet.create({
   selectArea: {
     flex: 1,
     alignItems: 'center',
-    paddingVertical: SIZE.BASE_WP * 10,
+    paddingTop: SIZE.BASE_WP * 5,
+    paddingBottom: SIZE.BASE_WP * 10,
   },
   tagList: {
     flex: 1,

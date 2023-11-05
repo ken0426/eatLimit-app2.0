@@ -46,6 +46,29 @@ export const filterData = (data: ApiData[], text: string) => {
   });
 };
 
+/** タグの検索をする際のロジック */
+export const filterTagData = (
+  data: { id: string; name: string }[],
+  text: string
+) => {
+  /** ひらがなをカタカナに置換するロジック */
+  const hiraganaToKatakana = (str: string) => {
+    return str.replace(/[\u3041-\u3096]/g, (match) => {
+      const chr = match.charCodeAt(0) + 0x60;
+      return String.fromCharCode(chr);
+    });
+  };
+
+  const pattern = new RegExp(hiraganaToKatakana(text));
+  return data.filter((item) => {
+    if (pattern.test(item.name)) {
+      return pattern.test(item.name);
+    } else {
+      return item.name.match(text);
+    }
+  });
+};
+
 /** 設定の見出しのキーを取得するロジック */
 export const getKey = (item: any) => {
   const objectKey = Object.keys(item);
