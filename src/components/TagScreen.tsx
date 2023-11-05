@@ -47,13 +47,8 @@ const TagScreen = () => {
     />
   );
 
-  const getData = () => {
-    if (searchText === '') {
-      return tagData;
-    } else {
-      return filterTagData(tagData, searchText);
-    }
-  };
+  const getData = () =>
+    searchText === '' ? tagData : filterTagData(tagData, searchText);
 
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.WHITE }}>
