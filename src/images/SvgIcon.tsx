@@ -4,7 +4,7 @@ import { Entypo, Ionicons } from '@expo/vector-icons';
 
 type Props = {
   type: 'ionicons' | 'entypo';
-  name: any;
+  name: any; // TODO 将来的には型定義する
   color: string;
   style: StyleProp<TextStyle>;
 };
