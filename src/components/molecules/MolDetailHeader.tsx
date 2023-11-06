@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons';
-import { Entypo } from '@expo/vector-icons';
 import { COLORS, SIZE } from '../../styles';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../../types';
+import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
   top?: number;
@@ -21,11 +20,11 @@ const MolDetailHeader: FC<Props> = ({ top = SIZE.BASE_HP * 3.8 }) => {
         onPress={() => navigation.goBack()}
       >
         <View style={styles.headerButtonBackGround}>
-          <Ionicons
-            name='chevron-back'
-            size={28}
+          <SvgIcon
+            type={'ionicons'}
+            name={'chevron-back'}
             color={COLORS.WHITE}
-            style={{ right: 1, padding: 2 }}
+            style={styles.leftBackButton}
           />
         </View>
       </TouchableOpacity>
@@ -35,11 +34,11 @@ const MolDetailHeader: FC<Props> = ({ top = SIZE.BASE_HP * 3.8 }) => {
         onPress={() => navigation.navigate('updateRegisterScreen')}
       >
         <View style={styles.headerButtonBackGround}>
-          <Entypo
-            name='dots-three-horizontal'
-            size={28}
+          <SvgIcon
+            type={'entypo'}
+            name={'dots-three-horizontal'}
             color={COLORS.WHITE}
-            style={{ padding: 2 }}
+            style={styles.rightHamburgerButton}
           />
         </View>
       </TouchableOpacity>
@@ -72,5 +71,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: '100%',
     zIndex: 100,
+  },
+  leftBackButton: {
+    right: 1,
+    padding: 2,
+  },
+  rightHamburgerButton: {
+    padding: 2,
   },
 });
