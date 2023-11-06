@@ -23,6 +23,7 @@ const MolDetailHeader: FC<Props> = ({ top = SIZE.BASE_HP * 3.8 }) => {
           <SvgIcon
             type={'ionicons'}
             name={'chevron-back'}
+            size={28}
             color={COLORS.WHITE}
             style={styles.leftBackButton}
           />
@@ -37,6 +38,7 @@ const MolDetailHeader: FC<Props> = ({ top = SIZE.BASE_HP * 3.8 }) => {
           <SvgIcon
             type={'entypo'}
             name={'dots-three-horizontal'}
+            size={28}
             color={COLORS.WHITE}
             style={styles.rightHamburgerButton}
           />
