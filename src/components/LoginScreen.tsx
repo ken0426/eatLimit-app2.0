@@ -9,13 +9,13 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
 import { StackPramList } from '../types';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomAuthInput from './atoms/AtomAuthInput';
 import AtomAuthButton from './atoms/AtomAuthButton';
 import { useAuthInput } from '../hooks/useAuthInput';
 import { handleLogin } from '../utils';
+import SvgIcon from '../images/SvgIcon';
 
 type Props = {
   route: RouteProp<StackPramList, 'loginScreen'>;
@@ -149,7 +149,8 @@ const LoginScreen: FC<Props> = ({ route }) => {
         style={styles.touchIcon}
         onPress={() => navigation.goBack()}
       >
-        <AntDesign
+        <SvgIcon
+          type={'antDesign'}
           name={'closecircleo'}
           size={30}
           color={COLORS.TEXT_LABEL}
