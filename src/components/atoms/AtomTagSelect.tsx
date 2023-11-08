@@ -1,10 +1,10 @@
 import React, { FC, useMemo } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, INPUT_HEIGHT, SIZE } from '../../styles';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackPramList } from '../../types';
+import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
   tagSelectedIds: string[];
@@ -38,7 +38,8 @@ const AtomTagSelect: FC<Props> = ({ tagSelectedIds, tagList }) => {
         )}
       </View>
       <View>
-        <MaterialIcons
+        <SvgIcon
+          type={'materialIcons'}
           name='keyboard-arrow-down'
           size={20}
           color={COLORS.TEXT_COLOR}

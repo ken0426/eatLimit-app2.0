@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Feather } from '@expo/vector-icons';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
@@ -22,6 +21,7 @@ import {
 } from '../types';
 import { RouteProp, useNavigation } from '@react-navigation/native';
 import { HEADER_TYPE } from '../contents';
+import SvgIcon from '../images/SvgIcon';
 
 type RouteItem = {
   params: {
@@ -58,8 +58,9 @@ const SettingDetailScreen: FC<Props> = ({ route }) => {
           navigation.goBack();
         }}
       >
-        <Feather
-          name='check'
+        <SvgIcon
+          type={'feather'}
+          name={'check'}
           size={24}
           color={COLORS.BLUE}
           style={[styles.check, { opacity: item.check ? 1 : 0 }]}

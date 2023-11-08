@@ -1,12 +1,11 @@
 import React, { FC, useEffect, useRef } from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Ionicons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
 import { COLORS } from '../../styles';
 import { SEARCH_BAR_HIGHT, SEARCH_BAR_TEXT } from '../../contents';
 import { StackPramList } from '../../types';
 import { useNavigation } from '@react-navigation/native';
+import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'searchScreen'>;
@@ -29,7 +28,8 @@ const AtomSearch: FC<Props> = ({ text, setText }) => {
     <View style={styles.contents}>
       <View style={{ marginRight: 10 }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons
+          <SvgIcon
+            type={'ionicons'}
             name='chevron-back'
             size={28}
             color={COLORS.MAIN_TEXT_COLOR}
@@ -46,7 +46,12 @@ const AtomSearch: FC<Props> = ({ text, setText }) => {
           clearButtonMode={'always'}
         />
         <View style={styles.icon}>
-          <AntDesign name='search1' size={18} color={COLORS.SEARCH_ICON} />
+          <SvgIcon
+            type={'antDesign'}
+            name='search1'
+            size={18}
+            color={COLORS.SEARCH_ICON}
+          />
         </View>
       </View>
     </View>

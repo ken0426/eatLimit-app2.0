@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { DatePicker } from 'react-native-woodpicker';
-import { MaterialIcons } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import AtomRequire from './AtomRequire';
 import { PostData } from '../../types';
+import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
   date?: string;
@@ -107,8 +107,9 @@ const AtomDate: FC<Props> = ({
               backdropAnimation={{ opacity: 0, duration: 0.3, delay: 1 }}
             />
             <View style={styles.icon}>
-              <MaterialIcons
-                name='keyboard-arrow-down'
+              <SvgIcon
+                type={'materialIcons'}
+                name={'keyboard-arrow-down'}
                 size={20}
                 color={COLORS.TEXT_COLOR}
               />

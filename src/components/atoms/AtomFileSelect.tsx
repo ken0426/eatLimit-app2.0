@@ -9,8 +9,6 @@ import {
 } from 'react-native';
 import { Camera } from 'expo-camera';
 import { useActionSheet } from '@expo/react-native-action-sheet';
-import { AntDesign } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onPressAction } from '../../functions';
@@ -18,6 +16,7 @@ import { WINDOW_WIDTH } from '../../utils';
 import { useRootSelector } from '../../redux/store/store';
 import { ModalButton, PostData } from '../../types';
 import { LABEL_NAME } from '../../contents';
+import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
   setData: ({ key, value }: PostData) => void;
@@ -79,7 +78,12 @@ const AtomFileSelect: FC<Props> = ({ setData }) => {
               onPress={() => setImage('')}
               style={styles.closeButton}
             >
-              <FontAwesome name='close' size={13} color={COLORS.WHITE} />
+              <SvgIcon
+                type={'fontAwesome'}
+                name='close'
+                size={13}
+                color={COLORS.WHITE}
+              />
             </TouchableOpacity>
           </View>
         )}
@@ -90,7 +94,8 @@ const AtomFileSelect: FC<Props> = ({ setData }) => {
           style={styles.hint}
           onPress={() => setIsVisible(true)}
         >
-          <AntDesign
+          <SvgIcon
+            type={'antDesign'}
             name='infocirlceo'
             size={17}
             color={COLORS.DETAIL_BORDER}

@@ -1,4 +1,3 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
@@ -10,6 +9,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { useRootDispatch, useRootSelector } from '../../redux/store/store';
 import { setUpdateRegisterData } from '../../redux/slices/commonRegisterSlice';
 import { useListEdit } from '../../hooks/useListEdit';
+import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
   item: ApiData;
@@ -63,7 +63,8 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
           </View>
         </View>
         <View style={styles.arrow}>
-          <MaterialIcons
+          <SvgIcon
+            type={'materialIcons'}
             name='keyboard-arrow-right'
             size={24}
             color={COLORS.TEXT_COLOR}

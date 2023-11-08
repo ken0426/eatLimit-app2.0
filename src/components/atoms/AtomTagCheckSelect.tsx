@@ -7,9 +7,9 @@ import {
   ViewStyle,
 } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { Feather } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { StyleSheet } from 'react-native';
+import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
   name: string;
@@ -42,7 +42,12 @@ const AtomTagCheckSelect: FC<Props> = ({
     <TouchableOpacity onPress={onPress} style={[styles.tagTouchArea, style]}>
       <View style={styles.checkArea}>
         {isCheck && (
-          <Feather name='check' size={FONTSIZE.SIZE20PX} color={COLORS.BLUE} />
+          <SvgIcon
+            type={'feather'}
+            name='check'
+            size={FONTSIZE.SIZE20PX}
+            color={COLORS.BLUE}
+          />
         )}
       </View>
 

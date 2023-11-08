@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { useNavigation } from '@react-navigation/native';
-import { AntDesign } from '@expo/vector-icons';
 import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
 import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import MolHeader from './molecules/MolHeader';
@@ -19,6 +18,7 @@ import AtomButton from './atoms/AtomButton';
 import AtomTagCheckSelect from './atoms/AtomTagCheckSelect';
 import { tagData } from '../moc';
 import { filterTagData } from '../utils';
+import SvgIcon from '../images/SvgIcon';
 
 type RenderItem = {
   name: string;
@@ -62,7 +62,12 @@ const TagScreen = () => {
       </MolHeader>
 
       <View style={styles.searchArea}>
-        <AntDesign name='search1' size={24} color={COLORS.MAIN_TEXT_COLOR} />
+        <SvgIcon
+          type={'antDesign'}
+          name={'search1'}
+          size={24}
+          color={COLORS.MAIN_TEXT_COLOR}
+        />
         <TextInput
           value={searchText}
           onChangeText={(text) => setSearchText(text)}

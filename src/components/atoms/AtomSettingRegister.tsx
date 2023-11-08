@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { COLORS, FONTSIZE } from '../../styles';
+import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
   title: string;
@@ -27,14 +26,20 @@ const AtomSettingRegister: FC<Props> = ({
         style={{ width: '10%' }}
         onPress={() => navigation.goBack()}
       >
-        <Ionicons name='chevron-back' size={24} color='black' />
+        <SvgIcon
+          type={'ionicons'}
+          name='chevron-back'
+          size={24}
+          color='black'
+        />
       </TouchableOpacity>
       <View style={{ width: '80%' }}>
         <Text style={styles.headerText}>{title}</Text>
       </View>
       <View style={{ width: '10%', alignItems: 'flex-end' }}>
         {imageType ? (
-          <MaterialCommunityIcons
+          <SvgIcon
+            type={'materialCommunityIcons'}
             onPress={onRightPress}
             name='tag-plus-outline'
             size={24}

@@ -3,8 +3,6 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import moment from 'moment';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
-import { AntDesign } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
 import { ApiData, StackPramList } from '../../types';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { useRootDispatch } from '../../redux/store/store';
@@ -12,6 +10,7 @@ import { setUpdateRegisterData } from '../../redux/slices/commonRegisterSlice';
 import OrgFilterModal from '../organisms/OrgFilterModal';
 import { useFilterRegister } from '../../hooks/useFilterRegister';
 import { useListFilter } from '../../hooks/useListFilter';
+import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
   setListData: (e: ApiData[]) => void;
@@ -42,7 +41,12 @@ const AtomHome: FC<Props> = ({ setListData, responseData, listData }) => {
           <TouchableOpacity
             onPress={() => navigation.navigate('settingScreen')}
           >
-            <Ionicons name='settings-outline' size={24} color='black' />
+            <SvgIcon
+              type={'ionicons'}
+              name='settings-outline'
+              size={24}
+              color='black'
+            />
           </TouchableOpacity>
 
           {/* 日付 */}
@@ -59,7 +63,8 @@ const AtomHome: FC<Props> = ({ setListData, responseData, listData }) => {
               navigation.navigate('searchScreen', { data: listData });
             }}
           >
-            <AntDesign
+            <SvgIcon
+              type={'antDesign'}
               name='search1'
               size={24}
               color={COLORS.MAIN_TEXT_COLOR}
@@ -68,7 +73,7 @@ const AtomHome: FC<Props> = ({ setListData, responseData, listData }) => {
 
           {/* フィルター */}
           <TouchableOpacity onPress={() => setIsVisible(true)}>
-            <AntDesign name='filter' size={24} color='black' />
+            <SvgIcon type={'antDesign'} name='filter' size={24} color='black' />
           </TouchableOpacity>
 
           {/* 登録 */}
@@ -88,7 +93,8 @@ const AtomHome: FC<Props> = ({ setListData, responseData, listData }) => {
               navigation.navigate('registerScreen');
             }}
           >
-            <AntDesign
+            <SvgIcon
+              type={'antDesign'}
               name='pluscircleo'
               size={24}
               color={COLORS.MAIN_TEXT_COLOR}

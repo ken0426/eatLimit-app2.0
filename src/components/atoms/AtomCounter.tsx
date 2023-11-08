@@ -6,11 +6,11 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import AtomRequire from './AtomRequire';
 import { PostData } from '../../types';
 import { LABEL_TEXT, REGISTER_COUNT_TEXT } from '../../contents';
+import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
   onPressIn: () => void;
@@ -49,7 +49,12 @@ const AtomCounter: FC<Props> = ({ onPressIn, setData, textData = 1 }) => {
                 })
               }
             >
-              <AntDesign name='minus' size={24} color='black' />
+              <SvgIcon
+                type={'antDesign'}
+                name={'minus'}
+                size={24}
+                color='black'
+              />
             </TouchableOpacity>
             <TextInput
               onPressIn={onPressIn}
@@ -75,7 +80,7 @@ const AtomCounter: FC<Props> = ({ onPressIn, setData, textData = 1 }) => {
               style={styles.countTouchArea}
               onPress={() => setText((e) => e + 1)}
             >
-              <AntDesign name='plus' size={24} color='black' />
+              <SvgIcon type={'antDesign'} name='plus' size={24} color='black' />
             </TouchableOpacity>
           </View>
         </View>

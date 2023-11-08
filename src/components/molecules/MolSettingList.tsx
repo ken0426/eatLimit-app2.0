@@ -1,7 +1,7 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import React, { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
+import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
   onPress: () => void;
@@ -12,7 +12,12 @@ const MolSettingList: FC<Props> = ({ onPress, text }) => {
   return (
     <TouchableOpacity style={styles.touch} onPress={onPress}>
       <Text style={styles.text}>{text}</Text>
-      <MaterialIcons name='navigate-next' size={26} color={COLORS.TEXT_COLOR} />
+      <SvgIcon
+        type={'materialIcons'}
+        name='navigate-next'
+        size={26}
+        color={COLORS.TEXT_COLOR}
+      />
     </TouchableOpacity>
   );
 };

@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { FontAwesome } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ApiData, PostData, StackPramList } from '../../types';
 import { COLORS, FONTSIZE } from '../../styles';
@@ -12,6 +10,7 @@ import { BUTTON_TEXT, LABEL_NAME, MODAL_MESSAGE } from '../../contents';
 import { useNavigation } from '@react-navigation/native';
 import { useRootDispatch } from '../../redux/store/store';
 import { setTagSelectedIds } from '../../redux/slices/commonRegisterSlice';
+import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
   title: string;
@@ -114,7 +113,8 @@ const AtomRegister: FC<Props> = ({
           }
         }}
       >
-        <AntDesign
+        <SvgIcon
+          type={'antDesign'}
           name='close'
           size={24}
           color={COLORS.MAIN_TEXT_COLOR}
@@ -161,7 +161,8 @@ const AtomRegister: FC<Props> = ({
         }}
         style={{ width: '33%', alignItems: 'flex-end' }}
       >
-        <FontAwesome
+        <SvgIcon
+          type={'fontAwesome'}
           name='pencil-square-o'
           size={24}
           color={COLORS.MAIN_TEXT_COLOR}
