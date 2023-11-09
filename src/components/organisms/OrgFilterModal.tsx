@@ -46,13 +46,7 @@ const OrgFilterModal: FC<Props> = ({
             <Text style={styles.headerText}>絞り込み</Text>
           </View>
           <MolFilterTabBar selectBar={selectBar} setSelectBar={setSelectBar} />
-          <ScrollView
-            style={{
-              flex: 1,
-              paddingTop: SIZE.BASE_HP * 2,
-              paddingHorizontal: SIZE.BASE_HP,
-            }}
-          >
+          <ScrollView style={styles.scroll}>
             <View
               style={{
                 display: selectBar === FILTER_TAB_BAR.FILTER ? 'flex' : 'none',
@@ -152,6 +146,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: SIZE.BASE_HP * 1.6,
     fontSize: FONTSIZE.SIZE25PX,
+  },
+  scroll: {
+    flex: 1,
+    paddingTop: SIZE.BASE_HP * 2,
+    paddingHorizontal: SIZE.BASE_HP,
   },
   footer: {
     width: '100%',
