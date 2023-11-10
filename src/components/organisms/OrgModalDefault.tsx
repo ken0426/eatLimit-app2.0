@@ -26,7 +26,7 @@ const OrgModalDefault: FC<Props> = ({
   return (
     <Modal isVisible={isVisible} onBackdropPress={cancelOnPress}>
       <View style={styles.modal}>
-        <Text style={{ fontSize: FONTSIZE.SIZE20PX }}>{message}</Text>
+        <Text style={styles.text}>{message}</Text>
         <View style={styles.buttonArea}>
           {data.map((item, index) => (
             <AtomButton
@@ -62,5 +62,8 @@ const styles = StyleSheet.create({
   },
   buttonArea: {
     flexDirection: 'row',
+  },
+  text: {
+    fontSize: FONTSIZE.SIZE20PX,
   },
 });
