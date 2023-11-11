@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { ApiData } from '../types';
-import { v4 as uuidv4 } from 'uuid';
+import uuid from 'react-native-uuid';
 
 export const noImage = 'https://bpbd.sumbarprov.go.id/images/noimage.png';
 
@@ -295,6 +295,6 @@ export const tagData = [
   { name: '保存食' },
   { name: '緊急用' },
 ].map((item) => ({
-  id: uuidv4(),
+  id: uuid.v4(),
   name: item.name,
 }));
