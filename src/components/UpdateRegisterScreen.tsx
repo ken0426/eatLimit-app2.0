@@ -36,6 +36,7 @@ import AtomCounter from './atoms/AtomCounter';
 import { useDateError } from '../hooks/useDateError';
 import AtomTagSelect from './atoms/AtomTagSelect';
 import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
+import { useGoBack } from '../hooks/useGoBack';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
@@ -63,6 +64,8 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
 
   const { setTargetPostData, postData } = useRegister();
   const { isDateErrorMessage } = useDateError(postData, label);
+
+  useGoBack();
 
   return (
     <View style={{ flex: 1 }}>

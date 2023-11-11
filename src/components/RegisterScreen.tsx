@@ -38,6 +38,7 @@ import { useDateError } from '../hooks/useDateError';
 import { useCopyEdit } from '../hooks/useCopyEdit';
 import AtomTagSelect from './atoms/AtomTagSelect';
 import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
+import { useGoBack } from '../hooks/useGoBack';
 
 type RouteItem = {
   params: {
@@ -71,6 +72,8 @@ const RegisterScreen = () => {
   const { isDateErrorMessage } = useDateError(postData, label);
 
   useCopyEdit(postData, setTargetPostData, setLabel);
+
+  useGoBack();
 
   const getTextData = (key: string) =>
     postData.find((item) => item.key === key)?.value;
