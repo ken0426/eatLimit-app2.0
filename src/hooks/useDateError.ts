@@ -12,8 +12,8 @@ export const useDateError = (postData: PostData[], label: string) => {
     );
     const dateData = postData.find((item) => item.key === LABEL_NAME.DATE);
     if (
-      approximateDeadlineData &&
-      dateData &&
+      typeof approximateDeadlineData?.value === 'string' &&
+      typeof dateData?.value === 'string' &&
       !moment(dateData.value).isSameOrBefore(approximateDeadlineData.value) &&
       (label === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
         label === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE)
