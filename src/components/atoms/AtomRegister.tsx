@@ -1,16 +1,17 @@
 import React, { FC } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import moment from 'moment';
 import { ApiData, PostData, StackPramList } from '../../types';
 import { COLORS, FONTSIZE } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onRegisterPress } from '../../functions';
-import moment from 'moment';
-import { BUTTON_TEXT, LABEL_NAME, MODAL_MESSAGE } from '../../contents';
+import { BUTTON_TEXT } from '../../contents';
 import { useNavigation } from '@react-navigation/native';
 import { useRootDispatch } from '../../redux/store/store';
 import { setTagSelectedIds } from '../../redux/slices/commonRegisterSlice';
 import SvgIcon from '../../images/SvgIcon';
+import { registerValidationCheck } from '../../utils';
 
 type Props = {
   title: string;
@@ -78,7 +79,6 @@ const AtomRegister: FC<Props> = ({
         try {
           setIsDateBefore(false);
           const finish = await onRegisterPress({
-            postData,
             setIsVisible,
             setIsLoading,
             navigation,
@@ -126,27 +126,15 @@ const AtomRegister: FC<Props> = ({
       </View>
       <TouchableOpacity
         onPress={async () => {
-          const registerDate = postData.find(
-            (item) => item.key === LABEL_NAME.DATE
-          );
-          /** 個数を取得するロジック */
-          const count = postData.find(
-            (item) => item.key === LABEL_NAME.QUANTITY
-          )?.value;
-          if (count && Number(count) > 999) {
-            setIsVisible(true);
-            setMessage(MODAL_MESSAGE.QUANTITY);
-          }
-          // もし、日付項目が今日の日付より前の日付の場合は、警告モーダルを表示し、一旦POSTはしないロジックを追加
-          else if (
-            registerDate &&
-            moment().isAfter(registerDate.value, 'day')
-          ) {
-            return setIsDateBefore(true);
-          } else {
-            try {
+          try {
+            const validationError = registerValidationCheck({
+              postData,
+              setIsVisible,
+              setMessage,
+              setIsDateBefore,
+            });
+            if (!validationError) {
               const finish = await onRegisterPress({
-                postData,
                 setIsVisible,
                 setIsLoading,
                 navigation,
@@ -156,8 +144,8 @@ const AtomRegister: FC<Props> = ({
 
               /** 選択しているタグのIDをリセット */
               if (finish) dispatch(setTagSelectedIds([]));
-            } catch (error) {}
-          }
+            }
+          } catch (error) {}
         }}
         style={{ width: '33%', alignItems: 'flex-end' }}
       >

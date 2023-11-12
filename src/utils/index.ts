@@ -3,9 +3,22 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { ApiData, HandleLoginType } from '../types';
-import { SEPTEMBER, SETTING_ITEM_ID } from '../contents';
+import { ApiData, HandleLoginType, PostData } from '../types';
+import {
+  LABEL_NAME,
+  MODAL_MESSAGE,
+  SEPTEMBER,
+  SETTING_ITEM_ID,
+} from '../contents';
 import { auth } from '../firebase';
+import moment from 'moment';
+
+type RegisterValidationCheck = {
+  postData: PostData[];
+  setIsVisible: (e: boolean) => void;
+  setMessage: (e: string) => void;
+  setIsDateBefore: (e: boolean) => void;
+};
 
 export const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT } =
   Dimensions.get('window');
@@ -271,5 +284,68 @@ export const handleLogin = async ({
       ]);
     }
     throw error;
+  }
+};
+
+/** 登録、変更、コピー画面でバリデーションチェック */
+export const registerValidationCheck = ({
+  postData,
+  setIsVisible,
+  setMessage,
+  setIsDateBefore,
+}: RegisterValidationCheck) => {
+  /** 必須項目を抽出 */
+  const filterData = postData.filter((item) => item.isRequired);
+  /** 必須項目を抽出 */
+  const isTextNull = filterData.find((item) => item.value === '');
+
+  if (isTextNull) {
+    setIsVisible(true);
+    setMessage(MODAL_MESSAGE.REQUIRED);
+
+    return true;
+  } else {
+    const registerDate = postData.find((item) => item.key === LABEL_NAME.DATE);
+    /** 個数を取得するロジック */
+    const count = postData.find(
+      (item) => item.key === LABEL_NAME.QUANTITY
+    )?.value;
+
+    /** 管理方法を取得 */
+    const managementData = postData.find(
+      (item) => item.key === LABEL_NAME.MANAGEMENT
+    );
+
+    /** 管理方法が「消費期限」または「賞味期限」の場合は期限目安の項目を削除し、条件を満たした場合は期限目安の項目を削除する */
+    const newPostData = postData.filter(
+      (item) =>
+        !(
+          item.key === LABEL_NAME.APPROXIMATE_DEADLINE &&
+          (managementData?.value === '賞味期限' ||
+            managementData?.value === '消費期限')
+        )
+    );
+    /** 期限目安の日付を取得 */
+    const approximateDeadlineData = newPostData.find(
+      (item) => item.key === LABEL_NAME.APPROXIMATE_DEADLINE
+    );
+    if (count && Number(count) > 999) {
+      setIsVisible(true);
+      setMessage(MODAL_MESSAGE.QUANTITY);
+      return true;
+    } else if (
+      approximateDeadlineData &&
+      registerDate &&
+      !moment(registerDate.value).isSameOrBefore(approximateDeadlineData.value)
+    ) {
+      setIsVisible(true);
+      setMessage(MODAL_MESSAGE.DATE_ERROR);
+      return true;
+    }
+    // もし、日付項目が今日の日付より前の日付の場合は、警告モーダルを表示し、一旦POSTはしないロジックを追加
+    else if (registerDate && moment().isAfter(registerDate.value, 'day')) {
+      setIsDateBefore(true);
+      return true;
+    }
   }
 };

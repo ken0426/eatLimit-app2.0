@@ -1,20 +1,12 @@
 import { ActionSheetIOS, Alert, Platform } from 'react-native';
-import moment from 'moment';
 import * as ImagePicker from 'expo-image-picker';
 import { Dispatch } from '@reduxjs/toolkit';
 import { StackNavigationProp } from '@react-navigation/stack';
-import {
-  ACTION_SHEET,
-  CAMERA_ERROR_MESSAGE,
-  LABEL,
-  LABEL_NAME,
-  MODAL_MESSAGE,
-} from '../contents';
+import { ACTION_SHEET, CAMERA_ERROR_MESSAGE, LABEL } from '../contents';
 import {
   ApiData,
   HandleRegistrationPress,
   ListData,
-  PostData,
   StackPramList,
 } from '../types';
 import {
@@ -24,8 +16,7 @@ import {
   setImageId,
   setSelectMemoTemplate,
 } from '../redux/slices/commonSlice';
-import { useRootDispatch } from '../redux/store/store';
-import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
+import { registerValidationCheck } from '../utils';
 
 type Options = {
   options: string[];
@@ -40,7 +31,6 @@ type Options = {
 type Callback = (buttonIndex: number | undefined) => void | Promise<void>;
 
 type OnRegisterPress = {
-  postData: PostData[];
   setIsVisible: (e: boolean) => void;
   setIsLoading: (e: boolean) => void;
   navigation: StackNavigationProp<
@@ -136,82 +126,30 @@ export const onPressAction = (
 
 /** 登録や変更ボタンを押したときの処理 */
 export const onRegisterPress = async ({
-  postData,
   setIsVisible,
   setIsLoading,
   navigation,
   setMessage,
   isCopyRegister,
 }: OnRegisterPress) => {
-  /** 必須項目を抽出 */
-  const filterData = postData.filter((item) => item.isRequired);
-  /** 必須項目の中で1つでも空文字がある場合はtrueにする */
-  const isTextNull = filterData.find((item) => item.value === '');
-  /** 管理方法を取得 */
-  const managementData = postData.find(
-    (item) => item.key === LABEL_NAME.MANAGEMENT
-  );
-  /** 管理方法が「消費期限」または「賞味期限」の場合は期限目安の項目を削除し、条件を満たした場合は期限目安の項目を削除する */
-  const newPostData = postData.filter(
-    (item) =>
-      !(
-        item.key === LABEL_NAME.APPROXIMATE_DEADLINE &&
-        (managementData?.value === '賞味期限' ||
-          managementData?.value === '消費期限')
-      )
-  );
-  /** 消費期限などの登録する日付を取得 */
-  const registerDate = newPostData.find((item) => item.key === LABEL_NAME.DATE);
-  /** 期限目安の日付を取得 */
-  const approximateDeadlineData = newPostData.find(
-    (item) => item.key === LABEL_NAME.APPROXIMATE_DEADLINE
-  );
-  /** 個数を取得するロジック */
-  const count = newPostData.find(
-    (item) => item.key === LABEL_NAME.QUANTITY
-  )?.value;
-  if (!count && typeof Number(count) !== 'number') return;
-
-  newPostData.push({
-    key: 'registerDate',
-    value: moment().format('YYYY-MM-DD HH:mm:ss'),
-    isRequired: true,
-  });
-
-  if (isTextNull) {
-    setIsVisible(true);
-    setMessage(MODAL_MESSAGE.REQUIRED);
-  } else if (
-    approximateDeadlineData &&
-    registerDate &&
-    !moment(registerDate.value).isSameOrBefore(approximateDeadlineData.value)
-  ) {
-    setIsVisible(true);
-    setMessage(MODAL_MESSAGE.DATE_ERROR);
-  } else if (Number(count) > 999) {
-    setIsVisible(true);
-    setMessage(MODAL_MESSAGE.QUANTITY);
-  } else {
-    try {
-      console.log('postするデータ（常に監視）', newPostData);
-      setIsLoading(true);
-      console.log('リクエストを送信中・・・');
-      await new Promise((resolve) => setTimeout(resolve, 2500)); // 2.5秒待機（見た目として実装）
-      console.log('DBに保存完了'); // 非同期処理
-      if (isCopyRegister) {
-        navigation.pop(2);
-      } else {
-        navigation.goBack();
-      }
-
-      return true;
-    } catch (error) {
-      setIsVisible(true);
-      setMessage('送信に失敗しました');
-      throw error;
-    } finally {
-      setIsLoading(false);
+  try {
+    setIsLoading(true);
+    console.log('リクエストを送信中・・・');
+    await new Promise((resolve) => setTimeout(resolve, 2500)); // 2.5秒待機（見た目として実装）
+    console.log('DBに保存完了'); // 非同期処理
+    if (isCopyRegister) {
+      navigation.pop(2);
+    } else {
+      navigation.goBack();
     }
+
+    return true;
+  } catch (error) {
+    setIsVisible(true);
+    setMessage('送信に失敗しました');
+    throw error;
+  } finally {
+    setIsLoading(false);
   }
 };
 
@@ -246,21 +184,14 @@ export const handleRegistrationPress = async ({
   isCopyRegister,
   navigation,
 }: HandleRegistrationPress) => {
-  /** 個数を取得するロジック */
-  const count = postData.find(
-    (item) => item.key === LABEL_NAME.QUANTITY
-  )?.value;
-  const registerDate = postData.find((item) => item.key === LABEL_NAME.DATE);
-  if (count && Number(count) > 999) {
-    setIsVisible(true);
-    setMessage(MODAL_MESSAGE.QUANTITY);
-  }
-  // もし、日付項目が今日の日付より前の日付の場合は、警告モーダルを表示し、一旦POSTはしないロジックを追加
-  else if (registerDate && moment().isAfter(registerDate.value, 'day')) {
-    return setIsDateBefore(true);
-  } else {
+  const validationError = registerValidationCheck({
+    postData,
+    setIsVisible,
+    setMessage,
+    setIsDateBefore,
+  });
+  if (!validationError) {
     const finish = await onRegisterPress({
-      postData,
       setIsVisible,
       setIsLoading,
       navigation,
