@@ -1,4 +1,5 @@
 import { ActionSheetIOS, Alert, Platform } from 'react-native';
+import moment from 'moment';
 import * as ImagePicker from 'expo-image-picker';
 import { Dispatch } from '@reduxjs/toolkit';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -137,6 +138,14 @@ export const onRegisterPress = async ({
 }: OnRegisterPress) => {
   try {
     setIsLoading(true);
+
+    /** 登録前に登録する年月日と日時を追加 */
+    postData.push({
+      key: 'registerDate',
+      value: moment().format('YYYY-MM-DD HH:mm:ss'),
+      isRequired: true,
+    });
+
     console.log('リクエスト内容', postData);
     console.log('リクエストを送信中・・・');
     await new Promise((resolve) => setTimeout(resolve, 2500)); // 2.5秒待機（見た目として実装）
