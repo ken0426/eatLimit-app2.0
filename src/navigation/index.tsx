@@ -20,6 +20,7 @@ import TagScreen from '../components/TagScreen';
 import { fetchTag } from '../api';
 import { useDispatch } from 'react-redux';
 import { setTagList } from '../redux/slices/commonSlice';
+import TagRegisterScreen from '../components/TagRegisterScreen';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
@@ -115,6 +116,14 @@ const RootStackScreen = () => {
       <Stack.Screen
         name={'tagScreen'}
         component={TagScreen}
+        options={{
+          headerShown: false,
+          presentation: 'fullScreenModal',
+        }}
+      />
+      <Stack.Screen
+        name={'tagRegisterScreen'}
+        component={TagRegisterScreen}
         options={{
           headerShown: false,
           presentation: 'fullScreenModal',

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
 import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import MolHeader from './molecules/MolHeader';
@@ -16,9 +17,9 @@ import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import AtomButton from './atoms/AtomButton';
 import AtomTagCheckSelect from './atoms/AtomTagCheckSelect';
-import { tagData } from '../moc';
 import { filterTagData } from '../utils';
 import SvgIcon from '../images/SvgIcon';
+import { StackPramList } from '../types';
 
 type RenderItem = {
   name: string;
@@ -27,28 +28,33 @@ type RenderItem = {
 
 const TagScreen = () => {
   const dispatch = useRootDispatch();
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<StackNavigationProp<StackPramList, 'tagScreen'>>();
   /** 選択しているタグのID */
   const tagSelectedIds = useRootSelector(
     (state) => state.commonRegister.tagSelectedIds
   );
-
+  /** タグの一覧を取得 */
+  const tagList = useRootSelector((state) => state.common.tagList);
   const [tagChecked, setTagChecked] = useState<string[]>(tagSelectedIds);
   const [searchText, setSearchText] = useState('');
+  const [tagListData, setTagListData] = useState(tagList);
+
+  useEffect(() => setTagListData(tagList), [tagList]);
 
   const renderItem: ListRenderItem<RenderItem> = ({ item, index }) => (
     <AtomTagCheckSelect
       key={item.id}
       name={item.name}
       id={item.id}
-      style={index === tagData.length - 1 && styles.lastItem}
+      style={index === tagListData.length - 1 && styles.lastItem}
       tagChecked={tagChecked}
       setTagChecked={setTagChecked}
     />
   );
 
   const getData = () =>
-    searchText === '' ? tagData : filterTagData(tagData, searchText);
+    searchText === '' ? tagListData : filterTagData(tagListData, searchText);
 
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.WHITE }}>
@@ -57,7 +63,7 @@ const TagScreen = () => {
           title={'タグ選択'}
           imageType={'plus'}
           isRightButton={true}
-          onRightPress={() => {}}
+          onRightPress={() => navigation.navigate('tagRegisterScreen')}
         />
       </MolHeader>
 

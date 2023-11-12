@@ -207,6 +207,7 @@ export const SETTING_ITEM_ID = {
 export const BUTTON_TEXT = {
   CANCEL: 'キャンセル',
   OK: 'OK',
+  DECISION: '決定',
   CLOSE: '閉じる',
 };
 

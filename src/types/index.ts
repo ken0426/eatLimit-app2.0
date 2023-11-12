@@ -40,6 +40,7 @@ export type StackPramList = {
   memoTemplateUpdateScreen: { data: MemoTemplateData };
   settingMemoScreen: undefined;
   tagScreen: undefined;
+  tagRegisterScreen: undefined;
 };
 
 export type ModalButton = {
