@@ -137,7 +137,9 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                         value: data.value,
                         isRequired: data.isRequired,
                       });
-                      setLabel(data.value);
+                      if (typeof data.value === 'string') {
+                        setLabel(data.value);
+                      }
                     }}
                   />
                   <AtomSingleSelect
@@ -190,12 +192,27 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                       selectedDate={
                         postData.find((item) => item.key === LABEL_NAME.DATE)
                           ?.value
+                          ? String(
+                              postData.find(
+                                (item) => item.key === LABEL_NAME.DATE
+                              )?.value
+                            )
+                          : undefined
                       }
                     />
                   )}
                   <AtomTagSelect
                     tagList={tagList}
                     tagSelectedIds={tagSelectedIds}
+                    setData={(data) => {
+                      setTargetPostData({
+                        key: LABEL_NAME.TAG,
+                        value: data.value,
+                        isRequired: false,
+                      });
+                    }}
+                    label={LABEL_NAME.TAG}
+                    isRequired={false}
                   />
                   <AtomSingleInput
                     label={LABEL_TEXT.PLACE_OF_PURCHASE}
