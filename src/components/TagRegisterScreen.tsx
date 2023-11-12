@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Keyboard,
   StyleSheet,
@@ -21,8 +21,17 @@ import { setTagList } from '../redux/slices/commonSlice';
 const TagRegisterScreen = () => {
   const dispatch = useRootDispatch();
   const navigation = useNavigation();
+  const inputRef = useRef<TextInput>(null);
   const tagList = useRootSelector((state) => state.common.tagList);
   const [text, setText] = useState('');
+
+  /** 画面を表示した際にキーボードを初回表示し、キーボードを閉じるとワーニングが表示されるのを防ぐためのフック */
+  useEffect(() => {
+    (async () => {
+      await new Promise((resolve) => setTimeout(resolve, 550));
+      if (inputRef.current) inputRef.current.focus();
+    })();
+  }, []);
 
   const onRightPress = () => {
     if (text.length) {
@@ -53,7 +62,7 @@ const TagRegisterScreen = () => {
             <Text style={styles.labelText}>名前</Text>
           </View>
           <TextInput
-            autoFocus={true}
+            ref={inputRef}
             placeholder={'タグ名を入力'}
             maxLength={20}
             style={styles.textInput}
