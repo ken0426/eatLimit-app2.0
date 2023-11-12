@@ -334,8 +334,8 @@ export const registerValidationCheck = ({
       setMessage(MODAL_MESSAGE.QUANTITY);
       return true;
     } else if (
-      approximateDeadlineData &&
-      registerDate &&
+      typeof approximateDeadlineData?.value === 'string' &&
+      typeof registerDate?.value === 'string' &&
       !moment(registerDate.value).isSameOrBefore(approximateDeadlineData.value)
     ) {
       setIsVisible(true);
@@ -343,7 +343,10 @@ export const registerValidationCheck = ({
       return true;
     }
     // もし、日付項目が今日の日付より前の日付の場合は、警告モーダルを表示し、一旦POSTはしないロジックを追加
-    else if (registerDate && moment().isAfter(registerDate.value, 'day')) {
+    else if (
+      typeof registerDate?.value === 'string' &&
+      moment().isAfter(registerDate.value, 'day')
+    ) {
       setIsDateBefore(true);
       return true;
     }
