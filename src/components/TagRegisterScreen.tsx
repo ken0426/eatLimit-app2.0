@@ -49,6 +49,11 @@ const TagRegisterScreen = () => {
           value={text}
           onChangeText={(e) => setText(e)}
         />
+        {text.length === 20 && (
+          <Text style={styles.errorText}>
+            ※入力できる文字数は20文字までです
+          </Text>
+        )}
       </View>
 
       <View style={styles.buttonArea}>
@@ -86,8 +91,6 @@ const styles = StyleSheet.create({
     marginBottom: SIZE.BASE_WP * 5,
   },
   contents: {
-    borderBottomColor: COLORS.DETAIL_BORDER,
-    borderBottomWidth: 0.3,
     marginHorizontal: SIZE.BASE_WP * 8,
     marginTop: SIZE.BASE_WP * 50,
   },
@@ -100,6 +103,13 @@ const styles = StyleSheet.create({
   },
   textInput: {
     fontSize: FONTSIZE.SIZE20PX,
+    borderBottomColor: COLORS.DETAIL_BORDER,
+    borderBottomWidth: 0.3,
+  },
+  errorText: {
+    marginTop: SIZE.BASE_WP * 2,
+    color: COLORS.RED,
+    fontSize: FONTSIZE.SIZE18PX,
   },
   buttonArea: {
     alignItems: 'center',
