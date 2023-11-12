@@ -79,6 +79,7 @@ const AtomRegister: FC<Props> = ({
         try {
           setIsDateBefore(false);
           const finish = await onRegisterPress({
+            postData,
             setIsVisible,
             setIsLoading,
             navigation,
@@ -135,6 +136,7 @@ const AtomRegister: FC<Props> = ({
             });
             if (!validationError) {
               const finish = await onRegisterPress({
+                postData,
                 setIsVisible,
                 setIsLoading,
                 navigation,

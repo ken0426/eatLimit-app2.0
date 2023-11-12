@@ -61,6 +61,8 @@ export const LABEL_NAME = {
   BEFORE_DATE: 'beforeDate',
   /** 昇順/降順 */
   ASCENDING_DESCENDING: 'ascendingDescending',
+  /** タグ */
+  TAG: 'tag',
 };
 
 /** 登録画面に表示するラベルのテキスト */

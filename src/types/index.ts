@@ -56,7 +56,7 @@ export type AuthPostData = {
 /** 項目ごとのデータ */
 export type PostData = {
   key: string;
-  value: string;
+  value: string | { id: string; name: string }[];
   isRequired: boolean;
 };
 

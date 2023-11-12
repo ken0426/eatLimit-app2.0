@@ -1,23 +1,37 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { COLORS, FONTSIZE, INPUT_HEIGHT, SIZE } from '../../styles';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { StackPramList } from '../../types';
+import { PostData, StackPramList } from '../../types';
 import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
   tagSelectedIds: string[];
   tagList: { id: string; name: string }[];
+  setData: ({ key, value }: PostData) => void;
+  label: string;
+  isRequired: boolean;
 };
 
-const AtomTagSelect: FC<Props> = ({ tagSelectedIds, tagList }) => {
+const AtomTagSelect: FC<Props> = ({
+  tagSelectedIds,
+  tagList,
+  setData,
+  label,
+  isRequired,
+}) => {
   const navigation =
     useNavigation<StackNavigationProp<StackPramList, 'registerScreen'>>();
 
   const tagData = useMemo(
     () => tagList.filter((item) => tagSelectedIds.includes(item.id)),
     [tagSelectedIds, tagList]
+  );
+
+  useEffect(
+    () => setData({ key: label, isRequired, value: tagData }),
+    [tagData]
   );
 
   return (

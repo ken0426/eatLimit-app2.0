@@ -7,6 +7,7 @@ import {
   ApiData,
   HandleRegistrationPress,
   ListData,
+  PostData,
   StackPramList,
 } from '../types';
 import {
@@ -31,6 +32,7 @@ type Options = {
 type Callback = (buttonIndex: number | undefined) => void | Promise<void>;
 
 type OnRegisterPress = {
+  postData: PostData[];
   setIsVisible: (e: boolean) => void;
   setIsLoading: (e: boolean) => void;
   navigation: StackNavigationProp<
@@ -126,6 +128,7 @@ export const onPressAction = (
 
 /** 登録や変更ボタンを押したときの処理 */
 export const onRegisterPress = async ({
+  postData,
   setIsVisible,
   setIsLoading,
   navigation,
@@ -134,6 +137,7 @@ export const onRegisterPress = async ({
 }: OnRegisterPress) => {
   try {
     setIsLoading(true);
+    console.log('リクエスト内容', postData);
     console.log('リクエストを送信中・・・');
     await new Promise((resolve) => setTimeout(resolve, 2500)); // 2.5秒待機（見た目として実装）
     console.log('DBに保存完了'); // 非同期処理
@@ -192,6 +196,7 @@ export const handleRegistrationPress = async ({
   });
   if (!validationError) {
     const finish = await onRegisterPress({
+      postData,
       setIsVisible,
       setIsLoading,
       navigation,

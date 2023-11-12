@@ -154,9 +154,15 @@ const RegisterScreen = () => {
                         value: data.value,
                         isRequired: data.isRequired,
                       });
-                      setLabel(data.value);
+                      if (typeof data.value === 'string') {
+                        setLabel(data.value);
+                      }
                     }}
-                    textData={getTextData(LABEL_NAME.MANAGEMENT) ?? ''}
+                    textData={
+                      getTextData(LABEL_NAME.MANAGEMENT)
+                        ? String(getTextData(LABEL_NAME.MANAGEMENT))
+                        : ''
+                    }
                   />
                   <AtomSingleSelect
                     label={LABEL_TEXT.PRESERVATION}
@@ -169,7 +175,11 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       })
                     }
-                    textData={getTextData(LABEL_NAME.PRESERVATION) ?? ''}
+                    textData={
+                      getTextData(LABEL_NAME.PRESERVATION)
+                        ? String(getTextData(LABEL_NAME.PRESERVATION))
+                        : ''
+                    }
                   />
                   <AtomDate
                     isRequired={true}
@@ -186,7 +196,11 @@ const RegisterScreen = () => {
                     }
                     copyDate={
                       route.params
-                        ? new Date(getTextData(LABEL_NAME.DATE) ?? '')
+                        ? new Date(
+                            getTextData(LABEL_NAME.DATE)
+                              ? String(getTextData(LABEL_NAME.DATE))
+                              : ''
+                          )
                         : undefined
                     }
                   />
@@ -211,12 +225,27 @@ const RegisterScreen = () => {
                       selectedDate={
                         postData.find((item) => item.key === LABEL_NAME.DATE)
                           ?.value
+                          ? String(
+                              postData.find(
+                                (item) => item.key === LABEL_NAME.DATE
+                              )?.value
+                            )
+                          : undefined
                       }
                     />
                   )}
                   <AtomTagSelect
                     tagSelectedIds={tagSelectedIds}
                     tagList={tagList}
+                    setData={(data) =>
+                      setTargetPostData({
+                        key: LABEL_NAME.TAG,
+                        value: data.value,
+                        isRequired: false,
+                      })
+                    }
+                    label={LABEL_NAME.TAG}
+                    isRequired={false}
                   />
                   <AtomSingleInput
                     label={LABEL_TEXT.PLACE_OF_PURCHASE}
@@ -231,6 +260,8 @@ const RegisterScreen = () => {
                     textData={
                       route.params?.data?.placeOfPurchase ??
                       getTextData(LABEL_NAME.PLACE_OF_PURCHASE)
+                        ? String(getTextData(LABEL_NAME.PLACE_OF_PURCHASE))
+                        : ''
                     }
                   />
                   <AtomSingleInput
@@ -245,8 +276,8 @@ const RegisterScreen = () => {
                       })
                     }
                     textData={
-                      String(route.params?.data?.price)
-                        ? getTextData(LABEL_NAME.AMOUNT_OF_MONEY)
+                      route.params?.data?.price
+                        ? String(getTextData(LABEL_NAME.AMOUNT_OF_MONEY))
                         : ''
                     }
                   />
