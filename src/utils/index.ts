@@ -13,6 +13,14 @@ import {
 import { auth } from '../firebase';
 import moment from 'moment';
 
+type Data = {
+  data: {
+    id: number;
+  }[];
+  label: string;
+  isMemoTemplate?: boolean;
+};
+
 type RegisterValidationCheck = {
   postData: PostData[];
   setIsVisible: (e: boolean) => void;
@@ -90,15 +98,6 @@ export const getKey = (item: any) => {
 };
 
 /** 設定項目の「年月日の表示」項目でフォーマットに依存した形で項目を表示できるようにするロジック */
-
-type Data = {
-  data: {
-    id: number;
-  }[];
-  label: string;
-  isMemoTemplate?: boolean;
-};
-
 export const getEditDataFormat = (data: Data, dateFormatDisplayId: number) => {
   const today = new Date();
   const newData = data.data.map((d) => {
