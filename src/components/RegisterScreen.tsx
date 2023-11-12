@@ -128,7 +128,10 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       })
                     }
-                    textData={getTextData(LABEL_NAME.PRODUCT) ?? ''}
+                    textData={
+                      route.params?.data.eatName ??
+                      getTextData(LABEL_NAME.PRODUCT)
+                    }
                   />
                   <AtomCounter
                     onPressIn={() => setEnabled(false)}
@@ -225,7 +228,10 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       })
                     }
-                    textData={getTextData(LABEL_NAME.PLACE_OF_PURCHASE) ?? ''}
+                    textData={
+                      route.params?.data?.placeOfPurchase ??
+                      getTextData(LABEL_NAME.PLACE_OF_PURCHASE)
+                    }
                   />
                   <AtomSingleInput
                     label={LABEL_TEXT.AMOUNT_OF_MONEY}
@@ -238,7 +244,11 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       })
                     }
-                    textData={getTextData(LABEL_NAME.AMOUNT_OF_MONEY) ?? ''}
+                    textData={
+                      String(route.params?.data?.price)
+                        ? getTextData(LABEL_NAME.AMOUNT_OF_MONEY)
+                        : ''
+                    }
                   />
                   <AtomMemo
                     onPress={() => setEnabled(true)}
