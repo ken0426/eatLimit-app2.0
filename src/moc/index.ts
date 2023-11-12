@@ -295,6 +295,6 @@ export const tagData = [
   { name: '保存食' },
   { name: '緊急用' },
 ].map((item) => ({
-  id: uuid.v4(),
+  id: String(uuid.v4()),
   name: item.name,
 }));
