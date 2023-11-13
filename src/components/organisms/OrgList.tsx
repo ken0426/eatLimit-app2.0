@@ -36,53 +36,55 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
   );
 
   return (
-    <View key={Number(index)} style={{ backgroundColor: COLORS.WHITE }}>
-      <TouchableOpacity
-        style={[
-          styles.contents,
-          index === 0 && { borderTopWidth: SIZE.BASE_HP * 0.06 },
-        ]}
-        onPress={() => {
-          navigation.navigate('detailScreen', { item });
-          dispatch(setUpdateRegisterData(item));
-        }}
-      >
-        {isImage && (
-          <View style={styles.imageArea}>
-            <Image
-              style={styles.image}
-              source={{ uri: item.image ?? noImage }}
-            />
-          </View>
-        )}
-        <View style={[styles.textArea, { paddingLeft: isImage ? 0 : 20 }]}>
-          <Text style={styles.eatName}>{item.eatName}</Text>
-          <View style={{ flexDirection: 'row' }}>
-            <Text style={styles.date}>{dateText}</Text>
-            {beforeDate && <Text style={styles.caveatText}>期限切れ</Text>}
-          </View>
+    <TouchableOpacity
+      key={Number(index)}
+      style={index === 0 ? styles.listTop : styles.list}
+      onPress={() => {
+        navigation.navigate('detailScreen', { item });
+        dispatch(setUpdateRegisterData(item));
+      }}
+    >
+      {isImage && (
+        <View style={styles.imageArea}>
+          <Image style={styles.image} source={{ uri: item.image ?? noImage }} />
         </View>
-        <View style={styles.arrow}>
-          <SvgIcon
-            type={'materialIcons'}
-            name='keyboard-arrow-right'
-            size={24}
-            color={COLORS.TEXT_COLOR}
-          />
+      )}
+      <View style={[styles.textArea, { paddingLeft: isImage ? 0 : 20 }]}>
+        <Text style={styles.eatName}>{item.eatName}</Text>
+        <View style={{ flexDirection: 'row' }}>
+          <Text style={styles.date}>{dateText}</Text>
+          {beforeDate && <Text style={styles.caveatText}>期限切れ</Text>}
         </View>
-      </TouchableOpacity>
-    </View>
+      </View>
+      <View style={styles.arrow}>
+        <SvgIcon
+          type={'materialIcons'}
+          name='keyboard-arrow-right'
+          size={24}
+          color={COLORS.TEXT_COLOR}
+        />
+      </View>
+    </TouchableOpacity>
   );
 };
 
 export default OrgList;
 
 const styles = StyleSheet.create({
-  contents: {
+  list: {
     height: SIZE.BASE_HP * 11,
     borderBottomWidth: SIZE.BASE_HP * 0.06,
     borderColor: COLORS.BORDER_LINE,
     flexDirection: 'row',
+    backgroundColor: COLORS.WHITE,
+  },
+  listTop: {
+    height: SIZE.BASE_HP * 11,
+    borderBottomWidth: SIZE.BASE_HP * 0.06,
+    borderColor: COLORS.BORDER_LINE,
+    flexDirection: 'row',
+    backgroundColor: COLORS.WHITE,
+    borderTopWidth: SIZE.BASE_HP * 0.06,
   },
   imageArea: {
     width: SIZE.BASE_HP * 15.5,
