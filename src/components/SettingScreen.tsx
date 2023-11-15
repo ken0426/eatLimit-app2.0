@@ -51,6 +51,8 @@ const SettingScreen = () => {
                 });
               } else if (data.label === LABEL.MEMO_TEMPLATE) {
                 navigation.push('settingMemoScreen');
+              } else if (data.label === LABEL.TAG_REGISTER) {
+                navigation.push('tagRegisterScreen');
               } else if (data.label === LOG_AUTO) {
                 // TODO リファクタリング（定数化など）
                 Alert.alert(LOG_AUTO, `ログアウトします。\nよろしいですか？`, [

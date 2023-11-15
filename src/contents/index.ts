@@ -182,6 +182,8 @@ export const LABEL = {
   DAY_OF_THE_WEEK_DISPLAY: '曜日の表示',
   /** メモのテンプレート */
   MEMO_TEMPLATE: 'メモのテンプレート',
+  /** タグ作成 */
+  TAG_REGISTER: 'タグ作成',
 };
 
 /** 設定項目で選択するID */
@@ -282,6 +284,10 @@ export const settingData: SettingData[] = [
       item: [
         {
           label: LABEL.MEMO_TEMPLATE,
+          data: [],
+        },
+        {
+          label: LABEL.TAG_REGISTER,
           data: [],
         },
       ],
