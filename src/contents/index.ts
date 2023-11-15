@@ -283,11 +283,11 @@ export const settingData: SettingData[] = [
       headline: '登録',
       item: [
         {
-          label: LABEL.MEMO_TEMPLATE,
+          label: LABEL.TAG_REGISTER,
           data: [],
         },
         {
-          label: LABEL.TAG_REGISTER,
+          label: LABEL.MEMO_TEMPLATE,
           data: [],
         },
       ],
