@@ -88,7 +88,7 @@ const OrgFilterModal: FC<Props> = ({
           </ScrollView>
           <View style={styles.footer}>
             <View style={styles.footerButtonArea}>
-              <View style={{ position: 'absolute', top: 8, right: -2 }}>
+              <View style={styles.resetButtonArea}>
                 <AtomButton
                   onPress={() => setIsRestButton(true)}
                   buttonText={'リセット'}
@@ -166,5 +166,10 @@ const styles = StyleSheet.create({
     borderBottomStartRadius: 20,
     borderBottomEndRadius: 20,
     justifyContent: 'center',
+  },
+  resetButtonArea: {
+    position: 'absolute',
+    top: 8,
+    right: -2,
   },
 });
