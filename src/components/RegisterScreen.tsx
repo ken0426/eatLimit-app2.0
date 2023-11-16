@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -78,14 +78,14 @@ const RegisterScreen = () => {
   const getTextData = (key: string) =>
     postData.find((item) => item.key === key)?.value;
 
-  const isCopyRegister = route.params;
+  const copyData = useMemo(() => route.params, [route.params]);
 
   return (
     <View style={{ flex: 1 }}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomRegister
-            title={route.params ? 'コピー' : '登録'}
+            title={copyData ? 'コピー' : '登録'}
             postData={postData}
             setIsLoading={setIsLoading}
             isVisible={isVisible}
@@ -94,7 +94,7 @@ const RegisterScreen = () => {
             setMessage={setMessage}
             isDateBefore={isDateBefore}
             setIsDateBefore={setIsDateBefore}
-            isCopyRegister={isCopyRegister}
+            copyData={copyData}
           />
         </MolHeader>
 
@@ -129,8 +129,7 @@ const RegisterScreen = () => {
                       })
                     }
                     textData={
-                      route.params?.data.eatName ??
-                      getTextData(LABEL_NAME.PRODUCT)
+                      copyData?.data.eatName ?? getTextData(LABEL_NAME.PRODUCT)
                     }
                   />
                   <AtomCounter
@@ -142,7 +141,7 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       });
                     }}
-                    textData={route.params?.data?.count ?? undefined}
+                    textData={copyData?.data?.count ?? undefined}
                   />
                   <AtomSingleSelect
                     label={LABEL_TEXT.MANAGEMENT}
@@ -195,7 +194,7 @@ const RegisterScreen = () => {
                       isDateErrorMessage ? DATE_ERROR_MESSAGE.DATE : ''
                     }
                     copyDate={
-                      route.params
+                      copyData
                         ? new Date(
                             getTextData(LABEL_NAME.DATE)
                               ? String(getTextData(LABEL_NAME.DATE))
@@ -223,14 +222,20 @@ const RegisterScreen = () => {
                           : ''
                       }
                       selectedDate={
-                        postData.find((item) => item.key === LABEL_NAME.DATE)
-                          ?.value
+                        copyData?.data?.approximateDeadline
+                          ? copyData.data.approximateDeadline
+                          : postData.find(
+                              (item) => item.key === LABEL_NAME.DATE
+                            )?.value
                           ? String(
                               postData.find(
                                 (item) => item.key === LABEL_NAME.DATE
                               )?.value
                             )
                           : undefined
+                      }
+                      isCopyData={
+                        copyData?.data?.approximateDeadline ? true : false
                       }
                     />
                   )}
@@ -258,10 +263,12 @@ const RegisterScreen = () => {
                       })
                     }
                     textData={
-                      route.params?.data?.placeOfPurchase ??
-                      getTextData(LABEL_NAME.PLACE_OF_PURCHASE)
+                      copyData?.data?.placeOfPurchase
+                        ? copyData.data.placeOfPurchase
+                        : typeof getTextData(LABEL_NAME.PLACE_OF_PURCHASE) ===
+                          'string'
                         ? String(getTextData(LABEL_NAME.PLACE_OF_PURCHASE))
-                        : ''
+                        : undefined
                     }
                   />
                   <AtomSingleInput
@@ -276,7 +283,7 @@ const RegisterScreen = () => {
                       })
                     }
                     textData={
-                      route.params?.data?.price
+                      copyData?.data?.price
                         ? String(getTextData(LABEL_NAME.AMOUNT_OF_MONEY))
                         : ''
                     }
@@ -301,16 +308,14 @@ const RegisterScreen = () => {
                         setMessage,
                         setIsDateBefore,
                         setIsLoading,
-                        isCopyRegister,
+                        copyData,
                         navigation,
                       });
                       if (finish) dispatch(setTagSelectedIds([]));
                     }}
                     color={COLORS.WHITE}
                     fontSize={FONTSIZE.SIZE30PX}
-                    backgroundColor={
-                      isCopyRegister ? COLORS.ORANGE : COLORS.BLUE
-                    }
+                    backgroundColor={copyData ? COLORS.ORANGE : COLORS.BLUE}
                     width={200}
                     buttonText={'登録'}
                     fontWeight={'bold'}

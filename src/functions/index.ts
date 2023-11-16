@@ -41,7 +41,7 @@ type OnRegisterPress = {
     'registerScreen' | 'updateRegisterScreen'
   >;
   setMessage: (e: string) => void;
-  isCopyRegister?: { data: ApiData };
+  copyData?: { data: ApiData };
 };
 
 /** カメラの起動 */
@@ -134,7 +134,7 @@ export const onRegisterPress = async ({
   setIsLoading,
   navigation,
   setMessage,
-  isCopyRegister,
+  copyData,
 }: OnRegisterPress) => {
   try {
     setIsLoading(true);
@@ -153,7 +153,7 @@ export const onRegisterPress = async ({
     console.log('リクエストを送信中・・・');
     await new Promise((resolve) => setTimeout(resolve, 2500)); // 2.5秒待機（見た目として実装）
     console.log('DBに保存完了'); // 非同期処理
-    if (isCopyRegister) {
+    if (copyData) {
       navigation.pop(2);
     } else {
       navigation.goBack();
@@ -197,7 +197,7 @@ export const handleRegistrationPress = async ({
   setMessage,
   setIsDateBefore,
   setIsLoading,
-  isCopyRegister,
+  copyData,
   navigation,
 }: HandleRegistrationPress) => {
   const validationError = registerValidationCheck({
@@ -213,7 +213,7 @@ export const handleRegistrationPress = async ({
       setIsLoading,
       navigation,
       setMessage,
-      isCopyRegister,
+      copyData,
     });
 
     return finish;

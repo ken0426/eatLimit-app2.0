@@ -145,7 +145,7 @@ export type HandleRegistrationPress = {
   setMessage: (e: string) => void;
   setIsDateBefore: (e: boolean) => void;
   setIsLoading: (e: boolean) => void;
-  isCopyRegister?: { data: ApiData };
+  copyData?: { data: ApiData };
   navigation: StackNavigationProp<
     StackPramList,
     'registerScreen' | 'updateRegisterScreen'

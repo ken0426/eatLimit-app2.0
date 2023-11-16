@@ -23,7 +23,7 @@ type Props = {
   setMessage: (e: string) => void;
   isDateBefore: boolean;
   setIsDateBefore: (e: boolean) => void;
-  isCopyRegister?: { data: ApiData };
+  copyData?: { data: ApiData };
 };
 
 const AtomRegister: FC<Props> = ({
@@ -36,7 +36,7 @@ const AtomRegister: FC<Props> = ({
   setMessage,
   isDateBefore,
   setIsDateBefore,
-  isCopyRegister,
+  copyData,
 }) => {
   const dispatch = useRootDispatch();
   const navigation =
@@ -84,7 +84,7 @@ const AtomRegister: FC<Props> = ({
             setIsLoading,
             navigation,
             setMessage,
-            isCopyRegister,
+            copyData,
           });
 
           /** 選択しているタグのIDをリセット */
@@ -141,7 +141,7 @@ const AtomRegister: FC<Props> = ({
                 setIsLoading,
                 navigation,
                 setMessage,
-                isCopyRegister,
+                copyData,
               });
 
               /** 選択しているタグのIDをリセット */
