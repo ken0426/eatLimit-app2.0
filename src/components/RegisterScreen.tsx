@@ -39,7 +39,6 @@ import { useCopyEdit } from '../hooks/useCopyEdit';
 import AtomTagSelect from './atoms/AtomTagSelect';
 import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
 import { useGoBack } from '../hooks/useGoBack';
-import moment from 'moment';
 import { useApproximateDeadline } from '../hooks/useApproximateDeadline';
 
 type RouteItem = {
