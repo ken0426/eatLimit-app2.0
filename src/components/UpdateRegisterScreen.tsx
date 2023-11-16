@@ -190,6 +190,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                           : ''
                       }
                       selectedDate={
+                        // TODO ここ修正
                         postData.find((item) => item.key === LABEL_NAME.DATE)
                           ?.value
                           ? String(

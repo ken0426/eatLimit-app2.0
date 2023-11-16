@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -39,6 +39,7 @@ import { useCopyEdit } from '../hooks/useCopyEdit';
 import AtomTagSelect from './atoms/AtomTagSelect';
 import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
 import { useGoBack } from '../hooks/useGoBack';
+import moment from 'moment';
 
 type RouteItem = {
   params: {
@@ -79,6 +80,26 @@ const RegisterScreen = () => {
     postData.find((item) => item.key === key)?.value;
 
   const copyData = useMemo(() => route.params, [route.params]);
+
+  const [approximateDeadline, setApproximateDeadline] = useState(
+    copyData?.data?.approximateDeadline
+  );
+  const [plus, setPlus] = useState(0);
+
+  useEffect(() => {
+    const management = postData.find(
+      (item) => item.key === LABEL_NAME.MANAGEMENT
+    )?.value;
+    const date = postData.find((item) => item.key === LABEL_NAME.DATE)?.value;
+    if (
+      (management === MANAGEMENT_SELECTED_TEXT.USE_BY_DATE ||
+        management === MANAGEMENT_SELECTED_TEXT.BEST_BEFORE_DATE) &&
+      typeof date === 'string'
+    ) {
+      setApproximateDeadline(date);
+      setPlus(10);
+    }
+  }, [postData]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -221,22 +242,8 @@ const RegisterScreen = () => {
                           ? DATE_ERROR_MESSAGE.APPROXIMATE_DEADLINE
                           : ''
                       }
-                      selectedDate={
-                        copyData?.data?.approximateDeadline
-                          ? copyData.data.approximateDeadline
-                          : postData.find(
-                              (item) => item.key === LABEL_NAME.DATE
-                            )?.value
-                          ? String(
-                              postData.find(
-                                (item) => item.key === LABEL_NAME.DATE
-                              )?.value
-                            )
-                          : undefined
-                      }
-                      isCopyData={
-                        copyData?.data?.approximateDeadline ? true : false
-                      }
+                      selectedDate={approximateDeadline}
+                      plusDate={copyData?.data?.approximateDeadline ? plus : 10}
                     />
                   )}
                   <AtomTagSelect

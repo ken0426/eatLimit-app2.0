@@ -15,7 +15,7 @@ type Props = {
   errorMessage: string;
   selectedDate?: string;
   copyDate?: Date;
-  isCopyData?: boolean;
+  plusDate?: number;
 };
 
 const AtomDate: FC<Props> = ({
@@ -27,7 +27,7 @@ const AtomDate: FC<Props> = ({
   errorMessage,
   selectedDate,
   copyDate,
-  isCopyData,
+  plusDate = 10,
 }) => {
   const getDate = () => {
     if (copyDate) {
@@ -41,14 +41,11 @@ const AtomDate: FC<Props> = ({
           return new Date(date);
         }
       } else if (isLimit && selectedDate) {
-        // 「期限目安」があり、且つすでに日付が選択されている場合
-        if (isCopyData) {
-          // コピーからの場合はコピーのデータを使用する
-          return new Date(selectedDate);
-        } else {
-          const currentDate = new Date(selectedDate);
-          return new Date(currentDate.setDate(currentDate.getDate() + 10));
-        }
+        const currentDate = new Date(selectedDate);
+        return new Date(currentDate.setDate(currentDate.getDate() + plusDate));
+      } else if (isLimit) {
+        const currentDate = new Date();
+        return new Date(currentDate.setDate(currentDate.getDate() + 10));
       } else {
         return new Date();
       }
