@@ -173,7 +173,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                   {(label === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
                     label === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE) && (
                     <AtomDate
-                      date={updateData.date}
+                      date={updateData.approximateDeadline}
                       isRequired={true}
                       label={LABEL_TEXT.APPROXIMATE_DEADLINE}
                       isLimit={true}
@@ -188,17 +188,6 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                         isDateErrorMessage
                           ? DATE_ERROR_MESSAGE.APPROXIMATE_DEADLINE
                           : ''
-                      }
-                      selectedDate={
-                        // TODO ここ修正
-                        postData.find((item) => item.key === LABEL_NAME.DATE)
-                          ?.value
-                          ? String(
-                              postData.find(
-                                (item) => item.key === LABEL_NAME.DATE
-                              )?.value
-                            )
-                          : undefined
                       }
                     />
                   )}

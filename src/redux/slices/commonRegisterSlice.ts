@@ -9,6 +9,7 @@ const commonRegisterState = {
     placeOfPurchase: undefined,
     management: '',
     preservation: '',
+    approximateDeadline: undefined,
   },
   updateRegisterData: {
     eatName: '',
@@ -19,6 +20,7 @@ const commonRegisterState = {
     management: '',
     preservation: '',
     count: '',
+    approximateDeadline: undefined,
   },
   tagSelectedIds: [],
 };
