@@ -69,20 +69,19 @@ const RegisterScreen = () => {
   const [label, setLabel] = useState('');
   /** 今日の日付と登録する日付を比較して登録する日付が過去の日付の場合はモーダルを表示するためのフラグ */
   const [isDateBefore, setIsDateBefore] = useState(false);
-
+  /** APIのリクエストパラメータ */
   const { setTargetPostData, postData } = useRegister();
+  /** 日付項目でエラー判定をするhook */
   const { isDateErrorMessage } = useDateError(postData, label);
-
+  /** コピーのデータをリクエストパラメータの形に変換するロジック */
   useCopyEdit(postData, setTargetPostData, setLabel);
-
+  /** コピーデータを取得 */
   const copyData = useMemo(() => route.params, [route.params]);
-
   /** 期限目安の計算ロジック */
   const { approximateDeadline, plus } = useApproximateDeadline(
     postData,
     copyData
   );
-
   /** Androidで戻るジェスチャーを無効にするhook */
   useGoBack();
 
