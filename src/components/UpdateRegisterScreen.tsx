@@ -37,6 +37,7 @@ import { useDateError } from '../hooks/useDateError';
 import AtomTagSelect from './atoms/AtomTagSelect';
 import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
 import { useGoBack } from '../hooks/useGoBack';
+import { useApproximateDeadline } from '../hooks/useApproximateDeadline';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
@@ -64,6 +65,8 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
 
   const { setTargetPostData, postData } = useRegister();
   const { isDateErrorMessage } = useDateError(postData, label);
+  /** 期限目安の計算ロジック */
+  const { approximateDeadline } = useApproximateDeadline(postData);
 
   useGoBack();
 
@@ -173,7 +176,9 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                   {(label === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
                     label === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE) && (
                     <AtomDate
-                      date={updateData.approximateDeadline}
+                      date={
+                        approximateDeadline ?? updateData.approximateDeadline
+                      }
                       isRequired={true}
                       label={LABEL_TEXT.APPROXIMATE_DEADLINE}
                       isLimit={true}
@@ -189,6 +194,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                           ? DATE_ERROR_MESSAGE.APPROXIMATE_DEADLINE
                           : ''
                       }
+                      selectedDate={approximateDeadline}
                     />
                   )}
                   <AtomTagSelect

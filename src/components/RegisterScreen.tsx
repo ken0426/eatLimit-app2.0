@@ -75,17 +75,18 @@ const RegisterScreen = () => {
 
   useCopyEdit(postData, setTargetPostData, setLabel);
 
-  useGoBack();
-
-  const getTextData = (key: string) =>
-    postData.find((item) => item.key === key)?.value;
-
   const copyData = useMemo(() => route.params, [route.params]);
 
+  /** 期限目安の計算ロジック */
   const { approximateDeadline, plus } = useApproximateDeadline(
     postData,
     copyData
   );
+
+  useGoBack();
+
+  const getTextData = (key: string) =>
+    postData.find((item) => item.key === key)?.value;
 
   return (
     <View style={{ flex: 1 }}>

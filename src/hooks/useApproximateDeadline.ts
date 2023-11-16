@@ -4,7 +4,7 @@ import { ApiData, PostData } from '../types';
 
 export const useApproximateDeadline = (
   postData: PostData[],
-  copyData: { data: ApiData }
+  copyData?: { data: ApiData }
 ) => {
   const [approximateDeadline, setApproximateDeadline] = useState(
     copyData?.data?.approximateDeadline
