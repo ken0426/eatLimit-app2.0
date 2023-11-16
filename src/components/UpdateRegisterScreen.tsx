@@ -68,6 +68,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
   /** 期限目安の計算ロジック */
   const { approximateDeadline } = useApproximateDeadline(postData);
 
+  /** Androidで戻るジェスチャーを無効にするhook */
   useGoBack();
 
   return (

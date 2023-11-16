@@ -83,6 +83,7 @@ const RegisterScreen = () => {
     copyData
   );
 
+  /** Androidで戻るジェスチャーを無効にするhook */
   useGoBack();
 
   const getTextData = (key: string) =>
