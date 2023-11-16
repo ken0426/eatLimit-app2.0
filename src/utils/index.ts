@@ -340,9 +340,7 @@ export const registerValidationCheck = ({
       setIsVisible(true);
       setMessage(MODAL_MESSAGE.DATE_ERROR);
       return true;
-    }
-    // もし、日付項目が今日の日付より前の日付の場合は、警告モーダルを表示し、一旦POSTはしないロジックを追加
-    else if (
+    } else if (
       typeof registerDate?.value === 'string' &&
       moment().isAfter(registerDate.value, 'day')
     ) {
