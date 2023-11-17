@@ -48,9 +48,9 @@ const OrgFilterModal: FC<Props> = ({
           <MolFilterTabBar selectBar={selectBar} setSelectBar={setSelectBar} />
           <ScrollView style={styles.scroll}>
             <View
-              style={{
-                display: selectBar === FILTER_TAB_BAR.FILTER ? 'flex' : 'none',
-              }}
+              style={
+                selectBar === FILTER_TAB_BAR.FILTER ? styles.flex : styles.none
+              }
             >
               {FILTER_MODAL_SELECT_BUTTON_DATA.map((item) =>
                 item.FILTER.map((itm, index) => (
@@ -67,9 +67,9 @@ const OrgFilterModal: FC<Props> = ({
               )}
             </View>
             <View
-              style={{
-                display: selectBar === FILTER_TAB_BAR.SORT ? 'flex' : 'none',
-              }}
+              style={
+                selectBar === FILTER_TAB_BAR.SORT ? styles.flex : styles.none
+              }
             >
               {FILTER_MODAL_SELECT_BUTTON_DATA.map((item) =>
                 item.SORT.map((itm, index) => (
@@ -151,6 +151,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: SIZE.BASE_HP * 2,
     paddingHorizontal: SIZE.BASE_HP,
+  },
+  flex: {
+    display: 'flex',
+  },
+  none: {
+    display: 'none',
   },
   footer: {
     width: '100%',
