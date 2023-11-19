@@ -51,7 +51,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
       )}
       <View style={[styles.textArea, { paddingLeft: isImage ? 0 : 20 }]}>
         <Text style={styles.eatName}>{item.eatName}</Text>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={styles.listTextFooter}>
           <Text style={styles.date}>{dateText}</Text>
           {beforeDate && <Text style={styles.caveatText}>期限切れ</Text>}
         </View>
@@ -77,6 +77,9 @@ const styles = StyleSheet.create({
     borderColor: COLORS.BORDER_LINE,
     flexDirection: 'row',
     backgroundColor: COLORS.WHITE,
+  },
+  listTextFooter: {
+    flexDirection: 'row',
   },
   listTop: {
     height: SIZE.BASE_HP * 11,
