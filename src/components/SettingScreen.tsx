@@ -96,18 +96,16 @@ const SettingScreen = () => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
-        <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
-          <AtomSettingRegister title={'設定'} />
-        </MolHeader>
+    <View style={styles.contents}>
+      <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
+        <AtomSettingRegister title={'設定'} />
+      </MolHeader>
 
-        <FlatList
-          data={settingData}
-          renderItem={renderItem}
-          keyExtractor={(_, index) => index.toString()}
-        />
-      </View>
+      <FlatList
+        data={settingData}
+        renderItem={renderItem}
+        keyExtractor={(_, index) => index.toString()}
+      />
     </View>
   );
 };
@@ -115,6 +113,10 @@ const SettingScreen = () => {
 export default SettingScreen;
 
 const styles = StyleSheet.create({
+  contents: {
+    backgroundColor: COLORS.WHITE,
+    flex: 1,
+  },
   header: {
     height: SIZE.BASE_HP * 12,
     paddingHorizontal: SIZE.BASE_WP * 5,
