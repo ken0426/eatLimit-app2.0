@@ -23,7 +23,7 @@ const OrgModalBottom: FC<Props> = ({
       animationIn={'slideInUp'}
       isVisible={isVisible}
       backdropOpacity={0}
-      style={{ justifyContent: 'flex-end', margin: 0 }}
+      style={styles.contents}
       onBackdropPress={cancelOnPress}
     >
       <View style={styles.modal}>
@@ -40,6 +40,10 @@ const OrgModalBottom: FC<Props> = ({
 export default OrgModalBottom;
 
 const styles = StyleSheet.create({
+  contents: {
+    justifyContent: 'flex-end',
+    margin: 0,
+  },
   modal: {
     backgroundColor: COLORS.WHITE,
     width: '100%',
