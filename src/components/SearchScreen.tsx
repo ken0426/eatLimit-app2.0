@@ -46,7 +46,7 @@ const SearchScreen: FC<Props> = ({ route }) => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.contents}>
       <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
         <AtomSearch navigation={navigation} text={text} setText={setText} />
       </MolHeader>
@@ -65,6 +65,9 @@ const SearchScreen: FC<Props> = ({ route }) => {
 export default SearchScreen;
 
 const styles = StyleSheet.create({
+  contents: {
+    flex: 1,
+  },
   header: {
     height: SIZE.BASE_HP * 12,
     paddingHorizontal: SIZE.BASE_WP * 5,
