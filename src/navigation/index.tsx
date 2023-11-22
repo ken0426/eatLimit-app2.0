@@ -21,6 +21,7 @@ import { fetchTag } from '../api';
 import { useDispatch } from 'react-redux';
 import { setTagList } from '../redux/slices/commonSlice';
 import TagRegisterScreen from '../components/TagRegisterScreen';
+import TagUpdateScreen from '../components/TagUpdateScreen';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
@@ -124,6 +125,14 @@ const RootStackScreen = () => {
       <Stack.Screen
         name={'tagRegisterScreen'}
         component={TagRegisterScreen}
+        options={{
+          headerShown: false,
+          presentation: 'fullScreenModal',
+        }}
+      />
+      <Stack.Screen
+        name={'tagUpdateScreen'}
+        component={TagUpdateScreen}
         options={{
           headerShown: false,
           presentation: 'fullScreenModal',

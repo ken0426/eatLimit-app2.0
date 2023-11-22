@@ -184,6 +184,8 @@ export const LABEL = {
   MEMO_TEMPLATE: 'メモのテンプレート',
   /** タグ作成 */
   TAG_REGISTER: 'タグ作成',
+  /** タグの編集 */
+  TAG_EDIT: 'タグ編集',
 };
 
 /** 設定項目で選択するID */
@@ -284,6 +286,10 @@ export const settingData: SettingData[] = [
       item: [
         {
           label: LABEL.TAG_REGISTER,
+          data: [],
+        },
+        {
+          label: LABEL.TAG_EDIT,
           data: [],
         },
         {

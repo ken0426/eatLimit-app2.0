@@ -41,6 +41,7 @@ export type StackPramList = {
   settingMemoScreen: undefined;
   tagScreen: undefined;
   tagRegisterScreen: undefined;
+  tagUpdateScreen: undefined;
 };
 
 export type ModalButton = {
