@@ -1,11 +1,16 @@
+/** React */
 import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useRootDispatch } from '../redux/store/store';
+import { setTagList } from '../redux/slices/commonSlice';
+/** firebase */
+import { auth } from '../firebase';
+/** スクリーン */
 import HomeScreen from '../components/HomeScreen';
 import DetailScreen from '../components/DetailScreen';
 import SearchScreen from '../components/SearchScreen';
-import { StackPramList } from '../types';
 import RegisterScreen from '../components/RegisterScreen';
 import UpdateRegisterScreen from '../components/UpdateRegisterScreen';
 import TopScreen from '../components/TopScreen';
@@ -15,18 +20,17 @@ import MemoTemplateUpdateScreen from '../components/MemoTemplateUpdateScreen';
 import MemoTemplateRegisterScreen from '../components/MemoTemplateRegisterScreen';
 import SettingMemoScreen from '../components/SettingMemoScreen';
 import LoginScreen from '../components/LoginScreen';
-import { auth } from '../firebase';
 import TagScreen from '../components/TagScreen';
-import { fetchTag } from '../api';
-import { useDispatch } from 'react-redux';
-import { setTagList } from '../redux/slices/commonSlice';
 import TagRegisterScreen from '../components/TagRegisterScreen';
 import TagUpdateScreen from '../components/TagUpdateScreen';
+/** その他 */
+import { fetchTag } from '../api';
+import { StackPramList } from '../types';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
 const RootStackScreen = () => {
-  const dispatch = useDispatch();
+  const dispatch = useRootDispatch();
   const navigation = useNavigation<StackNavigationProp<StackPramList>>();
 
   /** 自動ログイン */
