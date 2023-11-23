@@ -17,7 +17,7 @@ const TopScreen = () => {
   const navigation = useNavigation<StackNavigationProp<StackPramList>>();
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.screenArea}>
       <View style={styles.contents}>
         <View style={styles.title}>
           <Text style={styles.titleText}>さっそくはじめよう</Text>
@@ -54,6 +54,9 @@ const TopScreen = () => {
 export default TopScreen;
 
 const styles = StyleSheet.create({
+  screenArea: {
+    flex: 1,
+  },
   contents: {
     alignItems: 'center',
     justifyContent: 'center',
