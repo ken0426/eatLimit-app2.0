@@ -26,16 +26,17 @@ const AtomSearch: FC<Props> = ({ text, setText }) => {
 
   return (
     <View style={styles.contents}>
-      <View style={{ marginRight: 10 }}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <SvgIcon
-            type={'ionicons'}
-            name='chevron-back'
-            size={28}
-            color={COLORS.MAIN_TEXT_COLOR}
-          />
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        style={styles.iconArea}
+        onPress={() => navigation.goBack()}
+      >
+        <SvgIcon
+          type={'ionicons'}
+          name='chevron-back'
+          size={28}
+          color={COLORS.MAIN_TEXT_COLOR}
+        />
+      </TouchableOpacity>
       <View style={styles.textArea}>
         <TextInput
           ref={inputRef}
@@ -64,6 +65,9 @@ const styles = StyleSheet.create({
   contents: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  iconArea: {
+    marginRight: 10,
   },
   textArea: {
     width: '100%',
