@@ -21,10 +21,19 @@ const MolDragList = () => {
     onDragStart,
     onDragEnd,
     isActive,
+    index,
   }: DragListRenderItemInfo<TagData>) => (
     <TouchableOpacity
       key={item.id}
-      style={isActive ? styles.isActive : styles.notActive}
+      style={
+        isActive
+          ? index === listData.length - 1
+            ? styles.isActiveLast // 最後のアイテムの場合且つアクティブなら
+            : styles.isActive // 最後のアイテム以外の場合且つアクティブなら
+          : index === listData.length - 1
+          ? styles.lastItem // 最後のアイテムの場合かつアクティブでない場合
+          : styles.notActive // 最後のアイテム以外の場合且つアクティブでない場合
+      }
       onPress={() =>
         navigation.navigate('tagRegisterScreen', { data: item, setListData })
       }
@@ -82,6 +91,7 @@ export default MolDragList;
 const styles = StyleSheet.create({
   tagArea: {
     alignItems: 'center',
+    flex: 1,
   },
   isActive: {
     flexDirection: 'row',
@@ -104,6 +114,28 @@ const styles = StyleSheet.create({
     ],
     marginHorizontal: wp('5%'),
   },
+  isActiveLast: {
+    flexDirection: 'row',
+    marginVertical: SIZE.BASE_WP * 2,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderColor: COLORS.TAG,
+    borderWidth: 1,
+    padding: SIZE.BASE_WP * 2,
+    borderRadius: 5,
+    backgroundColor: COLORS.WHITE,
+    elevation: 5, // Android
+    shadowColor: COLORS.BLACK, // iOS
+    shadowOffset: { width: 0, height: 2 }, // iOS
+    shadowOpacity: 0.2, // iOS
+    shadowRadius: 4, // iOS
+    transform: [
+      { rotate: '-1.2deg' }, // 傾ける角度を指定
+      { scale: 1.08 }, // スケールを変更
+    ],
+    marginHorizontal: wp('5%'),
+    marginBottom: SIZE.BASE_WP * 15,
+  },
   notActive: {
     flexDirection: 'row',
     marginVertical: SIZE.BASE_WP * 2,
@@ -124,6 +156,28 @@ const styles = StyleSheet.create({
     elevation: 1,
     width: wp('85%'),
     marginHorizontal: wp('5%'),
+  },
+  lastItem: {
+    flexDirection: 'row',
+    marginVertical: SIZE.BASE_WP * 2,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderColor: COLORS.TAG,
+    borderWidth: 1,
+    padding: SIZE.BASE_WP * 2,
+    borderRadius: 5,
+    backgroundColor: COLORS.WHITE,
+    shadowColor: COLORS.BLACK,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+    elevation: 1,
+    width: wp('85%'),
+    marginHorizontal: wp('5%'),
+    marginBottom: SIZE.BASE_WP * 15,
   },
   tagLeftArea: {
     flexDirection: 'row',
