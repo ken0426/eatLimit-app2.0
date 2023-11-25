@@ -224,6 +224,7 @@ export const MODAL_MESSAGE = {
   REQUIRED: '必須項目が入力されていません',
   DATE_ERROR: '日付項目を正しく入力してください',
   QUANTITY: '個数は999までです',
+  TAG_DELETE: `タグを削除します。\nよろしいですか？`,
 };
 
 /** 設定の情報 */

@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -12,12 +13,13 @@ import uuid from 'react-native-uuid';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
-import { BUTTON_TEXT, HEADER_TYPE } from '../contents';
+import { BUTTON_TEXT, HEADER_TYPE, MODAL_MESSAGE } from '../contents';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomButton from './atoms/AtomButton';
 import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { setTagList } from '../redux/slices/commonSlice';
 import { StackPramList } from '../types';
+import OrgModalDefault from './organisms/OrgModalDefault';
 
 const TagRegisterScreen = () => {
   const route = useRoute<RouteProp<StackPramList, 'tagRegisterScreen'>>();
@@ -28,6 +30,7 @@ const TagRegisterScreen = () => {
   const tagData = route.params?.data;
   const setListData = route.params?.setListData;
   const [text, setText] = useState(tagData?.name || '');
+  const [isVisible, setIsVisible] = useState(false);
 
   /** 画面を表示した際にキーボードを初回表示し、キーボードを閉じるとワーニングが表示されるのを防ぐためのフック */
   useEffect(() => {
@@ -37,6 +40,7 @@ const TagRegisterScreen = () => {
     })();
   }, []);
 
+  /** タグの登録 */
   const onRightPress = () => {
     if (text.length) {
       const tagListCopy = [...tagList];
@@ -60,6 +64,33 @@ const TagRegisterScreen = () => {
       navigation.goBack();
     }
   };
+
+  /** タグの削除 */
+  const onTagDeletePress = () => {
+    if (setListData) {
+      const tagListCopy = [...tagList];
+      const postTagData = tagListCopy.filter((item) => item.id !== tagData?.id);
+
+      // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
+
+      setListData(postTagData);
+      dispatch(setTagList(postTagData));
+      setIsVisible(false);
+      navigation.goBack();
+    }
+  };
+
+  /** 削除時に使用するボタンのデータ */
+  const modalButtonData = [
+    {
+      text: BUTTON_TEXT.CANCEL,
+      onPress: () => setIsVisible(false),
+    },
+    {
+      text: BUTTON_TEXT.OK,
+      onPress: onTagDeletePress,
+    },
+  ];
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -93,6 +124,14 @@ const TagRegisterScreen = () => {
         </View>
 
         <View style={styles.buttonArea}>
+          {tagData?.id && (
+            <TouchableOpacity
+              style={styles.deleteButton}
+              onPress={() => setIsVisible(true)}
+            >
+              <Text style={styles.deleteButtonText}>タグを削除</Text>
+            </TouchableOpacity>
+          )}
           <AtomButton
             onPress={onRightPress}
             buttonText={BUTTON_TEXT.DECISION}
@@ -104,6 +143,13 @@ const TagRegisterScreen = () => {
             textStyle={styles.registerButtonText}
           />
         </View>
+
+        <OrgModalDefault
+          isVisible={isVisible}
+          message={MODAL_MESSAGE.TAG_DELETE}
+          data={modalButtonData}
+          cancelOnPress={() => setIsVisible(false)}
+        />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -168,5 +214,12 @@ const styles = StyleSheet.create({
   registerButtonText: {
     paddingVertical: SIZE.BASE_WP * 2.7,
     fontFamily: 'HiraginoSans-W3',
+  },
+  deleteButton: {
+    marginBottom: SIZE.BASE_WP * 5,
+  },
+  deleteButtonText: {
+    color: COLORS.RED,
+    fontSize: FONTSIZE.SIZE20PX,
   },
 });
