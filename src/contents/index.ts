@@ -185,7 +185,7 @@ export const LABEL = {
   /** タグ作成 */
   TAG_REGISTER: 'タグ作成',
   /** タグの編集 */
-  TAG_EDIT: 'タグ編集',
+  TAG_EDIT: 'タグ編集と並び替え',
 };
 
 /** 設定項目で選択するID */
