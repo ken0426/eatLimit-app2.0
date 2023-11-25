@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useRootDispatch, useRootSelector } from '../../redux/store/store';
 import { setTagList } from '../../redux/slices/commonSlice';
@@ -9,6 +15,7 @@ import SvgIcon from '../../images/SvgIcon';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { StackPramList, TagData } from '../../types';
 import { StackNavigationProp } from '@react-navigation/stack';
+import * as Haptics from 'expo-haptics';
 
 const MolDragList = () => {
   const dispatch = useRootDispatch();
@@ -78,6 +85,13 @@ const MolDragList = () => {
           onReordered={onReordered}
           renderItem={renderItem}
           style={styles.tagList}
+          onHoverChanged={() => {
+            if (Platform.OS === 'ios') {
+              Haptics.notificationAsync(
+                Haptics.NotificationFeedbackType.Success
+              );
+            }
+          }}
         />
       ) : (
         <></>
