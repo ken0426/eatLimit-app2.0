@@ -5,6 +5,7 @@ import {
   Entypo,
   Feather,
   FontAwesome,
+  Foundation,
   Ionicons,
   MaterialCommunityIcons,
   MaterialIcons,
@@ -18,7 +19,8 @@ type Props = {
     | 'feather'
     | 'fontAwesome'
     | 'materialIcons'
-    | 'materialCommunityIcons';
+    | 'materialCommunityIcons'
+    | 'foundation';
   name: any; // TODO 将来的には型定義する
   size: number;
   color: string;
@@ -40,6 +42,8 @@ const SvgIcon: FC<Props> = ({ type, name, size, color, style, onPress }) => {
       return (
         <FontAwesome name={name} size={size} color={color} style={style} />
       );
+    case 'foundation':
+      return <Foundation name={name} size={size} color={color} style={style} />;
     case 'materialIcons':
       return (
         <MaterialIcons name={name} size={size} color={color} style={style} />
