@@ -77,6 +77,10 @@ const TagRegisterScreen = () => {
       dispatch(setTagList(postTagData));
       setIsVisible(false);
       navigation.goBack();
+      if (!postTagData.length) {
+        // タグのデータをすべて削除した場合は設定画面に戻す
+        navigation.goBack();
+      }
     }
   };
 

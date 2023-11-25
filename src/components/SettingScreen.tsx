@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Alert,
   FlatList,
@@ -31,7 +31,33 @@ const SettingScreen = () => {
   const dateFormatDisplayId = useRootSelector(
     (state) => state.common.dateFormatDisplayId
   );
+  const tagList = useRootSelector((state) => state.common.tagList);
+  const [data, setData] = useState<SettingData[]>([]);
   const id = dateFormatDisplayId;
+
+  useEffect(() => {
+    if (!tagList.length) {
+      // タグのデータがない場合は「タグ編集と並び替え」項目を非表示にする
+      const copySettingData = settingData.map((item) => {
+        if (item['register']) {
+          const newRegisterItem = item['register'].item.filter(
+            (itm) => itm.label !== LABEL.TAG_EDIT
+          );
+          return {
+            ['register']: {
+              headline: '登録',
+              item: newRegisterItem,
+            },
+          };
+        } else {
+          return item;
+        }
+      });
+      setData(copySettingData);
+    } else {
+      setData([...settingData]);
+    }
+  }, [tagList]);
 
   const renderItem: ListRenderItem<SettingData> = ({ item, index }) => {
     const key = getKey(item);
@@ -104,7 +130,7 @@ const SettingScreen = () => {
       </MolHeader>
 
       <FlatList
-        data={settingData}
+        data={data}
         renderItem={renderItem}
         keyExtractor={(_, index) => index.toString()}
       />
