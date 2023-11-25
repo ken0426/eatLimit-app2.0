@@ -97,9 +97,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   tagArea: {
-    marginHorizontal: SIZE.BASE_WP * 3,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   touchArea: {
     flexDirection: 'row',
@@ -120,6 +118,7 @@ const styles = StyleSheet.create({
     shadowRadius: 1,
     elevation: 1,
     width: wp('85%'),
+    marginHorizontal: wp('5%'),
   },
   isActive: {
     flexDirection: 'row',
@@ -136,7 +135,11 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 }, // iOS
     shadowOpacity: 0.2, // iOS
     shadowRadius: 4, // iOS
-    transform: [{ rotate: '-1.2deg' }], // 傾ける角度を指定
+    transform: [
+      { rotate: '-1.2deg' }, // 傾ける角度を指定
+      { scale: 1.05 }, // スケールを変更
+    ],
+    marginHorizontal: wp('5%'),
   },
   tagLeftArea: {
     flexDirection: 'row',
