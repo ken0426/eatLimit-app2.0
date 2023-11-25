@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import uuid from 'react-native-uuid';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import MolHeader from './molecules/MolHeader';
@@ -17,13 +17,17 @@ import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomButton from './atoms/AtomButton';
 import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { setTagList } from '../redux/slices/commonSlice';
+import { StackPramList } from '../types';
 
 const TagRegisterScreen = () => {
+  const route = useRoute<RouteProp<StackPramList, 'tagRegisterScreen'>>();
   const dispatch = useRootDispatch();
   const navigation = useNavigation();
   const inputRef = useRef<TextInput>(null);
   const tagList = useRootSelector((state) => state.common.tagList);
-  const [text, setText] = useState('');
+  const tagData = route.params?.data;
+  const setListData = route.params?.setListData;
+  const [text, setText] = useState(tagData?.name || '');
 
   /** 画面を表示した際にキーボードを初回表示し、キーボードを閉じるとワーニングが表示されるのを防ぐためのフック */
   useEffect(() => {
@@ -37,10 +41,22 @@ const TagRegisterScreen = () => {
     if (text.length) {
       const tagListCopy = [...tagList];
 
-      // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存する
-      dispatch(
-        setTagList([...tagListCopy, { id: String(uuid.v4()), name: text }])
-      );
+      if (tagData?.id && setListData) {
+        const tagIndex = tagListCopy.findIndex(
+          (item) => item.id === tagData.id
+        );
+        tagListCopy.splice(tagIndex, 1, { id: tagData.id, name: text });
+
+        // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
+
+        setListData(tagListCopy);
+        dispatch(setTagList(tagListCopy));
+      } else {
+        // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存する
+        dispatch(
+          setTagList([...tagListCopy, { id: String(uuid.v4()), name: text }])
+        );
+      }
       navigation.goBack();
     }
   };

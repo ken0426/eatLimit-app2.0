@@ -26,6 +26,11 @@ export type KeepData = {
   selectColor: string;
 };
 
+export type TagData = {
+  id: string;
+  name: string;
+};
+
 export type StackPramList = {
   topScreen: undefined;
   loginScreen: { isLogin: boolean };
@@ -40,7 +45,9 @@ export type StackPramList = {
   memoTemplateUpdateScreen: { data: MemoTemplateData };
   settingMemoScreen: undefined;
   tagScreen: undefined;
-  tagRegisterScreen: undefined;
+  tagRegisterScreen:
+    | undefined
+    | { data: TagData; setListData: (e: TagData[]) => void };
   tagUpdateScreen: undefined;
 };
 

@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useRootDispatch, useRootSelector } from '../../redux/store/store';
 import { setTagList } from '../../redux/slices/commonSlice';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import DragList, { DragListRenderItemInfo } from 'react-native-draglist';
 import SvgIcon from '../../images/SvgIcon';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
-
-type TagData = {
-  id: number;
-  name: string;
-};
+import { StackPramList, TagData } from '../../types';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const MolDragList = () => {
   const dispatch = useRootDispatch();
+  const navigation = useNavigation<StackNavigationProp<StackPramList>>();
   const tagList = useRootSelector((state) => state.common.tagList);
   const [listData, setListData] = useState([...tagList]);
 
@@ -26,7 +25,9 @@ const MolDragList = () => {
     <TouchableOpacity
       key={item.id}
       style={isActive ? styles.isActive : styles.notActive}
-      onPress={() => {}}
+      onPress={() =>
+        navigation.navigate('tagRegisterScreen', { data: item, setListData })
+      }
       onLongPress={onDragStart}
       onPressOut={onDragEnd}
     >
@@ -59,13 +60,17 @@ const MolDragList = () => {
 
   return (
     <View style={styles.tagArea}>
-      <DragList
-        data={listData}
-        keyExtractor={(item: TagData) => item.id.toString()}
-        onReordered={onReordered}
-        renderItem={renderItem}
-        style={styles.tagList}
-      />
+      {listData.length ? (
+        <DragList
+          data={listData}
+          keyExtractor={(item: TagData) => item.id.toString()}
+          onReordered={onReordered}
+          renderItem={renderItem}
+          style={styles.tagList}
+        />
+      ) : (
+        <></>
+      )}
     </View>
   );
 };
