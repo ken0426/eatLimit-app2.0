@@ -44,7 +44,10 @@ const MolDragList = () => {
       onPress={() =>
         navigation.navigate('tagRegisterScreen', { data: item, setListData })
       }
-      onLongPress={onDragStart}
+      onLongPress={() => {
+        Haptics.selectionAsync();
+        onDragStart();
+      }}
       onPressOut={onDragEnd}
     >
       <View style={styles.tagLeftArea}>
