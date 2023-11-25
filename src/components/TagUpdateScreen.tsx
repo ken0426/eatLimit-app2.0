@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4, // iOS
     transform: [
       { rotate: '-1.2deg' }, // 傾ける角度を指定
-      { scale: 1.05 }, // スケールを変更
+      { scale: 1.08 }, // スケールを変更
     ],
     marginHorizontal: wp('5%'),
   },
