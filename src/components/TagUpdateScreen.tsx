@@ -111,8 +111,6 @@ const styles = StyleSheet.create({
     padding: SIZE.BASE_WP * 2,
     borderRadius: 5,
     backgroundColor: COLORS.WHITE,
-    marginHorizontal: wp('3%'),
-    width: wp('80%'),
     shadowColor: COLORS.BLACK,
     shadowOffset: {
       width: 0,
@@ -121,6 +119,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 1,
     elevation: 1,
+    width: wp('85%'),
   },
   isActive: {
     flexDirection: 'row',
@@ -132,8 +131,6 @@ const styles = StyleSheet.create({
     padding: SIZE.BASE_WP * 2,
     borderRadius: 5,
     backgroundColor: COLORS.WHITE,
-    paddingVertical: SIZE.BASE_WP * 4,
-    width: wp('86%'),
     elevation: 5, // Android
     shadowColor: COLORS.BLACK, // iOS
     shadowOffset: { width: 0, height: 2 }, // iOS
