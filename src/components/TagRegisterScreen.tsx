@@ -101,7 +101,7 @@ const TagRegisterScreen = () => {
       <View style={styles.screen}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomSettingRegister
-            title={'タグ作成'}
+            title={tagData?.id ? 'タグ編集' : 'タグ作成'}
             isRightText={BUTTON_TEXT.DECISION}
             isRightButton={true}
             onRightPress={onRightPress}
