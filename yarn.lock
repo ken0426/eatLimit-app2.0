@@ -6562,6 +6562,11 @@ react-native-codegen@^0.71.5:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
+react-native-draglist@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/react-native-draglist/-/react-native-draglist-3.5.1.tgz#894df241080fbb94ebeb322c971b8d2db92d8774"
+  integrity sha512-Xe5ZIJfLMdwVbvKg3ji4gndj4++eQjpdqKAXPztFyR5CM6ZAF593G40XLdTGQpuVOKVwY7d0NxrTdG2Z+xpewQ==
+
 react-native-elements@^3.4.3:
   version "3.4.3"
   resolved "https://registry.npmjs.org/react-native-elements/-/react-native-elements-3.4.3.tgz"
