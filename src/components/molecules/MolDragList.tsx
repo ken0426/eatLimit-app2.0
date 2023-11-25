@@ -38,7 +38,9 @@ const MolDragList = () => {
           size={26}
           color={COLORS.TAG}
         />
-        <Text style={styles.text}>{item.name}</Text>
+        <Text numberOfLines={1} ellipsizeMode={'tail'} style={styles.text}>
+          {item.name}
+        </Text>
       </View>
       <SvgIcon
         type={'foundation'}
@@ -126,10 +128,12 @@ const styles = StyleSheet.create({
   tagLeftArea: {
     flexDirection: 'row',
     alignItems: 'center',
+    flex: 1,
   },
   text: {
     fontSize: FONTSIZE.SIZE18PX,
     paddingLeft: SIZE.BASE_WP * 1.4,
+    flex: 1,
   },
   tagList: {
     height: '100%',
