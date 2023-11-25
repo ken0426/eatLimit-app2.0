@@ -87,9 +87,7 @@ const MolDragList = () => {
           style={styles.tagList}
           onHoverChanged={() => {
             if (Platform.OS === 'ios') {
-              Haptics.notificationAsync(
-                Haptics.NotificationFeedbackType.Success
-              );
+              Haptics.selectionAsync();
             }
           }}
         />
