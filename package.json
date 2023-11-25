@@ -21,6 +21,7 @@
     "babel-plugin-dotenv-import": "^3.0.1",
     "expo": "~48.0.5",
     "expo-camera": "~13.2.1",
+    "expo-haptics": "^12.6.0",
     "expo-image-picker": "~14.1.1",
     "expo-status-bar": "~1.4.4",
     "firebase": "^10.1.0",
