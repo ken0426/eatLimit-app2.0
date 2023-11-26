@@ -5,6 +5,7 @@ import {
   Entypo,
   Feather,
   FontAwesome,
+  FontAwesome5,
   Foundation,
   Ionicons,
   MaterialCommunityIcons,
@@ -18,6 +19,7 @@ type Props = {
     | 'antDesign'
     | 'feather'
     | 'fontAwesome'
+    | 'fontAwesome5'
     | 'materialIcons'
     | 'materialCommunityIcons'
     | 'foundation';
@@ -35,12 +37,24 @@ const SvgIcon: FC<Props> = ({ type, name, size, color, style, onPress }) => {
     case 'entypo':
       return <Entypo name={name} size={size} color={color} style={style} />;
     case 'antDesign':
-      return <AntDesign name={name} size={size} color={color} style={style} />;
+      return (
+        <AntDesign
+          onPress={onPress}
+          name={name}
+          size={size}
+          color={color}
+          style={style}
+        />
+      );
     case 'feather':
       return <Feather name={name} size={size} color={color} style={style} />;
     case 'fontAwesome':
       return (
         <FontAwesome name={name} size={size} color={color} style={style} />
+      );
+    case 'fontAwesome5':
+      return (
+        <FontAwesome5 name={name} size={size} color={color} style={style} />
       );
     case 'foundation':
       return <Foundation name={name} size={size} color={color} style={style} />;

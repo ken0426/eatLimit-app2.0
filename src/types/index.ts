@@ -159,3 +159,22 @@ export type HandleRegistrationPress = {
     'registerScreen' | 'updateRegisterScreen'
   >;
 };
+
+/** タグ並び替えする際のメニューの項目 */
+export type Menuitem = {
+  type:
+    | 'ionicons'
+    | 'entypo'
+    | 'antDesign'
+    | 'feather'
+    | 'fontAwesome'
+    | 'fontAwesome5'
+    | 'materialIcons'
+    | 'materialCommunityIcons'
+    | 'foundation';
+  name: string;
+  size: number;
+  color: string;
+  text: string;
+  onPress: () => void;
+};
