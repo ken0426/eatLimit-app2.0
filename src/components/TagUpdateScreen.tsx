@@ -10,7 +10,11 @@ const TagUpdateScreen = () => {
   return (
     <View style={styles.contents}>
       <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
-        <AtomSettingRegister title={LABEL.TAG_EDIT} />
+        <AtomSettingRegister
+          title={LABEL.TAG_EDIT}
+          imageType={'ellipsis'}
+          onRightPress={() => {}}
+        />
       </MolHeader>
 
       <MolDragList />

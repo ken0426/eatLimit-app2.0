@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, FONTSIZE } from '../../styles';
@@ -9,7 +9,14 @@ type Props = {
   isRightButton?: boolean;
   isRightText?: string;
   onRightPress?: () => void;
-  imageType?: 'plus';
+  imageType?: 'plus' | 'ellipsis';
+};
+
+type ImagTypeAndName = {
+  type: 'materialCommunityIcons' | 'antDesign';
+  name: 'plus' | 'ellipsis1';
+  size: number;
+  color: string;
 };
 
 const AtomSettingRegister: FC<Props> = ({
@@ -20,6 +27,25 @@ const AtomSettingRegister: FC<Props> = ({
   imageType,
 }) => {
   const navigation = useNavigation();
+
+  const imagTypeAndName: ImagTypeAndName = useMemo(() => {
+    if (imageType === 'plus') {
+      return {
+        type: 'materialCommunityIcons',
+        name: 'plus',
+        size: 24,
+        color: 'black',
+      };
+    } else {
+      return {
+        type: 'antDesign',
+        name: 'ellipsis1',
+        size: 24,
+        color: 'black',
+      };
+    }
+  }, [imageType]);
+
   return (
     <View style={styles.header}>
       <TouchableOpacity
@@ -39,11 +65,11 @@ const AtomSettingRegister: FC<Props> = ({
       <View style={{ width: '10%', alignItems: 'flex-end' }}>
         {imageType ? (
           <SvgIcon
-            type={'materialCommunityIcons'}
+            type={imagTypeAndName.type}
             onPress={onRightPress}
-            name='tag-plus-outline'
-            size={24}
-            color='black'
+            name={imagTypeAndName.name}
+            size={imagTypeAndName.size}
+            color={imagTypeAndName.color}
           />
         ) : (
           isRightButton && (
