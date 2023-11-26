@@ -57,7 +57,7 @@ const TagScreen = () => {
     searchText === '' ? tagListData : filterTagData(tagListData, searchText);
 
   return (
-    <View style={{ flex: 1, backgroundColor: COLORS.WHITE }}>
+    <View style={styles.contents}>
       <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
         <AtomSettingRegister
           title={'タグ選択'}
@@ -112,6 +112,10 @@ const TagScreen = () => {
 export default TagScreen;
 
 const styles = StyleSheet.create({
+  contents: {
+    flex: 1,
+    backgroundColor: COLORS.WHITE,
+  },
   header: {
     height: SIZE.BASE_HP * 12,
     paddingHorizontal: SIZE.BASE_WP * 5,
