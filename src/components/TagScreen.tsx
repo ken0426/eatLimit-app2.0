@@ -61,7 +61,7 @@ const TagScreen = () => {
       <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
         <AtomSettingRegister
           title={'タグ選択'}
-          imageType={'plus'}
+          imageType={'materialCommunityIcons'}
           isRightButton={true}
           onRightPress={() => navigation.navigate('tagRegisterScreen')}
         />

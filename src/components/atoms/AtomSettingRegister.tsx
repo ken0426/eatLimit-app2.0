@@ -9,12 +9,12 @@ type Props = {
   isRightButton?: boolean;
   isRightText?: string;
   onRightPress?: () => void;
-  imageType?: 'plus' | 'ellipsis';
+  imageType?: 'materialCommunityIcons' | 'ellipsis';
 };
 
 type ImagTypeAndName = {
   type: 'materialCommunityIcons' | 'antDesign';
-  name: 'plus' | 'ellipsis1';
+  name: 'tag-plus-outline' | 'ellipsis1';
   size: number;
   color: string;
 };
@@ -29,10 +29,10 @@ const AtomSettingRegister: FC<Props> = ({
   const navigation = useNavigation();
 
   const imagTypeAndName: ImagTypeAndName = useMemo(() => {
-    if (imageType === 'plus') {
+    if (imageType === 'materialCommunityIcons') {
       return {
         type: 'materialCommunityIcons',
-        name: 'plus',
+        name: 'tag-plus-outline',
         size: 24,
         color: 'black',
       };
