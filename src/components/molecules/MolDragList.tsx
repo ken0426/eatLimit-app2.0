@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import {
   Platform,
   StyleSheet,
@@ -17,11 +17,14 @@ import { StackPramList, TagData } from '../../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as Haptics from 'expo-haptics';
 
-const MolDragList = () => {
+type Props = {
+  listData: TagData[];
+  setListData: (data: TagData[]) => void;
+};
+
+const MolDragList: FC<Props> = ({ listData, setListData }) => {
   const dispatch = useRootDispatch();
   const navigation = useNavigation<StackNavigationProp<StackPramList>>();
-  const tagList = useRootSelector((state) => state.common.tagList);
-  const [listData, setListData] = useState([...tagList]);
 
   const renderItem = ({
     item,

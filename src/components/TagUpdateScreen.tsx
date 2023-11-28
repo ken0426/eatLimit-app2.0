@@ -8,13 +8,32 @@ import { COLORS, SIZE } from '../styles';
 import MolDragList from './molecules/MolDragList';
 import MolMenu from './molecules/MolMenu';
 import { Menuitem } from '../types';
+import { useRootDispatch, useRootSelector } from '../redux/store/store';
+import { setTagList } from '../redux/slices/commonSlice';
 
 const TagUpdateScreen = () => {
+  const dispatch = useRootDispatch();
+  const tagList = useRootSelector((state) => state.common.tagList);
+  const [listData, setListData] = useState([...tagList]);
   const [visible, setVisible] = useState(false);
 
   const openMenu = () => setVisible(true);
 
   const closeMenu = () => setVisible(false);
+
+  const onSortPress = (type: 'up' | 'down') => {
+    const copyListData = [...listData];
+    const sortListData = copyListData.sort((a, b) => {
+      if (a.name < b.name) {
+        return type === 'up' ? -1 : 1;
+      } else {
+        return type === 'up' ? 1 : -1;
+      }
+    });
+    setListData(sortListData);
+    dispatch(setTagList(sortListData));
+    closeMenu();
+  };
 
   const meuItem: Menuitem[] = [
     {
@@ -23,7 +42,7 @@ const TagUpdateScreen = () => {
       size: 18,
       color: COLORS.BLACK,
       text: '昇順',
-      onPress: closeMenu,
+      onPress: () => onSortPress('up'),
     },
     {
       type: 'fontAwesome5',
@@ -31,7 +50,7 @@ const TagUpdateScreen = () => {
       size: 18,
       color: COLORS.BLACK,
       text: '降順',
-      onPress: closeMenu,
+      onPress: () => onSortPress('down'),
     },
   ];
 
@@ -46,7 +65,7 @@ const TagUpdateScreen = () => {
           />
         </MolHeader>
 
-        <MolDragList />
+        <MolDragList listData={listData} setListData={setListData} />
       </View>
 
       <View style={styles.menuWrapper}>
