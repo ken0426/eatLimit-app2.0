@@ -64,13 +64,14 @@ const AtomSettingRegister: FC<Props> = ({
       </View>
       <View style={{ width: '10%', alignItems: 'flex-end' }}>
         {imageType ? (
-          <SvgIcon
-            type={imagTypeAndName.type}
-            onPress={onRightPress}
-            name={imagTypeAndName.name}
-            size={imagTypeAndName.size}
-            color={imagTypeAndName.color}
-          />
+          <TouchableOpacity onPress={onRightPress}>
+            <SvgIcon
+              type={imagTypeAndName.type}
+              name={imagTypeAndName.name}
+              size={imagTypeAndName.size}
+              color={imagTypeAndName.color}
+            />
+          </TouchableOpacity>
         ) : (
           isRightButton && (
             <TouchableOpacity onPress={onRightPress}>

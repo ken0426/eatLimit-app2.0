@@ -27,25 +27,16 @@ type Props = {
   size: number;
   color: string;
   style?: StyleProp<TextStyle>;
-  onPress?: () => void;
 };
 
-const SvgIcon: FC<Props> = ({ type, name, size, color, style, onPress }) => {
+const SvgIcon: FC<Props> = ({ type, name, size, color, style }) => {
   switch (type) {
     case 'ionicons':
       return <Ionicons name={name} size={size} color={color} style={style} />;
     case 'entypo':
       return <Entypo name={name} size={size} color={color} style={style} />;
     case 'antDesign':
-      return (
-        <AntDesign
-          onPress={onPress}
-          name={name}
-          size={size}
-          color={color}
-          style={style}
-        />
-      );
+      return <AntDesign name={name} size={size} color={color} style={style} />;
     case 'feather':
       return <Feather name={name} size={size} color={color} style={style} />;
     case 'fontAwesome':
@@ -65,7 +56,6 @@ const SvgIcon: FC<Props> = ({ type, name, size, color, style, onPress }) => {
     case 'materialCommunityIcons':
       return (
         <MaterialCommunityIcons
-          onPress={onPress}
           name={name}
           size={size}
           color={color}
