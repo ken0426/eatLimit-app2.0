@@ -283,6 +283,45 @@ export const data: ApiData[] = [
     preservation: '常温',
     registerDate: '2023-10-23 22:07:00',
   },
+  {
+    eatName: 'タグ確認用1001',
+    count: 5,
+    date: '2023-11-29',
+    management: '消費期限',
+    preservation: '常温',
+    registerDate: '2023-11-29 20:14:00',
+    tagData: [{ id: '1001', name: '1001のタグ' }],
+  },
+  {
+    eatName: 'タグ確認用1002',
+    count: 5,
+    date: '2023-11-29',
+    management: '消費期限',
+    preservation: '常温',
+    registerDate: '2023-11-29 20:15:00',
+    tagData: [{ id: '1002', name: '1002のタグ' }],
+  },
+  {
+    eatName: 'タグ確認用1001と1002',
+    count: 5,
+    date: '2023-11-29',
+    management: '消費期限',
+    preservation: '常温',
+    registerDate: '2023-11-29 20:16:00',
+    tagData: [
+      { id: '1001', name: '1001のタグ' },
+      { id: '1002', name: '1002のタグ' },
+    ],
+  },
+  {
+    eatName: 'タグ消滅用',
+    count: 5,
+    date: '2023-11-29',
+    management: '消費期限',
+    preservation: '常温',
+    registerDate: '2023-11-29 20:17:00',
+    tagData: [{ id: '0000', name: '消滅したタグ' }],
+  },
 ];
 
 /** タグのデータ */
@@ -294,7 +333,23 @@ export const tagData = [
   { name: '野菜' },
   { name: '保存食' },
   { name: '緊急用' },
-].map((item) => ({
-  id: String(uuid.v4()),
-  name: item.name,
-}));
+  { name: '固定のID：1001' },
+  { name: '固定のID：1002' },
+].map((item) => {
+  if (item.name === '固定のID：1001') {
+    return {
+      id: '1001',
+      name: item.name,
+    };
+  } else if (item.name === '固定のID：1002') {
+    return {
+      id: '1002',
+      name: item.name,
+    };
+  } else {
+    return {
+      id: String(uuid.v4()),
+      name: item.name,
+    };
+  }
+});

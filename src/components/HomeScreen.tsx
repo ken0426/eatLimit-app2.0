@@ -9,7 +9,7 @@ import AtomHome from './atoms/AtomHome';
 import OrgList from './organisms/OrgList';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { selectMemoTemplateStorage } from '../storage';
-import { useRootDispatch } from '../redux/store/store';
+import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import {
   setSelectMemoTemplate,
   setSelectMemoTemplateData,
@@ -25,10 +25,36 @@ type Props = {
 
 const HomeScreen: FC<Props> = ({ navigation }) => {
   const dispatch = useRootDispatch();
+  const tagList = useRootSelector((state) => state.common.tagList);
   const [listData, setListData] = useState<ApiData[]>([]);
 
   // 本来ならDBからのデータをここで受け取る（現在は一旦仮のデータとする）
-  const responseData = data;
+  // TODO 最終的にはログイン直後にこの計算をする可能性あり
+  const editData = data.map((item) => {
+    if (item.tagData?.length) {
+      const tagData = item.tagData.map((data) =>
+        tagList.find((tag) => tag.id === data.id)
+      );
+      if (
+        tagData.length &&
+        tagData.filter((tag) => tag?.name && tag.id).length
+      ) {
+        // タグのDBに保存してるIDがあればID情報をリストに追加し一覧で表示する配列を生成する。
+        return {
+          ...item,
+          tagData: tagData as { id: string; name: string }[],
+        };
+      } else {
+        // 一覧のデータでタグのDBに存在していないタグIDがなければ、それは削除されたタグのため、商品データからタグIDを削除する。
+        delete item.tagData;
+        return item;
+      }
+    } else {
+      // 商品データにそもそもタグIDが存在しない場合はそのままデータを返却する。
+      return item;
+    }
+  });
+  const responseData = editData;
 
   useEffect(() => {
     (async () => {

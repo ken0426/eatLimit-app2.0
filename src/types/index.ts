@@ -12,6 +12,7 @@ export type ApiData = {
   management: '消費期限' | '賞味期限' | '購入日' | '登録日';
   preservation: '冷凍' | '冷蔵' | '常温';
   registerDate: string;
+  tagData?: { id: string; name: string }[];
 };
 
 export type ManagementData = {
