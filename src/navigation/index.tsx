@@ -96,7 +96,10 @@ const RootStackScreen = () => {
       <Stack.Screen
         name={'settingScreen'}
         component={SettingScreen}
-        options={{ headerShown: false, presentation: 'fullScreenModal' }}
+        options={{
+          headerShown: false,
+          animation: 'slide_from_bottom',
+        }}
       />
       <Stack.Screen
         name={'settingDetailScreen'}
