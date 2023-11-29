@@ -322,6 +322,18 @@ export const data: ApiData[] = [
     registerDate: '2023-11-29 20:17:00',
     tagData: [{ id: '0000', name: '消滅したタグ' }],
   },
+  {
+    eatName: 'タグ確認用1001とタグ消滅用',
+    count: 5,
+    date: '2023-11-29',
+    management: '消費期限',
+    preservation: '常温',
+    registerDate: '2023-11-29 20:18:00',
+    tagData: [
+      { id: '0000', name: '消滅したタグ' },
+      { id: '1001', name: '1001のタグ' },
+    ],
+  },
 ];
 
 /** タグのデータ */

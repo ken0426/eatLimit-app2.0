@@ -40,9 +40,10 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
         tagData.filter((tag) => tag?.name && tag.id).length
       ) {
         // タグのDBに保存してるIDがあればID情報をリストに追加し一覧で表示する配列を生成する。
+        const filterTagData = tagData.filter((tag) => tag?.name && tag.id);
         return {
           ...item,
-          tagData: tagData as { id: string; name: string }[],
+          tagData: filterTagData as { id: string; name: string }[],
         };
       } else {
         // 一覧のデータでタグのDBに存在していないタグIDがなければ、それは削除されたタグのため、商品データからタグIDを削除する。
