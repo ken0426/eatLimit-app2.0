@@ -53,9 +53,7 @@ const AtomMemo: FC<Props> = ({ onPress, setData }) => {
           )}
         </View>
       </View>
-      <Text style={{ textAlign: 'right', color: COLORS.TEXT_LABEL }}>
-        {`${text.length}／500`}
-      </Text>
+      <Text style={styles.countText}>{`${text.length}／500`}</Text>
     </View>
   );
 };
@@ -97,5 +95,9 @@ const styles = StyleSheet.create({
   completedArea: {
     backgroundColor: '#f1f1f1',
     alignItems: 'flex-end',
+  },
+  countText: {
+    textAlign: 'right',
+    color: COLORS.TEXT_LABEL,
   },
 });
