@@ -1,5 +1,11 @@
 import React, { FC, useRef } from 'react';
-import { StyleSheet, View, ScrollView, Animated } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Animated,
+  FlatList,
+  ListRenderItem,
+} from 'react-native';
 import { RouteProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { WINDOW_HEIGHT } from '../utils';
@@ -32,6 +38,37 @@ const DetailScreen: FC<Props> = ({ route }) => {
   const { bannerAnimation, blurRadius, onScroll } =
     useDetailAnimation(animatedValue);
 
+  /** 画像がある際にヘッダーのアニメーションで使用 */
+  const ListHeaderComponent = () => <View style={styles.paddingForBanner} />;
+
+  /** 詳細画面に表示するメインのコンテンツ */
+  const renderItem: ListRenderItem<ApiData> = ({ item, index }) => {
+    return (
+      <View key={index}>
+        <MolDetailTopItem item={item} />
+
+        <MolDetailOthers item={item} />
+
+        {item?.memo && <AtomDetailMemo item={item} />}
+      </View>
+    );
+  };
+
+  /** 詳細画面の一番下に表示するコピーボタン */
+  const ListFooterComponent = () => (
+    <View style={styles.button}>
+      <AtomButton
+        onPress={() => navigation.navigate('registerScreen', { data: item })}
+        color={COLORS.WHITE}
+        fontSize={FONTSIZE.SIZE30PX}
+        backgroundColor={COLORS.ORANGE}
+        width={200}
+        buttonText={'コピー'}
+        fontWeight={'bold'}
+      />
+    </View>
+  );
+
   return (
     <View style={styles.container}>
       {/* ヘッダー */}
@@ -52,30 +89,16 @@ const DetailScreen: FC<Props> = ({ route }) => {
       )}
 
       {/* 詳細画面に表示するコンテンツ */}
-      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
-        {item.image && <View style={styles.paddingForBanner} />}
-        <View style={styles.scrollViewContent}>
-          <MolDetailTopItem item={item} />
-
-          <MolDetailOthers item={item} />
-
-          {item?.memo && <AtomDetailMemo item={item} />}
-
-          <View style={styles.button}>
-            <AtomButton
-              onPress={() =>
-                navigation.navigate('registerScreen', { data: item })
-              }
-              color={COLORS.WHITE}
-              fontSize={FONTSIZE.SIZE30PX}
-              backgroundColor={COLORS.ORANGE}
-              width={200}
-              buttonText={'コピー'}
-              fontWeight={'bold'}
-            />
-          </View>
-        </View>
-      </ScrollView>
+      <FlatList
+        onScroll={onScroll}
+        scrollEventThrottle={16}
+        data={[item]}
+        ListHeaderComponent={item.image ? ListHeaderComponent : <></>}
+        renderItem={renderItem}
+        ListFooterComponent={ListFooterComponent}
+        keyExtractor={(_, index) => index.toString()}
+        style={styles.list}
+      />
     </View>
   );
 };
@@ -115,6 +138,9 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    marginTop: SIZE.BASE_WP * 10,
+    marginVertical: SIZE.BASE_WP * 10,
+  },
+  list: {
+    flex: 1,
   },
 });
