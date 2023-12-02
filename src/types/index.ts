@@ -13,6 +13,7 @@ export type ApiData = {
   preservation: '冷凍' | '冷蔵' | '常温';
   registerDate: string;
   tagData?: { id: string; name: string }[];
+  memo?: string;
 };
 
 export type ManagementData = {

@@ -38,9 +38,23 @@ export const data: ApiData[] = [
     image:
       'https://www.y-koseiren.jp/web/wp-content/uploads/2021/11/%E9%87%8E%E8%8F%9C.jpg',
     date: moment().format('YYYY-MM-DD'),
+    approximateDeadline:
+      managementValue === '登録日' || managementValue === '購入日'
+        ? moment().add(10, 'days').format('YYYY-MM-DD')
+        : undefined,
     management: managementValue,
     preservation: randomValue,
     registerDate: '2023-01-02 00:00:02',
+    placeOfPurchase: '北神戸イオン',
+    price: 1000,
+    memo: `日付：2023年12月2日\n
+    ◆ 人参のみの買い物\n
+    1. 野菜コーナー
+    - 人参：1袋
+
+    メモ：
+    - 今日は人参だけを買ってきました。
+    - 冷蔵庫に他の野菜があるか確認して、煮物やサラダに使えそうなレシピを考える。`,
   },
   {
     eatName: '消費期限固定リスト',
