@@ -50,7 +50,9 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
         </View>
       )}
       <View style={[styles.textArea, { paddingLeft: isImage ? 0 : 20 }]}>
-        <Text style={styles.eatName}>{item.eatName}</Text>
+        <Text numberOfLines={1} style={styles.eatName}>
+          {item.eatName}
+        </Text>
         <View style={styles.listTextFooter}>
           <Text style={styles.date}>{dateText}</Text>
           {beforeDate && <Text style={styles.caveatText}>期限切れ</Text>}
@@ -102,6 +104,7 @@ const styles = StyleSheet.create({
   textArea: {
     justifyContent: 'space-around',
     marginVertical: SIZE.BASE_HP * 0.6,
+    flex: 1,
   },
   arrow: {
     height: '100%',
