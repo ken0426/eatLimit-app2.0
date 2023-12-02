@@ -1,6 +1,7 @@
 import React, { FC, useRef } from 'react';
 import { StyleSheet, View, ScrollView, Animated } from 'react-native';
 import { RouteProp, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { WINDOW_HEIGHT } from '../utils';
 import MolHeader from './molecules/MolHeader';
 import { ApiData, StackPramList } from '../types';
@@ -10,7 +11,6 @@ import MolDetailHeader from './molecules/MolDetailHeader';
 import { COLORS, DETAIL_IMAGE_HEIGHT, FONTSIZE, SIZE } from '../styles';
 import { LABEL_TEXT } from '../contents';
 import AtomButton from './atoms/AtomButton';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 type RouteItem = {
   params: {

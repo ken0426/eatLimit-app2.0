@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import {
   Platform,
   StyleSheet,
@@ -7,15 +7,15 @@ import {
   View,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useRootDispatch, useRootSelector } from '../../redux/store/store';
+import { useRootDispatch } from '../../redux/store/store';
 import { setTagList } from '../../redux/slices/commonSlice';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import DragList, { DragListRenderItemInfo } from 'react-native-draglist';
+import { StackNavigationProp } from '@react-navigation/stack';
+import * as Haptics from 'expo-haptics';
 import SvgIcon from '../../images/SvgIcon';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { StackPramList, TagData } from '../../types';
-import { StackNavigationProp } from '@react-navigation/stack';
-import * as Haptics from 'expo-haptics';
 
 type Props = {
   listData: TagData[];
