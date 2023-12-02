@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 }, // ここで影のオフセットを設定
     shadowOpacity: 0.2, // 影の透明度
     shadowRadius: 1, // 影のぼかしの範囲
+    elevation: 3,
   },
   eatName: {
     fontSize: FONTSIZE.SIZE30PX,
