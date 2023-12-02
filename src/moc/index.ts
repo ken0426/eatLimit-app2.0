@@ -348,6 +348,20 @@ export const data: ApiData[] = [
       { id: '1001', name: '1001のタグ' },
     ],
   },
+  {
+    eatName: 'タグがたくさんたくさんある商品！！！！',
+    count: 5,
+    date: '2023-11-29',
+    management: '消費期限',
+    preservation: '常温',
+    registerDate: '2023-11-29 20:18:00',
+    tagData: [
+      { id: '1001', name: '1001のタグ' },
+      { id: '1002', name: '1002のタグ' },
+      { id: '1003', name: '1002のタグ' },
+      { id: '1004', name: '1002のタグ' },
+    ],
+  },
 ];
 
 /** タグのデータ */
@@ -361,6 +375,10 @@ export const tagData = [
   { name: '緊急用' },
   { name: '固定のID：1001' },
   { name: '固定のID：1002' },
+  { name: '固定のID：1003' },
+  { name: '固定のID：1004' },
+  { name: '固定のID：1005' },
+  { name: '固定のID：1006' },
 ].map((item) => {
   if (item.name === '固定のID：1001') {
     return {
@@ -370,6 +388,16 @@ export const tagData = [
   } else if (item.name === '固定のID：1002') {
     return {
       id: '1002',
+      name: item.name,
+    };
+  } else if (item.name === '固定のID：1003') {
+    return {
+      id: '1003',
+      name: item.name,
+    };
+  } else if (item.name === '固定のID：1004') {
+    return {
+      id: '1004',
       name: item.name,
     };
   } else {
