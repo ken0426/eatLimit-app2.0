@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
+import { widthPercentageToDP } from 'react-native-responsive-screen';
 
 type Props = {
   value: string | number;
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.DETAIL_BORDER,
   },
   label: {
-    width: '40%',
+    width: widthPercentageToDP('24%'),
     fontSize: FONTSIZE.SIZE20PX,
   },
   text: {

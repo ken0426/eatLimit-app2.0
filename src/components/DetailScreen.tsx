@@ -6,11 +6,12 @@ import { WINDOW_HEIGHT } from '../utils';
 import MolHeader from './molecules/MolHeader';
 import { ApiData, StackPramList } from '../types';
 import { useDetailAnimation } from '../hooks/useDetailAnimation';
-import AtomSingleItem from './atoms/AtomSingleItem';
 import MolDetailHeader from './molecules/MolDetailHeader';
 import { COLORS, DETAIL_IMAGE_HEIGHT, FONTSIZE, SIZE } from '../styles';
-import { LABEL_TEXT } from '../contents';
 import AtomButton from './atoms/AtomButton';
+import MolDetailTopItem from './molecules/MolDetailTopItem';
+import AtomDetailMemo from './atoms/AtomDetailMemo';
+import MolDetailOthers from './molecules/MolDetailOthers';
 
 type RouteItem = {
   params: {
@@ -33,6 +34,7 @@ const DetailScreen: FC<Props> = ({ route }) => {
 
   return (
     <View style={styles.container}>
+      {/* ヘッダー */}
       {item.image && <MolHeader type={'detail'} />}
       {item.image && (
         <Animated.View style={[styles.bannerContainer, bannerAnimation]}>
@@ -48,34 +50,16 @@ const DetailScreen: FC<Props> = ({ route }) => {
           <MolDetailHeader top={SIZE.BASE_HP * 1.2} />
         </View>
       )}
+
+      {/* 詳細画面に表示するコンテンツ */}
       <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {item.image && <View style={styles.paddingForBanner} />}
         <View style={styles.scrollViewContent}>
-          <AtomSingleItem value={item.eatName} label={LABEL_TEXT.PRODUCT} />
-          <AtomSingleItem value={`${item.count}`} label={LABEL_TEXT.QUANTITY} />
-          <AtomSingleItem value={item.date} label={item.management} />
-          {item?.approximateDeadline && (
-            <AtomSingleItem
-              value={item.approximateDeadline}
-              label={LABEL_TEXT.APPROXIMATE_DEADLINE}
-            />
-          )}
-          <AtomSingleItem
-            value={item.preservation}
-            label={LABEL_TEXT.PRESERVATION}
-          />
-          {item?.placeOfPurchase && (
-            <AtomSingleItem
-              value={item.placeOfPurchase}
-              label={LABEL_TEXT.PLACE_OF_PURCHASE}
-            />
-          )}
-          {item?.price && (
-            <AtomSingleItem
-              value={item.price}
-              label={LABEL_TEXT.AMOUNT_OF_MONEY}
-            />
-          )}
+          <MolDetailTopItem item={item} />
+
+          <MolDetailOthers item={item} />
+
+          {item?.memo && <AtomDetailMemo item={item} />}
 
           <View style={styles.button}>
             <AtomButton
@@ -101,7 +85,7 @@ export default DetailScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLORS.DETAIL_BACKGROUND,
   },
   noImageHeader: {
     height: SIZE.BASE_HP * 12,
@@ -116,8 +100,7 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     height: WINDOW_HEIGHT,
-    backgroundColor: COLORS.WHITE,
-    padding: SIZE.BASE_HP * 1.2,
+    backgroundColor: COLORS.DETAIL_BACKGROUND,
   },
   bannerContainer: {
     position: 'absolute',

@@ -46,6 +46,8 @@ export const COLORS = {
   TAG: '#dadada',
   /** 影の色 */
   BLACK: '#000000',
+  /** 詳細画面の背景色 */
+  DETAIL_BACKGROUND: '#e4e4e4',
 };
 
 export const SIZE = {
