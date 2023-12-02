@@ -90,8 +90,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     backgroundColor: COLORS.TAG,
     paddingHorizontal: SIZE.BASE_WP * 1.2,
-    marginVertical: SIZE.BASE_WP,
-    marginHorizontal: SIZE.BASE_WP,
+    margin: SIZE.BASE_WP,
   },
   text: {
     fontSize: FONTSIZE.SIZE18PX,
