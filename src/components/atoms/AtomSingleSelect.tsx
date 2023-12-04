@@ -54,7 +54,7 @@ const AtomSingleSelect: FC<Props> = ({
         ) : (
           <Text style={styles.label}>{`${label}：`}</Text>
         )}
-        <View style={{ flexDirection: 'row', flex: 1 }}>
+        <View style={styles.dropdownContainer}>
           <Text style={styles.textValue}>{text === '' ? textData : text}</Text>
           <View>
             <SvgIcon
@@ -95,6 +95,10 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.SIZE18PX,
     color: COLORS.TEXT_LABEL,
     fontWeight: '400',
+  },
+  dropdownContainer: {
+    flexDirection: 'row',
+    flex: 1,
   },
   requiredArea: {
     borderRadius: 10,
