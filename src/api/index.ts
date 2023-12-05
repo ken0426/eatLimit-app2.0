@@ -32,12 +32,16 @@ export const fetchTag = async (userId: string) => {
 
 /** タグの登録 */
 export const saveTag = async (userId: string, text: string) => {
-  const addDocData = await addDoc(collection(db, `users/${userId}/tags`), {
-    name: text,
-    updateAt: Timestamp.fromDate(new Date()),
-  });
+  try {
+    const addDocData = await addDoc(collection(db, `users/${userId}/tags`), {
+      name: text,
+      updateAt: Timestamp.fromDate(new Date()),
+    });
 
-  return addDocData;
+    return addDocData;
+  } catch (error) {
+    throw error;
+  }
 };
 
 /** タグの変更 */
@@ -46,14 +50,22 @@ export const saveUpdateTag = async (
   tagId: string,
   text: string
 ) => {
-  const res = doc(db, `users/${userId}/tags`, tagId);
-  await setDoc(res, {
-    name: text,
-    updateAt: Timestamp.fromDate(new Date()),
-  });
+  try {
+    const res = doc(db, `users/${userId}/tags`, tagId);
+    await setDoc(res, {
+      name: text,
+      updateAt: Timestamp.fromDate(new Date()),
+    });
+  } catch (error) {
+    throw error;
+  }
 };
 
 /** タグの削除 */
 export const deleteTag = async (userId: string, tagId: string) => {
-  await deleteDoc(doc(db, `users/${userId}/tags`, tagId));
+  try {
+    await deleteDoc(doc(db, `users/${userId}/tags`, tagId));
+  } catch (error) {
+    throw error;
+  }
 };
