@@ -78,7 +78,7 @@ const TagRegisterScreen = () => {
   const onTagDeletePress = async () => {
     try {
       if (setListData && auth.currentUser !== null && tagData?.id) {
-        // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
+        // ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
         await deleteTag(auth.currentUser.uid, tagData.id);
         const tagListCopy = [...tagList];
         const postTagData = tagListCopy.filter(
