@@ -3,6 +3,7 @@ import {
   Timestamp,
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDocs,
   setDoc,
@@ -50,4 +51,9 @@ export const saveUpdateTag = async (
     name: text,
     updateAt: Timestamp.fromDate(new Date()),
   });
+};
+
+/** タグの削除 */
+export const deleteTag = async (userId: string, tagId: string) => {
+  await deleteDoc(doc(db, `users/${userId}/tags`, tagId));
 };

@@ -9,8 +9,7 @@ import {
   View,
 } from 'react-native';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import { deleteDoc, doc } from 'firebase/firestore';
-import { auth, db } from '../firebase';
+import { auth } from '../firebase';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
@@ -21,7 +20,7 @@ import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { setTagList } from '../redux/slices/commonSlice';
 import { StackPramList } from '../types';
 import OrgModalDefault from './organisms/OrgModalDefault';
-import { saveTag, saveUpdateTag } from '../api';
+import { deleteTag, saveTag, saveUpdateTag } from '../api';
 
 const TagRegisterScreen = () => {
   const route = useRoute<RouteProp<StackPramList, 'tagRegisterScreen'>>();
@@ -86,9 +85,7 @@ const TagRegisterScreen = () => {
         );
 
         // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
-        await deleteDoc(
-          doc(db, `users/${auth.currentUser.uid}/tags`, tagData.id)
-        );
+        await deleteTag(auth.currentUser.uid, tagData.id);
 
         setListData(postTagData);
         dispatch(setTagList(postTagData));
