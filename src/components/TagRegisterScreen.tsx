@@ -49,13 +49,12 @@ const TagRegisterScreen = () => {
 
       try {
         if (tagData?.id && setListData) {
+          await saveUpdateTag(auth.currentUser.uid, tagData.id, text);
           // タグの変更
           const tagIndex = tagListCopy.findIndex(
             (item) => item.id === tagData.id
           );
           tagListCopy.splice(tagIndex, 1, { id: tagData.id, name: text });
-
-          await saveUpdateTag(auth.currentUser.uid, tagData.id, text);
 
           setListData(tagListCopy);
           dispatch(setTagList(tagListCopy));
@@ -79,13 +78,12 @@ const TagRegisterScreen = () => {
   const onTagDeletePress = async () => {
     try {
       if (setListData && auth.currentUser !== null && tagData?.id) {
+        // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
+        await deleteTag(auth.currentUser.uid, tagData.id);
         const tagListCopy = [...tagList];
         const postTagData = tagListCopy.filter(
           (item) => item.id !== tagData?.id
         );
-
-        // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
-        await deleteTag(auth.currentUser.uid, tagData.id);
 
         setListData(postTagData);
         dispatch(setTagList(postTagData));
