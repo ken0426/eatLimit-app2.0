@@ -1,6 +1,7 @@
 import store from '../redux/store/store';
 import {
   Timestamp,
+  addDoc,
   collection,
   doc,
   getDocs,
@@ -26,6 +27,16 @@ export const fetchTag = async (userId: string) => {
       store.dispatch(setTagList(data));
     }
   } catch (error) {}
+};
+
+/** タグの登録 */
+export const saveTag = async (userId: string, text: string) => {
+  const addDocData = await addDoc(collection(db, `users/${userId}/tags`), {
+    name: text,
+    updateAt: Timestamp.fromDate(new Date()),
+  });
+
+  return addDocData;
 };
 
 /** タグの変更 */

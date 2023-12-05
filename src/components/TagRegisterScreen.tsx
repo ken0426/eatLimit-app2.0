@@ -9,13 +9,7 @@ import {
   View,
 } from 'react-native';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import {
-  Timestamp,
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-} from 'firebase/firestore';
+import { deleteDoc, doc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import MolHeader from './molecules/MolHeader';
@@ -27,7 +21,7 @@ import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { setTagList } from '../redux/slices/commonSlice';
 import { StackPramList } from '../types';
 import OrgModalDefault from './organisms/OrgModalDefault';
-import { saveUpdateTag } from '../api';
+import { saveTag, saveUpdateTag } from '../api';
 
 const TagRegisterScreen = () => {
   const route = useRoute<RouteProp<StackPramList, 'tagRegisterScreen'>>();
@@ -68,13 +62,7 @@ const TagRegisterScreen = () => {
           dispatch(setTagList(tagListCopy));
         } else {
           // タグの新規登録
-          const addDocData = await addDoc(
-            collection(db, `users/${auth.currentUser.uid}/tags`),
-            {
-              name: text,
-              updateAt: Timestamp.fromDate(new Date()),
-            }
-          );
+          const addDocData = await saveTag(auth.currentUser.uid, text);
 
           // ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存する
           dispatch(
