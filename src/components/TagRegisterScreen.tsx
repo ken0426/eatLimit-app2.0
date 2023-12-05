@@ -15,6 +15,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  setDoc,
 } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
@@ -62,6 +63,11 @@ const TagRegisterScreen = () => {
           tagListCopy.splice(tagIndex, 1, { id: tagData.id, name: text });
 
           // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
+          const res = doc(db, `users/${auth.currentUser.uid}/tags`, tagData.id);
+          await setDoc(res, {
+            name: text,
+            updateAt: Timestamp.fromDate(new Date()),
+          });
 
           setListData(tagListCopy);
           dispatch(setTagList(tagListCopy));
