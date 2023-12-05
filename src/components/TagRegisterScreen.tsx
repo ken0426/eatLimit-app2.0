@@ -15,7 +15,6 @@ import {
   collection,
   deleteDoc,
   doc,
-  setDoc,
 } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
@@ -28,6 +27,7 @@ import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { setTagList } from '../redux/slices/commonSlice';
 import { StackPramList } from '../types';
 import OrgModalDefault from './organisms/OrgModalDefault';
+import { saveUpdateTag } from '../api';
 
 const TagRegisterScreen = () => {
   const route = useRoute<RouteProp<StackPramList, 'tagRegisterScreen'>>();
@@ -62,12 +62,7 @@ const TagRegisterScreen = () => {
           );
           tagListCopy.splice(tagIndex, 1, { id: tagData.id, name: text });
 
-          // ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
-          const res = doc(db, `users/${auth.currentUser.uid}/tags`, tagData.id);
-          await setDoc(res, {
-            name: text,
-            updateAt: Timestamp.fromDate(new Date()),
-          });
+          await saveUpdateTag(auth.currentUser.uid, tagData.id, text);
 
           setListData(tagListCopy);
           dispatch(setTagList(tagListCopy));
