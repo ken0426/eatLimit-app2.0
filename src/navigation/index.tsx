@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useRootDispatch } from '../redux/store/store';
 import { setTagList } from '../redux/slices/commonSlice';
 /** firebase */
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 /** スクリーン */
 import HomeScreen from '../components/HomeScreen';
 import DetailScreen from '../components/DetailScreen';
@@ -26,6 +26,7 @@ import TagUpdateScreen from '../components/TagUpdateScreen';
 /** その他 */
 import { fetchTag } from '../api';
 import { StackPramList } from '../types';
+import { collection, getDocs } from 'firebase/firestore';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
@@ -43,6 +44,18 @@ const RootStackScreen = () => {
           if (tagDataRes?.length) {
             dispatch(setTagList(tagDataRes));
           }
+
+          const res = await getDocs(collection(db, `users/${user.uid}/tags`));
+          const data: { id: string; name: string }[] = [];
+
+          res.forEach((doc) => {
+            data.push({
+              id: doc.id,
+              name: doc.data().name,
+            });
+          });
+
+          dispatch(setTagList(data));
 
           /** ユーザー情報を取得できたらホーム画面へ遷移する */
           navigation.reset({

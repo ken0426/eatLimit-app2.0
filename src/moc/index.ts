@@ -308,7 +308,6 @@ export const data: ApiData[] = [
     management: '消費期限',
     preservation: '常温',
     registerDate: '2023-11-29 20:14:00',
-    tagData: [{ id: '1001', name: '1001のタグ' }],
   },
   {
     eatName: 'タグ確認用1002',
@@ -317,7 +316,6 @@ export const data: ApiData[] = [
     management: '消費期限',
     preservation: '常温',
     registerDate: '2023-11-29 20:15:00',
-    tagData: [{ id: '1002', name: '1002のタグ' }],
   },
   {
     eatName: 'タグ確認用1001と1002',
@@ -326,10 +324,6 @@ export const data: ApiData[] = [
     management: '消費期限',
     preservation: '常温',
     registerDate: '2023-11-29 20:16:00',
-    tagData: [
-      { id: '1001', name: '1001のタグ' },
-      { id: '1002', name: '1002のタグ' },
-    ],
   },
   {
     eatName: 'タグ消滅用',
@@ -338,7 +332,6 @@ export const data: ApiData[] = [
     management: '消費期限',
     preservation: '常温',
     registerDate: '2023-11-29 20:17:00',
-    tagData: [{ id: '0000', name: '消滅したタグ' }],
   },
   {
     eatName: 'タグ確認用1001とタグ消滅用',
@@ -347,10 +340,6 @@ export const data: ApiData[] = [
     management: '消費期限',
     preservation: '常温',
     registerDate: '2023-11-29 20:18:00',
-    tagData: [
-      { id: '0000', name: '消滅したタグ' },
-      { id: '1001', name: '1001のタグ' },
-    ],
   },
   {
     eatName: 'タグがたくさんたくさんある商品！！！！',
@@ -359,12 +348,6 @@ export const data: ApiData[] = [
     management: '消費期限',
     preservation: '常温',
     registerDate: '2023-11-29 20:18:00',
-    tagData: [
-      { id: '1001', name: '1001のタグ' },
-      { id: '1002', name: '1002のタグ' },
-      { id: '1003', name: '1002のタグ' },
-      { id: '1004', name: '1002のタグ' },
-    ],
   },
   {
     eatName: '全項目入力テスト',
@@ -377,14 +360,6 @@ export const data: ApiData[] = [
       managementValue === '登録日' || managementValue === '購入日'
         ? moment().add(10, 'days').format('YYYY-MM-DD')
         : undefined,
-    tagData: [
-      { id: '1001', name: '1001のタグ' },
-      { id: '1002', name: '1002のタグ' },
-      { id: '1003', name: '1003のタグ' },
-      { id: '1004', name: '1004のタグ' },
-      { id: '1005', name: '1005のタグ' },
-      { id: '1006', name: '1006のタグ' },
-    ],
     memo: `
     商品メモ：
 
@@ -399,56 +374,4 @@ export const data: ApiData[] = [
   },
 ];
 
-/** タグのデータ */
-export const tagData = [
-  { name: 'お弁当用' },
-  { name: '息子用' },
-  { name: '調味料' },
-  { name: '果物' },
-  { name: '野菜' },
-  { name: '保存食' },
-  { name: '緊急用' },
-  { name: '固定のID：1001' },
-  { name: '固定のID：1002' },
-  { name: '固定のID：1003' },
-  { name: '固定のID：1004' },
-  { name: '固定のID：1005' },
-  { name: '固定のID：1006' },
-].map((item) => {
-  if (item.name === '固定のID：1001') {
-    return {
-      id: '1001',
-      name: item.name,
-    };
-  } else if (item.name === '固定のID：1002') {
-    return {
-      id: '1002',
-      name: item.name,
-    };
-  } else if (item.name === '固定のID：1003') {
-    return {
-      id: '1003',
-      name: item.name,
-    };
-  } else if (item.name === '固定のID：1004') {
-    return {
-      id: '1004',
-      name: item.name,
-    };
-  } else if (item.name === '固定のID：1005') {
-    return {
-      id: '1005',
-      name: item.name,
-    };
-  } else if (item.name === '固定のID：1006') {
-    return {
-      id: '1006',
-      name: item.name,
-    };
-  } else {
-    return {
-      id: String(uuid.v4()),
-      name: item.name,
-    };
-  }
-});
+export const tagList = [];

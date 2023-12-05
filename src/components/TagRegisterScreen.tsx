@@ -9,7 +9,14 @@ import {
   View,
 } from 'react-native';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import uuid from 'react-native-uuid';
+import {
+  Timestamp,
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+} from 'firebase/firestore';
+import { auth, db } from '../firebase';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
@@ -41,46 +48,70 @@ const TagRegisterScreen = () => {
   }, []);
 
   /** タグの登録 */
-  const onRightPress = () => {
+  const onRightPress = async () => {
+    if (auth.currentUser === null) return;
     if (text.length) {
       const tagListCopy = [...tagList];
 
-      if (tagData?.id && setListData) {
-        const tagIndex = tagListCopy.findIndex(
-          (item) => item.id === tagData.id
-        );
-        tagListCopy.splice(tagIndex, 1, { id: tagData.id, name: text });
+      try {
+        if (tagData?.id && setListData) {
+          // タグの変更
+          const tagIndex = tagListCopy.findIndex(
+            (item) => item.id === tagData.id
+          );
+          tagListCopy.splice(tagIndex, 1, { id: tagData.id, name: text });
 
-        // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
+          // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
 
-        setListData(tagListCopy);
-        dispatch(setTagList(tagListCopy));
-      } else {
-        // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存する
-        dispatch(
-          setTagList([...tagListCopy, { id: String(uuid.v4()), name: text }])
-        );
+          setListData(tagListCopy);
+          dispatch(setTagList(tagListCopy));
+        } else {
+          // タグの新規登録
+          const addDocData = await addDoc(
+            collection(db, `users/${auth.currentUser.uid}/tags`),
+            {
+              name: text,
+              updateAt: Timestamp.fromDate(new Date()),
+            }
+          );
+
+          // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存する
+          dispatch(
+            setTagList([...tagListCopy, { id: addDocData.id, name: text }])
+          );
+        }
+        navigation.goBack();
+      } catch (error) {
+        throw error; // TODO 本来であればここでエラーモーダルを表示する予定
       }
-      navigation.goBack();
     }
   };
 
   /** タグの削除 */
-  const onTagDeletePress = () => {
-    if (setListData) {
-      const tagListCopy = [...tagList];
-      const postTagData = tagListCopy.filter((item) => item.id !== tagData?.id);
+  const onTagDeletePress = async () => {
+    try {
+      if (setListData && auth.currentUser !== null && tagData?.id) {
+        const tagListCopy = [...tagList];
+        const postTagData = tagListCopy.filter(
+          (item) => item.id !== tagData?.id
+        );
 
-      // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
+        // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
+        await deleteDoc(
+          doc(db, `users/${auth.currentUser.uid}/tags`, tagData.id)
+        );
 
-      setListData(postTagData);
-      dispatch(setTagList(postTagData));
-      setIsVisible(false);
-      navigation.goBack();
-      if (!postTagData.length) {
-        // タグのデータをすべて削除した場合は設定画面に戻す
+        setListData(postTagData);
+        dispatch(setTagList(postTagData));
+        setIsVisible(false);
         navigation.goBack();
+        if (!postTagData.length) {
+          // タグのデータをすべて削除した場合は設定画面に戻す
+          navigation.goBack();
+        }
       }
+    } catch (error) {
+      throw error; // TODO 本来であればここでエラーモーダルを表示する予定
     }
   };
 
