@@ -62,7 +62,7 @@ const TagRegisterScreen = () => {
           );
           tagListCopy.splice(tagIndex, 1, { id: tagData.id, name: text });
 
-          // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
+          // ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存し、リストの更新を行う
           const res = doc(db, `users/${auth.currentUser.uid}/tags`, tagData.id);
           await setDoc(res, {
             name: text,
@@ -81,7 +81,7 @@ const TagRegisterScreen = () => {
             }
           );
 
-          // TODO ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存する
+          // ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存する
           dispatch(
             setTagList([...tagListCopy, { id: addDocData.id, name: text }])
           );
