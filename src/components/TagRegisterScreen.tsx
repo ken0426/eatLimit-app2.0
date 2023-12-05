@@ -49,8 +49,8 @@ const TagRegisterScreen = () => {
 
       try {
         if (tagData?.id && setListData) {
-          await saveUpdateTag(auth.currentUser.uid, tagData.id, text);
           // タグの変更
+          await saveUpdateTag(auth.currentUser.uid, tagData.id, text);
           const tagIndex = tagListCopy.findIndex(
             (item) => item.id === tagData.id
           );
