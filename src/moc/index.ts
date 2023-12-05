@@ -1,6 +1,5 @@
 import moment from 'moment';
 import { ApiData } from '../types';
-import uuid from 'react-native-uuid';
 
 export const noImage = 'https://bpbd.sumbarprov.go.id/images/noimage.png';
 
