@@ -373,5 +373,3 @@ export const data: ApiData[] = [
     `,
   },
 ];
-
-export const tagList = [];
