@@ -9,7 +9,7 @@ import {
   setDoc,
 } from 'firebase/firestore';
 import { db } from '../firebase';
-import { setTagList } from '../redux/slices/commonSlice';
+import { setTagList, setTagsOrderId } from '../redux/slices/commonSlice';
 import { TagData } from '../types';
 import { getTagId } from '../utils';
 
@@ -30,9 +30,13 @@ export const fetchTag = async (userId: string) => {
     if (data.length) {
       const tagIds = await getDocs(collection(db, `users/${userId}/tagsOrder`));
       const tagIdsData: string[] = [];
+      let tagsOrderId = '';
       tagIds.forEach((doc) => {
         tagIdsData.push(...doc.data().tagData);
+        tagsOrderId = doc.id;
       });
+
+      store.dispatch(setTagsOrderId(tagsOrderId));
       if (tagIdsData.length === data.length) {
         // タグのデータとタグのIDの並び順を保持するデータの数が同じの場合
         const editData = tagIdsData.map((id) => {
@@ -92,17 +96,15 @@ export const deleteTag = async (userId: string, tagId: string) => {
 };
 
 /** タグの並び順を保存 */
-export const saveTagOrder = async (tagListCopy: TagData[], userId: string) => {
+export const saveTagOrder = async (
+  tagListCopy: TagData[],
+  userId: string,
+  tagsOrderId: string | undefined
+) => {
   try {
-    const tagsOrderSaveId = await getDocs(
-      collection(db, `users/${userId}/tagsOrder`)
-    );
-    let data: string = '';
-    tagsOrderSaveId.forEach((doc) => (data = doc.id));
-
-    if (data) {
+    if (tagsOrderId) {
       // すでにタグの並び順を保持するデータが存在する場合はタグの並び順を更新
-      const res = doc(db, `users/${userId}/tagsOrder`, data);
+      const res = doc(db, `users/${userId}/tagsOrder`, tagsOrderId);
       await setDoc(res, { tagData: getTagId(tagListCopy) });
     } else {
       // タグの並び順を保持するデータが存在しない場合はタグの並び順を保存

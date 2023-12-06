@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useRootDispatch } from '../../redux/store/store';
+import { useRootDispatch, useRootSelector } from '../../redux/store/store';
 import { setTagList } from '../../redux/slices/commonSlice';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import DragList, { DragListRenderItemInfo } from 'react-native-draglist';
@@ -27,6 +27,7 @@ type Props = {
 const MolDragList: FC<Props> = ({ listData, setListData }) => {
   const dispatch = useRootDispatch();
   const navigation = useNavigation<StackNavigationProp<StackPramList>>();
+  const tagsOrderId = useRootSelector((state) => state.common.tagsOrderId);
 
   const renderItem = ({
     item,
@@ -83,7 +84,7 @@ const MolDragList: FC<Props> = ({ listData, setListData }) => {
 
       copyListData.splice(toIndex, 0, removed[0]);
       // タグの並び順を保存
-      await saveTagOrder(copyListData, auth.currentUser.uid);
+      await saveTagOrder(copyListData, auth.currentUser.uid, tagsOrderId);
       setListData(copyListData);
       dispatch(setTagList(copyListData));
     } catch (error) {

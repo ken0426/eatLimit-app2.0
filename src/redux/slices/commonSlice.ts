@@ -12,6 +12,7 @@ type CommonState = {
     isTemplate: true;
   };
   tagList: { id: string; name: string }[];
+  tagsOrderId: string;
 };
 
 const commonState: CommonState = {
@@ -22,6 +23,7 @@ const commonState: CommonState = {
   selectMemoTemplate: { label: 'テンプレートなし', id: 0, text: '' },
   selectMemoTemplateData: { data: [], isTemplate: true },
   tagList: [],
+  tagsOrderId: '',
 };
 
 export const commonSlice = createSlice({
@@ -56,6 +58,10 @@ export const commonSlice = createSlice({
     setTagList: (state, { payload }) => {
       state.tagList = payload;
     },
+    /** ユーザーが保存しているタグの並び順を保持するfirebaseのID */
+    setTagsOrderId: (state, { payload }) => {
+      state.tagsOrderId = payload;
+    },
   },
 });
 
@@ -67,4 +73,5 @@ export const {
   setSelectMemoTemplate,
   setSelectMemoTemplateData,
   setTagList,
+  setTagsOrderId,
 } = commonSlice.actions;

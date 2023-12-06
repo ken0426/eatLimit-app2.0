@@ -28,6 +28,7 @@ const TagRegisterScreen = () => {
   const navigation = useNavigation();
   const inputRef = useRef<TextInput>(null);
   const tagList = useRootSelector((state) => state.common.tagList);
+  const tagsOrderId = useRootSelector((state) => state.common.tagsOrderId);
   const tagData = route.params?.data;
   const setListData = route.params?.setListData;
   const [text, setText] = useState(tagData?.name || '');
@@ -58,7 +59,7 @@ const TagRegisterScreen = () => {
           tagListCopy.splice(tagIndex, 1, { id: tagData.id, name: text });
 
           // タグの並び順を保存
-          await saveTagOrder(tagListCopy, userId);
+          await saveTagOrder(tagListCopy, userId, tagsOrderId);
 
           setListData(tagListCopy);
           dispatch(setTagList(tagListCopy));
@@ -69,7 +70,8 @@ const TagRegisterScreen = () => {
           // タグの並び順を保存
           await saveTagOrder(
             [...tagListCopy, { id: addDocData.id, name: text }],
-            userId
+            userId,
+            tagsOrderId
           );
 
           dispatch(
@@ -95,7 +97,7 @@ const TagRegisterScreen = () => {
         );
 
         // タグの並び順を保存
-        await saveTagOrder(postTagData, auth.currentUser.uid);
+        await saveTagOrder(postTagData, auth.currentUser.uid, tagsOrderId);
 
         setListData(postTagData);
         dispatch(setTagList(postTagData));

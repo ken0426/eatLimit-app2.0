@@ -16,6 +16,7 @@ import { saveTagOrder } from '../api';
 const TagUpdateScreen = () => {
   const dispatch = useRootDispatch();
   const tagList = useRootSelector((state) => state.common.tagList);
+  const tagsOrderId = useRootSelector((state) => state.common.tagsOrderId);
   const [listData, setListData] = useState([...tagList]);
   const [visible, setVisible] = useState(false);
 
@@ -35,7 +36,7 @@ const TagUpdateScreen = () => {
     });
 
     // タグの並び順を保存
-    await saveTagOrder(sortListData, auth.currentUser.uid);
+    await saveTagOrder(sortListData, auth.currentUser.uid, tagsOrderId);
     setListData(sortListData);
     dispatch(setTagList(sortListData));
     closeMenu();
