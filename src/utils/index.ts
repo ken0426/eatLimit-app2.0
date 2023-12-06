@@ -350,7 +350,7 @@ export const registerValidationCheck = ({
   }
 };
 
-/** タグデータからのIDだけを取得 */
+/** タグデータからIDだけを取得 */
 export const getTagId = (tagData: TagData[]) => {
   const tagIds = tagData.map((tag) => tag.id);
   return tagIds;
