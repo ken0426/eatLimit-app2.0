@@ -3,7 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { ApiData, HandleLoginType, PostData } from '../types';
+import { ApiData, HandleLoginType, PostData, TagData } from '../types';
 import {
   LABEL_NAME,
   MODAL_MESSAGE,
@@ -348,4 +348,10 @@ export const registerValidationCheck = ({
       return true;
     }
   }
+};
+
+/** タグデータからのIDだけを取得 */
+export const getTagId = (tagData: TagData[]) => {
+  const tagIds = tagData.map((tag) => tag.id);
+  return tagIds;
 };

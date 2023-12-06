@@ -20,7 +20,7 @@ import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { setTagList } from '../redux/slices/commonSlice';
 import { StackPramList } from '../types';
 import OrgModalDefault from './organisms/OrgModalDefault';
-import { deleteTag, saveTag, saveUpdateTag } from '../api';
+import { deleteTag, saveTag, saveTagOrder, saveUpdateTag } from '../api';
 
 const TagRegisterScreen = () => {
   const route = useRoute<RouteProp<StackPramList, 'tagRegisterScreen'>>();
@@ -48,21 +48,30 @@ const TagRegisterScreen = () => {
       const tagListCopy = [...tagList];
 
       try {
+        const userId = auth.currentUser.uid;
         if (tagData?.id && setListData) {
           // タグの変更
-          await saveUpdateTag(auth.currentUser.uid, tagData.id, text);
+          await saveUpdateTag(userId, tagData.id, text);
           const tagIndex = tagListCopy.findIndex(
             (item) => item.id === tagData.id
           );
           tagListCopy.splice(tagIndex, 1, { id: tagData.id, name: text });
 
+          // タグの並び順を保存
+          await saveTagOrder(tagListCopy, userId);
+
           setListData(tagListCopy);
           dispatch(setTagList(tagListCopy));
         } else {
           // タグの新規登録
-          const addDocData = await saveTag(auth.currentUser.uid, text);
+          const addDocData = await saveTag(userId, text);
 
-          // ここでAPIを叩き、DBへの保存が完了したらreduxにデータを保存する
+          // タグの並び順を保存
+          await saveTagOrder(
+            [...tagListCopy, { id: addDocData.id, name: text }],
+            userId
+          );
+
           dispatch(
             setTagList([...tagListCopy, { id: addDocData.id, name: text }])
           );
@@ -84,6 +93,9 @@ const TagRegisterScreen = () => {
         const postTagData = tagListCopy.filter(
           (item) => item.id !== tagData?.id
         );
+
+        // タグの並び順を保存
+        await saveTagOrder(postTagData, auth.currentUser.uid);
 
         setListData(postTagData);
         dispatch(setTagList(postTagData));

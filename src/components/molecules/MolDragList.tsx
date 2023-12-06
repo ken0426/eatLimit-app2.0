@@ -16,6 +16,8 @@ import * as Haptics from 'expo-haptics';
 import SvgIcon from '../../images/SvgIcon';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { StackPramList, TagData } from '../../types';
+import { saveTagOrder } from '../../api';
+import { auth } from '../../firebase';
 
 type Props = {
   listData: TagData[];
@@ -74,12 +76,19 @@ const MolDragList: FC<Props> = ({ listData, setListData }) => {
   );
 
   const onReordered = async (fromIndex: number, toIndex: number) => {
-    const copyListData = [...listData];
-    const removed = copyListData.splice(fromIndex, 1);
+    if (auth.currentUser === null) return;
+    try {
+      const copyListData = [...listData];
+      const removed = copyListData.splice(fromIndex, 1);
 
-    copyListData.splice(toIndex, 0, removed[0]);
-    setListData(copyListData);
-    dispatch(setTagList(copyListData));
+      copyListData.splice(toIndex, 0, removed[0]);
+      // タグの並び順を保存
+      await saveTagOrder(copyListData, auth.currentUser.uid);
+      setListData(copyListData);
+      dispatch(setTagList(copyListData));
+    } catch (error) {
+      throw error;
+    }
   };
 
   return (

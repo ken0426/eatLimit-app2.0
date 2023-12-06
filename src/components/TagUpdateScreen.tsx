@@ -10,6 +10,8 @@ import MolMenu from './molecules/MolMenu';
 import { Menuitem } from '../types';
 import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { setTagList } from '../redux/slices/commonSlice';
+import { auth } from '../firebase';
+import { saveTagOrder } from '../api';
 
 const TagUpdateScreen = () => {
   const dispatch = useRootDispatch();
@@ -21,7 +23,8 @@ const TagUpdateScreen = () => {
 
   const closeMenu = () => setVisible(false);
 
-  const onSortPress = (type: 'up' | 'down') => {
+  const onSortPress = async (type: 'up' | 'down') => {
+    if (auth.currentUser === null) return;
     const copyListData = [...listData];
     const sortListData = copyListData.sort((a, b) => {
       if (a.name < b.name) {
@@ -30,6 +33,9 @@ const TagUpdateScreen = () => {
         return type === 'up' ? 1 : -1;
       }
     });
+
+    // タグの並び順を保存
+    await saveTagOrder(sortListData, auth.currentUser.uid);
     setListData(sortListData);
     dispatch(setTagList(sortListData));
     closeMenu();
