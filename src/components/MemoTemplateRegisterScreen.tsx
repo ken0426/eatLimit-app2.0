@@ -20,7 +20,7 @@ const MemoTemplateRegisterScreen = () => {
   const inputAccessoryViewID = 'uniqueID';
   return (
     <TouchableWithoutFeedback
-      style={{ flex: 1 }}
+      style={styles.screen}
       onPress={() => Keyboard.dismiss()}
     >
       <View style={styles.contents}>
@@ -69,6 +69,9 @@ const MemoTemplateRegisterScreen = () => {
 export default MemoTemplateRegisterScreen;
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
   contents: {
     backgroundColor: COLORS.WHITE,
     flex: 1,
