@@ -20,12 +20,14 @@ import {
 } from '../contents';
 import { SettingData, StackPramList } from '../types';
 import { getEditDataFormat, getKey } from '../utils';
-import { useRootSelector } from '../redux/store/store';
+import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import AtomSettingLabel from './atoms/AtomSettingLabel';
 import MolSettingList from './molecules/MolSettingList';
 import { auth } from '../firebase';
+import { setTagList, setTagsOrderId } from '../redux/slices/commonSlice';
 
 const SettingScreen = () => {
+  const dispatch = useRootDispatch();
   const navigation =
     useNavigation<StackNavigationProp<StackPramList, 'settingScreen'>>();
   const dateFormatDisplayId = useRootSelector(
@@ -93,6 +95,10 @@ const SettingScreen = () => {
                     onPress: async () => {
                       try {
                         auth.signOut();
+                        // タグのデータをクリア
+                        dispatch(setTagList([]));
+                        // タグの並び順を保存しているfirebaseのIDをクリア
+                        dispatch(setTagsOrderId(''));
                         navigation.reset({
                           index: 0,
                           routes: [{ name: 'topScreen' }],
