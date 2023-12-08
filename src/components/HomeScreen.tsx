@@ -55,7 +55,8 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
       return item;
     }
   });
-  const responseData = editData;
+
+  const responseEditData = editData;
 
   useEffect(() => {
     (async () => {
@@ -108,7 +109,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
       <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
         <AtomHome
           setListData={setListData}
-          responseData={responseData}
+          responseData={responseEditData}
           listData={listData}
         />
       </MolHeader>
