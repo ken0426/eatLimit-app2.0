@@ -13,7 +13,7 @@ import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { ApiData, StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
-import { COLORS, FONTSIZE, SIZE } from '../styles';
+import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
 import AtomRegister from './atoms/AtomRegister';
 import AtomFileSelect from './atoms/AtomFileSelect';
 import AtomSingleSelect from './atoms/AtomSingleSelect';
@@ -88,7 +88,7 @@ const RegisterScreen = () => {
     postData.find((item) => item.key === key)?.value;
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={STYLE_FLEX}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomRegister
@@ -108,7 +108,7 @@ const RegisterScreen = () => {
         <ScrollView>
           <KeyboardAvoidingView
             behavior='position'
-            style={{ flex: 1 }}
+            style={STYLE_FLEX}
             enabled={enabled}
             keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
           >

@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
-import { COLORS, SIZE } from '../styles';
+import { COLORS, SIZE, STYLE_FLEX } from '../styles';
 import MolSettingList from './molecules/MolSettingList';
 import AtomSettingLabel from './atoms/AtomSettingLabel';
 import { StackPramList } from '../types';
@@ -19,7 +19,7 @@ const SettingMemoScreen = () => {
   );
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={STYLE_FLEX}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomSettingRegister

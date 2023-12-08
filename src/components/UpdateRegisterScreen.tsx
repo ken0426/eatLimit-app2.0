@@ -12,7 +12,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import MolHeader from './molecules/MolHeader';
 import AtomRegister from './atoms/AtomRegister';
 import { StackPramList } from '../types';
-import { COLORS, FONTSIZE, SIZE } from '../styles';
+import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
 import AtomFileSelect from './atoms/AtomFileSelect';
 import AtomSingleInput from './atoms/AtomSingleInput';
 import AtomSingleSelect from './atoms/AtomSingleSelect';
@@ -72,7 +72,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
   useGoBack();
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={STYLE_FLEX}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomRegister
@@ -90,7 +90,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
         <ScrollView>
           <KeyboardAvoidingView
             behavior='position'
-            style={{ flex: 1 }}
+            style={STYLE_FLEX}
             enabled={enabled}
             keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
           >

@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import { COLORS, FONTSIZE, SIZE } from '../../styles';
+import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../../styles';
 import AtomRequire from './AtomRequire';
 import { PostData } from '../../types';
 import { LABEL_TEXT, REGISTER_COUNT_TEXT } from '../../contents';
@@ -35,7 +35,7 @@ const AtomCounter: FC<Props> = ({ onPressIn, setData, textData = 1 }) => {
         <View style={styles.labelArea}>
           <AtomRequire label={LABEL_TEXT.QUANTITY} />
         </View>
-        <View style={{ flex: 1 }}>
+        <View style={STYLE_FLEX}>
           <View style={styles.counterArea}>
             <TouchableOpacity
               style={styles.countTouchArea}

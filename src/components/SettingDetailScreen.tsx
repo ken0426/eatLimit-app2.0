@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
-import { COLORS, FONTSIZE, SIZE } from '../styles';
+import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
 import { commonSettingAdaptor } from '../adaptor/commonSettingAdaptor';
 import { useRootDispatch } from '../redux/store/store';
 import { onSettingPress } from '../functions';
@@ -71,7 +71,7 @@ const SettingDetailScreen: FC<Props> = ({ route }) => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={STYLE_FLEX}>
       <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomSettingRegister

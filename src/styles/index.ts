@@ -70,3 +70,7 @@ export const INPUT_HEIGHT = 50;
 export const BANNER_HEIGHT = SIZE.BASE_HP * 15;
 /** 詳細画面の画像の高さ */
 export const DETAIL_IMAGE_HEIGHT = SIZE.BASE_HP * 28;
+
+export const STYLE_FLEX = {
+  flex: 1,
+};
