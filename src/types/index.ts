@@ -14,6 +14,7 @@ export type ApiData = {
   registerDate: string;
   tagData?: { id: string; name: string }[];
   memo?: string;
+  id: string;
 };
 
 export type ManagementData = {

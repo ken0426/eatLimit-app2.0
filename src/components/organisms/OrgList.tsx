@@ -46,7 +46,10 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
     >
       {isImage && (
         <View style={styles.imageArea}>
-          <Image style={styles.image} source={{ uri: item.image ?? noImage }} />
+          <Image
+            style={styles.image}
+            source={{ uri: item.image !== '' ? item.image : noImage }}
+          />
         </View>
       )}
       <View style={[styles.textArea, { paddingLeft: isImage ? 0 : 20 }]}>

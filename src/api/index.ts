@@ -10,7 +10,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase';
 import { setTagList, setTagsOrderId } from '../redux/slices/commonSlice';
-import { TagData } from '../types';
+import { PostData, TagData } from '../types';
 import { getTagId } from '../utils';
 
 /** ユーザーが保存しているタグのデータを取得 */
@@ -111,6 +111,17 @@ export const saveTagOrder = async (
       const tagIds = getTagId(tagListCopy);
       addDoc(collection(db, `users/${userId}/tagsOrder`), { tagData: tagIds });
     }
+  } catch (error) {
+    throw error;
+  }
+};
+
+/** リストのデータを保存 */
+export const saveList = async (newPostData: PostData[], userId: string) => {
+  try {
+    const res = await addDoc(collection(db, `users/${userId}/list`), {
+      listData: newPostData,
+    });
   } catch (error) {
     throw error;
   }

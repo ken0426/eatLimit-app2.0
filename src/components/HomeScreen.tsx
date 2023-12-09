@@ -1,10 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { FlatList, ListRenderItem, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { ApiData, MemoTemplateData, StackPramList } from '../types';
+import { ApiData, MemoTemplateData, PostData, StackPramList } from '../types';
 import MolHeader from './molecules/MolHeader';
 import { COLORS, SIZE } from '../styles';
-import { data } from '../moc';
 import AtomHome from './atoms/AtomHome';
 import OrgList from './organisms/OrgList';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,6 +17,9 @@ import { HEADER_TYPE, settingMemoData } from '../contents';
 import NoListScreen from './organisms/NoListScreen';
 import AtomCountDisplay from './atoms/AtomCountDisplay';
 import { StyleSheet } from 'react-native';
+import { auth, db } from '../firebase';
+import { collection, onSnapshot, query } from 'firebase/firestore';
+import { listDisplayAdaptor } from '../adaptor/listDisplayAdaptor';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
@@ -27,36 +29,63 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
   const dispatch = useRootDispatch();
   const tagList = useRootSelector((state) => state.common.tagList);
   const [listData, setListData] = useState<ApiData[]>([]);
+  const [editData, setEditData] = useState<ApiData[]>([]);
+  const [newData, setNewData] = useState<ApiData[]>([]);
 
-  // 本来ならDBからのデータをここで受け取る（現在は一旦仮のデータとする）
-  // TODO 最終的にはログイン直後にこの計算をする可能性あり
-  const editData = data.map((item) => {
-    if (item.tagData?.length) {
-      const tagData = item.tagData.map((data) =>
-        tagList.find((tag) => tag.id === data.id)
-      );
-      if (
-        tagData.length &&
-        tagData.filter((tag) => tag?.name && tag.id).length
-      ) {
-        // タグのDBに保存してるIDがあればID情報をリストに追加し一覧で表示する配列を生成する。
-        const filterTagData = tagData.filter((tag) => tag?.name && tag.id);
-        return {
-          ...item,
-          tagData: filterTagData as { id: string; name: string }[],
-        };
+  /** DBからデータを取得 */
+  useEffect(() => {
+    if (auth.currentUser === null) return;
+    const ref = collection(db, `users/${auth.currentUser.uid}/list`);
+    const q = query(ref);
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const data: ApiData[] = [];
+      querySnapshot.forEach((doc) => {
+        const listData = listDisplayAdaptor(
+          ...[doc.data().listData as PostData[]],
+          doc.id
+        );
+        data.push(...listData);
+      });
+
+      setNewData(data);
+    });
+
+    return unsubscribe;
+  }, []);
+
+  /** DBから取得したデータをもとにタグ情報と紐づけするhook */
+  useEffect(() => {
+    const newEditData = newData.map((item) => {
+      if (item.tagData?.length) {
+        const tagData = item.tagData.map((data) =>
+          tagList.find((tag) => tag.id === data.id)
+        );
+        if (
+          tagData.length &&
+          tagData.filter((tag) => tag?.name && tag.id).length
+        ) {
+          // タグのDBに保存してるIDがあればID情報をリストに追加し一覧で表示する配列を生成する。
+          const filterTagData = tagData.filter((tag) => tag?.name && tag.id);
+          return {
+            ...item,
+            tagData: filterTagData as { id: string; name: string }[],
+          };
+        } else {
+          // 一覧のデータでタグのDBに存在していないタグIDがなければ、それは削除されたタグのため、商品データからタグIDを削除する。
+          delete item.tagData;
+          return item;
+        }
       } else {
-        // 一覧のデータでタグのDBに存在していないタグIDがなければ、それは削除されたタグのため、商品データからタグIDを削除する。
-        delete item.tagData;
+        // 商品データにそもそもタグIDが存在しない場合はそのままデータを返却する。
         return item;
       }
-    } else {
-      // 商品データにそもそもタグIDが存在しない場合はそのままデータを返却する。
-      return item;
-    }
-  });
+    });
 
-  const responseEditData = editData;
+    setEditData(newEditData);
+  }, [newData]);
+
+  /** 最終的に表示するデータを生成 */
+  const data = useMemo(() => listData, [listData]);
 
   useEffect(() => {
     (async () => {
@@ -109,14 +138,14 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
       <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
         <AtomHome
           setListData={setListData}
-          responseData={responseEditData}
+          editData={editData}
           listData={listData}
         />
       </MolHeader>
-      <AtomCountDisplay listData={listData} />
-      {listData.length ? (
+      <AtomCountDisplay listData={data} />
+      {data.length ? (
         <FlatList
-          data={listData}
+          data={data}
           renderItem={renderItem}
           keyExtractor={(_, index) => index.toString()}
         />

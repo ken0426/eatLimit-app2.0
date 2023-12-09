@@ -24,7 +24,7 @@ const BEFORE_DATE_SELECT = {
 
 export const useListFilter = (
   /** DBからのレスポンスデータ */
-  responseData: ApiData[],
+  editData: ApiData[],
   /** モーダルで選択したフィルターのボタンのデータ */
   filterData: TargetFilterData[],
   /** 一覧画面にセットする関数 */
@@ -32,11 +32,13 @@ export const useListFilter = (
   /** モーダルの表示非表示のフラグ */
   isVisible: boolean
 ) => {
-  const [listFilterData, setListFilterData] = useState<ApiData[]>(responseData);
+  const [listFilterData, setListFilterData] = useState<ApiData[]>(editData);
+
+  useEffect(() => setListFilterData(editData), [editData]);
 
   /** ================= フィルター ================= */
   useEffect(() => {
-    let listData: ApiData[] = responseData;
+    let listData: ApiData[] = editData;
 
     /** 画像表示のボタンのIDを取得  */
     const imageId = filterData.find(

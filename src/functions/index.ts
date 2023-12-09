@@ -19,6 +19,8 @@ import {
   setSelectMemoTemplate,
 } from '../redux/slices/commonSlice';
 import { registerValidationCheck } from '../utils';
+import { saveList } from '../api';
+import { auth } from '../firebase';
 
 type Options = {
   options: string[];
@@ -136,6 +138,7 @@ export const onRegisterPress = async ({
   setMessage,
   copyData,
 }: OnRegisterPress) => {
+  if (auth.currentUser === null) return;
   try {
     setIsLoading(true);
 
@@ -149,10 +152,7 @@ export const onRegisterPress = async ({
       },
     ];
 
-    console.log('リクエスト内容', newPostData);
-    console.log('リクエストを送信中・・・');
-    await new Promise((resolve) => setTimeout(resolve, 2500)); // 2.5秒待機（見た目として実装）
-    console.log('DBに保存完了'); // 非同期処理
+    await saveList(newPostData, auth.currentUser.uid);
     if (copyData) {
       navigation.pop(2);
     } else {

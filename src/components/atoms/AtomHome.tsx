@@ -14,11 +14,11 @@ import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
   setListData: (e: ApiData[]) => void;
-  responseData: ApiData[];
+  editData: ApiData[];
   listData: ApiData[];
 };
 
-const AtomHome: FC<Props> = ({ setListData, responseData, listData }) => {
+const AtomHome: FC<Props> = ({ setListData, editData, listData }) => {
   const dispatch = useRootDispatch();
   const navigation =
     useNavigation<StackNavigationProp<StackPramList, 'homeScreen'>>();
@@ -31,7 +31,7 @@ const AtomHome: FC<Props> = ({ setListData, responseData, listData }) => {
   const { setTargetFilterData, filterData } = useFilterRegister(isRestButton);
 
   /** 一覧画面用 */
-  useListFilter(responseData, filterData, setListData, isVisible);
+  useListFilter(editData, filterData, setListData, isVisible);
 
   return (
     <>
