@@ -123,7 +123,7 @@ export const useListFilter = (
     }
 
     setListFilterData(listData);
-  }, [isVisible]);
+  }, [isVisible, editData]);
 
   /** 最終的に一覧画面に表示するデータをセット */
   useEffect(() => {
