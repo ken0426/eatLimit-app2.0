@@ -28,7 +28,7 @@ const MolDetailTopItem: FC<Props> = ({ item }) => {
         <Text style={styles.eatName}>{item.eatName}</Text>
         <MolDetailDateDisplay item={item} />
       </TouchableOpacity>
-      {item?.tagData?.length && (
+      {item?.tagData?.length ? (
         <View style={styles.tagArea}>
           {isSwipe ? (
             <FlatList
@@ -51,6 +51,8 @@ const MolDetailTopItem: FC<Props> = ({ item }) => {
             </TouchableOpacity>
           )}
         </View>
+      ) : (
+        <></>
       )}
     </View>
   );
