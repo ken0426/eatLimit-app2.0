@@ -119,7 +119,7 @@ export const saveTagOrder = async (
 /** リストのデータを保存 */
 export const saveList = async (newPostData: PostData[], userId: string) => {
   try {
-    const res = await addDoc(collection(db, `users/${userId}/list`), {
+    await addDoc(collection(db, `users/${userId}/list`), {
       listData: newPostData,
     });
   } catch (error) {
