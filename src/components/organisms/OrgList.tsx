@@ -19,21 +19,10 @@ type Props = {
 
 const OrgList: FC<Props> = ({ item, index, navigation }) => {
   const dispatch = useRootDispatch();
-  const imageId = useRootSelector((state) => state.common.imageId);
-  const dateFormatDisplayId = useRootSelector(
-    (state) => state.common.dateFormatDisplayId
-  );
-  const dateDisplayId = useRootSelector((state) => state.common.dateDisplayId);
-  const dayOfWeekId = useRootSelector((state) => state.common.dayOfWeekId);
+
   const beforeDate = moment().isAfter(item.date, 'day');
 
-  const { isImage, dateText } = useListEdit(
-    imageId,
-    dateFormatDisplayId,
-    dateDisplayId,
-    dayOfWeekId,
-    item.date
-  );
+  const { isImage, dateText } = useListEdit(item.date);
 
   return (
     <TouchableOpacity

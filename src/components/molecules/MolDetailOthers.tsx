@@ -4,17 +4,24 @@ import AtomSingleItem from '../atoms/AtomSingleItem';
 import { COLORS, SIZE } from '../../styles';
 import { LABEL_TEXT } from '../../contents';
 import { ApiData } from '../../types';
+import { useListEdit } from '../../hooks/useListEdit';
 
 type Props = {
   item: ApiData;
 };
 
 const MolDetailOthers: FC<Props> = ({ item }) => {
+  let displayDate: string = '';
+  if (item?.approximateDeadline) {
+    const { dateText } = useListEdit(item.approximateDeadline);
+    displayDate = dateText;
+  }
+
   return (
     <View style={styles.contents}>
       {item?.approximateDeadline && (
         <AtomSingleItem
-          value={item.approximateDeadline}
+          value={displayDate}
           label={LABEL_TEXT.APPROXIMATE_DEADLINE}
         />
       )}

@@ -1,12 +1,14 @@
 import moment from 'moment';
+import { useRootSelector } from '../redux/store/store';
 
-export const useListEdit = (
-  imageId: number,
-  dateFormatDisplayId: number,
-  dateDisplayId: number,
-  dayOfWeekId: number,
-  date: string
-) => {
+export const useListEdit = (date: string) => {
+  const imageId = useRootSelector((state) => state.common.imageId);
+  const dateFormatDisplayId = useRootSelector(
+    (state) => state.common.dateFormatDisplayId
+  );
+  const dateDisplayId = useRootSelector((state) => state.common.dateDisplayId);
+  const dayOfWeekId = useRootSelector((state) => state.common.dayOfWeekId);
+
   moment.updateLocale('ja', {
     weekdaysShort: ['日', '月', '火', '水', '木', '金', '土'],
   });
@@ -41,7 +43,7 @@ export const useListEdit = (
           return moment(date).format('MM/DD');
         }
       }
-    } else if (dateFormatDisplayId === 3) {
+    } else {
       if (dateDisplayId === 1) {
         if (dayOfWeekId === 2) {
           return moment(date).format('YYYY-MM-DD（ddd）');
@@ -58,7 +60,7 @@ export const useListEdit = (
     }
   };
 
-  const dateText = getDate();
+  const dateText: string = getDate();
 
   return {
     isImage,
