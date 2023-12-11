@@ -89,7 +89,7 @@ const RegisterScreen = () => {
 
   return (
     <View style={STYLE_FLEX}>
-      <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
+      <View style={styles.contents}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomRegister
             title={copyData ? 'コピー' : '登録'}
@@ -337,6 +337,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     zIndex: 2,
+  },
+  contents: {
+    backgroundColor: COLORS.WHITE,
+    flex: 1,
   },
   inputForm: {
     paddingHorizontal: SIZE.BASE_HP * 1.2,
