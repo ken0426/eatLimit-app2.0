@@ -8,7 +8,7 @@ import { ApiData, StackPramList } from '../../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useRootDispatch, useRootSelector } from '../../redux/store/store';
 import { setUpdateRegisterData } from '../../redux/slices/commonRegisterSlice';
-import { useListEdit } from '../../hooks/useListEdit';
+import { useDateFormat } from '../../hooks/useDateFormat';
 import SvgIcon from '../../images/SvgIcon';
 import { DISPLAY_IMAGE_ID } from '../../contents';
 
@@ -25,7 +25,7 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
 
   const beforeDate = moment().isAfter(item.date, 'day');
 
-  const { dateText } = useListEdit(item.date);
+  const dateText = useDateFormat(item.date);
 
   return (
     <TouchableOpacity

@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { useRootSelector } from '../redux/store/store';
 
-export const useListEdit = (date: string) => {
+export const useDateFormat = (date: string) => {
   const dateFormatDisplayId = useRootSelector(
     (state) => state.common.dateFormatDisplayId
   );
@@ -60,7 +60,5 @@ export const useListEdit = (date: string) => {
 
   const dateText: string = getDate();
 
-  return {
-    dateText,
-  };
+  return dateText;
 };

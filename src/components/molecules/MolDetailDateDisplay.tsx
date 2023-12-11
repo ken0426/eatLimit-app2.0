@@ -4,7 +4,7 @@ import moment from 'moment';
 import AtomDetailDateDisplay from '../atoms/AtomDetailDateDisplay';
 import { COLORS, SIZE } from '../../styles';
 import { ApiData } from '../../types';
-import { useListEdit } from '../../hooks/useListEdit';
+import { useDateFormat } from '../../hooks/useDateFormat';
 
 type Props = {
   item: ApiData;
@@ -12,7 +12,7 @@ type Props = {
 
 const MolDetailDateDisplay: FC<Props> = ({ item }) => {
   const beforeDate = moment().isAfter(item.date, 'day');
-  const { dateText } = useListEdit(item.date);
+  const dateText = useDateFormat(item.date);
 
   return (
     <View style={styles.dateContents}>

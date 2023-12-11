@@ -4,7 +4,7 @@ import AtomSingleItem from '../atoms/AtomSingleItem';
 import { COLORS, SIZE } from '../../styles';
 import { LABEL_TEXT } from '../../contents';
 import { ApiData } from '../../types';
-import { useListEdit } from '../../hooks/useListEdit';
+import { useDateFormat } from '../../hooks/useDateFormat';
 
 type Props = {
   item: ApiData;
@@ -13,7 +13,7 @@ type Props = {
 const MolDetailOthers: FC<Props> = ({ item }) => {
   let displayDate: string = '';
   if (item?.approximateDeadline) {
-    const { dateText } = useListEdit(item.approximateDeadline);
+    const dateText = useDateFormat(item.approximateDeadline);
     displayDate = dateText;
   }
 
