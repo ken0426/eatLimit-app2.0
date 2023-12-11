@@ -2,7 +2,6 @@ import moment from 'moment';
 import { useRootSelector } from '../redux/store/store';
 
 export const useListEdit = (date: string) => {
-  const imageId = useRootSelector((state) => state.common.imageId);
   const dateFormatDisplayId = useRootSelector(
     (state) => state.common.dateFormatDisplayId
   );
@@ -12,7 +11,6 @@ export const useListEdit = (date: string) => {
   moment.updateLocale('ja', {
     weekdaysShort: ['日', '月', '火', '水', '木', '金', '土'],
   });
-  const isImage = imageId == 1;
 
   const getDate = () => {
     if (dateFormatDisplayId === 1) {
@@ -63,7 +61,6 @@ export const useListEdit = (date: string) => {
   const dateText: string = getDate();
 
   return {
-    isImage,
     dateText,
   };
 };

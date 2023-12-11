@@ -24,6 +24,9 @@ export const HEADER_TYPE = {
   DETAIL: 'detail',
 } as const;
 
+/** 画像の表示がある場合 */
+export const DISPLAY_IMAGE_ID = 1;
+
 /** 管理方法の文字列のデータ */
 export const managementTextData = [
   '消費期限',

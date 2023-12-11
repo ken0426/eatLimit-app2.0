@@ -10,6 +10,7 @@ import { useRootDispatch, useRootSelector } from '../../redux/store/store';
 import { setUpdateRegisterData } from '../../redux/slices/commonRegisterSlice';
 import { useListEdit } from '../../hooks/useListEdit';
 import SvgIcon from '../../images/SvgIcon';
+import { DISPLAY_IMAGE_ID } from '../../contents';
 
 type Props = {
   item: ApiData;
@@ -19,10 +20,12 @@ type Props = {
 
 const OrgList: FC<Props> = ({ item, index, navigation }) => {
   const dispatch = useRootDispatch();
+  const imageId = useRootSelector((state) => state.common.imageId);
+  const isImage = imageId === DISPLAY_IMAGE_ID;
 
   const beforeDate = moment().isAfter(item.date, 'day');
 
-  const { isImage, dateText } = useListEdit(item.date);
+  const { dateText } = useListEdit(item.date);
 
   return (
     <TouchableOpacity
