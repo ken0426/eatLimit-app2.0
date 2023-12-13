@@ -83,7 +83,7 @@ const SettingDetailScreen: FC<Props> = ({ route }) => {
           data={listData}
           renderItem={renderItem}
           keyExtractor={(_, index) => index.toString()}
-          style={{ marginTop: -1 }}
+          style={styles.list}
         />
       </View>
     </View>
@@ -118,5 +118,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: FONTSIZE.SIZE18PX,
+  },
+  list: {
+    marginTop: -1,
   },
 });
