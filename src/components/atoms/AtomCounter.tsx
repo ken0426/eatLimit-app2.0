@@ -31,7 +31,7 @@ const AtomCounter: FC<Props> = ({ onPressIn, setData, textData = 1 }) => {
 
   return (
     <View style={styles.itemArea}>
-      <View style={{ flexDirection: 'row' }}>
+      <View style={styles.touchCounterArea}>
         <View style={styles.labelArea}>
           <AtomRequire label={LABEL_TEXT.QUANTITY} />
         </View>
@@ -101,6 +101,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.3,
     borderBottomColor: COLORS.DETAIL_BORDER,
     justifyContent: 'center',
+  },
+  touchCounterArea: {
+    flexDirection: 'row',
   },
   labelArea: {
     flexDirection: 'row',
