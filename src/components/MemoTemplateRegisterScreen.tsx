@@ -57,9 +57,7 @@ const MemoTemplateRegisterScreen = () => {
               </View>
             </InputAccessoryView>
           )}
-          <Text style={{ textAlign: 'right', color: COLORS.TEXT_LABEL }}>
-            {`${text.length}／500`}
-          </Text>
+          <Text style={styles.textCount}>{`${text.length}／500`}</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -106,5 +104,9 @@ const styles = StyleSheet.create({
   completedArea: {
     backgroundColor: '#f1f1f1',
     alignItems: 'flex-end',
+  },
+  textCount: {
+    textAlign: 'right',
+    color: COLORS.TEXT_LABEL,
   },
 });
