@@ -113,7 +113,7 @@ const RegisterScreen = () => {
             keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
           >
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-              <View style={{ width: '100%' }}>
+              <View>
                 <AtomFileSelect
                   setData={(data) =>
                     setTargetPostData({
