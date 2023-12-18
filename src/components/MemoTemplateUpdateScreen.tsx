@@ -36,7 +36,7 @@ const MemoTemplateUpdateScreen: FC<Props> = ({ route }) => {
         <AtomSettingRegister title={'テンプレート編集'} isRightButton={true} />
       </MolHeader>
 
-      <View style={{ paddingHorizontal: 10 }}>
+      <View style={styles.inputArea}>
         <AtomSingleInput
           label={'項目名'}
           onPressIn={() => {}}
@@ -82,6 +82,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     zIndex: 2,
+  },
+  inputArea: {
+    paddingHorizontal: 10,
   },
   memoArea: {
     margin: 10,
