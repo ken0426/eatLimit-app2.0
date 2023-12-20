@@ -20,7 +20,7 @@ const SettingMemoScreen = () => {
 
   return (
     <View style={STYLE_FLEX}>
-      <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
+      <View style={styles.contents}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomSettingRegister
             title={'メモのテンプレート'}
@@ -72,6 +72,10 @@ const SettingMemoScreen = () => {
 export default SettingMemoScreen;
 
 const styles = StyleSheet.create({
+  contents: {
+    backgroundColor: COLORS.WHITE,
+    flex: 1,
+  },
   header: {
     height: SIZE.BASE_HP * 12,
     paddingHorizontal: SIZE.BASE_WP * 5,
