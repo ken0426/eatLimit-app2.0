@@ -96,29 +96,27 @@ const AtomDate: FC<Props> = ({
         </View>
 
         <View style={styles.selectArea}>
-          <View style={{ flexDirection: 'row' }}>
-            <DatePicker
-              textColor='#000000'
-              textInputStyle={{ fontWeight: 'bold' }}
-              value={pickedDate}
-              doneButtonLabel={'完了'}
-              text={handleText()}
-              iosDisplay='spinner'
-              androidDisplay='spinner'
-              minimumDate={new Date('2000')}
-              maximumDate={new Date('2100')}
-              onDateChange={(e) => e && setPickedDate(e)}
-              style={styles.datePicker}
-              backdropAnimation={{ opacity: 0, duration: 0.3, delay: 1 }}
+          <DatePicker
+            textColor='#000000'
+            textInputStyle={{ fontWeight: 'bold' }}
+            value={pickedDate}
+            doneButtonLabel={'完了'}
+            text={handleText()}
+            iosDisplay='spinner'
+            androidDisplay='spinner'
+            minimumDate={new Date('2000')}
+            maximumDate={new Date('2100')}
+            onDateChange={(e) => e && setPickedDate(e)}
+            touchableStyle={styles.touchableStyle}
+            backdropAnimation={{ opacity: 0, duration: 0.3, delay: 1 }}
+          />
+          <View style={styles.icon}>
+            <SvgIcon
+              type={'materialIcons'}
+              name={'keyboard-arrow-down'}
+              size={20}
+              color={COLORS.TEXT_COLOR}
             />
-            <View style={styles.icon}>
-              <SvgIcon
-                type={'materialIcons'}
-                name={'keyboard-arrow-down'}
-                size={20}
-                color={COLORS.TEXT_COLOR}
-              />
-            </View>
           </View>
         </View>
       </View>
@@ -159,12 +157,11 @@ const styles = StyleSheet.create({
     paddingVertical: SIZE.BASE_HP * 0.1,
   },
   selectArea: {
-    flex: 1,
-    alignItems: 'flex-end',
+    flexDirection: 'row',
   },
-  datePicker: {
-    height: '100%',
-    shadowColor: '#000000',
+  touchableStyle: {
+    width: SIZE.BASE_WP * 62,
+    alignItems: 'flex-end',
   },
   icon: {
     height: '100%',
