@@ -36,7 +36,7 @@ const AtomHome: FC<Props> = ({ setListData, editData, listData }) => {
   return (
     <>
       <View style={styles.contents}>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={styles.settingArea}>
           {/* 設定 */}
           <TouchableOpacity
             onPress={() => navigation.navigate('settingScreen')}
@@ -122,6 +122,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
+  },
+  settingArea: {
+    flexDirection: 'row',
   },
   touchRightArea: {
     flexDirection: 'row',
