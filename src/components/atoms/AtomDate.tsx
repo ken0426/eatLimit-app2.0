@@ -109,6 +109,7 @@ const AtomDate: FC<Props> = ({
             onDateChange={(e) => e && setPickedDate(e)}
             touchableStyle={styles.touchableStyle}
             backdropAnimation={{ opacity: 0, duration: 0.3, delay: 1 }}
+            locale={'ja'}
           />
           <View style={styles.icon}>
             <SvgIcon
