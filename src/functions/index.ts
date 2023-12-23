@@ -44,6 +44,8 @@ type OnRegisterPress = {
   >;
   setMessage: (e: string) => void;
   copyData?: { data: ApiData };
+  saveType: 'add' | 'update';
+  updateListId: string | undefined;
 };
 
 /** カメラの起動 */
@@ -137,6 +139,8 @@ export const onRegisterPress = async ({
   navigation,
   setMessage,
   copyData,
+  saveType,
+  updateListId,
 }: OnRegisterPress) => {
   if (auth.currentUser === null) return;
   try {
@@ -152,7 +156,7 @@ export const onRegisterPress = async ({
       },
     ];
 
-    await saveList(newPostData, auth.currentUser.uid);
+    await saveList(newPostData, auth.currentUser.uid, saveType, updateListId);
     if (copyData) {
       navigation.pop(2);
     } else {
@@ -199,6 +203,8 @@ export const handleRegistrationPress = async ({
   setIsLoading,
   copyData,
   navigation,
+  saveType,
+  updateListId,
 }: HandleRegistrationPress) => {
   const validationError = registerValidationCheck({
     postData,
@@ -214,6 +220,8 @@ export const handleRegistrationPress = async ({
       navigation,
       setMessage,
       copyData,
+      saveType,
+      updateListId,
     });
 
     return finish;

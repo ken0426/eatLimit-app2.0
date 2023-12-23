@@ -117,11 +117,23 @@ export const saveTagOrder = async (
 };
 
 /** リストのデータを保存 */
-export const saveList = async (newPostData: PostData[], userId: string) => {
+export const saveList = async (
+  newPostData: PostData[],
+  userId: string,
+  saveType: 'add' | 'update',
+  updateListId: string | undefined
+) => {
   try {
-    await addDoc(collection(db, `users/${userId}/list`), {
-      listData: newPostData,
-    });
+    if (saveType === 'add') {
+      await addDoc(collection(db, `users/${userId}/list`), {
+        listData: newPostData,
+      });
+    } else if (updateListId && saveType === 'update') {
+      const res = doc(db, `users/${userId}/list`, updateListId);
+      await setDoc(res, {
+        listData: newPostData,
+      });
+    }
   } catch (error) {
     throw error;
   }

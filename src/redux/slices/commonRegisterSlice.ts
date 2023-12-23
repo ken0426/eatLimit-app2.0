@@ -12,6 +12,7 @@ const commonRegisterState = {
     approximateDeadline: undefined,
   },
   updateRegisterData: {
+    id: '',
     eatName: '',
     image: '',
     date: '',

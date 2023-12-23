@@ -24,6 +24,8 @@ type Props = {
   isDateBefore: boolean;
   setIsDateBefore: (e: boolean) => void;
   copyData?: { data: ApiData };
+  saveType: 'add' | 'update';
+  updateListId: string | undefined;
 };
 
 const AtomRegister: FC<Props> = ({
@@ -37,6 +39,8 @@ const AtomRegister: FC<Props> = ({
   isDateBefore,
   setIsDateBefore,
   copyData,
+  saveType,
+  updateListId,
 }) => {
   const dispatch = useRootDispatch();
   const navigation =
@@ -46,6 +50,7 @@ const AtomRegister: FC<Props> = ({
         'registerScreen' | 'updateRegisterScreen'
       >
     >();
+
   /** モーダルで使用するボタンのデータ */
   const buttonData =
     message === 'データが保存されませんがキャンセルしますか？'
@@ -85,6 +90,8 @@ const AtomRegister: FC<Props> = ({
             navigation,
             setMessage,
             copyData,
+            saveType,
+            updateListId,
           });
 
           /** 選択しているタグのIDをリセット */
@@ -142,6 +149,8 @@ const AtomRegister: FC<Props> = ({
                 navigation,
                 setMessage,
                 copyData,
+                saveType,
+                updateListId,
               });
 
               /** 選択しているタグのIDをリセット */

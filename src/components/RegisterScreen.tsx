@@ -102,6 +102,8 @@ const RegisterScreen = () => {
             isDateBefore={isDateBefore}
             setIsDateBefore={setIsDateBefore}
             copyData={copyData}
+            saveType={'add'}
+            updateListId={undefined}
           />
         </MolHeader>
 
@@ -303,6 +305,8 @@ const RegisterScreen = () => {
                         setIsLoading,
                         copyData,
                         navigation,
+                        saveType: 'add',
+                        updateListId: undefined,
                       });
                       if (finish) dispatch(setTagSelectedIds([]));
                     }}

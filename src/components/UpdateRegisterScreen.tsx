@@ -85,6 +85,8 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
             setMessage={setMessage}
             isDateBefore={isDateBefore}
             setIsDateBefore={setIsDateBefore}
+            saveType={'update'}
+            updateListId={updateData.id}
           />
         </MolHeader>
         <ScrollView>
@@ -257,6 +259,8 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                         setIsDateBefore,
                         setIsLoading,
                         navigation,
+                        saveType: 'update',
+                        updateListId: updateData.id,
                       });
                       if (finish) dispatch(setTagSelectedIds([]));
                     }}

@@ -161,6 +161,8 @@ export type HandleRegistrationPress = {
     StackPramList,
     'registerScreen' | 'updateRegisterScreen'
   >;
+  saveType: 'add' | 'update';
+  updateListId: string | undefined;
 };
 
 /** タグ並び替えする際のメニューの項目 */
