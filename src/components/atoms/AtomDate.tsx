@@ -86,7 +86,7 @@ const AtomDate: FC<Props> = ({
 
   return (
     <View style={styles.contents}>
-      <View style={{ flexDirection: 'row', flex: 1 }}>
+      <View style={styles.container}>
         <View style={styles.labelArea}>
           {isRequired ? (
             <AtomRequire label={label} />
@@ -136,9 +136,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.3,
     borderBottomColor: COLORS.DETAIL_BORDER,
   },
+  container: {
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'space-between',
+  },
   labelArea: {
     flexDirection: 'row',
     alignItems: 'center',
+    width: '40%',
   },
   label: {
     fontSize: FONTSIZE.SIZE18PX,
@@ -159,10 +165,12 @@ const styles = StyleSheet.create({
   },
   selectArea: {
     flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'flex-end',
   },
   touchableStyle: {
-    width: SIZE.BASE_WP * 62,
     alignItems: 'flex-end',
+    width: '100%',
   },
   icon: {
     height: '100%',
