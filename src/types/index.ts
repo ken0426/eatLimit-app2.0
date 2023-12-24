@@ -9,8 +9,8 @@ export type ApiData = {
   approximateDeadline?: string;
   placeOfPurchase?: string;
   price?: number;
-  management: '消費期限' | '賞味期限' | '購入日' | '登録日';
-  preservation: '冷凍' | '冷蔵' | '常温';
+  management: '消費期限' | '賞味期限' | '購入日' | '登録日' | string;
+  preservation: '冷凍' | '冷蔵' | '常温' | string;
   registerDate: string;
   tagData?: { id: string; name: string }[];
   memo?: string;

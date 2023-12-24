@@ -12,6 +12,8 @@ import { db } from '../firebase';
 import { setTagList, setTagsOrderId } from '../redux/slices/commonSlice';
 import { PostData, TagData } from '../types';
 import { getTagId } from '../utils';
+import { listDisplayAdaptor } from '../adaptor/listDisplayAdaptor';
+import { setUpdateRegisterData } from '../redux/slices/commonRegisterSlice';
 
 /** ユーザーが保存しているタグのデータを取得 */
 export const fetchTag = async (userId: string) => {
@@ -133,6 +135,8 @@ export const saveList = async (
       await setDoc(res, {
         listData: newPostData,
       });
+      const data = listDisplayAdaptor(newPostData, updateListId);
+      store.dispatch(setUpdateRegisterData(data[0]));
     }
   } catch (error) {
     throw error;

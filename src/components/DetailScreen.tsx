@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -18,6 +18,7 @@ import AtomButton from './atoms/AtomButton';
 import MolDetailTopItem from './molecules/MolDetailTopItem';
 import AtomDetailMemo from './atoms/AtomDetailMemo';
 import MolDetailOthers from './molecules/MolDetailOthers';
+import { useRootSelector } from '../redux/store/store';
 
 type RouteItem = {
   params: {
@@ -32,8 +33,17 @@ type Props = {
 const DetailScreen: FC<Props> = ({ route }) => {
   const navigation =
     useNavigation<StackNavigationProp<StackPramList, 'detailScreen'>>();
+  const updateRegisterData = useRootSelector(
+    (state) => state.commonRegister.updateRegisterData
+  );
   const { item } = route.params;
+  const [detailData, setDetailData] = useState(item);
   const animatedValue = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const updateData: ApiData = { ...updateRegisterData };
+    setDetailData(updateData);
+  }, [updateRegisterData]);
 
   const { bannerAnimation, blurRadius, onScroll } =
     useDetailAnimation(animatedValue);
@@ -58,7 +68,9 @@ const DetailScreen: FC<Props> = ({ route }) => {
   const ListFooterComponent = () => (
     <View style={styles.button}>
       <AtomButton
-        onPress={() => navigation.navigate('registerScreen', { data: item })}
+        onPress={() =>
+          navigation.navigate('registerScreen', { data: detailData })
+        }
         color={COLORS.WHITE}
         fontSize={FONTSIZE.SIZE30PX}
         backgroundColor={COLORS.ORANGE}
@@ -72,17 +84,17 @@ const DetailScreen: FC<Props> = ({ route }) => {
   return (
     <View style={styles.container}>
       {/* ヘッダー */}
-      {item.image && <MolHeader type={'detail'} />}
-      {item.image && (
+      {detailData.image && <MolHeader type={'detail'} />}
+      {detailData.image && (
         <Animated.View style={[styles.bannerContainer, bannerAnimation]}>
           <Animated.Image
             blurRadius={blurRadius}
             style={styles.banner}
-            source={{ uri: item.image }}
+            source={{ uri: detailData.image }}
           />
         </Animated.View>
       )}
-      {!item.image && (
+      {!detailData.image && (
         <View style={styles.noImageHeader}>
           <MolDetailHeader top={SIZE.BASE_HP * 1.2} />
         </View>
@@ -92,8 +104,8 @@ const DetailScreen: FC<Props> = ({ route }) => {
       <FlatList
         onScroll={onScroll}
         scrollEventThrottle={16}
-        data={[item]}
-        ListHeaderComponent={item.image ? ListHeaderComponent : <></>}
+        data={[detailData]}
+        ListHeaderComponent={detailData.image ? ListHeaderComponent : <></>}
         renderItem={renderItem}
         ListFooterComponent={ListFooterComponent}
         keyExtractor={(_, index) => index.toString()}

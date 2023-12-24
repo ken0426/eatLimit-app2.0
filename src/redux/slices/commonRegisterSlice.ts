@@ -22,10 +22,11 @@ const commonRegisterState = {
     placeOfPurchase: undefined,
     management: '',
     preservation: '',
-    count: '',
+    count: 1,
     approximateDeadline: undefined,
     memo: '',
     tagData: [],
+    registerDate: '',
   },
   tagSelectedIds: [],
 };
