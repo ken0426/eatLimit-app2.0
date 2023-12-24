@@ -5,14 +5,26 @@ import AtomDetailDateDisplay from '../atoms/AtomDetailDateDisplay';
 import { COLORS, SIZE } from '../../styles';
 import { ApiData } from '../../types';
 import { useDateFormat } from '../../hooks/useDateFormat';
+import { MANAGEMENT_SELECTED_TEXT } from '../../contents';
 
 type Props = {
   item: ApiData;
 };
 
 const MolDetailDateDisplay: FC<Props> = ({ item }) => {
-  const beforeDate = moment().isAfter(item.date, 'day');
-  const dateText = useDateFormat(item.date);
+  const beforeDate = moment().isAfter(
+    item.management === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+      item.management === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE
+      ? item.approximateDeadline!
+      : item.date,
+    'day'
+  );
+  const dateText = useDateFormat(
+    item.management === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+      item.management === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE
+      ? item.approximateDeadline!
+      : item.date
+  );
 
   return (
     <View style={styles.dateContents}>

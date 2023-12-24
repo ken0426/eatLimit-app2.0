@@ -10,7 +10,7 @@ import { useRootDispatch, useRootSelector } from '../../redux/store/store';
 import { setUpdateRegisterData } from '../../redux/slices/commonRegisterSlice';
 import { useDateFormat } from '../../hooks/useDateFormat';
 import SvgIcon from '../../images/SvgIcon';
-import { DISPLAY_IMAGE_ID } from '../../contents';
+import { DISPLAY_IMAGE_ID, MANAGEMENT_SELECTED_TEXT } from '../../contents';
 
 type Props = {
   item: ApiData;
@@ -23,9 +23,20 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
   const imageId = useRootSelector((state) => state.common.imageId);
   const isImage = imageId === DISPLAY_IMAGE_ID;
 
-  const beforeDate = moment().isAfter(item.date, 'day');
+  const beforeDate = moment().isAfter(
+    item.management === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+      item.management === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE
+      ? item.approximateDeadline!
+      : item.date,
+    'day'
+  );
 
-  const dateText = useDateFormat(item.date);
+  const dateText = useDateFormat(
+    item.management === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+      item.management === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE
+      ? item.approximateDeadline!
+      : item.date
+  );
 
   return (
     <TouchableOpacity

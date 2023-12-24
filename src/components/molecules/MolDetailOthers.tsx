@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 import AtomSingleItem from '../atoms/AtomSingleItem';
 import { COLORS, SIZE } from '../../styles';
-import { LABEL_TEXT } from '../../contents';
+import { LABEL_TEXT, MANAGEMENT_SELECTED_TEXT } from '../../contents';
 import { ApiData } from '../../types';
 import { useDateFormat } from '../../hooks/useDateFormat';
 import moment from 'moment';
@@ -20,11 +20,9 @@ const MolDetailOthers: FC<Props> = ({ item }) => {
 
   return (
     <View style={styles.contents}>
-      {item?.approximateDeadline && (
-        <AtomSingleItem
-          value={displayDate}
-          label={LABEL_TEXT.APPROXIMATE_DEADLINE}
-        />
+      {(item.management === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+        item.management === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE) && (
+        <AtomSingleItem value={item.date} label={item.management} />
       )}
       <AtomSingleItem value={item.management} label={LABEL_TEXT.MANAGEMENT} />
       <AtomSingleItem
