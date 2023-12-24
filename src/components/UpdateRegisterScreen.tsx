@@ -212,6 +212,9 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     }}
                     label={LABEL_NAME.TAG}
                     isRequired={false}
+                    defaultTagData={
+                      updateData.tagData?.length ? updateData.tagData : []
+                    }
                   />
                   <AtomSingleInput
                     label={LABEL_TEXT.PLACE_OF_PURCHASE}

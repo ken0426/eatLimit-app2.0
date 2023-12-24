@@ -246,6 +246,11 @@ const RegisterScreen = () => {
                     }
                     label={LABEL_NAME.TAG}
                     isRequired={false}
+                    defaultTagData={
+                      copyData?.data?.tagData?.length
+                        ? copyData.data.tagData
+                        : []
+                    }
                   />
                   <AtomSingleInput
                     label={LABEL_TEXT.PLACE_OF_PURCHASE}

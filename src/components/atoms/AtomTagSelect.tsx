@@ -5,6 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { PostData, StackPramList } from '../../types';
 import SvgIcon from '../../images/SvgIcon';
+import { useRootDispatch } from '../../redux/store/store';
+import { setTagSelectedIds } from '../../redux/slices/commonRegisterSlice';
 
 type Props = {
   tagSelectedIds: string[];
@@ -12,6 +14,7 @@ type Props = {
   setData: ({ key, value }: PostData) => void;
   label: string;
   isRequired: boolean;
+  defaultTagData: { id: string; name: string }[];
 };
 
 const AtomTagSelect: FC<Props> = ({
@@ -20,7 +23,9 @@ const AtomTagSelect: FC<Props> = ({
   setData,
   label,
   isRequired,
+  defaultTagData,
 }) => {
+  const dispatch = useRootDispatch();
   const navigation =
     useNavigation<StackNavigationProp<StackPramList, 'registerScreen'>>();
 
@@ -33,6 +38,15 @@ const AtomTagSelect: FC<Props> = ({
     () => setData({ key: label, isRequired, value: tagData }),
     [tagData]
   );
+
+  /** コピーや変更などでデフォルトでセットしてあるタグをreduxに保存する */
+  useEffect(() => {
+    if (defaultTagData.length) {
+      const tagsId = defaultTagData.map((item) => item.id);
+      dispatch(setTagSelectedIds(tagsId));
+      setData({ key: label, isRequired, value: defaultTagData });
+    }
+  }, [defaultTagData]);
 
   return (
     <TouchableOpacity

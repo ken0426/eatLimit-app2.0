@@ -11,6 +11,7 @@ const commonRegisterState = {
     preservation: '',
     approximateDeadline: undefined,
     memo: '',
+    tagData: [],
   },
   updateRegisterData: {
     id: '',
@@ -24,6 +25,7 @@ const commonRegisterState = {
     count: '',
     approximateDeadline: undefined,
     memo: '',
+    tagData: [],
   },
   tagSelectedIds: [],
 };
