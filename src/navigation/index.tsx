@@ -29,7 +29,6 @@ import { StackPramList } from '../types';
 const Stack = createNativeStackNavigator<StackPramList>();
 
 const RootStackScreen = () => {
-  const dispatch = useRootDispatch();
   const navigation = useNavigation<StackNavigationProp<StackPramList>>();
 
   /** 自動ログイン */
