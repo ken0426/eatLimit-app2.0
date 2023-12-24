@@ -247,6 +247,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                         isRequired: data.isRequired,
                       })
                     }
+                    textData={updateData.memo ? updateData.memo : ''}
                   />
                 </View>
                 <View style={styles.buttonArea}>

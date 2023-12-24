@@ -10,6 +10,7 @@ const commonRegisterState = {
     management: '',
     preservation: '',
     approximateDeadline: undefined,
+    memo: '',
   },
   updateRegisterData: {
     id: '',
@@ -22,6 +23,7 @@ const commonRegisterState = {
     preservation: '',
     count: '',
     approximateDeadline: undefined,
+    memo: '',
   },
   tagSelectedIds: [],
 };

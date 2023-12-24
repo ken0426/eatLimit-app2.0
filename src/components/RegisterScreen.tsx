@@ -292,6 +292,7 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       })
                     }
+                    textData={copyData?.data?.memo ? copyData.data.memo : ''} // TODO テンプレートのメモデータも最終的にセットできるようにする
                   />
                 </View>
                 <View style={styles.buttonArea}>

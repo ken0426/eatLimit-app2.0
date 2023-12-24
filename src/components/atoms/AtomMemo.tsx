@@ -16,11 +16,12 @@ import { LABEL_NAME } from '../../contents';
 type Props = {
   onPress: () => void;
   setData: ({ key, value }: PostData) => void;
+  textData: string;
 };
 
-const AtomMemo: FC<Props> = ({ onPress, setData }) => {
+const AtomMemo: FC<Props> = ({ onPress, setData, textData }) => {
   const inputAccessoryViewID = 'uniqueID';
-  const [text, setText] = useState('');
+  const [text, setText] = useState(textData);
 
   useEffect(() => {
     setData({ key: LABEL_NAME.MEMO, value: text, isRequired: false });
@@ -34,6 +35,7 @@ const AtomMemo: FC<Props> = ({ onPress, setData }) => {
         </View>
         <View style={styles.memoArea}>
           <TextInput
+            value={text}
             placeholder={'500文字以内で入力してください'}
             onPressIn={onPress}
             placeholderTextColor={COLORS.TEXT_LABEL}
