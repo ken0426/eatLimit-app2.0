@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.DETAIL_BORDER,
   },
   label: {
-    width: widthPercentageToDP('24%'),
+    width: widthPercentageToDP('26%'),
     fontSize: FONTSIZE.SIZE20PX,
   },
   text: {

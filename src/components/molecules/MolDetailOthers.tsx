@@ -5,6 +5,7 @@ import { COLORS, SIZE } from '../../styles';
 import { LABEL_TEXT } from '../../contents';
 import { ApiData } from '../../types';
 import { useDateFormat } from '../../hooks/useDateFormat';
+import moment from 'moment';
 
 type Props = {
   item: ApiData;
@@ -40,6 +41,10 @@ const MolDetailOthers: FC<Props> = ({ item }) => {
       {item?.price && (
         <AtomSingleItem value={item.price} label={LABEL_TEXT.AMOUNT_OF_MONEY} />
       )}
+      <AtomSingleItem
+        value={moment(item.registerDate).format('YYYY-MM-DD HH:mm')}
+        label={'最終更新日'}
+      />
     </View>
   );
 };
