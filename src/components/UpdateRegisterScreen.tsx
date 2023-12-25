@@ -198,6 +198,9 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                           : ''
                       }
                       selectedDate={approximateDeadline}
+                      dateData={
+                        approximateDeadline ?? updateData.approximateDeadline
+                      }
                     />
                   )}
                   <AtomTagSelect

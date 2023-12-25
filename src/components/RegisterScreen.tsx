@@ -232,6 +232,10 @@ const RegisterScreen = () => {
                       }
                       selectedDate={approximateDeadline}
                       plusDate={copyData?.data?.approximateDeadline ? plus : 10}
+                      dateData={
+                        postData.find((data) => data.key === LABEL_NAME.DATE)!
+                          .value as string
+                      }
                     />
                   )}
                   <AtomTagSelect

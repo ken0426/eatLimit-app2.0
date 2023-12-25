@@ -25,6 +25,8 @@ type Props = {
   copyDate?: Date;
   /** 初期値に何日足すか */
   plusDate?: number;
+  /** 「日付」項目の年月日 */
+  dateData?: string;
 };
 
 const AtomDate: FC<Props> = ({
@@ -37,7 +39,9 @@ const AtomDate: FC<Props> = ({
   selectedDate,
   copyDate,
   plusDate = 10,
+  dateData,
 }) => {
+  const dateYear = dateData ? new Date(dateData).getFullYear() : 0;
   const getDate = () => {
     if (copyDate) {
       return copyDate;
@@ -45,6 +49,11 @@ const AtomDate: FC<Props> = ({
       if (date) {
         if (isLimit && selectedDate) {
           const currentDate = new Date(selectedDate);
+          new Date(
+            currentDate.setFullYear(
+              currentDate.getFullYear() + (dateYear - currentDate.getFullYear())
+            )
+          );
           return new Date(currentDate.setDate(currentDate.getDate() + 10));
         } else {
           return new Date(date);
@@ -53,7 +62,12 @@ const AtomDate: FC<Props> = ({
         const currentDate = new Date(selectedDate);
         return new Date(currentDate.setDate(currentDate.getDate() + plusDate));
       } else if (isLimit) {
-        const currentDate = new Date();
+        const currentDate = new Date(dateData!);
+        new Date(
+          currentDate.setFullYear(
+            currentDate.getFullYear() + (dateYear - currentDate.getFullYear())
+          )
+        );
         return new Date(currentDate.setDate(currentDate.getDate() + 10));
       } else {
         return new Date();
