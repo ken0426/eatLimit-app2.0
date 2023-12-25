@@ -111,7 +111,13 @@ export const saveTagOrder = async (
     } else {
       // タグの並び順を保持するデータが存在しない場合はタグの並び順を保存
       const tagIds = getTagId(tagListCopy);
-      addDoc(collection(db, `users/${userId}/tagsOrder`), { tagData: tagIds });
+
+      const addDocData = await addDoc(
+        collection(db, `users/${userId}/tagsOrder`),
+        { tagData: tagIds }
+      );
+      // ユーザーが初めてタグを作った場合、タグを並び替えるためのドキュメントのIDが発行されるため、そのIDをreduxに保存しておく。次回以降は上のロジックを通る
+      store.dispatch(setTagsOrderId(addDocData.id));
     }
   } catch (error) {
     throw error;
