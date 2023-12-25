@@ -7,14 +7,23 @@ import { PostData } from '../../types';
 import SvgIcon from '../../images/SvgIcon';
 
 type Props = {
+  /** 変更画面から渡ってくる日付 */
   date?: string;
+  /** 必須項目の判定 */
   isRequired?: boolean;
+  /** ラベル */
   label: string;
+  /** 期限目安かどうか */
   isLimit?: boolean;
+  /** 選択している日付をセットする関数 */
   setData: ({ key, value }: PostData) => void;
+  /** エラーメッセージ */
   errorMessage: string;
+  /** 期限目安の日付 */
   selectedDate?: string;
+  /** 商品がコピーされた際の日付 */
   copyDate?: Date;
+  /** 初期値に何日足すか */
   plusDate?: number;
 };
 
