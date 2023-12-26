@@ -281,7 +281,10 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                   {/* 削除ボタンの仮実装 */}
                   <View style={{ marginTop: SIZE.BASE_HP * 2 }}>
                     <AtomButton
-                      onPress={() => {}}
+                      onPress={() => {
+                        setMessage('本当に削除しますか？');
+                        setIsVisible(true);
+                      }}
                       color={COLORS.WHITE}
                       fontSize={FONTSIZE.SIZE30PX}
                       backgroundColor={COLORS.RED}

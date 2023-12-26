@@ -148,3 +148,12 @@ export const saveList = async (
     throw error;
   }
 };
+
+/** リストの削除 */
+export const deleteList = async (userId: string, listId: string) => {
+  try {
+    await deleteDoc(doc(db, `users/${userId}/list`, listId));
+  } catch (error) {
+    throw error;
+  }
+};

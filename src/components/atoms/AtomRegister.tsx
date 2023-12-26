@@ -12,6 +12,8 @@ import { useRootDispatch } from '../../redux/store/store';
 import { setTagSelectedIds } from '../../redux/slices/commonRegisterSlice';
 import SvgIcon from '../../images/SvgIcon';
 import { registerValidationCheck } from '../../utils';
+import { deleteList } from '../../api';
+import { auth } from '../../firebase';
 
 type Props = {
   title: string;
@@ -66,6 +68,24 @@ const AtomRegister: FC<Props> = ({
             onPress: () => {
               dispatch(setTagSelectedIds([]));
               setIsVisible(false);
+              navigation.goBack();
+            },
+          },
+        ]
+      : message === '本当に削除しますか？'
+      ? [
+          {
+            text: BUTTON_TEXT.CANCEL,
+            onPress: () => {
+              setIsVisible(false);
+            },
+          },
+          {
+            text: BUTTON_TEXT.DECISION,
+            onPress: async () => {
+              await deleteList(auth.currentUser!.uid, updateListId!);
+              setIsVisible(false);
+              navigation.goBack();
               navigation.goBack();
             },
           },
