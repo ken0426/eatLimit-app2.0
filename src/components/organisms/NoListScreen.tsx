@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FONTSIZE } from '../../styles';
 
-const NoListScreen = () => {
+type Props = {
+  displayText: string;
+};
+
+const NoListScreen: FC<Props> = ({ displayText }) => {
   return (
     <View style={styles.contents}>
-      <Text style={styles.text}>検索結果がありません。</Text>
+      <Text style={styles.text}>{displayText}</Text>
     </View>
   );
 };

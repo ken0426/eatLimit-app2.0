@@ -150,7 +150,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
           keyExtractor={(_, index) => index.toString()}
         />
       ) : (
-        <NoListScreen />
+        <NoListScreen displayText={'商品が登録されていません。'} />
       )}
     </View>
   );

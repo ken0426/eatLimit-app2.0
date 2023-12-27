@@ -16,6 +16,7 @@ import OrgList from './organisms/OrgList';
 import { filterData } from '../utils';
 import { HEADER_TYPE } from '../contents';
 import AtomCountDisplay from './atoms/AtomCountDisplay';
+import NoListScreen from './organisms/NoListScreen';
 
 type RouteItem = {
   params: {
@@ -52,12 +53,16 @@ const SearchScreen: FC<Props> = ({ route }) => {
       </MolHeader>
 
       <AtomCountDisplay listData={getData()} />
-      <FlatList
-        data={getData()}
-        renderItem={renderItem}
-        keyExtractor={(_, index) => index.toString()}
-        onScroll={() => Keyboard.dismiss()}
-      />
+      {getData().length ? (
+        <FlatList
+          data={getData()}
+          renderItem={renderItem}
+          keyExtractor={(_, index) => index.toString()}
+          onScroll={() => Keyboard.dismiss()}
+        />
+      ) : (
+        text !== '' && <NoListScreen displayText={'検索結果がありません。'} />
+      )}
     </View>
   );
 };
