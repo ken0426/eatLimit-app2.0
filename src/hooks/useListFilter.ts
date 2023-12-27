@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
   LABEL_NAME,
+  MANAGEMENT_SELECTED_TEXT,
   managementTextData,
   preservationTextData,
 } from '../contents';
@@ -146,7 +147,20 @@ export const useListFilter = (
             ? -1
             : 1;
         } else {
-          return moment(a.date).isAfter(b.date, 'day') ? -1 : 1;
+          return moment(
+            a.management === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+              a.management === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE
+              ? a.approximateDeadline
+              : a.date
+          ).isAfter(
+            b.management === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+              b.management === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE
+              ? b.approximateDeadline
+              : b.date,
+            'day'
+          )
+            ? -1
+            : 1;
         }
       });
     } else {
@@ -156,7 +170,20 @@ export const useListFilter = (
             ? 1
             : -1;
         } else {
-          return moment(a.date).isAfter(b.date, 'day') ? 1 : -1;
+          return moment(
+            a.management === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+              a.management === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE
+              ? a.approximateDeadline
+              : a.date
+          ).isAfter(
+            b.management === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+              b.management === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE
+              ? b.approximateDeadline
+              : b.date,
+            'day'
+          )
+            ? 1
+            : -1;
         }
       });
     }
