@@ -82,7 +82,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
     });
 
     setEditData(newEditData);
-  }, [newData]);
+  }, [newData, tagList]);
 
   /** 最終的に表示するデータを生成 */
   const data = useMemo(() => listData, [listData]);
