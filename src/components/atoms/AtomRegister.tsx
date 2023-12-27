@@ -84,6 +84,7 @@ const AtomRegister: FC<Props> = ({
             text: BUTTON_TEXT.DECISION,
             onPress: async () => {
               await deleteList(auth.currentUser!.uid, updateListId!);
+              dispatch(setTagSelectedIds([]));
               setIsVisible(false);
               navigation.goBack();
               navigation.goBack();
