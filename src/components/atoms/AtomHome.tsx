@@ -15,10 +15,10 @@ import SvgIcon from '../../images/SvgIcon';
 type Props = {
   setListData: (e: ApiData[]) => void;
   editData: ApiData[];
-  listData: ApiData[];
+  data: ApiData[];
 };
 
-const AtomHome: FC<Props> = ({ setListData, editData, listData }) => {
+const AtomHome: FC<Props> = ({ setListData, editData, data }) => {
   const dispatch = useRootDispatch();
   const navigation =
     useNavigation<StackNavigationProp<StackPramList, 'homeScreen'>>();
@@ -60,7 +60,7 @@ const AtomHome: FC<Props> = ({ setListData, editData, listData }) => {
           {/* 検索 */}
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('searchScreen', { data: listData });
+              navigation.navigate('searchScreen', { data });
             }}
           >
             <SvgIcon

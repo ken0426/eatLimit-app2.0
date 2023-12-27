@@ -136,11 +136,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
   return (
     <View style={styles.contents}>
       <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
-        <AtomHome
-          setListData={setListData}
-          editData={editData}
-          listData={listData}
-        />
+        <AtomHome setListData={setListData} editData={editData} data={data} />
       </MolHeader>
       <AtomCountDisplay listData={data} />
       {data.length ? (
