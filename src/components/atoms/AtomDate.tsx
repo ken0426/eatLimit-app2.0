@@ -121,7 +121,7 @@ const AtomDate: FC<Props> = ({
         <View style={styles.selectArea}>
           <DatePicker
             textColor='#000000'
-            textInputStyle={{ fontWeight: 'bold' }}
+            textInputStyle={styles.DatePickerTextInput}
             value={pickedDate}
             doneButtonLabel={'完了'}
             text={handleText()}
@@ -190,6 +190,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     justifyContent: 'flex-end',
+  },
+  DatePickerTextInput: {
+    fontWeight: 'bold',
   },
   touchableStyle: {
     alignItems: 'flex-end',
