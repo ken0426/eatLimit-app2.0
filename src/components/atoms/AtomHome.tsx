@@ -51,7 +51,7 @@ const AtomHome: FC<Props> = ({ setListData, editData, data }) => {
 
           {/* 日付 */}
           <View style={{ marginLeft: SIZE.BASE_WP * 1.5 }}>
-            <Text style={{ fontSize: FONTSIZE.SIZE20PX, fontWeight: 'bold' }}>
+            <Text style={styles.dateText}>
               {`${moment().format('YYYY年MM月DD日')}`}
             </Text>
           </View>
@@ -125,6 +125,10 @@ const styles = StyleSheet.create({
   },
   settingArea: {
     flexDirection: 'row',
+  },
+  dateText: {
+    fontSize: FONTSIZE.SIZE20PX,
+    fontWeight: 'bold',
   },
   touchRightArea: {
     flexDirection: 'row',
