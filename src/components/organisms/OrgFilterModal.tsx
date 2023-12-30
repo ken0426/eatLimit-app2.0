@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 import 'react-native-get-random-values';
@@ -10,6 +10,8 @@ import { FILTER_TAB_BAR } from '../../contents';
 import MolModalSelectItem from '../molecules/MolModalSelectItem';
 import { FILTER_MODAL_SELECT_BUTTON_DATA } from '../../contents/filterModalSelectButtonData';
 import { TargetFilterData } from '../../types';
+import { useRootSelector } from '../../redux/store/store';
+import MolModalTagSelect from '../molecules/MolModalTagSelect';
 
 /** フィルターとして実装する機能
  * - 画像が存在するもの
@@ -36,7 +38,13 @@ const OrgFilterModal: FC<Props> = ({
   isRestButton,
   setIsRestButton,
 }) => {
-  const [selectBar, setSelectBar] = useState<0 | 1>(0);
+  const [selectBar, setSelectBar] = useState<0 | 1 | 2>(0);
+  const tagList = useRootSelector((state) => state.common.tagList);
+
+  /** もしタグタブを選択している状態で、保存しているタグが消えた場合は、「フィルター」タブに戻す */
+  useEffect(() => {
+    if (tagList.length === 0) setSelectBar(0);
+  }, [tagList]);
 
   return (
     <Modal isVisible={isVisible}>
@@ -66,6 +74,9 @@ const OrgFilterModal: FC<Props> = ({
                 ))
               )}
             </View>
+            {tagList.length > 0 && (
+              <MolModalTagSelect selectBar={selectBar} tagList={tagList} />
+            )}
             <View
               style={
                 selectBar === FILTER_TAB_BAR.SORT ? styles.flex : styles.none

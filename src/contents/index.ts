@@ -138,6 +138,8 @@ export const FILTER_TAB_BAR = {
   FILTER: 0,
   /** 並び替えタブ */
   SORT: 1,
+  /** タグ */
+  TAG: 2,
 } as const;
 
 /** 登録変更画面での日付のエラーメッセージ */
