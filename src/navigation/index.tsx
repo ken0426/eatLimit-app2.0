@@ -66,7 +66,7 @@ const RootStackScreen = () => {
       <Stack.Screen
         name={'homeScreen'}
         component={HomeScreen}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, animation: 'fade' }}
       />
       <Stack.Screen
         name={'detailScreen'}
