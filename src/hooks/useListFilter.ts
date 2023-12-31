@@ -7,6 +7,7 @@ import {
 } from '../contents';
 import { ApiData, TargetFilterData } from '../types';
 import moment from 'moment';
+import { useRootSelector } from '../redux/store/store';
 
 /** 画像のみ表示 */
 const IMAGE_SELECT = {
@@ -33,6 +34,7 @@ export const useListFilter = (
   /** モーダルの表示非表示のフラグ */
   isVisible: boolean
 ) => {
+  const tagList = useRootSelector((state) => state.common.tagList);
   const [listFilterData, setListFilterData] = useState<ApiData[]>(editData);
 
   useEffect(() => setListFilterData(editData), [editData]);
@@ -90,14 +92,19 @@ export const useListFilter = (
         (item) => item.elementName === LABEL_NAME.PRESERVATION
       )?.id;
 
+      /** 選択中のタグのボタンのIDを取得 */
+      const selectedTagIds = filterData.find(
+        (item) => item.elementName === LABEL_NAME.TAG
+      )?.id as string[] | undefined;
+
       /** 複数選択で何を選択しどのリストを表示するか決める共通ロジック */
       const getMultiSelectedData = (
-        multiSelectedData: string[],
+        multiSelectedIds: string[],
         type: string
       ) => {
-        if (Array.isArray(multiSelectedData)) {
+        if (Array.isArray(multiSelectedIds)) {
           const managementData: ApiData[] = [];
-          multiSelectedData.forEach((item) => {
+          multiSelectedIds.forEach((item) => {
             const filterDisplayData = listData.filter((itm) => {
               if (type === LABEL_NAME.MANAGEMENT) {
                 return itm.management === managementTextData[Number(item) - 1];
@@ -121,10 +128,22 @@ export const useListFilter = (
       if (Array.isArray(keepIds)) {
         getMultiSelectedData(keepIds, LABEL_NAME.PRESERVATION);
       }
+      if (Array.isArray(selectedTagIds)) {
+        const tagData = listData.filter((item) => item.tagData);
+        const filterTagData = tagData.filter((item) => {
+          const itemTagData = item.tagData;
+          return itemTagData!.find((item) => selectedTagIds.includes(item.id));
+        });
+        if (tagList.find((item) => selectedTagIds.includes(item.id))) {
+          listData = filterTagData;
+        } else {
+          listData = [...listData];
+        }
+      }
     }
 
     setListFilterData(listData);
-  }, [isVisible, editData]);
+  }, [isVisible, editData, tagList]);
 
   /** 最終的に一覧画面に表示するデータをセット */
   useEffect(() => {

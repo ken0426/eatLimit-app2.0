@@ -75,7 +75,12 @@ const OrgFilterModal: FC<Props> = ({
               )}
             </View>
             {tagList.length > 0 && (
-              <MolModalTagSelect selectBar={selectBar} tagList={tagList} />
+              <MolModalTagSelect
+                selectBar={selectBar}
+                tagList={tagList}
+                filterData={filterData}
+                setTargetFilterData={setTargetFilterData}
+              />
             )}
             <View
               style={

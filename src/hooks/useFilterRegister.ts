@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { TargetFilterData } from '../types';
 import { FILTER_MODAL_SELECT_BUTTON_DATA } from '../contents/filterModalSelectButtonData';
+import { useRootSelector } from '../redux/store/store';
+import { LABEL_NAME } from '../contents';
 
 export const useFilterRegister = (isRestButton: boolean) => {
+  const tagList = useRootSelector((state) => state.common.tagList);
   const firstFilterData = FILTER_MODAL_SELECT_BUTTON_DATA[0].FILTER.filter(
     (item) => item.DATA.length === 2
   );
@@ -51,6 +54,24 @@ export const useFilterRegister = (isRestButton: boolean) => {
     },
     [filterData]
   );
+
+  /** タグを削除や変更をした時にリストを更新 */
+  useEffect(() => {
+    const tagData =
+      filterData.find((item) => item.elementName === LABEL_NAME.TAG)?.id ?? [];
+    const filterTagList = tagList.filter((item) => tagData.includes(item.id));
+    const newFilterData = filterData.map((item) => {
+      if (item.elementName === LABEL_NAME.TAG) {
+        return {
+          elementName: LABEL_NAME.TAG,
+          id: filterTagList.map((itm) => itm.id),
+        };
+      } else {
+        return item;
+      }
+    });
+    setFilterData(newFilterData);
+  }, [tagList]);
 
   /** リセットボタンが押された時に初期状態のリストに戻すためのhook */
   useEffect(() => {

@@ -23,6 +23,7 @@ const filterModalState: FilterSelectedData = {
     multi: {
       [LABEL_NAME.MANAGEMENT]: [],
       [LABEL_NAME.PRESERVATION]: [],
+      [LABEL_NAME.TAG]: [],
     },
   },
 };
@@ -61,6 +62,9 @@ export const filterModalSlice = createSlice({
           [LABEL_NAME.PRESERVATION]:
             payload?.multi?.[LABEL_NAME.PRESERVATION] ??
             state.filterSelectedData.multi[LABEL_NAME.PRESERVATION],
+          [LABEL_NAME.TAG]:
+            payload?.multi?.[LABEL_NAME.TAG] ??
+            state.filterSelectedData.multi[LABEL_NAME.TAG],
         },
       };
     },

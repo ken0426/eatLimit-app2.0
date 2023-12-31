@@ -13,7 +13,12 @@ import { auth } from '../firebase';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
-import { BUTTON_TEXT, HEADER_TYPE, MODAL_MESSAGE } from '../contents';
+import {
+  BUTTON_TEXT,
+  HEADER_TYPE,
+  LABEL_NAME,
+  MODAL_MESSAGE,
+} from '../contents';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomButton from './atoms/AtomButton';
 import { useRootDispatch, useRootSelector } from '../redux/store/store';
@@ -21,6 +26,7 @@ import { setTagList } from '../redux/slices/commonSlice';
 import { StackPramList } from '../types';
 import OrgModalDefault from './organisms/OrgModalDefault';
 import { deleteTag, saveTag, saveTagOrder, saveUpdateTag } from '../api';
+import { setFilterSelectedData } from '../redux/slices/filterModalSlice';
 
 const TagRegisterScreen = () => {
   const route = useRoute<RouteProp<StackPramList, 'tagRegisterScreen'>>();
@@ -29,6 +35,9 @@ const TagRegisterScreen = () => {
   const inputRef = useRef<TextInput>(null);
   const tagList = useRootSelector((state) => state.common.tagList);
   const tagsOrderId = useRootSelector((state) => state.common.tagsOrderId);
+  const filterTagSelected = useRootSelector(
+    (state) => state.filterModal.filterSelectedData.multi.tag
+  );
   const tagData = route.params?.data;
   const setListData = route.params?.setListData;
   const [text, setText] = useState(tagData?.name || '');
@@ -102,6 +111,18 @@ const TagRegisterScreen = () => {
         setListData(postTagData);
         dispatch(setTagList(postTagData));
         setIsVisible(false);
+        if (filterTagSelected.includes(tagData.id)) {
+          // タグの選択状態を解除
+          dispatch(
+            setFilterSelectedData({
+              multi: {
+                [LABEL_NAME.TAG]: filterTagSelected.filter(
+                  (id) => id !== tagData.id
+                ),
+              },
+            })
+          );
+        }
         navigation.goBack();
         if (!postTagData.length) {
           // タグのデータをすべて削除した場合は設定画面に戻す
