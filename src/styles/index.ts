@@ -48,6 +48,8 @@ export const COLORS = {
   BLACK: '#000000',
   /** 詳細画面の背景色 */
   DETAIL_BACKGROUND: '#e4e4e4',
+  /** 一括削除の色 */
+  LIST_DELETE: '#beeec8',
 };
 
 export const SIZE = {

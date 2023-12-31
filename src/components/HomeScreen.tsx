@@ -20,6 +20,7 @@ import { StyleSheet } from 'react-native';
 import { auth, db } from '../firebase';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import { listDisplayAdaptor } from '../adaptor/listDisplayAdaptor';
+import AtomLoading from './atoms/AtomLoading';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
@@ -31,6 +32,14 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
   const [listData, setListData] = useState<ApiData[]>([]);
   const [editData, setEditData] = useState<ApiData[]>([]);
   const [newData, setNewData] = useState<ApiData[]>([]);
+  /** 一括削除を押したかどうかの判定フラグ */
+  const [deletePress, setDeletePress] = useState<boolean>(false);
+  /** 削除する商品のID */
+  const [deleteIds, setDeleteIds] = useState<string[]>([]);
+  /** ローディングのフラグ */
+  const [isLoading, setIsLoading] = useState(false);
+
+  console.log(deleteIds);
 
   /** DBからデータを取得 */
   useEffect(() => {
@@ -130,13 +139,30 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
   }, []);
 
   const renderItem: ListRenderItem<ApiData> = ({ item, index }) => (
-    <OrgList item={item} index={index} navigation={navigation} />
+    <OrgList
+      item={item}
+      index={index}
+      navigation={navigation}
+      deletePress={deletePress}
+      setDeletePress={setDeletePress}
+      deleteIds={deleteIds}
+      setDeleteIds={setDeleteIds}
+    />
   );
 
   return (
     <View style={styles.contents}>
       <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
-        <AtomHome setListData={setListData} editData={editData} data={data} />
+        <AtomHome
+          setListData={setListData}
+          editData={editData}
+          data={data}
+          deletePress={deletePress}
+          setDeletePress={setDeletePress}
+          deleteIds={deleteIds}
+          setDeleteIds={setDeleteIds}
+          setIsLoading={setIsLoading}
+        />
       </MolHeader>
       <AtomCountDisplay listData={data} />
       {data.length ? (
@@ -148,6 +174,7 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
       ) : (
         <NoListScreen displayText={'商品が登録されていません。'} />
       )}
+      {isLoading && <AtomLoading />}
     </View>
   );
 };

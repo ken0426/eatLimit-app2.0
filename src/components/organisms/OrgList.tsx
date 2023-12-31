@@ -16,9 +16,21 @@ type Props = {
   item: ApiData;
   index: number;
   navigation: StackNavigationProp<StackPramList, 'homeScreen' | 'searchScreen'>;
+  deletePress?: boolean;
+  setDeletePress?: (e: boolean) => void;
+  setDeleteIds?: (e: string[]) => void;
+  deleteIds?: string[];
 };
 
-const OrgList: FC<Props> = ({ item, index, navigation }) => {
+const OrgList: FC<Props> = ({
+  item,
+  index,
+  navigation,
+  deletePress,
+  setDeletePress,
+  deleteIds,
+  setDeleteIds,
+}) => {
   const dispatch = useRootDispatch();
   const imageId = useRootSelector((state) => state.common.imageId);
   const isImage = imageId === DISPLAY_IMAGE_ID;
@@ -41,10 +53,37 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
   return (
     <TouchableOpacity
       key={Number(index)}
-      style={index === 0 ? styles.listTop : styles.list}
+      style={
+        index === 0
+          ? deleteIds?.includes(item.id)
+            ? styles.deleteListTop
+            : styles.listTop
+          : deleteIds?.includes(item.id)
+          ? styles.deleteList
+          : styles.list
+      }
       onPress={() => {
-        navigation.navigate('detailScreen', { item });
-        dispatch(setUpdateRegisterData(item));
+        if (deletePress) {
+          if (deleteIds?.includes(item.id)) {
+            if (deleteIds.length === 1) {
+              setDeletePress!(false);
+              setDeleteIds!([]);
+            } else {
+              setDeleteIds!(deleteIds.filter((id) => id !== item.id));
+            }
+          } else {
+            setDeleteIds!([...(deleteIds || []), item.id]);
+          }
+        } else {
+          navigation.navigate('detailScreen', { item });
+          dispatch(setUpdateRegisterData(item));
+        }
+      }}
+      onLongPress={() => {
+        if (setDeleteIds && setDeletePress) {
+          setDeleteIds([item.id]);
+          setDeletePress(true);
+        }
       }}
     >
       {isImage && (
@@ -79,6 +118,13 @@ const OrgList: FC<Props> = ({ item, index, navigation }) => {
 export default OrgList;
 
 const styles = StyleSheet.create({
+  deleteList: {
+    height: SIZE.BASE_HP * 11,
+    borderBottomWidth: SIZE.BASE_HP * 0.06,
+    borderColor: COLORS.BORDER_LINE,
+    flexDirection: 'row',
+    backgroundColor: COLORS.LIST_DELETE,
+  },
   list: {
     height: SIZE.BASE_HP * 11,
     borderBottomWidth: SIZE.BASE_HP * 0.06,
@@ -88,6 +134,14 @@ const styles = StyleSheet.create({
   },
   listTextFooter: {
     flexDirection: 'row',
+  },
+  deleteListTop: {
+    height: SIZE.BASE_HP * 11,
+    borderBottomWidth: SIZE.BASE_HP * 0.06,
+    borderColor: COLORS.BORDER_LINE,
+    flexDirection: 'row',
+    backgroundColor: COLORS.LIST_DELETE,
+    borderTopWidth: SIZE.BASE_HP * 0.06,
   },
   listTop: {
     height: SIZE.BASE_HP * 11,
