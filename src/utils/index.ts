@@ -342,7 +342,12 @@ export const registerValidationCheck = ({
       return true;
     } else if (
       typeof registerDate?.value === 'string' &&
-      moment().isAfter(registerDate.value, 'day')
+      moment().isAfter(
+        typeof approximateDeadlineData?.value === 'string'
+          ? approximateDeadlineData.value
+          : registerDate.value,
+        'day'
+      )
     ) {
       setIsDateBefore(true);
       return true;
