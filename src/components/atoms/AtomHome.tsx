@@ -128,6 +128,12 @@ const AtomHome: FC<Props> = ({
               style={styles.deleteButtonArea}
               onPress={() => setIsDeleteVisible(true)}
             >
+              <SvgIcon
+                type={'materialIcons'}
+                name={'delete-outline'}
+                size={24}
+                color={COLORS.MAIN_TEXT_COLOR}
+              />
               <Text style={styles.deleteText}>一括削除</Text>
             </TouchableOpacity>
           </View>
@@ -228,6 +234,7 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
   },
   deleteText: {
     fontSize: FONTSIZE.SIZE20PX,
