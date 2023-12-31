@@ -29,30 +29,28 @@ export const fetchTag = async (userId: string) => {
       });
     });
 
-    if (data.length) {
-      const tagIds = await getDocs(collection(db, `users/${userId}/tagsOrder`));
-      const tagIdsData: string[] = [];
-      let tagsOrderId = '';
-      tagIds.forEach((doc) => {
-        tagIdsData.push(...doc.data().tagData);
-        tagsOrderId = doc.id;
-      });
+    const tagIds = await getDocs(collection(db, `users/${userId}/tagsOrder`));
+    const tagIdsData: string[] = [];
+    let tagsOrderId = '';
+    tagIds.forEach((doc) => {
+      tagIdsData.push(...doc.data().tagData);
+      tagsOrderId = doc.id;
+    });
 
-      store.dispatch(setTagsOrderId(tagsOrderId));
-      if (tagIdsData.length === data.length) {
-        // タグのデータとタグのIDの並び順を保持するデータの数が同じの場合
-        const editData = tagIdsData.map((id) => {
-          const tagName = data.find((tag) => tag.id === id)?.name;
-          return {
-            id,
-            name: tagName,
-          };
-        });
-        store.dispatch(setTagList(editData));
-      } else {
-        // タグのデータとタグのIDの並び順を保持するデータの数が異なる場合（エラーなどでタグの並び順のデータが保存できなかった場合などはfirebaseに保存されているタグのデータの並び順で表示）
-        store.dispatch(setTagList(data));
-      }
+    store.dispatch(setTagsOrderId(tagsOrderId));
+    if (tagIdsData.length === data.length) {
+      // タグのデータとタグのIDの並び順を保持するデータの数が同じの場合
+      const editData = tagIdsData.map((id) => {
+        const tagName = data.find((tag) => tag.id === id)?.name;
+        return {
+          id,
+          name: tagName,
+        };
+      });
+      store.dispatch(setTagList(editData));
+    } else {
+      // タグのデータとタグのIDの並び順を保持するデータの数が異なる場合（エラーなどでタグの並び順のデータが保存できなかった場合などはfirebaseに保存されているタグのデータの並び順で表示）
+      store.dispatch(setTagList(data));
     }
   } catch (error) {}
 };
