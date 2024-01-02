@@ -1,5 +1,5 @@
-import React, { FC, useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { FC, useEffect, useRef, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { DatePicker } from 'react-native-woodpicker';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import AtomRequire from './AtomRequire';
@@ -41,6 +41,7 @@ const AtomDate: FC<Props> = ({
   plusDate = 10,
   dateData,
 }) => {
+  const datePickerRef = useRef<any>();
   const dateYear = dateData ? new Date(dateData).getFullYear() : 0;
   const getDate = () => {
     if (copyDate) {
@@ -108,7 +109,10 @@ const AtomDate: FC<Props> = ({
   }, [pickedDate]);
 
   return (
-    <View style={styles.contents}>
+    <TouchableOpacity
+      onPress={() => datePickerRef.current?.open()}
+      style={styles.contents}
+    >
       <View style={styles.container}>
         <View style={styles.labelArea}>
           {isRequired ? (
@@ -120,6 +124,7 @@ const AtomDate: FC<Props> = ({
 
         <View style={styles.selectArea}>
           <DatePicker
+            ref={datePickerRef}
             textColor='#000000'
             textInputStyle={styles.DatePickerTextInput}
             value={pickedDate}
@@ -146,7 +151,7 @@ const AtomDate: FC<Props> = ({
       </View>
       {/* TODO 日付の計算をしてエラーメッセージを表示する */}
       {errorMessage && <Text style={styles.errorMessage}>{errorMessage}</Text>}
-    </View>
+    </TouchableOpacity>
   );
 };
 
