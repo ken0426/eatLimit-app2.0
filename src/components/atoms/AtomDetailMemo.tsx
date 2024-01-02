@@ -70,9 +70,6 @@ const styles = StyleSheet.create({
   memoArea: {
     paddingBottom: SIZE.BASE_WP * 6,
   },
-  scrollArea: {
-    maxHeight: heightPercentageToDP('40%'),
-  },
   memoText: {
     fontSize: FONTSIZE.SIZE20PX,
   },
