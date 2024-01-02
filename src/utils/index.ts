@@ -12,6 +12,8 @@ import {
 } from '../contents';
 import { auth } from '../firebase';
 import moment from 'moment';
+import store from '../redux/store/store';
+import { setUserEmail } from '../redux/slices/loginSlice';
 
 type Data = {
   data: {
@@ -195,6 +197,7 @@ export const handleLogin = async ({
         letterAndNumberRegex.test(password)
       ) {
         await signInWithEmailAndPassword(auth, mailAddress, password);
+        store.dispatch(setUserEmail(mailAddress));
       }
     } else {
       if (mailAddress === '') {
@@ -256,6 +259,7 @@ export const handleLogin = async ({
           letterAndNumberRegex.test(password)
         ) {
           await createUserWithEmailAndPassword(auth, mailAddress, password);
+          store.dispatch(setUserEmail(mailAddress));
         }
       } else {
         if (password === '') {

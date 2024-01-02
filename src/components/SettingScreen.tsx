@@ -25,6 +25,7 @@ import AtomSettingLabel from './atoms/AtomSettingLabel';
 import MolSettingList from './molecules/MolSettingList';
 import { auth } from '../firebase';
 import { setTagList, setTagsOrderId } from '../redux/slices/commonSlice';
+import { setUserEmail } from '../redux/slices/loginSlice';
 
 const SettingScreen = () => {
   const dispatch = useRootDispatch();
@@ -99,6 +100,8 @@ const SettingScreen = () => {
                         dispatch(setTagList([]));
                         // タグの並び順を保存しているfirebaseのIDをクリア
                         dispatch(setTagsOrderId(''));
+                        /** ユーザーのメールアドレスをクリア */
+                        dispatch(setUserEmail(''));
                         navigation.reset({
                           index: 0,
                           routes: [{ name: 'topScreen' }],

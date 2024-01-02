@@ -25,10 +25,12 @@ import TagUpdateScreen from '../components/TagUpdateScreen';
 /** その他 */
 import { fetchTag } from '../api';
 import { StackPramList } from '../types';
+import { setUserEmail } from '../redux/slices/loginSlice';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
 const RootStackScreen = () => {
+  const dispatch = useRootDispatch();
   const navigation = useNavigation<StackNavigationProp<StackPramList>>();
 
   /** 自動ログイン */
@@ -38,6 +40,8 @@ const RootStackScreen = () => {
         if (user) {
           /** ログイン情報が取得できたらユーザーが保存しているタグ情報を取得する */
           await fetchTag(user.uid);
+
+          dispatch(setUserEmail(user.email));
 
           /** ユーザー情報を取得できたらホーム画面へ遷移する */
           navigation.reset({

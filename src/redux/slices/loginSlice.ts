@@ -1,11 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const loginState = {};
+const loginState = {
+  userEmail: '',
+};
 
 export const loginSlice = createSlice({
   name: 'login',
   initialState: loginState,
-  reducers: {},
+  reducers: {
+    /** ログインしているユーザーのメアドを管理 */
+    setUserEmail: (state, { payload }) => {
+      state.userEmail = payload;
+    },
+  },
 });
 
-export const {} = loginSlice.actions;
+export const { setUserEmail } = loginSlice.actions;
