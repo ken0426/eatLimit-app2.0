@@ -272,7 +272,6 @@ export const handleLogin = async ({
       }
     }
   } catch (error: any) {
-    console.log(error.code);
     if (error.code === 'auth/user-not-found') {
       Alert.alert('接続エラー', 'メールアドレスまたはパスワードが違います', [
         { text: 'OK', onPress: () => {} },

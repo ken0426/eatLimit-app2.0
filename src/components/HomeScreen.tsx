@@ -39,8 +39,6 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
   /** ローディングのフラグ */
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(deleteIds);
-
   /** DBからデータを取得 */
   useEffect(() => {
     if (auth.currentUser === null) return;
