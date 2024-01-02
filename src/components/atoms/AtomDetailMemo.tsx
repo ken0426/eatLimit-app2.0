@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Accordion from '@gapur/react-native-accordion';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
-import { heightPercentageToDP } from 'react-native-responsive-screen';
 import { ApiData } from '../../types';
 import AtomMemoAccordionRenderItem from './AtomMemoAccordionRenderItem';
 
