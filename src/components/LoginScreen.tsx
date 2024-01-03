@@ -68,24 +68,7 @@ const LoginScreen: FC<Props> = ({ route }) => {
           <Text style={styles.title}>
             {isLoginScreen ? 'ログイン' : 'アカウント登録'}
           </Text>
-          <TouchableOpacity
-            style={styles.changeButtonArea}
-            onPress={() => {
-              postData.forEach((item) =>
-                setTargetPostData({ key: item.key, value: '' })
-              );
-              setMailAddressErrorMessage(null);
-              setPasswordErrorMessage(null);
-              setPasswordConfirmationErrorMessage(null);
-              setIsLoginScreen(!isLoginScreen);
-            }}
-          >
-            <Text style={styles.changeButton}>
-              {isLoginScreen
-                ? 'アカウントをお持ちでない方はこちらで新規登録'
-                : 'アカウントをお持ちの方はこちらでログイン'}
-            </Text>
-          </TouchableOpacity>
+
           <View style={styles.textInputArea}>
             <AtomAuthInput
               text={'メールアドレス'}
@@ -142,6 +125,25 @@ const LoginScreen: FC<Props> = ({ route }) => {
               text={isLoginScreen ? 'ログイン' : '新規登録'}
             />
           </View>
+
+          <TouchableOpacity
+            style={styles.changeButtonArea}
+            onPress={() => {
+              postData.forEach((item) =>
+                setTargetPostData({ key: item.key, value: '' })
+              );
+              setMailAddressErrorMessage(null);
+              setPasswordErrorMessage(null);
+              setPasswordConfirmationErrorMessage(null);
+              setIsLoginScreen(!isLoginScreen);
+            }}
+          >
+            <Text style={styles.changeButton}>
+              {isLoginScreen
+                ? 'アカウントをお持ちでない方はこちらで新規登録'
+                : 'アカウントをお持ちの方はこちらでログイン'}
+            </Text>
+          </TouchableOpacity>
         </View>
       </TouchableWithoutFeedback>
 
@@ -178,6 +180,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: FONTSIZE.SIZE25PX,
+    marginBottom: SIZE.BASE_WP * 4.5,
   },
   textInputArea: {
     width: '100%',
