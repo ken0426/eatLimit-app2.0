@@ -39,15 +39,19 @@ const RootStackScreen = () => {
       try {
         if (user) {
           /** ログイン情報が取得できたらユーザーが保存しているタグ情報を取得する */
-          await fetchTag(user.uid);
+          if (user.emailVerified) {
+            await fetchTag(user.uid);
 
-          dispatch(setUserEmail(user.email));
+            dispatch(setUserEmail(user.email));
 
-          /** ユーザー情報を取得できたらホーム画面へ遷移する */
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'homeScreen' }],
-          });
+            /** ユーザー情報を取得できたらホーム画面へ遷移する */
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'homeScreen' }],
+            });
+          } else {
+            alert('メールアドレス認証をしてください');
+          }
         }
       } catch (error) {}
     });

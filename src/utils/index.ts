@@ -1,6 +1,7 @@
 import { Alert, Dimensions, KeyboardTypeOptions, Platform } from 'react-native';
 import {
   createUserWithEmailAndPassword,
+  sendEmailVerification,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { ApiData, HandleLoginType, PostData, TagData } from '../types';
@@ -258,7 +259,15 @@ export const handleLogin = async ({
           alphanumericAndSymbolsRegex.test(password) &&
           letterAndNumberRegex.test(password)
         ) {
-          await createUserWithEmailAndPassword(auth, mailAddress, password);
+          const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            mailAddress,
+            password
+          );
+
+          /** 登録者にメールを送信する */
+          await sendEmailVerification(userCredential.user);
+
           store.dispatch(setUserEmail(mailAddress));
         }
       } else {
@@ -278,6 +287,10 @@ export const handleLogin = async ({
   } catch (error: any) {
     if (error.code === 'auth/user-not-found') {
       Alert.alert('接続エラー', 'メールアドレスまたはパスワードが違います', [
+        { text: 'OK', onPress: () => {} },
+      ]);
+    } else if (error.code === 'auth/email-already-in-use') {
+      Alert.alert('接続エラー', 'このメールアドレスはすでに使用されています', [
         { text: 'OK', onPress: () => {} },
       ]);
     } else {
