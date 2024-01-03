@@ -38,6 +38,8 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
   const [deleteIds, setDeleteIds] = useState<string[]>([]);
   /** ローディングのフラグ */
   const [isLoading, setIsLoading] = useState(false);
+  /** 商品が登録されているかどうかのフラグ */
+  const [isRegisterList, setIsRegisterList] = useState<boolean>(false);
 
   /** DBからデータを取得 */
   useEffect(() => {
@@ -55,6 +57,11 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
       });
 
       setNewData(data);
+      if (data.length) {
+        setIsRegisterList(true);
+      } else {
+        setIsRegisterList(false);
+      }
     });
 
     return unsubscribe;
@@ -170,7 +177,13 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
           keyExtractor={(_, index) => index.toString()}
         />
       ) : (
-        <NoListScreen displayText={'商品が登録されていません。'} />
+        <NoListScreen
+          displayText={
+            isRegisterList
+              ? '検索結果が見つかりません。'
+              : '商品が登録されていません。'
+          }
+        />
       )}
       {isLoading && <AtomLoading />}
     </View>
