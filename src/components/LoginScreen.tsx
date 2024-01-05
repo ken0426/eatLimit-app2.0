@@ -1,11 +1,7 @@
-import { RouteProp, useNavigation } from '@react-navigation/native';
+import { RouteProp } from '@react-navigation/native';
 import React, { FC, useEffect, useState } from 'react';
 import {
-  ImageBackground,
   Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -13,19 +9,17 @@ import {
   View,
 } from 'react-native';
 import { StackPramList } from '../types';
-import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
+import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomAuthInput from './atoms/AtomAuthInput';
 import AtomAuthButton from './atoms/AtomAuthButton';
 import { useAuthInput } from '../hooks/useAuthInput';
 import { handleLogin } from '../utils';
-import SvgIcon from '../images/SvgIcon';
 
 type Props = {
   route: RouteProp<StackPramList, 'loginScreen'>;
 };
 
 const LoginScreen: FC<Props> = ({ route }) => {
-  const navigation = useNavigation();
   const isLogin = route.params.isLogin;
   const [isLoginScreen, setIsLoginScreen] = useState(isLogin);
 
@@ -154,17 +148,13 @@ const LoginScreen: FC<Props> = ({ route }) => {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  safeAreaView: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   contents: {
     flex: 1,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: SIZE.BASE_WP * 6,
+    backgroundColor: '#ffffff',
   },
   title: {
     fontSize: FONTSIZE.SIZE25PX,
@@ -185,12 +175,5 @@ const styles = StyleSheet.create({
   loginButtonArea: {
     width: '100%',
     marginTop: SIZE.BASE_WP * 4.5,
-  },
-  touchIcon: {
-    marginBottom: SIZE.BASE_WP * 2.5,
-    alignItems: 'center',
-  },
-  icon: {
-    padding: SIZE.BASE_WP * 3.5,
   },
 });

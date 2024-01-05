@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { KeyboardTypeOptions, StyleSheet, Text, View } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { TextInput } from 'react-native-paper';
+import { ThemeProp } from 'react-native-paper/lib/typescript/types';
 
 type Props = {
   value: string;
@@ -11,6 +12,13 @@ type Props = {
   setData: (e: string) => void;
   errorMessage: null | string;
   type: 'email' | 'lock';
+};
+
+const theme: ThemeProp = {
+  colors: {
+    /** エラー時のテキストカラーをデフォルトの黒色になるように設定 */
+    error: COLORS.MAIN_TEXT_COLOR,
+  },
 };
 
 const AtomAuthInput: FC<Props> = ({
@@ -33,20 +41,22 @@ const AtomAuthInput: FC<Props> = ({
           />
         }
         mode={'outlined'}
-        label={text}
+        label={` ${text}`}
         value={value}
         secureTextEntry={secureTextEntry}
         autoCapitalize={'none'}
         keyboardType={keyboardType}
-        underlineColor={COLORS.MAIN_TEXT_COLOR}
-        activeUnderlineColor={COLORS.MAIN_TEXT_COLOR}
-        outlineColor={COLORS.MAIN_TEXT_COLOR}
         onChangeText={(inputText) => setData(inputText)}
-        outlineStyle={{
-          borderWidth: 0.5,
-          borderRadius: 50,
-        }}
+        outlineStyle={styles.outlineStyle}
+        /** フォーカスが当たった時のラベルの色 */
+        activeOutlineColor={COLORS.MAIN_TEXT_COLOR}
+        /** カーソルの色 */
+        selectionColor={COLORS.MAIN_TEXT_COLOR}
+        /** 入力値の色 */
+        textColor={COLORS.MAIN_TEXT_COLOR}
+        style={styles.textInputStyle}
         error={!!errorMessage}
+        theme={theme}
       />
       {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
     </View>
@@ -57,8 +67,15 @@ export default AtomAuthInput;
 
 const styles = StyleSheet.create({
   contents: {
-    width: '100%',
-    // marginBottom: SIZE.BASE_WP,
+    marginBottom: SIZE.BASE_WP,
+  },
+  outlineStyle: {
+    borderWidth: 0.5,
+    borderRadius: 50,
+    borderColor: COLORS.MAIN_TEXT_COLOR,
+  },
+  textInputStyle: {
+    backgroundColor: '#ffffff',
   },
   text: {
     fontSize: FONTSIZE.SIZE20PX,
