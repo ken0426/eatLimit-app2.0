@@ -31,11 +31,12 @@ const styles = StyleSheet.create({
   touch: {
     width: '100%',
     alignItems: 'center',
-    borderRadius: 5,
+    borderRadius: 50,
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 2 }, // ここで影のオフセットを設定
     shadowOpacity: 0.2, // 影の透明度
     shadowRadius: 1, // 影のぼかしの範囲
+    paddingVertical: SIZE.BASE_WP * 2,
   },
   text: {
     fontSize: FONTSIZE.SIZE25PX,

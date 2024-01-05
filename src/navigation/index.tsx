@@ -69,7 +69,7 @@ const RootStackScreen = () => {
       <Stack.Screen
         name={'loginScreen'}
         component={LoginScreen}
-        options={{ headerShown: false, presentation: 'fullScreenModal' }}
+        options={{ headerShown: false, animation: 'fade' }}
       />
       <Stack.Screen
         name={'homeScreen'}
