@@ -1,7 +1,10 @@
 import { RouteProp, useNavigation } from '@react-navigation/native';
 import React, { FC, useEffect, useState } from 'react';
 import {
+  ImageBackground,
   Keyboard,
+  KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -10,7 +13,7 @@ import {
   View,
 } from 'react-native';
 import { StackPramList } from '../types';
-import { COLORS, FONTSIZE, SIZE } from '../styles';
+import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
 import AtomAuthInput from './atoms/AtomAuthInput';
 import AtomAuthButton from './atoms/AtomAuthButton';
 import { useAuthInput } from '../hooks/useAuthInput';
@@ -62,104 +65,89 @@ const LoginScreen: FC<Props> = ({ route }) => {
   }, [postData]);
 
   return (
-    <SafeAreaView style={styles.safeAreaView}>
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={styles.contents}>
-          <Text style={styles.title}>
-            {isLoginScreen ? 'ログイン' : 'アカウント登録'}
-          </Text>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.contents}>
+        <Text style={styles.title}>
+          {isLoginScreen ? 'ログイン' : 'アカウント登録'}
+        </Text>
 
-          <View style={styles.textInputArea}>
+        <View style={styles.textInputArea}>
+          <AtomAuthInput
+            text={'メールアドレス'}
+            keyboardType={'email-address'}
+            value={getValue('mailAddress') ?? ''}
+            setData={(data) =>
+              setTargetPostData({ key: 'mailAddress', value: data })
+            }
+            errorMessage={mailAddressErrorMessage}
+            type={'email'}
+          />
+          <AtomAuthInput
+            text={'パスワード'}
+            secureTextEntry={true}
+            value={getValue('password') ?? ''}
+            setData={(data) =>
+              setTargetPostData({ key: 'password', value: data })
+            }
+            errorMessage={passwordErrorMessage}
+            type={'lock'}
+          />
+          {!isLoginScreen && (
             <AtomAuthInput
-              text={'メールアドレス'}
-              keyboardType={'email-address'}
-              placeholder={'メールアドレスを入力してください'}
-              value={getValue('mailAddress') ?? ''}
-              setData={(data) =>
-                setTargetPostData({ key: 'mailAddress', value: data })
-              }
-              errorMessage={mailAddressErrorMessage}
-            />
-            <AtomAuthInput
-              text={'パスワード'}
+              text={'パスワード（確認用）'}
               secureTextEntry={true}
-              placeholder={'パスワードを入力してください'}
-              value={getValue('password') ?? ''}
+              value={getValue('passwordConfirmation') ?? ''}
               setData={(data) =>
-                setTargetPostData({ key: 'password', value: data })
-              }
-              errorMessage={passwordErrorMessage}
-            />
-            {!isLoginScreen && (
-              <AtomAuthInput
-                text={'パスワード（確認用）'}
-                secureTextEntry={true}
-                placeholder={'パスワードを入力してください'}
-                value={getValue('passwordConfirmation') ?? ''}
-                setData={(data) =>
-                  setTargetPostData({
-                    key: 'passwordConfirmation',
-                    value: data,
-                  })
-                }
-                errorMessage={passwordConfirmationErrorMessage}
-              />
-            )}
-          </View>
-
-          <View style={styles.loginButtonArea}>
-            <AtomAuthButton
-              onPress={() =>
-                handleLogin({
-                  isLoginScreen,
-                  mailAddress,
-                  password,
-                  passwordConfirmation,
-                  setMailAddressErrorMessage,
-                  setPasswordErrorMessage,
-                  setPasswordConfirmationErrorMessage,
+                setTargetPostData({
+                  key: 'passwordConfirmation',
+                  value: data,
                 })
               }
-              backgroundColor={COLORS.LOGIN_BUTTON}
-              textColor={COLORS.SIGN_IN_BUTTON}
-              text={isLoginScreen ? 'ログイン' : '新規登録'}
+              errorMessage={passwordConfirmationErrorMessage}
+              type={'lock'}
             />
-          </View>
-
-          <TouchableOpacity
-            style={styles.changeButtonArea}
-            onPress={() => {
-              postData.forEach((item) =>
-                setTargetPostData({ key: item.key, value: '' })
-              );
-              setMailAddressErrorMessage(null);
-              setPasswordErrorMessage(null);
-              setPasswordConfirmationErrorMessage(null);
-              setIsLoginScreen(!isLoginScreen);
-            }}
-          >
-            <Text style={styles.changeButton}>
-              {isLoginScreen
-                ? 'アカウントをお持ちでない方はこちらで新規登録'
-                : 'アカウントをお持ちの方はこちらでログイン'}
-            </Text>
-          </TouchableOpacity>
+          )}
         </View>
-      </TouchableWithoutFeedback>
 
-      <TouchableOpacity
-        style={styles.touchIcon}
-        onPress={() => navigation.goBack()}
-      >
-        <SvgIcon
-          type={'antDesign'}
-          name={'closecircleo'}
-          size={30}
-          color={COLORS.TEXT_LABEL}
-          style={styles.icon}
-        />
-      </TouchableOpacity>
-    </SafeAreaView>
+        <View style={styles.loginButtonArea}>
+          <AtomAuthButton
+            onPress={() =>
+              handleLogin({
+                isLoginScreen,
+                mailAddress,
+                password,
+                passwordConfirmation,
+                setMailAddressErrorMessage,
+                setPasswordErrorMessage,
+                setPasswordConfirmationErrorMessage,
+              })
+            }
+            backgroundColor={COLORS.BLACK}
+            textColor={COLORS.SIGN_IN_BUTTON}
+            text={isLoginScreen ? 'ログイン' : '新規登録'}
+          />
+        </View>
+
+        <TouchableOpacity
+          style={styles.changeButtonArea}
+          onPress={() => {
+            postData.forEach((item) =>
+              setTargetPostData({ key: item.key, value: '' })
+            );
+            setMailAddressErrorMessage(null);
+            setPasswordErrorMessage(null);
+            setPasswordConfirmationErrorMessage(null);
+            setIsLoginScreen(!isLoginScreen);
+          }}
+        >
+          <Text style={styles.changeButton}>
+            {isLoginScreen
+              ? `アカウントをお持ちでない方は\nこちらで新規登録`
+              : `アカウントをお持ちの方は\nこちらでログイン`}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -176,7 +164,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: SIZE.BASE_WP * 10,
+    paddingHorizontal: SIZE.BASE_WP * 6,
   },
   title: {
     fontSize: FONTSIZE.SIZE25PX,
@@ -192,6 +180,7 @@ const styles = StyleSheet.create({
   changeButton: {
     color: COLORS.BLUE,
     fontSize: FONTSIZE.SIZE15PX,
+    textAlign: 'center',
   },
   loginButtonArea: {
     width: '100%',
@@ -199,6 +188,7 @@ const styles = StyleSheet.create({
   },
   touchIcon: {
     marginBottom: SIZE.BASE_WP * 2.5,
+    alignItems: 'center',
   },
   icon: {
     padding: SIZE.BASE_WP * 3.5,
