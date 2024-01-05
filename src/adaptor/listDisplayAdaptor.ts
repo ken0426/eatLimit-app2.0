@@ -28,6 +28,8 @@ export const listDisplayAdaptor = (postData: PostData[], id: string) => {
                 name: string;
               }[])
             : [],
+          imageId: postData.find((item) => item.key === 'imageId')
+            ?.value as string,
         },
       ]
     : [];

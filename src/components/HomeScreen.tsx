@@ -21,6 +21,7 @@ import { auth, db } from '../firebase';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import { listDisplayAdaptor } from '../adaptor/listDisplayAdaptor';
 import AtomLoading from './atoms/AtomLoading';
+import { getListImage } from '../api';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'homeScreen'>;
@@ -67,35 +68,56 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
     return unsubscribe;
   }, []);
 
-  /** DBから取得したデータをもとにタグ情報と紐づけするhook */
+  /** DBから取得したデータをもとにタグ情報と画像データを紐づけするhook */
   useEffect(() => {
-    const newEditData = newData.map((item) => {
-      if (item.tagData?.length) {
-        const tagData = item.tagData.map((data) =>
-          tagList.find((tag) => tag.id === data.id)
-        );
-        if (
-          tagData.length &&
-          tagData.filter((tag) => tag?.name && tag.id).length
-        ) {
-          // タグのDBに保存してるIDがあればID情報をリストに追加し一覧で表示する配列を生成する。
-          const filterTagData = tagData.filter((tag) => tag?.name && tag.id);
-          return {
-            ...item,
-            tagData: filterTagData as { id: string; name: string }[],
-          };
+    (async () => {
+      const newEditData = newData.map((item) => {
+        if (item.tagData?.length) {
+          const tagData = item.tagData.map((data) =>
+            tagList.find((tag) => tag.id === data.id)
+          );
+          if (
+            tagData.length &&
+            tagData.filter((tag) => tag?.name && tag.id).length
+          ) {
+            // タグのDBに保存してるIDがあればID情報をリストに追加し一覧で表示する配列を生成する。
+            const filterTagData = tagData.filter((tag) => tag?.name && tag.id);
+            return {
+              ...item,
+              tagData: filterTagData as { id: string; name: string }[],
+            };
+          } else {
+            // 一覧のデータでタグのDBに存在していないタグIDがなければ、それは削除されたタグのため、商品データからタグIDを削除する。
+            delete item.tagData;
+            return item;
+          }
         } else {
-          // 一覧のデータでタグのDBに存在していないタグIDがなければ、それは削除されたタグのため、商品データからタグIDを削除する。
-          delete item.tagData;
+          // 商品データにそもそもタグIDが存在しない場合はそのままデータを返却する。
           return item;
         }
-      } else {
-        // 商品データにそもそもタグIDが存在しない場合はそのままデータを返却する。
-        return item;
-      }
-    });
+      });
 
-    setEditData(newEditData);
+      /** 画像データを紐づけする */
+      const finishData = await Promise.all(
+        newEditData.map(async (item) => {
+          if (item.image) {
+            const imageId = item.imageId;
+            const imageUrl = await getListImage(
+              auth.currentUser!.uid,
+              imageId!
+            );
+            return {
+              ...item,
+              image: imageUrl,
+            };
+          } else {
+            return item;
+          }
+        })
+      );
+
+      setEditData(finishData);
+    })();
   }, [newData, tagList]);
 
   /** 最終的に表示するデータを生成 */

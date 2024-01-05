@@ -3,7 +3,12 @@ import moment from 'moment';
 import * as ImagePicker from 'expo-image-picker';
 import { Dispatch } from '@reduxjs/toolkit';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { ACTION_SHEET, CAMERA_ERROR_MESSAGE, LABEL } from '../contents';
+import {
+  ACTION_SHEET,
+  CAMERA_ERROR_MESSAGE,
+  LABEL,
+  LABEL_NAME,
+} from '../contents';
 import {
   ApiData,
   HandleRegistrationPress,
@@ -19,8 +24,9 @@ import {
   setSelectMemoTemplate,
 } from '../redux/slices/commonSlice';
 import { registerValidationCheck } from '../utils';
-import { saveList } from '../api';
+import { saveImage, saveList } from '../api';
 import { auth } from '../firebase';
+import uuid from 'react-native-uuid';
 
 type Options = {
   options: string[];
@@ -156,7 +162,23 @@ export const onRegisterPress = async ({
       },
     ];
 
-    await saveList(newPostData, auth.currentUser.uid, saveType, updateListId);
+    const imageData = newPostData.find((item) => item.key === LABEL_NAME.IMAGE)
+      ?.value as string;
+    const imageId = uuid.v4() as string;
+    // TODO ここですでにimageIdを持っていたらそれを使う？（画像変更の場合）
+    if (imageData) {
+      /** 画像をDBに保存する */
+      await saveImage(auth.currentUser.uid, imageData, imageId);
+    }
+
+    const saveData = imageData
+      ? ([
+          ...newPostData,
+          { isRequired: true, key: 'imageId', value: imageId },
+        ] as PostData[])
+      : newPostData;
+
+    await saveList(saveData, auth.currentUser.uid, saveType, updateListId);
     if (copyData) {
       navigation.pop(2);
     } else {
