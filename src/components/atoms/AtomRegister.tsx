@@ -6,13 +6,13 @@ import { ApiData, PostData, StackPramList } from '../../types';
 import { COLORS, FONTSIZE } from '../../styles';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { onRegisterPress } from '../../functions';
-import { BUTTON_TEXT } from '../../contents';
+import { BUTTON_TEXT, LABEL_NAME } from '../../contents';
 import { useNavigation } from '@react-navigation/native';
 import { useRootDispatch } from '../../redux/store/store';
 import { setTagSelectedIds } from '../../redux/slices/commonRegisterSlice';
 import SvgIcon from '../../images/SvgIcon';
 import { registerValidationCheck } from '../../utils';
-import { deleteList } from '../../api';
+import { deleteImage, deleteList } from '../../api';
 import { auth } from '../../firebase';
 
 type Props = {
@@ -73,25 +73,35 @@ const AtomRegister: FC<Props> = ({
           },
         ]
       : message === '本当に削除しますか？'
-      ? [
-          {
-            text: BUTTON_TEXT.CANCEL,
-            onPress: () => {
-              setIsVisible(false);
+        ? [
+            {
+              text: BUTTON_TEXT.CANCEL,
+              onPress: () => {
+                setIsVisible(false);
+              },
             },
-          },
-          {
-            text: BUTTON_TEXT.DECISION,
-            onPress: async () => {
-              await deleteList(auth.currentUser!.uid, updateListId!);
-              dispatch(setTagSelectedIds([]));
-              setIsVisible(false);
-              navigation.goBack();
-              navigation.goBack();
+            {
+              text: BUTTON_TEXT.DECISION,
+              onPress: async () => {
+                /** 商品を削除 */
+                await deleteList(auth.currentUser!.uid, updateListId!);
+                /** 選択しているタグをリセット */
+                dispatch(setTagSelectedIds([]));
+                /** 商品に画像がある場合画像のIDを取得 */
+                const imageId = postData.find(
+                  (item) => item.key === LABEL_NAME.IMAGE_ID
+                )?.value as string;
+                if (imageId) {
+                  /** 商品の画像を削除 */
+                  await deleteImage(auth.currentUser!.uid, imageId);
+                }
+                setIsVisible(false);
+                navigation.goBack();
+                navigation.goBack();
+              },
             },
-          },
-        ]
-      : [{ text: BUTTON_TEXT.CLOSE, onPress: () => setIsVisible(false) }];
+          ]
+        : [{ text: BUTTON_TEXT.CLOSE, onPress: () => setIsVisible(false) }];
 
   /** 日付項目で日付と登録する日付を比較して登録する日付が過去の日付の場合、表示するモーダルデータ */
   const dateData = [

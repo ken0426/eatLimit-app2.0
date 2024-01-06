@@ -99,13 +99,20 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
               <View style={{ width: '100%' }}>
                 <AtomFileSelect
-                  setData={(data) =>
+                  setData={(data) => {
                     setTargetPostData({
                       key: LABEL_NAME.IMAGE,
                       value: data.value,
                       isRequired: data.isRequired,
-                    })
-                  }
+                    });
+                    if (updateData.imageId) {
+                      setTargetPostData({
+                        key: LABEL_NAME.IMAGE_ID,
+                        value: updateData.imageId,
+                        isRequired: false,
+                      });
+                    }
+                  }}
                 />
                 <View style={styles.inputForm}>
                   <AtomSingleInput

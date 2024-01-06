@@ -24,7 +24,7 @@ import {
   setSelectMemoTemplate,
 } from '../redux/slices/commonSlice';
 import { registerValidationCheck } from '../utils';
-import { saveImage, saveList } from '../api';
+import { deleteImage, saveImage, saveList } from '../api';
 import { auth } from '../firebase';
 import uuid from 'react-native-uuid';
 
@@ -164,11 +164,16 @@ export const onRegisterPress = async ({
 
     const imageData = newPostData.find((item) => item.key === LABEL_NAME.IMAGE)
       ?.value as string;
-    const imageId = uuid.v4() as string;
-    // TODO ここですでにimageIdを持っていたらそれを使う？（画像変更の場合）
+    const imageUpdateId = newPostData.find(
+      (item) => item.key === LABEL_NAME.IMAGE_ID
+    )?.value as string;
+    const imageId = saveType === 'add' ? (uuid.v4() as string) : imageUpdateId!;
     if (imageData) {
       /** 画像をDBに保存する */
       await saveImage(auth.currentUser.uid, imageData, imageId);
+    } else if (!imageData && imageUpdateId) {
+      /** 画像を削除する */
+      await deleteImage(auth.currentUser.uid, imageUpdateId);
     }
 
     const saveData = imageData

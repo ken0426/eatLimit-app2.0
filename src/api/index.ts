@@ -14,7 +14,13 @@ import { PostData, TagData } from '../types';
 import { getTagId } from '../utils';
 import { listDisplayAdaptor } from '../adaptor/listDisplayAdaptor';
 import { setUpdateRegisterData } from '../redux/slices/commonRegisterSlice';
-import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import {
+  deleteObject,
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from 'firebase/storage';
 
 /** ユーザーが保存しているタグのデータを取得 */
 export const fetchTag = async (userId: string) => {
@@ -207,4 +213,15 @@ export const getListImage = async (userId: string, imageId: string) => {
   const imageUrl: string = await getImageUrl(`image/${userId}/${imageId}`);
 
   return imageUrl;
+};
+
+/** 画像データを削除 */
+export const deleteImage = async (userId: string, imageId: string) => {
+  try {
+    const storage = getStorage();
+    const imageRef = ref(storage, `image/${userId}/${imageId}`);
+    await deleteObject(imageRef);
+  } catch (error) {
+    throw error;
+  }
 };

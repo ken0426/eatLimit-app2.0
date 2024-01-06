@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import moment from 'moment';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -13,7 +13,7 @@ import { useListFilter } from '../../hooks/useListFilter';
 import SvgIcon from '../../images/SvgIcon';
 import OrgModalDefault from '../organisms/OrgModalDefault';
 import { BUTTON_TEXT } from '../../contents';
-import { deleteList } from '../../api';
+import { deleteImage, deleteList } from '../../api';
 import { auth } from '../../firebase';
 
 type Props = {
@@ -53,6 +53,13 @@ const AtomHome: FC<Props> = ({
   /** 一覧画面用 */
   useListFilter(editData, filterData, setListData, isVisible);
 
+  /** 削除する画像のID */
+  const deleteImageIds = useMemo(() => {
+    return editData.flatMap((item) =>
+      deleteIds.includes(item.id) && item.imageId ? [item.imageId] : []
+    );
+  }, [deleteIds]);
+
   /** 一括削除のモーダルで表示するデータ */
   const deleteData = [
     {
@@ -67,9 +74,18 @@ const AtomHome: FC<Props> = ({
         try {
           setIsDeleteVisible(false);
           setIsLoading(true);
+          // 商品の一括削除
           await Promise.all(
             deleteIds.map((item) => deleteList(auth.currentUser!.uid, item))
           );
+          // 商品の画像の一括削除
+          if (deleteImageIds.length) {
+            await Promise.all(
+              deleteImageIds.map((item) =>
+                deleteImage(auth.currentUser!.uid, item)
+              )
+            );
+          }
           // 一括削除モードを解除
           setDeletePress(false);
           // 選択中のIDをリセット
