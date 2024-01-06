@@ -8,12 +8,19 @@ import {
   getDocs,
   setDoc,
 } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db, storage } from '../firebase';
 import { setTagList, setTagsOrderId } from '../redux/slices/commonSlice';
 import { PostData, TagData } from '../types';
 import { getTagId } from '../utils';
 import { listDisplayAdaptor } from '../adaptor/listDisplayAdaptor';
 import { setUpdateRegisterData } from '../redux/slices/commonRegisterSlice';
+import {
+  deleteObject,
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from 'firebase/storage';
 
 /** ユーザーが保存しているタグのデータを取得 */
 export const fetchTag = async (userId: string) => {
@@ -151,6 +158,69 @@ export const saveList = async (
 export const deleteList = async (userId: string, listId: string) => {
   try {
     await deleteDoc(doc(db, `users/${userId}/list`, listId));
+  } catch (error) {
+    throw error;
+  }
+};
+
+/** 画像データを保存 */
+export const saveImage = async (
+  userId: string,
+  imageData: string,
+  imageId: string
+) => {
+  try {
+    const uploadImageAsync = async (
+      uri: string,
+      fileName: string
+    ): Promise<string> => {
+      const blob: any = await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+          resolve(xhr.response);
+        };
+        xhr.onerror = function (e) {
+          console.log('image upload error:', e);
+          reject(new TypeError('Network request failed'));
+        };
+        xhr.responseType = 'blob';
+        xhr.open('GET', uri, true);
+        xhr.send(null);
+      });
+
+      const storageRef = ref(storage, fileName);
+      const snapshot = await uploadBytes(storageRef, blob);
+
+      blob.close();
+
+      return await getDownloadURL(snapshot.ref);
+    };
+
+    await uploadImageAsync(imageData, `image/${userId}/${imageId}`);
+  } catch (error) {
+    throw error;
+  }
+};
+
+/** 画像データの取得 */
+export const getListImage = async (userId: string, imageId: string) => {
+  const getImageUrl = async (fileName: string): Promise<string> => {
+    const storage = getStorage();
+    const imageRef = ref(storage, fileName);
+    return await getDownloadURL(imageRef);
+  };
+
+  const imageUrl: string = await getImageUrl(`image/${userId}/${imageId}`);
+
+  return imageUrl;
+};
+
+/** 画像データを削除 */
+export const deleteImage = async (userId: string, imageId: string) => {
+  try {
+    const storage = getStorage();
+    const imageRef = ref(storage, `image/${userId}/${imageId}`);
+    await deleteObject(imageRef);
   } catch (error) {
     throw error;
   }

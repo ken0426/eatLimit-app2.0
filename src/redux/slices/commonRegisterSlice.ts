@@ -27,6 +27,7 @@ const commonRegisterState = {
     memo: '',
     tagData: [],
     registerDate: '',
+    imageId: '',
   },
   tagSelectedIds: [],
 };

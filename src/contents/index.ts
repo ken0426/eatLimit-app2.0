@@ -66,6 +66,8 @@ export const LABEL_NAME = {
   ASCENDING_DESCENDING: 'ascendingDescending',
   /** タグ */
   TAG: 'tag',
+  /** 画像を保存する時に使用するID */
+  IMAGE_ID: 'imageId',
 };
 
 /** 登録画面に表示するラベルのテキスト */

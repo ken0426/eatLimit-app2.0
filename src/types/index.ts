@@ -15,6 +15,7 @@ export type ApiData = {
   tagData?: { id: string; name: string }[];
   memo?: string;
   id: string;
+  imageId?: string | undefined;
 };
 
 export type ManagementData = {
