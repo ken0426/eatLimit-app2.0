@@ -10,7 +10,9 @@ import {
   FlatList,
   ListRenderItem,
   StyleSheet,
+  Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
@@ -56,6 +58,8 @@ const TagScreen = () => {
   const getData = () =>
     searchText === '' ? tagListData : filterTagData(tagListData, searchText);
 
+  const tagRegisterOnPress = () => navigation.navigate('tagRegisterScreen');
+
   return (
     <View style={styles.contents}>
       <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
@@ -63,32 +67,42 @@ const TagScreen = () => {
           title={'タグ選択'}
           imageType={'materialCommunityIcons'}
           isRightButton={true}
-          onRightPress={() => navigation.navigate('tagRegisterScreen')}
+          onRightPress={tagRegisterOnPress}
         />
       </MolHeader>
 
-      <View style={styles.searchArea}>
-        <SvgIcon
-          type={'antDesign'}
-          name={'search1'}
-          size={24}
-          color={COLORS.MAIN_TEXT_COLOR}
-        />
-        <TextInput
-          value={searchText}
-          onChangeText={(text) => setSearchText(text)}
-          style={styles.textInput}
-        />
-      </View>
+      {tagListData.length > 0 && (
+        <View style={styles.searchArea}>
+          <SvgIcon
+            type={'antDesign'}
+            name={'search1'}
+            size={24}
+            color={COLORS.MAIN_TEXT_COLOR}
+          />
+          <TextInput
+            value={searchText}
+            onChangeText={(text) => setSearchText(text)}
+            style={styles.textInput}
+          />
+        </View>
+      )}
 
-      <View style={styles.selectArea}>
-        <FlatList
-          data={getData()}
-          renderItem={renderItem}
-          style={styles.tagList}
-          keyExtractor={(_, index) => index.toString()}
-        />
-      </View>
+      {tagListData.length ? (
+        <View style={styles.selectArea}>
+          <FlatList
+            data={getData()}
+            renderItem={renderItem}
+            style={styles.tagList}
+            keyExtractor={(_, index) => index.toString()}
+          />
+        </View>
+      ) : (
+        <View style={styles.noSelectArea}>
+          <TouchableOpacity onPress={tagRegisterOnPress}>
+            <Text style={styles.tagRegisterButton}>タグを登録</Text>
+          </TouchableOpacity>
+        </View>
+      )}
 
       <View style={styles.buttonArea}>
         <AtomButton
@@ -125,7 +139,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     zIndex: 2,
-    marginBottom: SIZE.BASE_WP * 5,
   },
   searchArea: {
     borderBottomWidth: 0.3,
@@ -133,6 +146,7 @@ const styles = StyleSheet.create({
     marginHorizontal: wp('5%'),
     flexDirection: 'row',
     paddingBottom: SIZE.BASE_WP * 2,
+    marginTop: SIZE.BASE_WP * 5,
   },
   textInput: {
     fontSize: FONTSIZE.SIZE20PX,
@@ -165,6 +179,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: SIZE.BASE_WP * 5,
     paddingBottom: SIZE.BASE_WP * 10,
+  },
+  noSelectArea: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    marginTop: -SIZE.BASE_HP * 12,
+  },
+  tagRegisterButton: {
+    color: COLORS.BLUE,
+    fontSize: FONTSIZE.SIZE20PX,
   },
   tagList: {
     flex: 1,
