@@ -16,7 +16,7 @@ import MolHeader from './molecules/MolHeader';
 import { BUTTON_TEXT, HEADER_TYPE } from '../contents';
 import AtomMemoLabel from './atoms/AtomMemoLabel';
 import { useRootDispatch, useRootSelector } from '../redux/store/store';
-import { saveTemplate } from '../api';
+import { saveSelectTemplate, saveTemplate } from '../api';
 import { auth } from '../firebase';
 import { setSelectMemoTemplate } from '../redux/slices/commonSlice';
 import AtomButton from './atoms/AtomButton';
@@ -46,6 +46,9 @@ const MemoTemplateUpdateScreen: FC<Props> = ({ route }) => {
   const selectMemoTemplate = useRootSelector(
     (state) => state.common.selectMemoTemplate
   );
+  const selectedTemplateId = useRootSelector(
+    (state) => state.memo.selectedTemplateId
+  );
   const [text, setText] = useState(data.text);
   const [labelText, setLabelText] = useState(data.label);
   const [isVisible, setIsVisible] = useState(false);
@@ -73,6 +76,13 @@ const MemoTemplateUpdateScreen: FC<Props> = ({ route }) => {
               check: false,
               id: '0',
             })
+          );
+        }
+        if (!memoFilterData.length) {
+          await saveSelectTemplate(
+            { text: 'テンプレートなし', id: '0', check: true },
+            auth.currentUser!.uid,
+            selectedTemplateId
           );
         }
         navigation.goBack();
