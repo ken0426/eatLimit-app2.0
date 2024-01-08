@@ -12,9 +12,9 @@ import { InputAccessoryView, Platform } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { MemoTemplateData, StackPramList } from '../types';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
-import AtomSingleInput from './atoms/AtomSingleInput';
 import MolHeader from './molecules/MolHeader';
 import { HEADER_TYPE } from '../contents';
+import AtomMemoLabel from './atoms/AtomMemoLabel';
 
 type RouteItem = {
   params: {
@@ -30,6 +30,8 @@ const MemoTemplateUpdateScreen: FC<Props> = ({ route }) => {
   const { data } = route.params;
   const inputAccessoryViewID = 'uniqueID';
   const [text, setText] = useState(data.text);
+  const [labelText, setLabelText] = useState(data.label);
+
   return (
     <View style={styles.contents}>
       <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
@@ -37,11 +39,9 @@ const MemoTemplateUpdateScreen: FC<Props> = ({ route }) => {
       </MolHeader>
 
       <View style={styles.inputArea}>
-        <AtomSingleInput
-          label={'項目名'}
-          onPressIn={() => {}}
-          setData={() => {}}
-          textData={data.label}
+        <AtomMemoLabel
+          labelText={labelText}
+          setLabelText={(e) => setLabelText(e)}
         />
       </View>
       <View style={styles.memoArea}>

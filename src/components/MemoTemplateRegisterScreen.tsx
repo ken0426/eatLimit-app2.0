@@ -13,10 +13,13 @@ import AtomSettingRegister from './atoms/AtomSettingRegister';
 import AtomSingleInput from './atoms/AtomSingleInput';
 import MolHeader from './molecules/MolHeader';
 import { HEADER_TYPE } from '../contents';
+import AtomMemoLabel from './atoms/AtomMemoLabel';
 
 const MemoTemplateRegisterScreen = () => {
   const navigation = useNavigation();
   const [text, setText] = useState('');
+  const [labelText, setLabelText] = useState('');
+
   const inputAccessoryViewID = 'uniqueID';
   return (
     <TouchableWithoutFeedback
@@ -34,12 +37,7 @@ const MemoTemplateRegisterScreen = () => {
         </MolHeader>
 
         <View style={styles.inputArea}>
-          <AtomSingleInput
-            label={'項目名'}
-            onPressIn={() => {}}
-            setData={() => {}}
-            textData={text}
-          />
+          <AtomMemoLabel labelText={labelText} setLabelText={setLabelText} />
         </View>
         <View style={styles.memoArea}>
           <TextInput
