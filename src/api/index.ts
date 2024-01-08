@@ -9,8 +9,12 @@ import {
   setDoc,
 } from 'firebase/firestore';
 import { db, storage } from '../firebase';
-import { setTagList, setTagsOrderId } from '../redux/slices/commonSlice';
-import { PostData, TagData } from '../types';
+import {
+  setSelectMemoTemplate,
+  setTagList,
+  setTagsOrderId,
+} from '../redux/slices/commonSlice';
+import { ListData, PostData, TagData } from '../types';
 import { getTagId } from '../utils';
 import { listDisplayAdaptor } from '../adaptor/listDisplayAdaptor';
 import { setUpdateRegisterData } from '../redux/slices/commonRegisterSlice';
@@ -23,6 +27,7 @@ import {
 } from 'firebase/storage';
 import {
   setSavedTemplateMemoId,
+  setSelectedTemplateMemoId,
   setTemplateMemoData,
 } from '../redux/slices/memoSlice';
 
@@ -270,4 +275,53 @@ export const saveTemplate = async (
       store.dispatch(setTemplateMemoData(templateData));
     }
   } catch (error) {}
+};
+
+/** 選択されているテンプレートメモのデータを取得 */
+export const getSelectedSaveTemplateData = async (userId: string) => {
+  try {
+    const selectedTemplateData = await getDocs(
+      collection(db, `users/${userId}/selectedTemplateMemo`)
+    );
+
+    let id = '';
+    let data: ListData = { id: '', text: '', check: false };
+    selectedTemplateData.forEach((doc) => {
+      id = doc.id;
+      data = doc.data().selectMemoTemplate;
+    });
+
+    store.dispatch(setSelectedTemplateMemoId(id));
+    if (data.id) {
+      store.dispatch(setSelectMemoTemplate(data));
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+/** 選択されているテンプレートメモを保存 */
+export const saveSelectTemplate = async (
+  selectMemoTemplate: ListData,
+  userId: string,
+  selectTemplateId: string | undefined
+) => {
+  try {
+    if (selectTemplateId) {
+      const res = doc(
+        db,
+        `users/${userId}/selectedTemplateMemo`,
+        selectTemplateId
+      );
+      await setDoc(res, { selectMemoTemplate });
+    } else {
+      const addDocData = await addDoc(
+        collection(db, `users/${userId}/selectedTemplateMemo`),
+        { selectMemoTemplate }
+      );
+      store.dispatch(setSelectedTemplateMemoId(addDocData.id));
+    }
+  } catch (error) {
+    throw error;
+  }
 };

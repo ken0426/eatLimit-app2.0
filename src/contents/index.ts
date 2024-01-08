@@ -319,26 +319,3 @@ export const settingData: SettingData[] = [
     },
   },
 ];
-
-export const settingMemoData: MemoTemplateData[] = [
-  {
-    label: 'テンプレートAAA',
-    id: '1',
-    text: '【メモ】これはテストメモです',
-  },
-  {
-    label: 'テンプレートB',
-    id: '2',
-    text: `【改行メモ】改行しました。\n\n\n改行しました。`,
-  },
-  {
-    label: 'テンプレートC',
-    id: '3',
-    text: `【改行メモ】改行しました。\n\n\n改行しました。\n\n\n\n改行しました。`,
-  },
-  {
-    label: 'テンプレートD',
-    id: '4',
-    text: `【改行メモ】改行しました。\n\n\n改行しました。\n\n\n\n改行しました。`,
-  },
-];

@@ -23,7 +23,11 @@ import TagScreen from '../components/TagScreen';
 import TagRegisterScreen from '../components/TagRegisterScreen';
 import TagUpdateScreen from '../components/TagUpdateScreen';
 /** その他 */
-import { fetchTag, getSaveTemplateData } from '../api';
+import {
+  fetchTag,
+  getSaveTemplateData,
+  getSelectedSaveTemplateData,
+} from '../api';
 import { StackPramList } from '../types';
 import { setUserEmail } from '../redux/slices/loginSlice';
 
@@ -42,6 +46,8 @@ const RootStackScreen = () => {
           if (user.emailVerified) {
             /** タグ情報を取得 */
             await fetchTag(user.uid);
+            /** 選択しているテンプレートメモのデータを取得 */
+            await getSelectedSaveTemplateData(user.uid);
             /** テンプレートメモ情報の取得 */
             await getSaveTemplateData(user.uid);
 

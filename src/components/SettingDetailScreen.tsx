@@ -11,7 +11,7 @@ import MolHeader from './molecules/MolHeader';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
 import { commonSettingAdaptor } from '../adaptor/commonSettingAdaptor';
-import { useRootDispatch } from '../redux/store/store';
+import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { onSettingPress } from '../functions';
 import {
   ListData,
@@ -22,6 +22,8 @@ import {
 import { RouteProp, useNavigation } from '@react-navigation/native';
 import { HEADER_TYPE } from '../contents';
 import SvgIcon from '../images/SvgIcon';
+import { saveSelectTemplate } from '../api';
+import { auth } from '../firebase';
 
 type RouteItem = {
   params: {
@@ -36,6 +38,9 @@ type Props = {
 const SettingDetailScreen: FC<Props> = ({ route }) => {
   const dispatch = useRootDispatch();
   const navigation = useNavigation();
+  const selectedTemplateId = useRootSelector(
+    (state) => state.memo.selectedTemplateId
+  );
   const { data } = route.params;
   const isTemplate = data.isTemplate;
   const formatData = commonSettingAdaptor(data);
@@ -53,8 +58,15 @@ const SettingDetailScreen: FC<Props> = ({ route }) => {
             borderTopColor: COLORS.DETAIL_BORDER,
           },
         ]}
-        onPress={() => {
+        onPress={async () => {
           onSettingPress(dispatch, formatData.label, item, isTemplate);
+          if (isTemplate) {
+            await saveSelectTemplate(
+              item,
+              auth.currentUser!.uid,
+              selectedTemplateId
+            );
+          }
           navigation.goBack();
         }}
       >

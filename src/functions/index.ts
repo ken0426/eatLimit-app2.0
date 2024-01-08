@@ -207,7 +207,6 @@ export const onSettingPress = (
   item: ListData,
   isTemplate?: boolean
 ) => {
-  // TODO バック側に保存するロジックはここで行う（※非同期にする）
   if (label === LABEL.IMAGE_DISPLAY) {
     dispatch(setImageId(item.id));
   } else if (label === LABEL.DATE_FORMAT_DISPLAY) {
