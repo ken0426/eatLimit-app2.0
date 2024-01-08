@@ -7,7 +7,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import { InputAccessoryView, Platform } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { MemoTemplateData, StackPramList } from '../types';
@@ -15,6 +15,10 @@ import AtomSettingRegister from './atoms/AtomSettingRegister';
 import MolHeader from './molecules/MolHeader';
 import { HEADER_TYPE } from '../contents';
 import AtomMemoLabel from './atoms/AtomMemoLabel';
+import { useRootDispatch, useRootSelector } from '../redux/store/store';
+import { saveTemplate } from '../api';
+import { auth } from '../firebase';
+import { setSelectMemoTemplate } from '../redux/slices/commonSlice';
 
 type RouteItem = {
   params: {
@@ -27,15 +31,60 @@ type Props = {
 };
 
 const MemoTemplateUpdateScreen: FC<Props> = ({ route }) => {
+  const navigation = useNavigation();
+  const dispatch = useRootDispatch();
   const { data } = route.params;
   const inputAccessoryViewID = 'uniqueID';
+  const saveTemplateMemoId = useRootSelector(
+    (state) => state.memo.saveTemplateMemoId
+  );
+  const templateMemoData = useRootSelector(
+    (state) => state.memo.templateMemoData
+  );
+  const selectMemoTemplate = useRootSelector(
+    (state) => state.common.selectMemoTemplate
+  );
   const [text, setText] = useState(data.text);
   const [labelText, setLabelText] = useState(data.label);
 
   return (
     <View style={styles.contents}>
       <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
-        <AtomSettingRegister title={'テンプレート編集'} isRightButton={true} />
+        <AtomSettingRegister
+          title={'テンプレート編集'}
+          isRightButton={true}
+          onRightPress={async () => {
+            try {
+              const memoTemplateDataEdit = [...templateMemoData];
+              const templateMemoIndex = memoTemplateDataEdit.findIndex(
+                (item) => item.id === data.id
+              );
+              memoTemplateDataEdit.splice(templateMemoIndex, 1, {
+                label: labelText,
+                id: data.id,
+                text: text,
+              });
+
+              await saveTemplate(
+                memoTemplateDataEdit,
+                auth.currentUser!.uid,
+                saveTemplateMemoId
+              );
+              if (selectMemoTemplate.id === data.id) {
+                dispatch(
+                  setSelectMemoTemplate({
+                    text: labelText,
+                    check: false,
+                    id: data.id,
+                  })
+                );
+              }
+              navigation.goBack();
+            } catch (error) {
+              throw error;
+            }
+          }}
+        />
       </MolHeader>
 
       <View style={styles.inputArea}>
