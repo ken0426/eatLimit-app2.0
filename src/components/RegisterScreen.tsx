@@ -60,6 +60,14 @@ const RegisterScreen = () => {
   const tagSelectedIds = useRootSelector(
     (state) => state.commonRegister.tagSelectedIds
   );
+  /** 選択しているテンプレートメモのデータ */
+  const selectMemoTemplate = useRootSelector(
+    (state) => state.common.selectMemoTemplate
+  );
+  /** テンプレートメモのすべてのデータ */
+  const templateMemoData = useRootSelector(
+    (state) => state.memo.templateMemoData
+  );
   /** キーボードで入力するエリアで高さを調整するフラグ */
   const [enabled, setEnabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -86,6 +94,19 @@ const RegisterScreen = () => {
 
   const getTextData = (key: string) =>
     postData.find((item) => item.key === key)?.value;
+
+  const getMemoText = (data: ApiData) => {
+    if (data) {
+      return data.memo ? data.memo : '';
+    } else if (selectMemoTemplate.id !== '0') {
+      const templateMemo = templateMemoData.find(
+        (item) => item.id === selectMemoTemplate.id
+      );
+      return templateMemo!.text;
+    } else {
+      return '';
+    }
+  };
 
   return (
     <View style={STYLE_FLEX}>
@@ -270,9 +291,9 @@ const RegisterScreen = () => {
                       copyData?.data?.placeOfPurchase
                         ? copyData.data.placeOfPurchase
                         : typeof getTextData(LABEL_NAME.PLACE_OF_PURCHASE) ===
-                          'string'
-                        ? String(getTextData(LABEL_NAME.PLACE_OF_PURCHASE))
-                        : undefined
+                            'string'
+                          ? String(getTextData(LABEL_NAME.PLACE_OF_PURCHASE))
+                          : undefined
                     }
                   />
                   <AtomSingleInput
@@ -301,7 +322,7 @@ const RegisterScreen = () => {
                         isRequired: data.isRequired,
                       })
                     }
-                    textData={copyData?.data?.memo ? copyData.data.memo : ''} // TODO テンプレートのメモデータも最終的にセットできるようにする
+                    textData={getMemoText(copyData?.data)}
                   />
                 </View>
                 <View style={styles.buttonArea}>

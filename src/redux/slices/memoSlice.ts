@@ -5,7 +5,7 @@ type MemoState = {
   templateMemoData: { label: string; id: string; text: string }[];
 };
 
-const memoState = {
+const memoState: MemoState = {
   saveTemplateMemoId: '',
   templateMemoData: [],
 };
