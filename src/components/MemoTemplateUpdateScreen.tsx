@@ -13,12 +13,14 @@ import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { MemoTemplateData, StackPramList } from '../types';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import MolHeader from './molecules/MolHeader';
-import { HEADER_TYPE } from '../contents';
+import { BUTTON_TEXT, HEADER_TYPE } from '../contents';
 import AtomMemoLabel from './atoms/AtomMemoLabel';
 import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { saveTemplate } from '../api';
 import { auth } from '../firebase';
 import { setSelectMemoTemplate } from '../redux/slices/commonSlice';
+import AtomButton from './atoms/AtomButton';
+import OrgModalDefault from './organisms/OrgModalDefault';
 
 type RouteItem = {
   params: {
@@ -46,6 +48,37 @@ const MemoTemplateUpdateScreen: FC<Props> = ({ route }) => {
   );
   const [text, setText] = useState(data.text);
   const [labelText, setLabelText] = useState(data.label);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const buttonData = [
+    {
+      text: BUTTON_TEXT.CANCEL,
+      onPress: () => setIsVisible(false),
+    },
+    {
+      text: BUTTON_TEXT.OK,
+      onPress: async () => {
+        const memoFilterData = templateMemoData.filter(
+          (item) => item.id !== data.id
+        );
+        await saveTemplate(
+          memoFilterData,
+          auth.currentUser!.uid,
+          saveTemplateMemoId
+        );
+        if (selectMemoTemplate.id === data.id) {
+          dispatch(
+            setSelectMemoTemplate({
+              text: 'テンプレートなし',
+              check: false,
+              id: '0',
+            })
+          );
+        }
+        navigation.goBack();
+      },
+    },
+  ];
 
   return (
     <View style={styles.contents}>
@@ -103,6 +136,24 @@ const MemoTemplateUpdateScreen: FC<Props> = ({ route }) => {
         />
         <Text style={styles.lengthText}>{`${text.length}／500`}</Text>
       </View>
+      <View style={styles.deleteButtonArea}>
+        <AtomButton
+          buttonText={'削除'}
+          color={COLORS.WHITE}
+          fontSize={FONTSIZE.SIZE25PX}
+          backgroundColor={COLORS.RED}
+          width={SIZE.BASE_WP * 50}
+          fontWeight={'bold'}
+          onPress={() => setIsVisible(true)}
+        />
+      </View>
+
+      <OrgModalDefault
+        isVisible={isVisible}
+        cancelOnPress={() => setIsVisible(false)}
+        message={'本当に削除しますか？'}
+        data={buttonData}
+      />
 
       {Platform.OS === 'ios' && (
         <InputAccessoryView nativeID={inputAccessoryViewID}>
@@ -142,7 +193,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: '#d6d6d6',
     backgroundColor: '#e9e9e9',
-    height: SIZE.BASE_HP * 75,
+    height: SIZE.BASE_HP * 65,
   },
   textInput: {
     width: '100%',
@@ -159,5 +210,10 @@ const styles = StyleSheet.create({
   completedArea: {
     backgroundColor: '#f1f1f1',
     alignItems: 'flex-end',
+  },
+  deleteButtonArea: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
   },
 });
