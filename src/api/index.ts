@@ -288,11 +288,11 @@ export const getSelectedSaveTemplateData = async (userId: string) => {
     let data: ListData = { id: '', text: '', check: false };
     selectedTemplateData.forEach((doc) => {
       id = doc.id;
-      data = doc.data().selectMemoTemplate;
+      data = doc.data()?.selectMemoTemplate;
     });
 
     store.dispatch(setSelectedTemplateMemoId(id));
-    if (data.id) {
+    if (data?.id) {
       store.dispatch(setSelectMemoTemplate(data));
     }
   } catch (error) {
