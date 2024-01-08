@@ -20,7 +20,7 @@ const commonState: CommonState = {
   dateFormatDisplayId: 3,
   dateDisplayId: 1,
   dayOfWeekId: 1,
-  selectMemoTemplate: { label: 'テンプレートなし', id: 0, text: '' },
+  selectMemoTemplate: { label: 'テンプレートなし', id: '0', text: '' },
   selectMemoTemplateData: { data: [], isTemplate: true },
   tagList: [],
   tagsOrderId: '',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -14,9 +14,20 @@ import { HEADER_TYPE } from '../contents';
 const SettingMemoScreen = () => {
   const navigation =
     useNavigation<StackNavigationProp<StackPramList, 'settingMemoScreen'>>();
-  const selectMemoTemplateData = useRootSelector(
-    (state) => state.common.selectMemoTemplateData
+  const selectMemoTemplate = useRootSelector(
+    (state) => state.common.selectMemoTemplate
   );
+  const templateMemoData = useRootSelector(
+    (state) => state.memo.templateMemoData
+  );
+
+  const [memoData, setMemoData] = useState<
+    { label: string; text: string; id: string }[]
+  >([...templateMemoData]);
+
+  useEffect(() => {
+    setMemoData([...templateMemoData]);
+  }, [templateMemoData]);
 
   return (
     <View style={STYLE_FLEX}>
@@ -44,13 +55,20 @@ const SettingMemoScreen = () => {
           <MolSettingList
             onPress={() =>
               navigation.navigate('settingDetailScreen', {
-                data: selectMemoTemplateData,
+                data: {
+                  isTemplate: true,
+                  data: memoData,
+                },
               })
             }
-            text={'テンプレートなし'}
+            text={
+              selectMemoTemplate.text
+                ? selectMemoTemplate.text
+                : 'テンプレートなし'
+            }
           />
           <AtomSettingLabel text={'テンプレート一覧'} />
-          {selectMemoTemplateData.data.map((memo, index) => {
+          {memoData.map((memo, index) => {
             return (
               <MolSettingList
                 key={index}

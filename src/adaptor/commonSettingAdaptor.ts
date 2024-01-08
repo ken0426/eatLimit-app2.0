@@ -24,7 +24,7 @@ export const commonSettingAdaptor = (data: Data) => {
     (state) => state.common.selectMemoTemplate
   );
 
-  const isCheck = (id: number) => {
+  const isCheck = (id: number | string) => {
     if (data.label === LABEL.IMAGE_DISPLAY) {
       return id === imageId;
     } else if (data.label === LABEL.DATE_FORMAT_DISPLAY) {
@@ -40,14 +40,14 @@ export const commonSettingAdaptor = (data: Data) => {
 
   const selectData = data.isTemplate
     ? [
-        { id: 0, text: 'テンプレートなし', label: 'テンプレートなし' },
+        { id: '0', text: 'テンプレートなし', label: 'テンプレートなし' },
         ...data.data,
       ]
     : data.data;
 
   const editData = selectData.map((item) => {
     return {
-      text: data.isTemplate && item.id !== 0 ? item.label ?? '' : item.text,
+      text: data.isTemplate && item.id !== '0' ? item.label ?? '' : item.text,
       check: isCheck(item.id),
       id: item.id,
     };

@@ -103,13 +103,13 @@ export type SettingData = {
 export type ListData = {
   text: string;
   check: boolean | undefined;
-  id: number;
+  id: number | string;
 };
 
 /** メモのテンプレートデータ */
 export type MemoTemplateData = {
   label: string;
-  id: number;
+  id: string;
   text: string;
 };
 

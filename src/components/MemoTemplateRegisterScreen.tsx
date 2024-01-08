@@ -10,13 +10,22 @@ import { InputAccessoryView, Platform, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
-import AtomSingleInput from './atoms/AtomSingleInput';
 import MolHeader from './molecules/MolHeader';
 import { HEADER_TYPE } from '../contents';
 import AtomMemoLabel from './atoms/AtomMemoLabel';
+import { useRootSelector } from '../redux/store/store';
+import { saveTemplate } from '../api';
+import { auth } from '../firebase';
+import uuid from 'react-native-uuid';
 
 const MemoTemplateRegisterScreen = () => {
   const navigation = useNavigation();
+  const saveTemplateMemoId = useRootSelector(
+    (state) => state.memo.saveTemplateMemoId
+  );
+  const templateMemoData = useRootSelector(
+    (state) => state.memo.templateMemoData
+  );
   const [text, setText] = useState('');
   const [labelText, setLabelText] = useState('');
 
@@ -31,8 +40,24 @@ const MemoTemplateRegisterScreen = () => {
           <AtomSettingRegister
             title={'テンプレートの追加'}
             isRightButton={true}
-            // TODO このonPressでバック側にメモのテンプレートを保存する
-            onRightPress={() => navigation.goBack()}
+            // メモのテンプレートを保存する
+            onRightPress={async () => {
+              try {
+                const templateMemoDataCopy = [
+                  ...templateMemoData,
+                  { label: labelText, text: text, id: uuid.v4().toString() },
+                ];
+                await saveTemplate(
+                  templateMemoDataCopy,
+                  auth.currentUser!.uid,
+                  saveTemplateMemoId
+                );
+
+                navigation.goBack();
+              } catch (error) {
+                alert('テンプレートの保存に失敗しました。');
+              }
+            }}
           />
         </MolHeader>
 

@@ -21,6 +21,10 @@ import {
   ref,
   uploadBytes,
 } from 'firebase/storage';
+import {
+  setSavedTemplateMemoId,
+  setTemplateMemoData,
+} from '../redux/slices/memoSlice';
 
 /** ユーザーが保存しているタグのデータを取得 */
 export const fetchTag = async (userId: string) => {
@@ -224,4 +228,46 @@ export const deleteImage = async (userId: string, imageId: string) => {
   } catch (error) {
     throw error;
   }
+};
+
+/** テンプレートを保存しているデータを取得 */
+export const getSaveTemplateData = async (userId: string) => {
+  try {
+    const saveTemplateId = await getDocs(
+      collection(db, `users/${userId}/templateMemo`)
+    );
+    let id = '';
+    const templateData: { label: string; id: string; text: string }[] = [];
+    saveTemplateId.forEach((doc) => {
+      id = doc.id;
+      templateData.push(...doc.data().templateData);
+    });
+
+    /** テンプレートメモを保存しているデータのIDをreduxに保存 */
+    store.dispatch(setSavedTemplateMemoId(id));
+    /** テンプレートメモのデータをreduxに保存 */
+    store.dispatch(setTemplateMemoData(templateData));
+  } catch (error) {}
+};
+
+/** テンプレートの保存 */
+export const saveTemplate = async (
+  templateData: { label: string; text: string; id: string }[],
+  userId: string,
+  templateSaveId: string | undefined
+) => {
+  try {
+    if (templateSaveId) {
+      const res = doc(db, `users/${userId}/templateMemo`, templateSaveId);
+      await setDoc(res, { templateData });
+      store.dispatch(setTemplateMemoData(templateData));
+    } else {
+      const addDocData = await addDoc(
+        collection(db, `users/${userId}/templateMemo`),
+        { templateData }
+      );
+      store.dispatch(setSavedTemplateMemoId(addDocData.id));
+      store.dispatch(setTemplateMemoData(templateData));
+    }
+  } catch (error) {}
 };
