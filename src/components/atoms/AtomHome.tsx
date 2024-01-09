@@ -120,6 +120,7 @@ const AtomHome: FC<Props> = ({
           ) : (
             /** 設定 */
             <TouchableOpacity
+              style={styles.settingIconArea}
               onPress={() => navigation.navigate('settingScreen')}
             >
               <SvgIcon
@@ -132,7 +133,7 @@ const AtomHome: FC<Props> = ({
           )}
 
           {/* 日付 */}
-          <View style={{ marginLeft: SIZE.BASE_WP * 1.5 }}>
+          <View style={styles.dateArea}>
             <Text style={styles.dateText}>
               {`${moment().format('YYYY年MM月DD日')}`}
             </Text>
@@ -236,6 +237,13 @@ const styles = StyleSheet.create({
   },
   settingArea: {
     flexDirection: 'row',
+  },
+  settingIconArea: {
+    justifyContent: 'center',
+  },
+  dateArea: {
+    marginLeft: SIZE.BASE_WP * 1.5,
+    justifyContent: 'center',
   },
   dateText: {
     fontSize: FONTSIZE.SIZE20PX,
