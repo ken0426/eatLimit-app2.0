@@ -72,7 +72,11 @@ const AtomFileSelect: FC<Props> = ({ setData }) => {
         )}
         {image !== '' && (
           <View style={styles.imageArea}>
-            <Image source={{ uri: image }} style={styles.image} />
+            <Image
+              resizeMode='cover'
+              source={{ uri: image }}
+              style={styles.image}
+            />
             <TouchableOpacity
               activeOpacity={1}
               onPress={() => setImage('')}
@@ -116,9 +120,8 @@ export default AtomFileSelect;
 
 const styles = StyleSheet.create({
   fileSelectArea: {
-    width: WINDOW_WIDTH,
-    minHeight: SIZE.BASE_HP * 12,
-    maxHeight: SIZE.BASE_HP * 24,
+    minHeight: SIZE.BASE_WP * 30,
+    maxHeight: SIZE.BASE_WP * 54,
     borderBottomColor: COLORS.DETAIL_BORDER,
     borderBottomWidth: 0.3,
     justifyContent: 'center',
@@ -135,8 +138,8 @@ const styles = StyleSheet.create({
     height: '90%',
   },
   image: {
-    height: '100%',
-    width: WINDOW_WIDTH * 0.8,
+    width: SIZE.BASE_WP * 60,
+    flex: 1,
   },
   closeButton: {
     position: 'absolute',

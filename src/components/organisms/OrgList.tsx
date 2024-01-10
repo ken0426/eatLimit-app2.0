@@ -59,8 +59,8 @@ const OrgList: FC<Props> = ({
             ? styles.deleteListTop
             : styles.listTop
           : deleteIds?.includes(item.id)
-          ? styles.deleteList
-          : styles.list
+            ? styles.deleteList
+            : styles.list
       }
       onPress={() => {
         if (deletePress) {
@@ -119,14 +119,14 @@ export default OrgList;
 
 const styles = StyleSheet.create({
   deleteList: {
-    height: SIZE.BASE_HP * 11,
+    height: SIZE.BASE_WP * 22,
     borderBottomWidth: SIZE.BASE_HP * 0.06,
     borderColor: COLORS.BORDER_LINE,
     flexDirection: 'row',
     backgroundColor: COLORS.LIST_DELETE,
   },
   list: {
-    height: SIZE.BASE_HP * 11,
+    height: SIZE.BASE_WP * 22,
     borderBottomWidth: SIZE.BASE_HP * 0.06,
     borderColor: COLORS.BORDER_LINE,
     flexDirection: 'row',
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   deleteListTop: {
-    height: SIZE.BASE_HP * 11,
+    height: SIZE.BASE_WP * 22,
     borderBottomWidth: SIZE.BASE_HP * 0.06,
     borderColor: COLORS.BORDER_LINE,
     flexDirection: 'row',
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     borderTopWidth: SIZE.BASE_HP * 0.06,
   },
   listTop: {
-    height: SIZE.BASE_HP * 11,
+    height: SIZE.BASE_WP * 22,
     borderBottomWidth: SIZE.BASE_HP * 0.06,
     borderColor: COLORS.BORDER_LINE,
     flexDirection: 'row',

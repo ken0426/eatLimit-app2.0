@@ -51,7 +51,15 @@ const AtomButton: FC<Props> = ({
       onPress={onPress}
       activeOpacity={1}
     >
-      <Text style={[{ fontSize }, { color }, { fontWeight }, textStyle]}>
+      <Text
+        style={[
+          { fontSize },
+          { color },
+          { fontWeight },
+          textStyle,
+          styles.text,
+        ]}
+      >
         {buttonText}
       </Text>
     </TouchableOpacity>
@@ -66,5 +74,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: SIZE.BASE_WP * 20,
     paddingVertical: 2,
+    justifyContent: 'center',
+  },
+  text: {
+    textAlign: 'center',
   },
 });

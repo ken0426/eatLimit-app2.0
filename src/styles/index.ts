@@ -67,7 +67,7 @@ export const FONTSIZE = {
 };
 
 /** 入力項目の高さ */
-export const INPUT_HEIGHT = 50;
+export const INPUT_HEIGHT = SIZE.BASE_WP * 12;
 /** 詳細画面のヘッダーの高さ */
 export const BANNER_HEIGHT = SIZE.BASE_HP * 15;
 /** 詳細画面の画像の高さ */

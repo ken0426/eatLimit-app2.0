@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { WINDOW_HEIGHT } from '../../utils';
 import AtomButton from '../atoms/AtomButton';
-import { COLORS, FONTSIZE } from '../../styles';
+import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { ModalButton } from '../../types';
 
 type Props = {
@@ -20,7 +20,7 @@ const OrgModalDefault: FC<Props> = ({
   cancelOnPress,
   message,
   data,
-  fontSize = FONTSIZE.SIZE30PX,
+  fontSize = SIZE.BASE_WP * 6.5,
   borderColor = COLORS.DETAIL_BORDER,
 }) => {
   return (
@@ -37,7 +37,7 @@ const OrgModalDefault: FC<Props> = ({
               borderColor={borderColor}
               color='#000000'
               backgroundColor='white'
-              width={150}
+              width={SIZE.BASE_WP * 36}
               borderWidth={1}
             />
           ))}

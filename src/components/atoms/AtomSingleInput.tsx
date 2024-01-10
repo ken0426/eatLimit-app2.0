@@ -78,18 +78,6 @@ const styles = StyleSheet.create({
     color: COLORS.TEXT_LABEL,
     fontWeight: '400',
   },
-  requiredArea: {
-    borderRadius: 10,
-    backgroundColor: COLORS.RED,
-    marginLeft: SIZE.BASE_WP * 1.5,
-  },
-  required: {
-    fontSize: FONTSIZE.SIZE15PX,
-    color: COLORS.WHITE,
-    fontWeight: '400',
-    paddingHorizontal: SIZE.BASE_WP * 2,
-    paddingVertical: SIZE.BASE_HP * 0.1,
-  },
   textValue: {
     fontSize: FONTSIZE.SIZE18PX,
     flex: 1,

@@ -24,18 +24,18 @@ const styles = StyleSheet.create({
   label: {
     fontSize: FONTSIZE.SIZE18PX,
     color: COLORS.TEXT_LABEL,
-    fontWeight: '400', // ここ変更する（ライブラリ）
+    fontWeight: '400',
   },
   requiredArea: {
-    borderRadius: 10,
+    borderRadius: SIZE.BASE_WP * 4,
     backgroundColor: COLORS.RED,
     marginLeft: SIZE.BASE_WP * 1.5,
   },
   required: {
     fontSize: FONTSIZE.SIZE15PX,
     color: COLORS.WHITE,
-    fontWeight: '400', // ここ変更する（ライブラリ）
+    fontWeight: '400',
     paddingHorizontal: SIZE.BASE_WP * 2,
-    paddingVertical: SIZE.BASE_HP * 0.1,
+    paddingVertical: SIZE.BASE_WP * 0.5,
   },
 });

@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   requiredArea: {
-    borderRadius: 10,
+    borderRadius: SIZE.BASE_WP * 4,
     backgroundColor: COLORS.RED,
     marginLeft: SIZE.BASE_WP * 1.5,
   },
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     color: COLORS.WHITE,
     fontWeight: '400',
     paddingHorizontal: SIZE.BASE_WP * 2,
-    paddingVertical: SIZE.BASE_HP * 0.1,
+    paddingVertical: SIZE.BASE_WP * 0.5,
   },
   textValue: {
     fontSize: FONTSIZE.SIZE18PX,

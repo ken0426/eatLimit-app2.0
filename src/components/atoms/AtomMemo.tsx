@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     width: '100%',
-    height: SIZE.BASE_HP * 15,
+    height: SIZE.BASE_WP * 40,
     fontSize: FONTSIZE.SIZE18PX,
     color: 'black',
     justifyContent: 'flex-start',

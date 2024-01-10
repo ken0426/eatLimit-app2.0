@@ -96,7 +96,7 @@ export default AtomCounter;
 
 const styles = StyleSheet.create({
   itemArea: {
-    paddingVertical: SIZE.BASE_WP * 2,
+    paddingVertical: SIZE.BASE_WP * 3,
     alignItems: 'center',
     borderBottomWidth: 0.3,
     borderBottomColor: COLORS.DETAIL_BORDER,
