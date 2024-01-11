@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   touchArea: {
     flex: 1,
-    paddingVertical: SIZE.BASE_HP * 0.6,
+    paddingVertical: SIZE.BASE_WP * 3,
   },
   displayTouchArea: {
     borderBottomWidth: 2,

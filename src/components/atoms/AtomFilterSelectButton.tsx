@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: FONTSIZE.SIZE15PX,
     paddingHorizontal: SIZE.BASE_WP * 3,
-    paddingVertical: SIZE.BASE_HP * 1.5,
+    paddingVertical: SIZE.BASE_WP * 4,
     fontWeight: 'bold',
   },
 });
