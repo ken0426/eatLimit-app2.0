@@ -48,10 +48,7 @@ const AtomSettingRegister: FC<Props> = ({
 
   return (
     <View style={styles.header}>
-      <TouchableOpacity
-        style={{ width: '10%' }}
-        onPress={() => navigation.goBack()}
-      >
+      <TouchableOpacity style={styles.left} onPress={() => navigation.goBack()}>
         <SvgIcon
           type={'ionicons'}
           name='chevron-back'
@@ -59,10 +56,10 @@ const AtomSettingRegister: FC<Props> = ({
           color='black'
         />
       </TouchableOpacity>
-      <View style={{ width: '80%' }}>
+      <View style={styles.center}>
         <Text style={styles.headerText}>{title}</Text>
       </View>
-      <View style={{ width: '10%', alignItems: 'flex-end' }}>
+      <View style={styles.right}>
         {imageType ? (
           <TouchableOpacity onPress={onRightPress}>
             <SvgIcon
@@ -75,9 +72,7 @@ const AtomSettingRegister: FC<Props> = ({
         ) : (
           isRightButton && (
             <TouchableOpacity onPress={onRightPress}>
-              <Text style={{ fontSize: FONTSIZE.SIZE15PX, fontWeight: 'bold' }}>
-                {isRightText}
-              </Text>
+              <Text style={styles.isRightButtonText}>{isRightText}</Text>
             </TouchableOpacity>
           )
         )}
@@ -95,10 +90,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
+  left: {
+    width: '10%',
+  },
+  center: {
+    width: '80%',
+  },
+  right: {
+    width: '10%',
+    alignItems: 'flex-end',
+  },
   headerText: {
     textAlign: 'center',
     fontSize: FONTSIZE.SIZE20PX,
     fontWeight: 'bold',
     color: COLORS.MAIN_TEXT_COLOR,
+  },
+  isRightButtonText: {
+    fontSize: FONTSIZE.SIZE15PX,
+    fontWeight: 'bold',
   },
 });
