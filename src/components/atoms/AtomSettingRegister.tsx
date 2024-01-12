@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, FONTSIZE } from '../../styles';
@@ -12,12 +12,19 @@ type Props = {
   imageType?: 'materialCommunityIcons' | 'ellipsis';
 };
 
-type ImagTypeAndName = {
-  type: 'materialCommunityIcons' | 'antDesign';
-  name: 'tag-plus-outline' | 'ellipsis1';
-  size: number;
-  color: string;
-};
+const materialCommunityIcons = {
+  type: 'materialCommunityIcons',
+  name: 'tag-plus-outline',
+  size: 24,
+  color: 'black',
+} as const;
+
+const antDesign = {
+  type: 'antDesign',
+  name: 'ellipsis1',
+  size: 24,
+  color: 'black',
+} as const;
 
 const AtomSettingRegister: FC<Props> = ({
   title,
@@ -27,24 +34,6 @@ const AtomSettingRegister: FC<Props> = ({
   imageType,
 }) => {
   const navigation = useNavigation();
-
-  const imagTypeAndName: ImagTypeAndName = useMemo(() => {
-    if (imageType === 'materialCommunityIcons') {
-      return {
-        type: 'materialCommunityIcons',
-        name: 'tag-plus-outline',
-        size: 24,
-        color: 'black',
-      };
-    } else {
-      return {
-        type: 'antDesign',
-        name: 'ellipsis1',
-        size: 24,
-        color: 'black',
-      };
-    }
-  }, [imageType]);
 
   return (
     <View style={styles.header}>
@@ -63,10 +52,26 @@ const AtomSettingRegister: FC<Props> = ({
         {imageType ? (
           <TouchableOpacity onPress={onRightPress}>
             <SvgIcon
-              type={imagTypeAndName.type}
-              name={imagTypeAndName.name}
-              size={imagTypeAndName.size}
-              color={imagTypeAndName.color}
+              type={
+                imageType === 'materialCommunityIcons'
+                  ? materialCommunityIcons.type
+                  : antDesign.type
+              }
+              name={
+                imageType === 'materialCommunityIcons'
+                  ? materialCommunityIcons.name
+                  : antDesign.name
+              }
+              size={
+                imageType === 'materialCommunityIcons'
+                  ? materialCommunityIcons.size
+                  : antDesign.size
+              }
+              color={
+                imageType === 'materialCommunityIcons'
+                  ? materialCommunityIcons.color
+                  : antDesign.color
+              }
             />
           </TouchableOpacity>
         ) : (
