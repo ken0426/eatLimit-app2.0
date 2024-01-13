@@ -30,7 +30,7 @@ const AtomDetailMemo: FC<Props> = ({ item }) => {
         showButton
         headerTitle={''}
         headerTitleStyle={styles.memoText}
-        headerStyle={{ display: isOpen ? 'none' : 'flex' }}
+        headerStyle={isOpen ? styles.displayNone : styles.displayFlex}
         renderHeader={renderHeader}
         renderButtonContent={(e) => {
           setTimeout(() => {
@@ -60,6 +60,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2, // 影の透明度
     shadowRadius: 1, // 影のぼかしの範囲
     elevation: 3,
+  },
+  displayNone: {
+    display: 'none',
+  },
+  displayFlex: {
+    display: 'flex',
   },
   label: {
     fontSize: FONTSIZE.SIZE20PX,
