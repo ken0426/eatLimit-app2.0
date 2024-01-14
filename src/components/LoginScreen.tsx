@@ -122,24 +122,40 @@ const LoginScreen: FC<Props> = ({ route }) => {
           />
         </View>
 
-        <TouchableOpacity
-          style={styles.changeButtonArea}
-          onPress={() => {
-            postData.forEach((item) =>
-              setTargetPostData({ key: item.key, value: '' })
-            );
-            setMailAddressErrorMessage(null);
-            setPasswordErrorMessage(null);
-            setPasswordConfirmationErrorMessage(null);
-            setIsLoginScreen(!isLoginScreen);
-          }}
-        >
-          <Text style={styles.changeButton}>
+        <View style={styles.changeButtonArea}>
+          {isLoginScreen && (
+            <TouchableOpacity onPress={() => {}}>
+              <Text style={styles.changeButton}>パスワードを忘れた場合</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+
+        <View style={styles.orArea}>
+          <View style={styles.line} />
+          <Text style={styles.orText}>または</Text>
+          <View style={styles.line} />
+        </View>
+        <View style={styles.switchArea}>
+          <Text style={styles.changeNormalButton}>
             {isLoginScreen
-              ? `アカウントをお持ちでない方は\nこちらで新規登録`
-              : `アカウントをお持ちの方は\nこちらでログイン`}
+              ? `アカウントをお持ちでない方はこちらで`
+              : `アカウントをお持ちの方はこちらで`}
           </Text>
-        </TouchableOpacity>
+          <Text
+            onPress={() => {
+              postData.forEach((item) =>
+                setTargetPostData({ key: item.key, value: '' })
+              );
+              setMailAddressErrorMessage(null);
+              setPasswordErrorMessage(null);
+              setPasswordConfirmationErrorMessage(null);
+              setIsLoginScreen(!isLoginScreen);
+            }}
+            style={styles.changeButton}
+          >
+            {isLoginScreen ? `新規登録` : `ログイン`}
+          </Text>
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -158,7 +174,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: FONTSIZE.SIZE25PX,
-    marginBottom: SIZE.BASE_WP * 4.5,
+    marginBottom: SIZE.BASE_WP * 4.4,
   },
   textInputArea: {
     width: '100%',
@@ -171,6 +187,27 @@ const styles = StyleSheet.create({
     color: COLORS.BLUE,
     fontSize: FONTSIZE.SIZE15PX,
     textAlign: 'center',
+  },
+  changeNormalButton: {
+    color: COLORS.BLACK,
+    fontSize: FONTSIZE.SIZE15PX,
+    textAlign: 'center',
+  },
+  orArea: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: SIZE.BASE_WP * 5,
+  },
+  line: {
+    height: 0.7,
+    width: '40%',
+    backgroundColor: COLORS.BLACK,
+  },
+  orText: {
+    paddingHorizontal: SIZE.BASE_WP * 2,
+  },
+  switchArea: {
+    flexDirection: 'row',
   },
   loginButtonArea: {
     width: '100%',

@@ -42,5 +42,6 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.SIZE25PX,
     paddingVertical: SIZE.BASE_HP * 0.7,
     color: '#fcfcfc',
+    fontWeight: 'bold',
   },
 });
