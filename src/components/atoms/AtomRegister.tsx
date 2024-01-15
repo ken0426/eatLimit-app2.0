@@ -160,7 +160,7 @@ const AtomRegister: FC<Props> = ({
           style={{ right: 1, padding: 2 }}
         />
       </TouchableOpacity>
-      <View style={{ width: '33%' }}>
+      <View style={styles.headerTitleArea}>
         <Text style={styles.headerText}>{title}</Text>
       </View>
       <TouchableOpacity
@@ -229,5 +229,8 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.SIZE24PX,
     fontWeight: 'bold',
     color: COLORS.MAIN_TEXT_COLOR,
+  },
+  headerTitleArea: {
+    width: '33%',
   },
 });
