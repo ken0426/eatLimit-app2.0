@@ -135,7 +135,7 @@ const AtomRegister: FC<Props> = ({
   return (
     <View style={styles.header}>
       <TouchableOpacity
-        style={{ width: '33%' }}
+        style={styles.left}
         onPress={() => {
           const isRegisterData = postData.some((item) => {
             if (
@@ -223,6 +223,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
+  },
+  left: {
+    width: '33%',
   },
   headerText: {
     textAlign: 'center',
