@@ -122,9 +122,9 @@ const styles = StyleSheet.create({
   item: {
     width: '100%',
     backgroundColor: COLORS.WHITE,
-    height: SIZE.BASE_HP * 5.5,
+    height: SIZE.BASE_WP * 15,
     borderBottomColor: COLORS.DETAIL_BORDER,
-    borderBottomWidth: 0.2,
+    borderBottomWidth: SIZE.BASE_WP * 0.07,
     alignItems: 'center',
     paddingHorizontal: SIZE.BASE_WP * 2,
     flexDirection: 'row',

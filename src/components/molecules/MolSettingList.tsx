@@ -31,9 +31,9 @@ const styles = StyleSheet.create({
   touch: {
     width: '100%',
     backgroundColor: COLORS.WHITE,
-    height: SIZE.BASE_HP * 6.5,
+    height: SIZE.BASE_WP * 15,
     borderBottomColor: COLORS.DETAIL_BORDER,
-    borderBottomWidth: 0.2,
+    borderBottomWidth: SIZE.BASE_WP * 0.07,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: SIZE.BASE_WP * 2,
