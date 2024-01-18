@@ -157,7 +157,7 @@ const AtomRegister: FC<Props> = ({
           name='close'
           size={24}
           color={COLORS.MAIN_TEXT_COLOR}
-          style={{ right: 1, padding: 2 }}
+          style={styles.icon}
         />
       </TouchableOpacity>
       <View style={styles.headerTitleArea}>
@@ -232,6 +232,10 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.SIZE24PX,
     fontWeight: 'bold',
     color: COLORS.MAIN_TEXT_COLOR,
+  },
+  icon: {
+    right: 1,
+    padding: 2,
   },
   headerTitleArea: {
     width: '33%',
