@@ -140,5 +140,7 @@ const styles = StyleSheet.create({
   countTouchArea: {
     borderWidth: 1,
     borderRadius: 5,
+    height: '100%',
+    justifyContent: 'center',
   },
 });
