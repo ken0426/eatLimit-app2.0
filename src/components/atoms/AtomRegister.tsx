@@ -189,7 +189,7 @@ const AtomRegister: FC<Props> = ({
             }
           } catch (error) {}
         }}
-        style={{ width: '33%', alignItems: 'flex-end' }}
+        style={styles.right}
       >
         <SvgIcon
           type={'fontAwesome'}
@@ -226,6 +226,10 @@ const styles = StyleSheet.create({
   },
   left: {
     width: '33%',
+  },
+  right: {
+    width: '33%',
+    alignItems: 'flex-end',
   },
   headerText: {
     textAlign: 'center',
