@@ -6,7 +6,7 @@ import MolHeader from './molecules/MolHeader';
 import { COLORS, SIZE } from '../styles';
 import AtomHome from './atoms/AtomHome';
 import OrgList from './organisms/OrgList';
-import { useRootDispatch, useRootSelector } from '../redux/store/store';
+import { useRootSelector } from '../redux/store/store';
 import { HEADER_TYPE } from '../contents';
 import NoListScreen from './organisms/NoListScreen';
 import AtomCountDisplay from './atoms/AtomCountDisplay';
@@ -22,7 +22,6 @@ type Props = {
 };
 
 const HomeScreen: FC<Props> = ({ navigation }) => {
-  const dispatch = useRootDispatch();
   const tagList = useRootSelector((state) => state.common.tagList);
   const [listData, setListData] = useState<ApiData[]>([]);
   const [editData, setEditData] = useState<ApiData[]>([]);
