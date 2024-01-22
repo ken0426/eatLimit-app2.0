@@ -1,4 +1,4 @@
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import React, { FC, useEffect, useState } from 'react';
 import {
   Keyboard,
@@ -14,12 +14,14 @@ import AtomAuthInput from './atoms/AtomAuthInput';
 import AtomAuthButton from './atoms/AtomAuthButton';
 import { useAuthInput } from '../hooks/useAuthInput';
 import { handleLogin } from '../utils';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type Props = {
   route: RouteProp<StackPramList, 'loginScreen'>;
 };
 
 const LoginScreen: FC<Props> = ({ route }) => {
+  const navigation = useNavigation<StackNavigationProp<StackPramList>>();
   const isLogin = route.params.isLogin;
   const [isLoginScreen, setIsLoginScreen] = useState(isLogin);
 
@@ -124,7 +126,9 @@ const LoginScreen: FC<Props> = ({ route }) => {
 
         <View style={styles.changeButtonArea}>
           {isLoginScreen && (
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('passwordResetScreen')}
+            >
               <Text style={styles.changeButton}>パスワードを忘れた場合</Text>
             </TouchableOpacity>
           )}

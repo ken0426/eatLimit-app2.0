@@ -22,6 +22,7 @@ export const CAMERA_ERROR_MESSAGE =
 export const HEADER_TYPE = {
   DEFAULT: 'default',
   DETAIL: 'detail',
+  PASSWORD_RESET: 'password_reset',
 } as const;
 
 /** 画像の表示がある場合 */

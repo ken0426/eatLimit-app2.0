@@ -22,6 +22,7 @@ import LoginScreen from '../components/LoginScreen';
 import TagScreen from '../components/TagScreen';
 import TagRegisterScreen from '../components/TagRegisterScreen';
 import TagUpdateScreen from '../components/TagUpdateScreen';
+import PasswordResetScreen from '../components/PasswordResetScreen';
 /** その他 */
 import {
   fetchTag,
@@ -79,6 +80,11 @@ const RootStackScreen = () => {
         name={'loginScreen'}
         component={LoginScreen}
         options={{ headerShown: false, animation: 'fade' }}
+      />
+      <Stack.Screen
+        name={'passwordResetScreen'}
+        component={PasswordResetScreen}
+        options={{ headerShown: false, animation: 'none' }}
       />
       <Stack.Screen
         name={'homeScreen'}
