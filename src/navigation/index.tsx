@@ -104,12 +104,12 @@ const RootStackScreen = () => {
       <Stack.Screen
         name={'registerScreen'}
         component={RegisterScreen}
-        options={{ headerShown: false, presentation: 'fullScreenModal' }}
+        options={{ headerShown: false, animation: 'slide_from_bottom' }}
       />
       <Stack.Screen
         name={'updateRegisterScreen'}
         component={UpdateRegisterScreen}
-        options={{ headerShown: false, presentation: 'fullScreenModal' }}
+        options={{ headerShown: false, animation: 'slide_from_bottom' }}
       />
       <Stack.Screen
         name={'settingScreen'}
@@ -127,7 +127,7 @@ const RootStackScreen = () => {
       <Stack.Screen
         name={'memoTemplateRegisterScreen'}
         component={MemoTemplateRegisterScreen}
-        options={{ headerShown: false, presentation: 'fullScreenModal' }}
+        options={{ headerShown: false, animation: 'slide_from_bottom' }}
       />
       <Stack.Screen
         name={'memoTemplateUpdateScreen'}
@@ -144,24 +144,18 @@ const RootStackScreen = () => {
         component={TagScreen}
         options={{
           headerShown: false,
-          presentation: 'fullScreenModal',
+          animation: 'slide_from_bottom',
         }}
       />
       <Stack.Screen
         name={'tagRegisterScreen'}
         component={TagRegisterScreen}
-        options={{
-          headerShown: false,
-          presentation: 'fullScreenModal',
-        }}
+        options={{ headerShown: false, animation: 'slide_from_bottom' }}
       />
       <Stack.Screen
         name={'tagUpdateScreen'}
         component={TagUpdateScreen}
-        options={{
-          headerShown: false,
-          presentation: 'fullScreenModal',
-        }}
+        options={{ headerShown: false, animation: 'slide_from_bottom' }}
       />
     </Stack.Navigator>
   );
