@@ -73,7 +73,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
 
   return (
     <View style={STYLE_FLEX}>
-      <View style={{ backgroundColor: COLORS.WHITE, flex: 1 }}>
+      <View style={styles.contents}>
         <MolHeader style={styles.header} type={HEADER_TYPE.DEFAULT}>
           <AtomRegister
             title={'変更'}
@@ -286,7 +286,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     fontWeight={'bold'}
                   />
                   {/* 削除ボタンの仮実装 */}
-                  <View style={{ marginTop: SIZE.BASE_HP * 2 }}>
+                  <View style={styles.deleteButtonArea}>
                     <AtomButton
                       onPress={() => {
                         setMessage('本当に削除しますか？');
@@ -325,6 +325,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     zIndex: 2,
   },
+  contents: {
+    backgroundColor: COLORS.WHITE,
+    flex: 1,
+  },
   inputForm: {
     paddingHorizontal: SIZE.BASE_HP * 1.2,
     paddingBottom: SIZE.BASE_HP * 1.2,
@@ -333,5 +337,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: SIZE.BASE_HP * 2.4,
+  },
+  deleteButtonArea: {
+    marginTop: SIZE.BASE_HP * 2,
   },
 });
