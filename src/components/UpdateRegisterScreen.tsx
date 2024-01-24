@@ -285,7 +285,6 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                     buttonText={'変更'}
                     fontWeight={'bold'}
                   />
-                  {/* 削除ボタンの仮実装 */}
                   <View style={styles.deleteButtonArea}>
                     <AtomButton
                       onPress={() => {
