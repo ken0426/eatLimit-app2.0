@@ -8,6 +8,7 @@ import {
   CAMERA_ERROR_MESSAGE,
   LABEL,
   LABEL_NAME,
+  SAVE_TYPE,
 } from '../contents';
 import {
   ApiData,
@@ -167,7 +168,8 @@ export const onRegisterPress = async ({
     const imageUpdateId = newPostData.find(
       (item) => item.key === LABEL_NAME.IMAGE_ID
     )?.value as string;
-    const imageId = saveType === 'add' ? (uuid.v4() as string) : imageUpdateId!;
+    const imageId =
+      saveType === SAVE_TYPE.ADD ? (uuid.v4() as string) : imageUpdateId!;
     if (imageData) {
       /** 画像をDBに保存する */
       await saveImage(auth.currentUser.uid, imageData, imageId);

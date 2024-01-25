@@ -25,6 +25,7 @@ import {
   LABEL_NAME,
   LABEL_TEXT,
   MANAGEMENT_SELECTED_TEXT,
+  SAVE_TYPE,
   keepData,
   managementData,
 } from '../contents';
@@ -273,7 +274,7 @@ const UpdateRegisterScreen: FC<Props> = ({ navigation }) => {
                         setIsDateBefore,
                         setIsLoading,
                         navigation,
-                        saveType: 'update',
+                        saveType: SAVE_TYPE.UPDATE,
                         updateListId: updateData.id,
                       });
                       if (finish) dispatch(setTagSelectedIds([]));

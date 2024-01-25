@@ -25,6 +25,7 @@ import {
   LABEL_NAME,
   LABEL_TEXT,
   MANAGEMENT_SELECTED_TEXT,
+  SAVE_TYPE,
   keepData,
   managementData,
 } from '../contents';
@@ -336,7 +337,7 @@ const RegisterScreen = () => {
                         setIsLoading,
                         copyData,
                         navigation,
-                        saveType: 'add',
+                        saveType: SAVE_TYPE.ADD,
                         updateListId: undefined,
                       });
                       if (finish) dispatch(setTagSelectedIds([]));

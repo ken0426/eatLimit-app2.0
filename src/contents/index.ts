@@ -103,6 +103,11 @@ export const MANAGEMENT_SELECTED_TEXT = {
   REGISTRATION_DATE: '登録日',
 } as const;
 
+export const SAVE_TYPE = {
+  ADD: 'add',
+  UPDATE: 'update',
+} as const;
+
 /** 管理方法のデータ */
 export const managementData: ManagementData[] = [
   {
