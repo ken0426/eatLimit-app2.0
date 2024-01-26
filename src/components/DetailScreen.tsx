@@ -7,9 +7,8 @@ import {
   FlatList,
   ListRenderItem,
 } from 'react-native';
-/** Redux */
-import { useRootSelector } from '../redux/store/store';
 /** ライブラリ */
+import { useRootSelector } from '../redux/store/store';
 import { RouteProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 /** その他ファイル */
