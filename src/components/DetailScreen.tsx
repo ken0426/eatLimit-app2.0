@@ -1,3 +1,4 @@
+/** React */
 import React, { FC, useEffect, useRef, useState } from 'react';
 import {
   StyleSheet,
@@ -6,19 +7,22 @@ import {
   FlatList,
   ListRenderItem,
 } from 'react-native';
+/** Redux */
+import { useRootSelector } from '../redux/store/store';
+/** ライブラリ */
 import { RouteProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { WINDOW_HEIGHT } from '../utils';
+/** その他ファイル */
+import AtomDetailMemo from './atoms/AtomDetailMemo';
+import AtomButton from './atoms/AtomButton';
 import MolHeader from './molecules/MolHeader';
+import MolDetailOthers from './molecules/MolDetailOthers';
+import MolDetailHeader from './molecules/MolDetailHeader';
+import MolDetailTopItem from './molecules/MolDetailTopItem';
 import { ApiData, StackPramList } from '../types';
 import { useDetailAnimation } from '../hooks/useDetailAnimation';
-import MolDetailHeader from './molecules/MolDetailHeader';
+import { WINDOW_HEIGHT } from '../utils';
 import { COLORS, DETAIL_IMAGE_HEIGHT, FONTSIZE, SIZE } from '../styles';
-import AtomButton from './atoms/AtomButton';
-import MolDetailTopItem from './molecules/MolDetailTopItem';
-import AtomDetailMemo from './atoms/AtomDetailMemo';
-import MolDetailOthers from './molecules/MolDetailOthers';
-import { useRootSelector } from '../redux/store/store';
 
 type RouteItem = {
   params: {
