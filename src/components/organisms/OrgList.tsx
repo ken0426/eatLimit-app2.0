@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     borderTopWidth: SIZE.BASE_HP * 0.06,
   },
   imageArea: {
-    width: SIZE.BASE_HP * 15.5,
+    width: SIZE.BASE_WP * 33,
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
