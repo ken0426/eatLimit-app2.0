@@ -1,11 +1,5 @@
+/** React */
 import React, { useEffect, useState } from 'react';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
-import { useRootDispatch, useRootSelector } from '../redux/store/store';
-import MolHeader from './molecules/MolHeader';
-import { BUTTON_TEXT, HEADER_TYPE } from '../contents';
 import {
   FlatList,
   ListRenderItem,
@@ -15,10 +9,19 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { COLORS, FONTSIZE, SIZE } from '../styles';
+/** ライブラリ */
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
+import { useRootDispatch, useRootSelector } from '../redux/store/store';
+/** その他 */
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import AtomButton from './atoms/AtomButton';
 import AtomTagCheckSelect from './atoms/AtomTagCheckSelect';
+import MolHeader from './molecules/MolHeader';
+import { BUTTON_TEXT, HEADER_TYPE } from '../contents';
+import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { filterTagData } from '../utils';
 import SvgIcon from '../images/SvgIcon';
 import { StackPramList } from '../types';

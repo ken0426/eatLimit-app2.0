@@ -1,17 +1,20 @@
+/** React */
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+/** ライブラリ */
 import { Provider as PaperProvider } from 'react-native-paper';
-import AtomSettingRegister from './atoms/AtomSettingRegister';
-import MolHeader from './molecules/MolHeader';
-import { HEADER_TYPE, LABEL } from '../contents';
-import { COLORS, SIZE } from '../styles';
-import MolDragList from './molecules/MolDragList';
-import MolMenu from './molecules/MolMenu';
-import { Menuitem } from '../types';
-import { useRootDispatch, useRootSelector } from '../redux/store/store';
-import { setTagList } from '../redux/slices/commonSlice';
 import { auth } from '../firebase';
 import { saveTagOrder } from '../api';
+/** その他 */
+import AtomSettingRegister from './atoms/AtomSettingRegister';
+import MolHeader from './molecules/MolHeader';
+import MolDragList from './molecules/MolDragList';
+import MolMenu from './molecules/MolMenu';
+import { HEADER_TYPE, LABEL } from '../contents';
+import { COLORS, SIZE } from '../styles';
+import { Menuitem } from '../types';
+import { setTagList } from '../redux/slices/commonSlice';
+import { useRootDispatch, useRootSelector } from '../redux/store/store';
 
 const TagUpdateScreen = () => {
   const dispatch = useRootDispatch();

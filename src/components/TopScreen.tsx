@@ -1,9 +1,12 @@
+/** React */
 import React from 'react';
 import { ImageBackground, StyleSheet, View } from 'react-native';
+/** ライブラリ */
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { StackPramList } from '../types';
+/** その他 */
 import AtomAuthButton from './atoms/AtomAuthButton';
+import { StackPramList } from '../types';
 import { COLORS, SIZE } from '../styles';
 
 const TopScreen = () => {

@@ -1,3 +1,4 @@
+/** React */
 import React, { FC, useState } from 'react';
 import {
   Keyboard,
@@ -8,17 +9,22 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+/** ライブラリ */
 import { StackNavigationProp } from '@react-navigation/stack';
-import MolHeader from './molecules/MolHeader';
+/** その他 */
 import AtomRegister from './atoms/AtomRegister';
-import { StackPramList } from '../types';
-import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
 import AtomFileSelect from './atoms/AtomFileSelect';
 import AtomSingleInput from './atoms/AtomSingleInput';
 import AtomSingleSelect from './atoms/AtomSingleSelect';
 import AtomDate from './atoms/AtomDate';
 import AtomMemo from './atoms/AtomMemo';
 import AtomButton from './atoms/AtomButton';
+import AtomTagSelect from './atoms/AtomTagSelect';
+import AtomCounter from './atoms/AtomCounter';
+import AtomLoading from './atoms/AtomLoading';
+import MolHeader from './molecules/MolHeader';
+import { StackPramList } from '../types';
+import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
 import {
   DATE_ERROR_MESSAGE,
   HEADER_TYPE,
@@ -29,16 +35,13 @@ import {
   keepData,
   managementData,
 } from '../contents';
-import { useRootDispatch, useRootSelector } from '../redux/store/store';
-import { useRegister } from '../hooks/useRegister';
-import AtomLoading from './atoms/AtomLoading';
 import { handleRegistrationPress } from '../functions';
-import AtomCounter from './atoms/AtomCounter';
+import { useRegister } from '../hooks/useRegister';
 import { useDateError } from '../hooks/useDateError';
-import AtomTagSelect from './atoms/AtomTagSelect';
-import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
 import { useGoBack } from '../hooks/useGoBack';
+import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
 import { useApproximateDeadline } from '../hooks/useApproximateDeadline';
+import { useRootDispatch, useRootSelector } from '../redux/store/store';
 
 type Props = {
   navigation: StackNavigationProp<StackPramList, 'updateRegisterScreen'>;
