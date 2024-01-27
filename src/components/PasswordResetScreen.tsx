@@ -1,3 +1,5 @@
+/** React */
+import React, { useState } from 'react';
 import {
   Keyboard,
   StyleSheet,
@@ -5,8 +7,9 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+/** ライブラリ */
 import { useNavigation } from '@react-navigation/native';
+/** その他 */
 import AtomAuthInput from './atoms/AtomAuthInput';
 import AtomAuthButton from './atoms/AtomAuthButton';
 import AtomSettingRegister from './atoms/AtomSettingRegister';

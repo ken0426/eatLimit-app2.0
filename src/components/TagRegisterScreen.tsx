@@ -1,3 +1,4 @@
+/** React */
 import React, { useEffect, useRef, useState } from 'react';
 import {
   Keyboard,
@@ -8,11 +9,15 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+/** ライブラリ */
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import { auth } from '../firebase';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import MolHeader from './molecules/MolHeader';
+import { auth } from '../firebase';
+/** その他 */
 import AtomSettingRegister from './atoms/AtomSettingRegister';
+import AtomButton from './atoms/AtomButton';
+import MolHeader from './molecules/MolHeader';
+import OrgModalDefault from './organisms/OrgModalDefault';
 import {
   BUTTON_TEXT,
   HEADER_TYPE,
@@ -20,12 +25,10 @@ import {
   MODAL_MESSAGE,
 } from '../contents';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
-import AtomButton from './atoms/AtomButton';
+import { StackPramList } from '../types';
+import { deleteTag, saveTag, saveTagOrder, saveUpdateTag } from '../api';
 import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { setTagList } from '../redux/slices/commonSlice';
-import { StackPramList } from '../types';
-import OrgModalDefault from './organisms/OrgModalDefault';
-import { deleteTag, saveTag, saveTagOrder, saveUpdateTag } from '../api';
 import { setFilterSelectedData } from '../redux/slices/filterModalSlice';
 
 const TagRegisterScreen = () => {

@@ -1,4 +1,4 @@
-import { RouteProp, useNavigation } from '@react-navigation/native';
+/** React */
 import React, { FC, useEffect, useState } from 'react';
 import {
   Keyboard,
@@ -8,13 +8,16 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { StackPramList } from '../types';
-import { COLORS, FONTSIZE, SIZE } from '../styles';
+/** ライブラリ */
+import { RouteProp, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+/** その他 */
 import AtomAuthInput from './atoms/AtomAuthInput';
 import AtomAuthButton from './atoms/AtomAuthButton';
+import { StackPramList } from '../types';
+import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { useAuthInput } from '../hooks/useAuthInput';
 import { handleLogin } from '../utils';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 type Props = {
   route: RouteProp<StackPramList, 'loginScreen'>;

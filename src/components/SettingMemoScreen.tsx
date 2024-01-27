@@ -1,14 +1,17 @@
+/** React */
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+/** ライブラリ */
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import MolHeader from './molecules/MolHeader';
-import AtomSettingRegister from './atoms/AtomSettingRegister';
-import { COLORS, SIZE, STYLE_FLEX } from '../styles';
-import MolSettingList from './molecules/MolSettingList';
-import AtomSettingLabel from './atoms/AtomSettingLabel';
-import { StackPramList } from '../types';
 import { useRootSelector } from '../redux/store/store';
+/** その他 */
+import AtomSettingRegister from './atoms/AtomSettingRegister';
+import AtomSettingLabel from './atoms/AtomSettingLabel';
+import MolHeader from './molecules/MolHeader';
+import MolSettingList from './molecules/MolSettingList';
+import { COLORS, SIZE, STYLE_FLEX } from '../styles';
+import { StackPramList } from '../types';
 import { HEADER_TYPE } from '../contents';
 
 const SettingMemoScreen = () => {

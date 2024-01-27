@@ -1,3 +1,4 @@
+/** React */
 import React, { useState } from 'react';
 import {
   Button,
@@ -5,18 +6,23 @@ import {
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
+  InputAccessoryView,
+  Platform,
+  TextInput,
+  View,
 } from 'react-native';
-import { InputAccessoryView, Platform, TextInput, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { COLORS, FONTSIZE, SIZE } from '../styles';
-import AtomSettingRegister from './atoms/AtomSettingRegister';
-import MolHeader from './molecules/MolHeader';
-import { HEADER_TYPE } from '../contents';
-import AtomMemoLabel from './atoms/AtomMemoLabel';
+/** ライブラリ */
 import { useRootSelector } from '../redux/store/store';
-import { saveTemplate } from '../api';
+import { useNavigation } from '@react-navigation/native';
 import { auth } from '../firebase';
 import uuid from 'react-native-uuid';
+/** その他 */
+import AtomMemoLabel from './atoms/AtomMemoLabel';
+import AtomSettingRegister from './atoms/AtomSettingRegister';
+import MolHeader from './molecules/MolHeader';
+import { COLORS, FONTSIZE, SIZE } from '../styles';
+import { HEADER_TYPE } from '../contents';
+import { saveTemplate } from '../api';
 
 const MemoTemplateRegisterScreen = () => {
   const navigation = useNavigation();

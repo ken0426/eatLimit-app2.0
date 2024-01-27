@@ -1,3 +1,4 @@
+/** React */
 import React, { FC } from 'react';
 import {
   FlatList,
@@ -7,11 +8,15 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import MolHeader from './molecules/MolHeader';
+/** ライブラリ */
+import { RouteProp, useNavigation } from '@react-navigation/native';
+import { useRootDispatch, useRootSelector } from '../redux/store/store';
+import { auth } from '../firebase';
+/** その他 */
 import AtomSettingRegister from './atoms/AtomSettingRegister';
+import MolHeader from './molecules/MolHeader';
 import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
 import { commonSettingAdaptor } from '../adaptor/commonSettingAdaptor';
-import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { onSettingPress } from '../functions';
 import {
   ListData,
@@ -19,11 +24,9 @@ import {
   SettingMemoSelectItem,
   StackPramList,
 } from '../types';
-import { RouteProp, useNavigation } from '@react-navigation/native';
 import { HEADER_TYPE } from '../contents';
 import SvgIcon from '../images/SvgIcon';
 import { saveSelectTemplate } from '../api';
-import { auth } from '../firebase';
 
 type RouteItem = {
   params: {

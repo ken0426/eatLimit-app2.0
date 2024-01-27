@@ -1,3 +1,4 @@
+/** React */
 import React, { FC, useState } from 'react';
 import {
   Button,
@@ -6,21 +7,24 @@ import {
   Text,
   TextInput,
   View,
+  InputAccessoryView,
+  Platform,
 } from 'react-native';
+/** ライブラリ */
 import { RouteProp, useNavigation } from '@react-navigation/native';
-import { InputAccessoryView, Platform } from 'react-native';
+import { useRootDispatch, useRootSelector } from '../redux/store/store';
+import { setSelectMemoTemplate } from '../redux/slices/commonSlice';
+import { auth } from '../firebase';
+/** その他 */
+import AtomSettingRegister from './atoms/AtomSettingRegister';
+import AtomMemoLabel from './atoms/AtomMemoLabel';
+import AtomButton from './atoms/AtomButton';
+import MolHeader from './molecules/MolHeader';
+import OrgModalDefault from './organisms/OrgModalDefault';
 import { COLORS, FONTSIZE, SIZE } from '../styles';
 import { MemoTemplateData, StackPramList } from '../types';
-import AtomSettingRegister from './atoms/AtomSettingRegister';
-import MolHeader from './molecules/MolHeader';
 import { BUTTON_TEXT, HEADER_TYPE } from '../contents';
-import AtomMemoLabel from './atoms/AtomMemoLabel';
-import { useRootDispatch, useRootSelector } from '../redux/store/store';
 import { saveSelectTemplate, saveTemplate } from '../api';
-import { auth } from '../firebase';
-import { setSelectMemoTemplate } from '../redux/slices/commonSlice';
-import AtomButton from './atoms/AtomButton';
-import OrgModalDefault from './organisms/OrgModalDefault';
 
 type RouteItem = {
   params: {

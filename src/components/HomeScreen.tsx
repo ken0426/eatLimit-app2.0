@@ -1,20 +1,22 @@
+/** React */
 import React, { FC, useEffect, useMemo, useState } from 'react';
-import { FlatList, ListRenderItem, View } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { ApiData, PostData, StackPramList } from '../types';
-import MolHeader from './molecules/MolHeader';
-import { COLORS, SIZE } from '../styles';
-import AtomHome from './atoms/AtomHome';
-import OrgList from './organisms/OrgList';
-import { useRootSelector } from '../redux/store/store';
-import { HEADER_TYPE } from '../contents';
-import NoListScreen from './organisms/NoListScreen';
-import AtomCountDisplay from './atoms/AtomCountDisplay';
-import { StyleSheet } from 'react-native';
+import { FlatList, ListRenderItem, View, StyleSheet } from 'react-native';
+/** ライブラリ */
 import { auth, db } from '../firebase';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { collection, onSnapshot, query } from 'firebase/firestore';
-import { listDisplayAdaptor } from '../adaptor/listDisplayAdaptor';
+import { useRootSelector } from '../redux/store/store';
+/** その他 */
+import { ApiData, PostData, StackPramList } from '../types';
+import AtomCountDisplay from './atoms/AtomCountDisplay';
+import AtomHome from './atoms/AtomHome';
 import AtomLoading from './atoms/AtomLoading';
+import MolHeader from './molecules/MolHeader';
+import OrgList from './organisms/OrgList';
+import NoListScreen from './organisms/NoListScreen';
+import { COLORS, SIZE } from '../styles';
+import { HEADER_TYPE } from '../contents';
+import { listDisplayAdaptor } from '../adaptor/listDisplayAdaptor';
 import { getListImage } from '../api';
 
 type Props = {

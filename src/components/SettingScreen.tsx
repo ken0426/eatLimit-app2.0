@@ -1,3 +1,4 @@
+/** React */
 import React, { useEffect, useState } from 'react';
 import {
   Alert,
@@ -6,11 +7,16 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+/** ライブラリ */
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
-import { COLORS, SIZE } from '../styles';
-import MolHeader from './molecules/MolHeader';
+import { auth } from '../firebase';
+/** その他 */
 import AtomSettingRegister from './atoms/AtomSettingRegister';
+import AtomSettingLabel from './atoms/AtomSettingLabel';
+import MolHeader from './molecules/MolHeader';
+import MolSettingList from './molecules/MolSettingList';
+import { COLORS, SIZE } from '../styles';
 import {
   BUTTON_TEXT,
   HEADER_TYPE,
@@ -21,9 +27,6 @@ import {
 import { SettingData, StackPramList } from '../types';
 import { getEditDataFormat, getKey } from '../utils';
 import { useRootDispatch, useRootSelector } from '../redux/store/store';
-import AtomSettingLabel from './atoms/AtomSettingLabel';
-import MolSettingList from './molecules/MolSettingList';
-import { auth } from '../firebase';
 import { setTagList, setTagsOrderId } from '../redux/slices/commonSlice';
 import { setUserEmail } from '../redux/slices/loginSlice';
 

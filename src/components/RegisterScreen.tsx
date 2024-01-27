@@ -1,3 +1,4 @@
+/** React */
 import React, { useMemo, useState } from 'react';
 import {
   Keyboard,
@@ -8,17 +9,24 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+/** ライブラリ */
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { useRootDispatch, useRootSelector } from '../redux/store/store';
-import { ApiData, StackPramList } from '../types';
-import MolHeader from './molecules/MolHeader';
-import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
+/** その他 */
 import AtomRegister from './atoms/AtomRegister';
 import AtomFileSelect from './atoms/AtomFileSelect';
 import AtomSingleSelect from './atoms/AtomSingleSelect';
 import AtomSingleInput from './atoms/AtomSingleInput';
 import AtomDate from './atoms/AtomDate';
+import AtomMemo from './atoms/AtomMemo';
+import AtomButton from './atoms/AtomButton';
+import AtomCounter from './atoms/AtomCounter';
+import AtomLoading from './atoms/AtomLoading';
+import AtomTagSelect from './atoms/AtomTagSelect';
+import { ApiData, StackPramList } from '../types';
+import MolHeader from './molecules/MolHeader';
+import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
 import {
   DATE_ERROR_MESSAGE,
   HEADER_TYPE,
@@ -29,18 +37,13 @@ import {
   keepData,
   managementData,
 } from '../contents';
-import AtomMemo from './atoms/AtomMemo';
-import AtomButton from './atoms/AtomButton';
 import { useRegister } from '../hooks/useRegister';
-import AtomLoading from './atoms/AtomLoading';
 import { handleRegistrationPress } from '../functions';
-import AtomCounter from './atoms/AtomCounter';
 import { useDateError } from '../hooks/useDateError';
 import { useCopyEdit } from '../hooks/useCopyEdit';
-import AtomTagSelect from './atoms/AtomTagSelect';
-import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
-import { useGoBack } from '../hooks/useGoBack';
 import { useApproximateDeadline } from '../hooks/useApproximateDeadline';
+import { useGoBack } from '../hooks/useGoBack';
+import { setTagSelectedIds } from '../redux/slices/commonRegisterSlice';
 
 type RouteItem = {
   params: {
