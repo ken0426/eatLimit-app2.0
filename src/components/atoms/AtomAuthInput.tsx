@@ -57,6 +57,7 @@ const AtomAuthInput: FC<Props> = ({
         style={styles.textInputStyle}
         error={!!errorMessage}
         theme={theme}
+        numberOfLines={1}
       />
       {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
     </View>
