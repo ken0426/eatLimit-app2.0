@@ -392,7 +392,10 @@ export const passwordResetValidation = async (mailAddress: string) => {
     const auth = getAuth();
     await sendPasswordResetEmail(auth, mailAddress);
     return PASSWORD_RESET_MESSAGE.SUCCESS;
-  } catch (error) {
+  } catch (error: any) {
+    if (error.code === 'auth/user-not-found') {
+      return 'ユーザーが存在しません。';
+    }
     throw error;
   }
 };
