@@ -19,6 +19,14 @@ export const SEARCH_BAR_TEXT = 20;
 export const CAMERA_ERROR_MESSAGE =
   'カメラの起動に失敗しました。\n設定からカメラへの権限を許可してください';
 
+/** パスワード再設定用のメッセージ */
+export const PASSWORD_RESET_MESSAGE = {
+  NO_TEXT: 'メールアドレスを入力してください',
+  INVALID_EMAIL: 'メールアドレスを正しく入力してください',
+  SUCCESS:
+    'メールを送信しました\nメール内のリンクからパスワードの再設定を行ってください。',
+};
+
 export const HEADER_TYPE = {
   DEFAULT: 'default',
   DETAIL: 'detail',

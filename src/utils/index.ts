@@ -1,13 +1,16 @@
 import { Alert, Dimensions, KeyboardTypeOptions, Platform } from 'react-native';
 import {
   createUserWithEmailAndPassword,
+  getAuth,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { ApiData, HandleLoginType, PostData, TagData } from '../types';
 import {
   LABEL_NAME,
   MODAL_MESSAGE,
+  PASSWORD_RESET_MESSAGE,
   SEPTEMBER,
   SETTING_ITEM_ID,
 } from '../contents';
@@ -375,4 +378,21 @@ export const registerValidationCheck = ({
 export const getTagId = (tagData: TagData[]) => {
   const tagIds = tagData.map((tag) => tag.id);
   return tagIds;
+};
+
+/** パスワードリセットのメールアドレスのバリデーション */
+export const passwordResetValidation = async (mailAddress: string) => {
+  try {
+    if (mailAddress === '') return PASSWORD_RESET_MESSAGE.NO_TEXT;
+    /** メールアドレスのチェック */
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(mailAddress))
+      return PASSWORD_RESET_MESSAGE.INVALID_EMAIL;
+
+    const auth = getAuth();
+    await sendPasswordResetEmail(auth, mailAddress);
+    return PASSWORD_RESET_MESSAGE.SUCCESS;
+  } catch (error) {
+    throw error;
+  }
 };
