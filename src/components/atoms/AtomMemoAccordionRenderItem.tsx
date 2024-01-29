@@ -8,26 +8,30 @@ type Props = {
   item: ApiData;
   numberOfLines?: number;
   iconName: 'keyboard-arrow-down' | 'keyboard-arrow-up';
+  lineBreak: number;
 };
 
 const AtomMemoAccordionRenderItem: FC<Props> = ({
   item,
   numberOfLines,
   iconName,
+  lineBreak,
 }) => {
   return (
     <View>
       <Text numberOfLines={numberOfLines} style={styles.memoText}>
         {item.memo}
       </Text>
-      <View style={styles.accordionIconArea}>
-        <SvgIcon
-          type={'materialIcons'}
-          name={iconName}
-          size={30}
-          color={COLORS.BLACK}
-        />
-      </View>
+      {lineBreak > 7 && (
+        <View style={styles.accordionIconArea}>
+          <SvgIcon
+            type={'materialIcons'}
+            name={iconName}
+            size={30}
+            color={COLORS.BLACK}
+          />
+        </View>
+      )}
     </View>
   );
 };
