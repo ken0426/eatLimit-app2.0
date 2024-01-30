@@ -87,6 +87,8 @@ const SettingScreen = () => {
                 navigation.push('tagRegisterScreen');
               } else if (data.label === LABEL.TAG_EDIT) {
                 navigation.push('tagUpdateScreen');
+              } else if (data.label === LABEL.PASSWORD_CHANGE) {
+                navigation.navigate('passwordUpdateScreen');
               } else if (data.label === LOG_AUTO) {
                 // TODO リファクタリング（定数化など）
                 Alert.alert(LOG_AUTO, `ログアウトします。\nよろしいですか？`, [

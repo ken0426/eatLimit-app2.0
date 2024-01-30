@@ -39,6 +39,7 @@ export type StackPramList = {
   topScreen: undefined;
   loginScreen: { isLogin: boolean };
   passwordResetScreen: undefined;
+  passwordUpdateScreen: undefined;
   homeScreen: undefined;
   detailScreen: { item: ApiData };
   searchScreen: { data: ApiData[] };

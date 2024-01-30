@@ -207,6 +207,8 @@ export const LABEL = {
   TAG_REGISTER: 'タグ作成',
   /** タグの編集 */
   TAG_EDIT: 'タグ編集と並び替え',
+  /** パスワード変更 */
+  PASSWORD_CHANGE: 'パスワード変更',
 };
 
 /** 設定項目で選択するID */
@@ -325,6 +327,10 @@ export const settingData: SettingData[] = [
     account: {
       headline: 'アカウント',
       item: [
+        {
+          label: 'パスワード変更',
+          data: [],
+        },
         {
           label: LOG_AUTO,
           data: [],
