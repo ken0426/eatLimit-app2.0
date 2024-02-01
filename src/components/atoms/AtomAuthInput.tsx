@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { KeyboardTypeOptions, StyleSheet, Text, View } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { TextInput } from 'react-native-paper';
