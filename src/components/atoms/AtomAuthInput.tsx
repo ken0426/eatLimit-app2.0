@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { KeyboardTypeOptions, StyleSheet, Text, View } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
 import { TextInput } from 'react-native-paper';
@@ -8,7 +8,6 @@ type Props = {
   value: string;
   text: string;
   keyboardType?: KeyboardTypeOptions;
-  secureTextEntry?: boolean;
   setData: (e: string) => void;
   errorMessage: null | string;
   type: 'email' | 'lock';
@@ -25,11 +24,12 @@ const AtomAuthInput: FC<Props> = ({
   value,
   text,
   keyboardType,
-  secureTextEntry,
   setData,
   errorMessage,
   type,
 }) => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
   return (
     <View style={styles.contents}>
       <TextInput
@@ -40,10 +40,24 @@ const AtomAuthInput: FC<Props> = ({
             icon={type}
           />
         }
+        right={
+          type == 'lock' && (
+            <TextInput.Icon
+              onPress={() => {
+                setIsPasswordVisible(!isPasswordVisible);
+              }}
+              size={20}
+              color={COLORS.MAIN_TEXT_COLOR}
+              icon={isPasswordVisible ? 'eye' : 'eye-off'}
+            />
+          )
+        }
         mode={'outlined'}
         label={` ${text}`}
         value={value}
-        secureTextEntry={secureTextEntry}
+        secureTextEntry={
+          type == 'lock' ? (isPasswordVisible ? false : true) : undefined
+        }
         autoCapitalize={'none'}
         keyboardType={keyboardType}
         onChangeText={(inputText) => setData(inputText)}

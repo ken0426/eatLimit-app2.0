@@ -3,6 +3,7 @@ import React from 'react';
 import {
   Keyboard,
   StyleSheet,
+  Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -10,9 +11,11 @@ import {
 import { useNavigation } from '@react-navigation/native';
 /** その他 */
 import AtomSettingRegister from './atoms/AtomSettingRegister';
+import AtomAuthInput from './atoms/AtomAuthInput';
+import AtomAuthButton from './atoms/AtomAuthButton';
 import MolHeader from './molecules/MolHeader';
 import { HEADER_TYPE } from '../contents';
-import { SIZE, STYLE_FLEX } from '../styles';
+import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
 
 const PasswordUpdateScreen = () => {
   const navigation = useNavigation();
@@ -26,7 +29,38 @@ const PasswordUpdateScreen = () => {
             onRightPress={() => navigation.goBack()}
           />
         </MolHeader>
-        <View style={styles.inputArea}></View>
+        <View style={styles.inputArea}>
+          <Text style={styles.title}>パスワード変更</Text>
+          <View style={styles.passwordInputArea}>
+            <AtomAuthInput
+              text={'現在のパスワード'}
+              value={''}
+              setData={() => {}}
+              errorMessage={null}
+              type={'lock'}
+            />
+            <AtomAuthInput
+              text={'新しいパスワード'}
+              value={''}
+              setData={() => {}}
+              errorMessage={null}
+              type={'lock'}
+            />
+            <AtomAuthInput
+              text={'新しいパスワード確認用'}
+              value={''}
+              setData={() => {}}
+              errorMessage={null}
+              type={'lock'}
+            />
+          </View>
+          <AtomAuthButton
+            onPress={() => {}}
+            text={'パスワード変更'}
+            backgroundColor={COLORS.BLACK}
+            textColor={COLORS.SIGN_IN_BUTTON}
+          />
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -49,6 +83,16 @@ const styles = StyleSheet.create({
   },
   inputArea: {
     paddingHorizontal: SIZE.BASE_WP * 5,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    flex: 1,
+  },
+  title: {
+    fontSize: FONTSIZE.SIZE25PX,
+    marginBottom: SIZE.BASE_WP * 4.4,
+  },
+  passwordInputArea: {
+    height: '30%',
+    justifyContent: 'space-between',
+    marginBottom: SIZE.BASE_WP * 10,
   },
 });

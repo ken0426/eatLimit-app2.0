@@ -83,7 +83,6 @@ const LoginScreen: FC<Props> = ({ route }) => {
           />
           <AtomAuthInput
             text={'パスワード'}
-            secureTextEntry={true}
             value={getValue('password') ?? ''}
             setData={(data) =>
               setTargetPostData({ key: 'password', value: data })
@@ -94,7 +93,6 @@ const LoginScreen: FC<Props> = ({ route }) => {
           {!isLoginScreen && (
             <AtomAuthInput
               text={'パスワード（確認用）'}
-              secureTextEntry={true}
               value={getValue('passwordConfirmation') ?? ''}
               setData={(data) =>
                 setTargetPostData({
