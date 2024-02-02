@@ -16,9 +16,16 @@ import AtomAuthButton from './atoms/AtomAuthButton';
 import MolHeader from './molecules/MolHeader';
 import { HEADER_TYPE } from '../contents';
 import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
+import { useAuthInput } from '../hooks/useAuthInput';
+import { passwordValidationCheck } from '../utils';
 
 const PasswordUpdateScreen = () => {
   const navigation = useNavigation();
+
+  const { setTargetPostData, postData } = useAuthInput();
+
+  const getValue = (key: string) =>
+    postData.find((item) => item.key === key)?.value;
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -34,28 +41,39 @@ const PasswordUpdateScreen = () => {
           <View style={styles.passwordInputArea}>
             <AtomAuthInput
               text={'現在のパスワード'}
-              value={''}
-              setData={() => {}}
+              value={getValue('password') ?? ''}
+              setData={(data) => {
+                setTargetPostData({ key: 'password', value: data });
+              }}
               errorMessage={null}
               type={'lock'}
             />
             <AtomAuthInput
               text={'新しいパスワード'}
-              value={''}
-              setData={() => {}}
+              value={getValue('newPassword') ?? ''}
+              setData={(data) => {
+                setTargetPostData({ key: 'newPassword', value: data });
+              }}
               errorMessage={null}
               type={'lock'}
             />
             <AtomAuthInput
               text={'新しいパスワード確認用'}
-              value={''}
-              setData={() => {}}
+              value={getValue('newPasswordConfirmation') ?? ''}
+              setData={(data) => {
+                setTargetPostData({
+                  key: 'newPasswordConfirmation',
+                  value: data,
+                });
+              }}
               errorMessage={null}
               type={'lock'}
             />
           </View>
           <AtomAuthButton
-            onPress={() => {}}
+            onPress={() => {
+              passwordValidationCheck(postData);
+            }}
             text={'パスワード変更'}
             backgroundColor={COLORS.BLACK}
             textColor={COLORS.SIGN_IN_BUTTON}

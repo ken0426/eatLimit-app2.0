@@ -6,7 +6,13 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { ApiData, HandleLoginType, PostData, TagData } from '../types';
+import {
+  ApiData,
+  AuthPostData,
+  HandleLoginType,
+  PostData,
+  TagData,
+} from '../types';
 import {
   LABEL_NAME,
   MODAL_MESSAGE,
@@ -398,4 +404,9 @@ export const passwordResetValidation = async (mailAddress: string) => {
     }
     throw error;
   }
+};
+
+/** パスワード変更のバリデーションチェック */
+export const passwordValidationCheck = async (postData: AuthPostData[]) => {
+  console.log(postData);
 };
