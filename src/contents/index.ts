@@ -325,8 +325,12 @@ export const settingData: SettingData[] = [
   },
   {
     account: {
-      headline: 'アカウント',
+      headline: 'ユーザー設定',
       item: [
+        {
+          label: 'テーマカラー',
+          data: [],
+        },
         {
           label: 'パスワード変更',
           data: [],
