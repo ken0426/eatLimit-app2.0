@@ -30,6 +30,7 @@ import {
   setSelectedTemplateMemoId,
   setTemplateMemoData,
 } from '../redux/slices/memoSlice';
+import { SAVE_TYPE } from '../contents';
 
 /** ユーザーが保存しているタグのデータを取得 */
 export const fetchTag = async (userId: string) => {
@@ -146,11 +147,11 @@ export const saveList = async (
   updateListId: string | undefined
 ) => {
   try {
-    if (saveType === 'add') {
+    if (saveType === SAVE_TYPE.ADD) {
       await addDoc(collection(db, `users/${userId}/list`), {
         listData: newPostData,
       });
-    } else if (updateListId && saveType === 'update') {
+    } else if (updateListId && saveType === SAVE_TYPE.UPDATE) {
       const res = doc(db, `users/${userId}/list`, updateListId);
       await setDoc(res, {
         listData: newPostData,

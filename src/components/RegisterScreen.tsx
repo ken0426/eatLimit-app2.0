@@ -127,7 +127,7 @@ const RegisterScreen = () => {
             isDateBefore={isDateBefore}
             setIsDateBefore={setIsDateBefore}
             copyData={copyData}
-            saveType={'add'}
+            saveType={SAVE_TYPE.ADD}
             updateListId={undefined}
           />
         </MolHeader>
@@ -295,9 +295,9 @@ const RegisterScreen = () => {
                       copyData?.data?.placeOfPurchase
                         ? copyData.data.placeOfPurchase
                         : typeof getTextData(LABEL_NAME.PLACE_OF_PURCHASE) ===
-                            'string'
-                          ? String(getTextData(LABEL_NAME.PLACE_OF_PURCHASE))
-                          : undefined
+                          'string'
+                        ? String(getTextData(LABEL_NAME.PLACE_OF_PURCHASE))
+                        : undefined
                     }
                   />
                   <AtomSingleInput
