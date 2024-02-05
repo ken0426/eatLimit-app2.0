@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { COLORS, FONTSIZE, SIZE } from '../../styles';
-import { widthPercentageToDP } from 'react-native-responsive-screen';
 
 type Props = {
   value: string | number;
