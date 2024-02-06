@@ -15,7 +15,11 @@ import AtomAuthButton from './atoms/AtomAuthButton';
 import AtomSettingRegister from './atoms/AtomSettingRegister';
 import MolHeader from './molecules/MolHeader';
 import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
-import { BUTTON_TEXT, HEADER_TYPE, PASSWORD_RESET_MESSAGE } from '../contents';
+import {
+  BUTTON_TEXT,
+  HEADER_TYPE,
+  MAIL_ADDRESS_VALIDATION_MESSAGE,
+} from '../contents';
 import { passwordResetValidation } from '../utils';
 import OrgModalDefault from './organisms/OrgModalDefault';
 
@@ -64,7 +68,7 @@ const PasswordResetScreen = () => {
               onPress={async () => {
                 const validation = await passwordResetValidation(text);
                 setMessage(validation);
-                if (validation === PASSWORD_RESET_MESSAGE.SUCCESS) {
+                if (validation === MAIL_ADDRESS_VALIDATION_MESSAGE.SUCCESS) {
                   setIsSend(true);
                 } else {
                   setIsVisible(true);

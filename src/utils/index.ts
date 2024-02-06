@@ -15,9 +15,10 @@ import {
 } from '../types';
 import {
   LABEL_NAME,
+  MAIL_ADDRESS_VALIDATION_MESSAGE,
   MODAL_MESSAGE,
   PASSWORD_CHANGE_MESSAGE,
-  PASSWORD_RESET_MESSAGE,
+  REQUIRED_ITEM,
   SEPTEMBER,
   SETTING_ITEM_ID,
 } from '../contents';
@@ -25,6 +26,7 @@ import { auth } from '../firebase';
 import moment from 'moment';
 import store from '../redux/store/store';
 import { setUserEmail } from '../redux/slices/loginSlice';
+import { PASSWORD_UPDATE_INPUT_KEY } from '../components/PasswordUpdateScreen';
 
 type Data = {
   data: {
@@ -171,9 +173,11 @@ export const handleLogin = async ({
 
     if (isLoginScreen) {
       if (mailAddress === '') {
-        setMailAddressErrorMessage('メールアドレスを入力してください');
+        setMailAddressErrorMessage(MAIL_ADDRESS_VALIDATION_MESSAGE.NO_TEXT);
       } else if (!emailRegex.test(mailAddress)) {
-        setMailAddressErrorMessage('メールアドレスが正しくありません');
+        setMailAddressErrorMessage(
+          MAIL_ADDRESS_VALIDATION_MESSAGE.INVALID_EMAIL_ADDRESS
+        );
       }
       if (
         password.length < 6 ||
@@ -183,9 +187,9 @@ export const handleLogin = async ({
         !letterAndNumberRegex.test(password)
       ) {
         if (password === '') {
-          setPasswordErrorMessage('パスワードを入力してください');
+          setPasswordErrorMessage(PASSWORD_CHANGE_MESSAGE.NO_TEXT);
         } else {
-          setPasswordErrorMessage('パスワードが正しくありません');
+          setPasswordErrorMessage(PASSWORD_CHANGE_MESSAGE.INVALID_PASSWORD);
         }
       }
 
@@ -212,41 +216,39 @@ export const handleLogin = async ({
       }
     } else {
       if (mailAddress === '') {
-        setMailAddressErrorMessage('必須項目です');
+        setMailAddressErrorMessage(REQUIRED_ITEM);
       } else if (!emailRegex.test(mailAddress)) {
-        setMailAddressErrorMessage('メールアドレスが正しくありません');
+        setMailAddressErrorMessage(
+          MAIL_ADDRESS_VALIDATION_MESSAGE.INVALID_EMAIL_ADDRESS
+        );
       }
       if (password === '') {
-        setPasswordErrorMessage('必須項目です');
+        setPasswordErrorMessage(REQUIRED_ITEM);
       }
       if (password.length > 6) {
         if (!uppercaseRegex.test(password) || !lowercaseRegex.test(password)) {
-          setPasswordErrorMessage(
-            'パスワードには大文字と小文字を含める必要があります'
-          );
+          setPasswordErrorMessage(PASSWORD_CHANGE_MESSAGE.INVALID_CASE);
           setPasswordConfirmationErrorMessage(
-            'パスワードには大文字と小文字を含める必要があります'
+            PASSWORD_CHANGE_MESSAGE.INVALID_CASE
           );
         }
         if (!alphanumericAndSymbolsRegex.test(password)) {
-          setPasswordErrorMessage(
-            `パスワードは半角英数字にしてください\nまた記号を含める場合は「@」「-」「_」となります`
-          );
+          setPasswordErrorMessage(PASSWORD_CHANGE_MESSAGE.INVALID_SYMBOL);
           setPasswordConfirmationErrorMessage(
-            `パスワードは半角英数字にしてください\nまた記号を含める場合は「@」「-」「_」となります`
+            PASSWORD_CHANGE_MESSAGE.INVALID_SYMBOL
           );
         }
         if (!letterAndNumberRegex.test(password)) {
-          setPasswordErrorMessage(
-            'パスワードには半角英数字を組み合わせてください'
-          );
+          setPasswordErrorMessage(PASSWORD_CHANGE_MESSAGE.INVALID_LENGTH);
           setPasswordConfirmationErrorMessage(
-            'パスワードには半角英数字を組み合わせてください'
+            PASSWORD_CHANGE_MESSAGE.INVALID_LENGTH
           );
         }
         if (password !== passwordConfirmation) {
-          setPasswordErrorMessage('パスワードが一致しません');
-          setPasswordConfirmationErrorMessage('パスワードが一致しません');
+          setPasswordErrorMessage(PASSWORD_CHANGE_MESSAGE.INVALID_MATCH);
+          setPasswordConfirmationErrorMessage(
+            PASSWORD_CHANGE_MESSAGE.INVALID_MATCH
+          );
         }
 
         /** 【すべての条件を満たした場合新規登録をする】
@@ -282,16 +284,16 @@ export const handleLogin = async ({
         }
       } else {
         if (password === '') {
-          setPasswordErrorMessage('必須項目です');
+          setPasswordErrorMessage(REQUIRED_ITEM);
         } else {
-          setPasswordErrorMessage('パスワードは7文字以上にしてください');
+          setPasswordErrorMessage(PASSWORD_CHANGE_MESSAGE.INVALID_SEVEN_LENGTH);
           setPasswordConfirmationErrorMessage(
-            'パスワードは7文字以上にしてください'
+            PASSWORD_CHANGE_MESSAGE.INVALID_SEVEN_LENGTH
           );
         }
       }
       if (passwordConfirmation === '') {
-        setPasswordConfirmationErrorMessage('必須項目です');
+        setPasswordConfirmationErrorMessage(REQUIRED_ITEM);
       }
     }
   } catch (error: any) {
@@ -390,15 +392,15 @@ export const getTagId = (tagData: TagData[]) => {
 /** パスワードリセットのメールアドレスのバリデーション */
 export const passwordResetValidation = async (mailAddress: string) => {
   try {
-    if (mailAddress === '') return PASSWORD_RESET_MESSAGE.NO_TEXT;
+    if (mailAddress === '') return MAIL_ADDRESS_VALIDATION_MESSAGE.NO_TEXT;
     /** メールアドレスのチェック */
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(mailAddress))
-      return PASSWORD_RESET_MESSAGE.INVALID_EMAIL;
+      return MAIL_ADDRESS_VALIDATION_MESSAGE.INVALID_EMAIL;
 
     const auth = getAuth();
     await sendPasswordResetEmail(auth, mailAddress);
-    return PASSWORD_RESET_MESSAGE.SUCCESS;
+    return MAIL_ADDRESS_VALIDATION_MESSAGE.SUCCESS;
   } catch (error: any) {
     if (error.code === 'auth/user-not-found') {
       return 'ユーザーが存在しません。';
@@ -422,26 +424,28 @@ export const passwordValidationCheck = (
   const getInput = (key: string) =>
     postData.find((item) => item.key === key)?.value;
 
-  const passwordInput = getInput('password');
-  const newPasswordInput = getInput('newPassword');
-  const newPasswordConfirmInput = getInput('newPasswordConfirmation');
+  const passwordInput = getInput(PASSWORD_UPDATE_INPUT_KEY.PASSWORD);
+  const newPasswordInput = getInput(PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD);
+  const newPasswordConfirmInput = getInput(
+    PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD_CONFIRMATION
+  );
   const data = [
     {
-      key: 'password',
+      key: PASSWORD_UPDATE_INPUT_KEY.PASSWORD,
       value: passwordInput ?? '',
     },
     {
-      key: 'newPassword',
+      key: PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD,
       value: newPasswordInput ?? '',
     },
     {
-      key: 'newPasswordConfirmation',
+      key: PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD_CONFIRMATION,
       value: newPasswordConfirmInput ?? '',
     },
   ];
 
   const validationResults = data.map((item) => {
-    const password = item.key === 'password';
+    const password = item.key === PASSWORD_UPDATE_INPUT_KEY.PASSWORD;
     if (item.value === '') {
       return {
         key: item.key,
@@ -452,7 +456,7 @@ export const passwordValidationCheck = (
         key: item.key,
         error: password
           ? PASSWORD_CHANGE_MESSAGE.INVALID_PASSWORD
-          : 'パスワードは7文字以上にしてください',
+          : PASSWORD_CHANGE_MESSAGE.INVALID_SEVEN_LENGTH,
       };
     } else if (
       !uppercaseRegex.test(item.value) ||
@@ -479,7 +483,8 @@ export const passwordValidationCheck = (
           : PASSWORD_CHANGE_MESSAGE.INVALID_LENGTH,
       };
     } else if (
-      (item.key === 'newPassword' || item.key === 'newPasswordConfirmation') &&
+      (item.key === PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD ||
+        item.key === PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD_CONFIRMATION) &&
       newPasswordInput !== newPasswordConfirmInput
     ) {
       return { key: item.key, error: PASSWORD_CHANGE_MESSAGE.INVALID_MATCH };

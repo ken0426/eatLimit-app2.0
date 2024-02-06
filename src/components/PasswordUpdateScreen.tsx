@@ -19,6 +19,12 @@ import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
 import { useAuthInput } from '../hooks/useAuthInput';
 import { passwordValidationCheck } from '../utils';
 
+export const PASSWORD_UPDATE_INPUT_KEY = {
+  PASSWORD: 'password',
+  NEW_PASSWORD: 'newPassword',
+  NEW_PASSWORD_CONFIRMATION: 'newPasswordConfirmation',
+};
+
 const PasswordUpdateScreen = () => {
   const navigation = useNavigation();
 
@@ -48,32 +54,49 @@ const PasswordUpdateScreen = () => {
           <View style={styles.passwordInputArea}>
             <AtomAuthInput
               text={'現在のパスワード'}
-              value={getValue('password') ?? ''}
+              value={getValue(PASSWORD_UPDATE_INPUT_KEY.PASSWORD) ?? ''}
               setData={(data) => {
-                setTargetPostData({ key: 'password', value: data });
+                setTargetPostData({
+                  key: PASSWORD_UPDATE_INPUT_KEY.PASSWORD,
+                  value: data,
+                });
               }}
-              errorMessage={getHasError('password') ?? null}
+              errorMessage={
+                getHasError(PASSWORD_UPDATE_INPUT_KEY.PASSWORD) ?? null
+              }
               type={'lock'}
             />
             <AtomAuthInput
               text={'新しいパスワード'}
-              value={getValue('newPassword') ?? ''}
+              value={getValue(PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD) ?? ''}
               setData={(data) => {
-                setTargetPostData({ key: 'newPassword', value: data });
+                setTargetPostData({
+                  key: PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD,
+                  value: data,
+                });
               }}
-              errorMessage={getHasError('newPassword') ?? null}
+              errorMessage={
+                getHasError(PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD) ?? null
+              }
               type={'lock'}
             />
             <AtomAuthInput
               text={'新しいパスワード確認用'}
-              value={getValue('newPasswordConfirmation') ?? ''}
+              value={
+                getValue(PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD_CONFIRMATION) ??
+                ''
+              }
               setData={(data) => {
                 setTargetPostData({
-                  key: 'newPasswordConfirmation',
+                  key: PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD_CONFIRMATION,
                   value: data,
                 });
               }}
-              errorMessage={getHasError('newPasswordConfirmation') ?? null}
+              errorMessage={
+                getHasError(
+                  PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD_CONFIRMATION
+                ) ?? null
+              }
               type={'lock'}
             />
           </View>

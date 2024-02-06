@@ -19,10 +19,14 @@ export const SEARCH_BAR_TEXT = 20;
 export const CAMERA_ERROR_MESSAGE =
   'カメラの起動に失敗しました。\n設定からカメラへの権限を許可してください';
 
+/** 必須項目です */
+export const REQUIRED_ITEM = '必須項目です';
+
 /** パスワード再設定用のメッセージ */
-export const PASSWORD_RESET_MESSAGE = {
+export const MAIL_ADDRESS_VALIDATION_MESSAGE = {
   NO_TEXT: 'メールアドレスを入力してください',
   INVALID_EMAIL: 'メールアドレスを正しく入力してください',
+  INVALID_EMAIL_ADDRESS: 'メールアドレスが正しくありません',
   SUCCESS:
     'メールを送信しました\nメール内のリンクからパスワードの再設定を行ってください。',
 };
@@ -42,6 +46,8 @@ export const PASSWORD_CHANGE_MESSAGE = {
   INVALID_LENGTH: 'パスワードには半角英数字を組み合わせてください',
   /** パスワードが一致しません */
   INVALID_MATCH: 'パスワードが一致しません',
+  /** パスワードは7文字以上にしてください */
+  INVALID_SEVEN_LENGTH: 'パスワードは7文字以上にしてください',
 };
 
 export const HEADER_TYPE = {
