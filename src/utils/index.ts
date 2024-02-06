@@ -16,6 +16,7 @@ import {
 import {
   LABEL_NAME,
   MODAL_MESSAGE,
+  PASSWORD_CHANGE_MESSAGE,
   PASSWORD_RESET_MESSAGE,
   SEPTEMBER,
   SETTING_ITEM_ID,
@@ -407,6 +408,92 @@ export const passwordResetValidation = async (mailAddress: string) => {
 };
 
 /** パスワード変更のバリデーションチェック */
-export const passwordValidationCheck = async (postData: AuthPostData[]) => {
-  console.log(postData);
+export const passwordValidationCheck = (
+  postData: AuthPostData[],
+  setHasError: (e: { key: string; error: string }[]) => void
+) => {
+  /** 大文字と小文字が含まれているかチェック */
+  const uppercaseRegex = /[A-Z]/;
+  const lowercaseRegex = /[a-z]/;
+  /** 半角英数字と指定の記号のみかチェック */
+  const alphanumericAndSymbolsRegex = /^[A-Za-z0-9@\-_]+$/;
+  /** 英語と数字が含まれているかチェック */
+  const letterAndNumberRegex = /(?=.*[A-Za-z])(?=.*[0-9])/;
+  const getInput = (key: string) =>
+    postData.find((item) => item.key === key)?.value;
+
+  const passwordInput = getInput('password');
+  const newPasswordInput = getInput('newPassword');
+  const newPasswordConfirmInput = getInput('newPasswordConfirmation');
+  const data = [
+    {
+      key: 'password',
+      value: passwordInput ?? '',
+    },
+    {
+      key: 'newPassword',
+      value: newPasswordInput ?? '',
+    },
+    {
+      key: 'newPasswordConfirmation',
+      value: newPasswordConfirmInput ?? '',
+    },
+  ];
+
+  const validationResults = data.map((item) => {
+    const password = item.key === 'password';
+    if (item.value === '') {
+      return {
+        key: item.key,
+        error: PASSWORD_CHANGE_MESSAGE.NO_TEXT,
+      };
+    } else if (item.value.length < 6) {
+      return {
+        key: item.key,
+        error: password
+          ? PASSWORD_CHANGE_MESSAGE.INVALID_PASSWORD
+          : 'パスワードは7文字以上にしてください',
+      };
+    } else if (
+      !uppercaseRegex.test(item.value) ||
+      !lowercaseRegex.test(item.value)
+    ) {
+      return {
+        key: item.key,
+        error: password
+          ? PASSWORD_CHANGE_MESSAGE.INVALID_PASSWORD
+          : PASSWORD_CHANGE_MESSAGE.INVALID_CASE,
+      };
+    } else if (!alphanumericAndSymbolsRegex.test(item.value)) {
+      return {
+        key: item.key,
+        error: password
+          ? PASSWORD_CHANGE_MESSAGE.INVALID_PASSWORD
+          : PASSWORD_CHANGE_MESSAGE.INVALID_SYMBOL,
+      };
+    } else if (!letterAndNumberRegex.test(item.value)) {
+      return {
+        key: item.key,
+        error: password
+          ? PASSWORD_CHANGE_MESSAGE.INVALID_PASSWORD
+          : PASSWORD_CHANGE_MESSAGE.INVALID_LENGTH,
+      };
+    } else if (
+      (item.key === 'newPassword' || item.key === 'newPasswordConfirmation') &&
+      newPasswordInput !== newPasswordConfirmInput
+    ) {
+      return { key: item.key, error: PASSWORD_CHANGE_MESSAGE.INVALID_MATCH };
+    } else {
+      return { key: item.key, error: '' };
+    }
+  });
+  setHasError(validationResults);
+  const validationError = validationResults.find(
+    (item) => item.error !== ''
+  )?.key;
+  if (validationError) {
+    return true;
+  } else {
+    return false;
+  }
 };

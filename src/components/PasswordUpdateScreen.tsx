@@ -1,5 +1,5 @@
 /** React */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Keyboard,
   StyleSheet,
@@ -22,10 +22,17 @@ import { passwordValidationCheck } from '../utils';
 const PasswordUpdateScreen = () => {
   const navigation = useNavigation();
 
+  const [hasError, setHasError] = useState<{ key: string; error: string }[]>(
+    []
+  );
+
   const { setTargetPostData, postData } = useAuthInput();
 
   const getValue = (key: string) =>
     postData.find((item) => item.key === key)?.value;
+
+  const getHasError = (key: string) =>
+    hasError.find((item) => item.key === key)?.error;
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -45,7 +52,7 @@ const PasswordUpdateScreen = () => {
               setData={(data) => {
                 setTargetPostData({ key: 'password', value: data });
               }}
-              errorMessage={null}
+              errorMessage={getHasError('password') ?? null}
               type={'lock'}
             />
             <AtomAuthInput
@@ -54,7 +61,7 @@ const PasswordUpdateScreen = () => {
               setData={(data) => {
                 setTargetPostData({ key: 'newPassword', value: data });
               }}
-              errorMessage={null}
+              errorMessage={getHasError('newPassword') ?? null}
               type={'lock'}
             />
             <AtomAuthInput
@@ -66,13 +73,41 @@ const PasswordUpdateScreen = () => {
                   value: data,
                 });
               }}
-              errorMessage={null}
+              errorMessage={getHasError('newPasswordConfirmation') ?? null}
               type={'lock'}
             />
           </View>
           <AtomAuthButton
-            onPress={() => {
-              passwordValidationCheck(postData);
+            onPress={async () => {
+              try {
+                const validationError = passwordValidationCheck(
+                  postData,
+                  setHasError
+                );
+                if (!validationError) {
+                  console.log('ここでパスワードの保存を行う');
+                  // const email = auth.currentUser?.email;
+                  // const password = postData.find(
+                  //   (item) => item.key === 'password'
+                  // )?.value;
+                  // const credential = EmailAuthProvider.credential(
+                  //   email!,
+                  //   password!
+                  // );
+                  // const user = auth.currentUser;
+                  // await reauthenticateWithCredential(user!, credential);
+                  // const newPassword = postData.find(
+                  //   (item) => item.key === 'newPassword'
+                  // )?.value;
+                  // await updatePassword(user!, newPassword!);
+                  // パスワードの更新が完了
+                }
+              } catch (error: any) {
+                if (error.code === 'auth/wrong-password') {
+                  // TODO 既存パスワードが間違っている場合はuseStateでエラーメッセージも追加
+                  console.log('パスワードが間違っています');
+                }
+              }
             }}
             text={'パスワード変更'}
             backgroundColor={COLORS.BLACK}
