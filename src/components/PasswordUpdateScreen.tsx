@@ -18,13 +18,25 @@ import { HEADER_TYPE, PASSWORD_UPDATE_INPUT_KEY } from '../contents';
 import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
 import { useAuthInput } from '../hooks/useAuthInput';
 import { passwordValidationCheck } from '../utils';
+import { saveUpdatePassword } from '../api';
 
 const PasswordUpdateScreen = () => {
   const navigation = useNavigation();
 
-  const [hasError, setHasError] = useState<{ key: string; error: string }[]>(
-    []
-  );
+  const [hasError, setHasError] = useState<{ key: string; error: string }[]>([
+    {
+      key: PASSWORD_UPDATE_INPUT_KEY.PASSWORD,
+      error: '',
+    },
+    {
+      key: PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD,
+      error: '',
+    },
+    {
+      key: PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD_CONFIRMATION,
+      error: '',
+    },
+  ]);
 
   const { setTargetPostData, postData } = useAuthInput();
 
@@ -111,28 +123,13 @@ const PasswordUpdateScreen = () => {
                   setHasError
                 );
                 if (!validationError) {
-                  console.log('ここでパスワードの保存を行う');
-                  // const email = auth.currentUser?.email;
-                  // const password = postData.find(
-                  //   (item) => item.key === 'password'
-                  // )?.value;
-                  // const credential = EmailAuthProvider.credential(
-                  //   email!,
-                  //   password!
-                  // );
-                  // const user = auth.currentUser;
-                  // await reauthenticateWithCredential(user!, credential);
-                  // const newPassword = postData.find(
-                  //   (item) => item.key === 'newPassword'
-                  // )?.value;
-                  // await updatePassword(user!, newPassword!);
-                  // パスワードの更新が完了
+                  await saveUpdatePassword(postData, hasError, setHasError);
                 }
-              } catch (error: any) {
-                if (error.code === 'auth/wrong-password') {
-                  // TODO 既存パスワードが間違っている場合はuseStateでエラーメッセージも追加
-                  console.log('パスワードが間違っています');
-                }
+
+                // TODO ここでパスワードの変更が完了したら完了した旨をユーザーに伝える
+                navigation.goBack();
+              } catch (error) {
+                throw error;
               }
             }}
             text={'パスワード変更'}

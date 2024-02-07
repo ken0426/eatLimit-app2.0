@@ -8,13 +8,18 @@ import {
   getDocs,
   setDoc,
 } from 'firebase/firestore';
-import { db, storage } from '../firebase';
+import {
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  updatePassword,
+} from 'firebase/auth';
+import { auth, db, storage } from '../firebase';
 import {
   setSelectMemoTemplate,
   setTagList,
   setTagsOrderId,
 } from '../redux/slices/commonSlice';
-import { ListData, PostData, TagData } from '../types';
+import { AuthPostData, ListData, PostData, TagData } from '../types';
 import { getTagId } from '../utils';
 import { listDisplayAdaptor } from '../adaptor/listDisplayAdaptor';
 import { setUpdateRegisterData } from '../redux/slices/commonRegisterSlice';
@@ -30,7 +35,11 @@ import {
   setSelectedTemplateMemoId,
   setTemplateMemoData,
 } from '../redux/slices/memoSlice';
-import { SAVE_TYPE } from '../contents';
+import {
+  PASSWORD_CHANGE_MESSAGE,
+  PASSWORD_UPDATE_INPUT_KEY,
+  SAVE_TYPE,
+} from '../contents';
 
 /** ユーザーが保存しているタグのデータを取得 */
 export const fetchTag = async (userId: string) => {
@@ -323,5 +332,41 @@ export const saveSelectTemplate = async (
     }
   } catch (error) {
     throw error;
+  }
+};
+
+/** パスワードの更新 */
+export const saveUpdatePassword = async (
+  postData: AuthPostData[],
+  hasError: { key: string; error: string }[],
+  setHasError: (e: { key: string; error: string }[]) => void
+) => {
+  try {
+    const email = auth.currentUser?.email;
+    const password = postData.find(
+      (item) => item.key === PASSWORD_UPDATE_INPUT_KEY.PASSWORD
+    )?.value;
+    const credential = EmailAuthProvider.credential(email!, password!);
+    const user = auth.currentUser;
+    /** 現在のパスワードが正しいかどうか判定する */
+    await reauthenticateWithCredential(user!, credential);
+    const newPassword = postData.find(
+      (item) => item.key === PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD
+    )?.value;
+    await updatePassword(user!, newPassword!);
+  } catch (error: any) {
+    if (error.code === 'auth/wrong-password') {
+      const newHasError = hasError.map((item) => {
+        if (item.key === PASSWORD_UPDATE_INPUT_KEY.PASSWORD) {
+          return {
+            key: item.key,
+            error: PASSWORD_CHANGE_MESSAGE.INVALID_PASSWORD,
+          };
+        } else {
+          return item;
+        }
+      });
+      setHasError(newHasError);
+    }
   }
 };
