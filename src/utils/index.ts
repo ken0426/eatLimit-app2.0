@@ -18,6 +18,7 @@ import {
   MAIL_ADDRESS_VALIDATION_MESSAGE,
   MODAL_MESSAGE,
   PASSWORD_CHANGE_MESSAGE,
+  PASSWORD_UPDATE_INPUT_KEY,
   REQUIRED_ITEM,
   SEPTEMBER,
   SETTING_ITEM_ID,
@@ -26,7 +27,6 @@ import { auth } from '../firebase';
 import moment from 'moment';
 import store from '../redux/store/store';
 import { setUserEmail } from '../redux/slices/loginSlice';
-import { PASSWORD_UPDATE_INPUT_KEY } from '../components/PasswordUpdateScreen';
 
 type Data = {
   data: {

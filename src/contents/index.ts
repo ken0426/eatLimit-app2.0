@@ -139,6 +139,13 @@ export const SAVE_TYPE = {
   UPDATE: 'update',
 } as const;
 
+/** パスワード変更画面で使用するインプットのキー */
+export const PASSWORD_UPDATE_INPUT_KEY = {
+  PASSWORD: 'password',
+  NEW_PASSWORD: 'newPassword',
+  NEW_PASSWORD_CONFIRMATION: 'newPasswordConfirmation',
+} as const;
+
 /** 管理方法のデータ */
 export const managementData: ManagementData[] = [
   {

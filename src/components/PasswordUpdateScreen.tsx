@@ -14,16 +14,10 @@ import AtomSettingRegister from './atoms/AtomSettingRegister';
 import AtomAuthInput from './atoms/AtomAuthInput';
 import AtomAuthButton from './atoms/AtomAuthButton';
 import MolHeader from './molecules/MolHeader';
-import { HEADER_TYPE } from '../contents';
+import { HEADER_TYPE, PASSWORD_UPDATE_INPUT_KEY } from '../contents';
 import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
 import { useAuthInput } from '../hooks/useAuthInput';
 import { passwordValidationCheck } from '../utils';
-
-export const PASSWORD_UPDATE_INPUT_KEY = {
-  PASSWORD: 'password',
-  NEW_PASSWORD: 'newPassword',
-  NEW_PASSWORD_CONFIRMATION: 'newPasswordConfirmation',
-};
 
 const PasswordUpdateScreen = () => {
   const navigation = useNavigation();
