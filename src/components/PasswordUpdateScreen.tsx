@@ -65,6 +65,9 @@ const PasswordUpdateScreen = () => {
                 getHasError(PASSWORD_UPDATE_INPUT_KEY.PASSWORD) ?? null
               }
               type={'lock'}
+              inputKey={PASSWORD_UPDATE_INPUT_KEY.PASSWORD}
+              hasError={hasError}
+              setHasError={setHasError}
             />
             <AtomAuthInput
               text={'新しいパスワード'}
@@ -79,6 +82,9 @@ const PasswordUpdateScreen = () => {
                 getHasError(PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD) ?? null
               }
               type={'lock'}
+              inputKey={PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD}
+              hasError={hasError}
+              setHasError={setHasError}
             />
             <AtomAuthInput
               text={'新しいパスワード確認用'}
@@ -98,6 +104,9 @@ const PasswordUpdateScreen = () => {
                 ) ?? null
               }
               type={'lock'}
+              inputKey={PASSWORD_UPDATE_INPUT_KEY.NEW_PASSWORD_CONFIRMATION}
+              hasError={hasError}
+              setHasError={setHasError}
             />
           </View>
           <AtomAuthButton

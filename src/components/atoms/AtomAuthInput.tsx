@@ -11,6 +11,9 @@ type Props = {
   setData: (e: string) => void;
   errorMessage: null | string;
   type: 'email' | 'lock';
+  hasError?: { key: string; error: string }[];
+  inputKey?: string;
+  setHasError?: ([{ key, error }]: { key: string; error: string }[]) => void;
 };
 
 const theme: ThemeProp = {
@@ -27,6 +30,9 @@ const AtomAuthInput: FC<Props> = ({
   setData,
   errorMessage,
   type,
+  hasError,
+  inputKey,
+  setHasError,
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -60,7 +66,15 @@ const AtomAuthInput: FC<Props> = ({
         }
         autoCapitalize={'none'}
         keyboardType={keyboardType}
-        onChangeText={(inputText) => setData(inputText)}
+        onChangeText={(inputText) => {
+          setData(inputText);
+          if (errorMessage !== '' && value !== '' && setHasError && inputKey) {
+            const filterHasError = hasError?.filter(
+              (item) => item.key !== inputKey
+            );
+            setHasError(filterHasError?.length ? filterHasError : []);
+          }
+        }}
         outlineStyle={styles.outlineStyle}
         /** フォーカスが当たった時のラベルの色 */
         activeOutlineColor={COLORS.MAIN_TEXT_COLOR}
