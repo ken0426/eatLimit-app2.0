@@ -68,11 +68,17 @@ const AtomAuthInput: FC<Props> = ({
         keyboardType={keyboardType}
         onChangeText={(inputText) => {
           setData(inputText);
-          if (errorMessage !== '' && value !== '' && setHasError && inputKey) {
-            const filterHasError = hasError?.filter(
+          if (
+            errorMessage !== '' &&
+            value !== '' &&
+            setHasError &&
+            inputKey &&
+            hasError?.length
+          ) {
+            const filterHasError = hasError.filter(
               (item) => item.key !== inputKey
             );
-            setHasError(filterHasError?.length ? filterHasError : []);
+            setHasError(filterHasError);
           }
         }}
         outlineStyle={styles.outlineStyle}
