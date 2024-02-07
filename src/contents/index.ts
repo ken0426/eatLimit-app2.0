@@ -362,6 +362,10 @@ export const settingData: SettingData[] = [
           data: [],
         },
         {
+          label: 'メールアドレス変更',
+          data: [],
+        },
+        {
           label: 'パスワード変更',
           data: [],
         },
