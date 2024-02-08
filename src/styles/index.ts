@@ -50,6 +50,8 @@ export const COLORS = {
   DETAIL_BACKGROUND: '#e4e4e4',
   /** 一括削除の色 */
   LIST_DELETE: '#beeec8',
+  /** Warningの色 */
+  YELLOW: '#eb9809',
 };
 
 export const SIZE = {

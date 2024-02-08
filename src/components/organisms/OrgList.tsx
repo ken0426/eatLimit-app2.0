@@ -35,13 +35,22 @@ const OrgList: FC<Props> = ({
   const imageId = useRootSelector((state) => state.common.imageId);
   const isImage = imageId === DISPLAY_IMAGE_ID;
 
-  const beforeDate = moment().isAfter(
-    item.management === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+  const getWarningDisPlayText = () => {
+    const date =
+      item.management === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
       item.management === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE
-      ? item.approximateDeadline!
-      : item.date,
-    'day'
-  );
+        ? item.approximateDeadline!
+        : item.date;
+    if (moment().isSame(date, 'day')) {
+      return '本日期限';
+    } else if (moment().isAfter(date)) {
+      return '期限切れ';
+    } else {
+      return '';
+    }
+  };
+
+  const warningText = getWarningDisPlayText();
 
   const dateText = useDateFormat(
     item.management === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
@@ -59,8 +68,8 @@ const OrgList: FC<Props> = ({
             ? styles.deleteListTop
             : styles.listTop
           : deleteIds?.includes(item.id)
-            ? styles.deleteList
-            : styles.list
+          ? styles.deleteList
+          : styles.list
       }
       onPress={() => {
         if (deletePress) {
@@ -100,7 +109,17 @@ const OrgList: FC<Props> = ({
         </Text>
         <View style={styles.listTextFooter}>
           <Text style={styles.date}>{dateText}</Text>
-          {beforeDate && <Text style={styles.caveatText}>期限切れ</Text>}
+          {warningText && (
+            <Text
+              style={
+                warningText === '期限切れ'
+                  ? styles.caveatTextRed
+                  : styles.caveatTextYellow
+              }
+            >
+              {warningText}
+            </Text>
+          )}
         </View>
       </View>
       <View style={styles.arrow}>
@@ -180,8 +199,12 @@ const styles = StyleSheet.create({
   date: {
     fontSize: FONTSIZE.SIZE15PX,
   },
-  caveatText: {
+  caveatTextRed: {
     marginLeft: SIZE.BASE_WP,
     color: COLORS.RED,
+  },
+  caveatTextYellow: {
+    marginLeft: SIZE.BASE_WP,
+    color: COLORS.YELLOW,
   },
 });
