@@ -54,6 +54,7 @@ export const HEADER_TYPE = {
   DEFAULT: 'default',
   DETAIL: 'detail',
   PASSWORD_RESET: 'password_reset',
+  MAIL_ADDRESS_UPDATE: 'mail_address_update',
 } as const;
 
 /** 画像の表示がある場合 */
@@ -137,6 +138,12 @@ export const MANAGEMENT_SELECTED_TEXT = {
 export const SAVE_TYPE = {
   ADD: 'add',
   UPDATE: 'update',
+} as const;
+
+/** メールアドレス変更画面で使用するインプットのキー */
+export const MAIL_ADDRESS_UPDATE_INPUT_KEY = {
+  MAIL_ADDRESS: 'mailAddress',
+  NEW_MAIL_ADDRESS: 'newMailAddress',
 } as const;
 
 /** パスワード変更画面で使用するインプットのキー */
@@ -239,6 +246,8 @@ export const LABEL = {
   TAG_EDIT: 'タグ編集と並び替え',
   /** パスワード変更 */
   PASSWORD_CHANGE: 'パスワード変更',
+  /** メールアドレス変更 */
+  MAIL_ADDRESS_UPDATE: 'メールアドレス変更',
 };
 
 /** 設定項目で選択するID */

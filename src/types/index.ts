@@ -38,6 +38,7 @@ export type TagData = {
 export type StackPramList = {
   topScreen: undefined;
   loginScreen: { isLogin: boolean };
+  mailAddressUpdateScreen: undefined;
   passwordResetScreen: undefined;
   passwordUpdateScreen: undefined;
   homeScreen: undefined;

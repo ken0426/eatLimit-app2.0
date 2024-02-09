@@ -7,7 +7,7 @@ import { HEADER_TYPE } from '../../contents';
 type HeaderProp = {
   children?: ReactNode;
   style?: object;
-  type: 'default' | 'detail' | 'password_reset';
+  type: 'default' | 'detail' | 'password_reset' | 'mail_address_update';
 };
 
 const MolHeader: FC<HeaderProp> = ({ children, style, type }) => {
@@ -15,6 +15,7 @@ const MolHeader: FC<HeaderProp> = ({ children, style, type }) => {
     case HEADER_TYPE.DEFAULT:
       return <View style={[style, styles.default]}>{children}</View>;
     case HEADER_TYPE.PASSWORD_RESET:
+    case HEADER_TYPE.MAIL_ADDRESS_UPDATE:
       return <View style={style}>{children}</View>;
     case HEADER_TYPE.DETAIL:
       return <MolDetailHeader />;

@@ -32,6 +32,7 @@ import {
 } from '../api';
 import { StackPramList } from '../types';
 import { setUserEmail } from '../redux/slices/loginSlice';
+import MailAddressUpdateScreen from '../components/MailAddressUpdateScreen';
 
 const Stack = createNativeStackNavigator<StackPramList>();
 
@@ -81,6 +82,11 @@ const RootStackScreen = () => {
         name={'loginScreen'}
         component={LoginScreen}
         options={{ headerShown: false, animation: 'fade' }}
+      />
+      <Stack.Screen
+        name={'mailAddressUpdateScreen'}
+        component={MailAddressUpdateScreen}
+        options={{ headerShown: false, animation: 'slide_from_left' }}
       />
       <Stack.Screen
         name={'passwordResetScreen'}
