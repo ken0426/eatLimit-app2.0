@@ -68,7 +68,12 @@ export const useListFilter = (
           type === LABEL_NAME.BEFORE_DATE &&
           singleSelectedData === BEFORE_DATE_SELECT.IS_SHOW
         ) {
-          return moment().isAfter(item.date, 'day');
+          const date =
+            item.management === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+            item.management === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE
+              ? item.approximateDeadline!
+              : item.date;
+          return moment().isAfter(date, 'day');
         } else {
           return [...listData];
         }
