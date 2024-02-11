@@ -15,6 +15,7 @@ import {
 } from '../types';
 import {
   LABEL_NAME,
+  MAIL_ADDRESS_UPDATE_INPUT_KEY,
   MAIL_ADDRESS_VALIDATION_MESSAGE,
   MODAL_MESSAGE,
   PASSWORD_CHANGE_MESSAGE,
@@ -492,6 +493,59 @@ export const passwordValidationCheck = (
       return { key: item.key, error: '' };
     }
   });
+  setHasError(validationResults);
+  const validationError = validationResults.find(
+    (item) => item.error !== ''
+  )?.key;
+  if (validationError) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+/** メールアドレスのバリデーションチェック */
+export const mailAddressValidationCheck = (
+  postData: AuthPostData[],
+  setHasError: (e: { key: string; error: string }[]) => void
+) => {
+  /** メールアドレスのチェック */
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const getInput = (key: string) =>
+    postData.find((item) => item.key === key)?.value;
+
+  const mailAddressInput = getInput(MAIL_ADDRESS_UPDATE_INPUT_KEY.MAIL_ADDRESS);
+  const newMailAddressInput = getInput(
+    MAIL_ADDRESS_UPDATE_INPUT_KEY.NEW_MAIL_ADDRESS
+  );
+
+  const data = [
+    {
+      key: MAIL_ADDRESS_UPDATE_INPUT_KEY.MAIL_ADDRESS,
+      value: mailAddressInput ?? '',
+    },
+    {
+      key: MAIL_ADDRESS_UPDATE_INPUT_KEY.NEW_MAIL_ADDRESS,
+      value: newMailAddressInput ?? '',
+    },
+  ];
+
+  const validationResults = data.map((item) => {
+    if (item.value === '') {
+      return {
+        key: item.key,
+        error: MAIL_ADDRESS_VALIDATION_MESSAGE.NO_TEXT,
+      };
+    } else if (!emailRegex.test(item.value)) {
+      return {
+        key: item.key,
+        error: MAIL_ADDRESS_VALIDATION_MESSAGE.INVALID_EMAIL,
+      };
+    } else {
+      return { key: item.key, error: '' };
+    }
+  });
+
   setHasError(validationResults);
   const validationError = validationResults.find(
     (item) => item.error !== ''

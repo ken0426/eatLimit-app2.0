@@ -1,5 +1,5 @@
 /** React */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Keyboard,
   StyleSheet,
@@ -17,14 +17,22 @@ import MolHeader from './molecules/MolHeader';
 import { HEADER_TYPE, MAIL_ADDRESS_UPDATE_INPUT_KEY } from '../contents';
 import { COLORS, FONTSIZE, SIZE, STYLE_FLEX } from '../styles';
 import { useAuthInput } from '../hooks/useAuthInput';
+import { mailAddressValidationCheck } from '../utils';
 
 const MailAddressUpdateScreen = () => {
   const navigation = useNavigation();
+  const [hasError, setHasError] = useState<{ key: string; error: string }[]>([
+    { key: MAIL_ADDRESS_UPDATE_INPUT_KEY.MAIL_ADDRESS, error: '' },
+    { key: MAIL_ADDRESS_UPDATE_INPUT_KEY.NEW_MAIL_ADDRESS, error: '' },
+  ]);
 
   const { setTargetPostData, postData } = useAuthInput();
 
   const getValue = (key: string) =>
     postData.find((item) => item.key === key)?.value;
+
+  const getHasError = (key: string) =>
+    hasError.find((item) => item.key === key)?.error;
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -47,9 +55,13 @@ const MailAddressUpdateScreen = () => {
                   value: data,
                 });
               }}
-              errorMessage={null}
+              errorMessage={
+                getHasError(MAIL_ADDRESS_UPDATE_INPUT_KEY.MAIL_ADDRESS) ?? null
+              }
               type={'email'}
               inputKey={''}
+              hasError={hasError}
+              setHasError={setHasError}
             />
             <AtomAuthInput
               text={'新しいメールアドレス'}
@@ -62,13 +74,25 @@ const MailAddressUpdateScreen = () => {
                   value: data,
                 });
               }}
-              errorMessage={null}
+              errorMessage={
+                getHasError(MAIL_ADDRESS_UPDATE_INPUT_KEY.NEW_MAIL_ADDRESS) ??
+                null
+              }
               type={'email'}
               inputKey={''}
+              hasError={hasError}
+              setHasError={setHasError}
             />
           </View>
           <AtomAuthButton
-            onPress={async () => {}}
+            onPress={async () => {
+              const validationResults = mailAddressValidationCheck(
+                postData,
+                setHasError
+              );
+
+              // メールアドレスの形に問題なければメールアドレスの変更を行う
+            }}
             text={'変更'}
             backgroundColor={COLORS.BLACK}
             textColor={COLORS.SIGN_IN_BUTTON}
