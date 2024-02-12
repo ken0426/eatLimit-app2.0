@@ -14,6 +14,7 @@ import {
   TagData,
 } from '../types';
 import {
+  EMAIL_REGEX,
   LABEL_NAME,
   MAIL_ADDRESS_UPDATE_INPUT_KEY,
   MAIL_ADDRESS_VALIDATION_MESSAGE,
@@ -394,9 +395,7 @@ export const getTagId = (tagData: TagData[]) => {
 export const passwordResetValidation = async (mailAddress: string) => {
   try {
     if (mailAddress === '') return MAIL_ADDRESS_VALIDATION_MESSAGE.NO_TEXT;
-    /** メールアドレスのチェック */
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(mailAddress))
+    if (!EMAIL_REGEX.test(mailAddress))
       return MAIL_ADDRESS_VALIDATION_MESSAGE.INVALID_EMAIL;
 
     const auth = getAuth();
@@ -509,8 +508,6 @@ export const mailAddressValidationCheck = (
   postData: AuthPostData[],
   setHasError: (e: { key: string; error: string }[]) => void
 ) => {
-  /** メールアドレスのチェック */
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const getInput = (key: string) =>
     postData.find((item) => item.key === key)?.value;
 
@@ -536,7 +533,7 @@ export const mailAddressValidationCheck = (
         key: item.key,
         error: MAIL_ADDRESS_VALIDATION_MESSAGE.NO_TEXT,
       };
-    } else if (!emailRegex.test(item.value)) {
+    } else if (!EMAIL_REGEX.test(item.value)) {
       return {
         key: item.key,
         error: MAIL_ADDRESS_VALIDATION_MESSAGE.INVALID_EMAIL,

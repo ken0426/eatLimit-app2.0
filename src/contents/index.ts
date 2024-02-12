@@ -195,6 +195,9 @@ export const FILTER_TAB_BAR = {
   TAG: 2,
 } as const;
 
+/** メールアドレスのバリデーションチェック */
+export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 /** 登録変更画面での日付のエラーメッセージ */
 export const DATE_ERROR_MESSAGE = {
   DATE: '日付は期限目安より前の日付にしてください',
