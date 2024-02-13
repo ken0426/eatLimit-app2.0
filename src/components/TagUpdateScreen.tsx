@@ -22,6 +22,10 @@ const TagUpdateScreen = () => {
   const tagsOrderId = useRootSelector((state) => state.common.tagsOrderId);
   const [listData, setListData] = useState([...tagList]);
   const [visible, setVisible] = useState(false);
+  const SORT = {
+    UP: 'up',
+    DOWN: 'down',
+  } as const;
 
   const openMenu = () => setVisible(true);
 
@@ -32,9 +36,9 @@ const TagUpdateScreen = () => {
     const copyListData = [...listData];
     const sortListData = copyListData.sort((a, b) => {
       if (a.name < b.name) {
-        return type === 'up' ? -1 : 1;
+        return type === SORT.UP ? -1 : 1;
       } else {
-        return type === 'up' ? 1 : -1;
+        return type === SORT.UP ? 1 : -1;
       }
     });
 
@@ -52,7 +56,7 @@ const TagUpdateScreen = () => {
       size: 18,
       color: COLORS.BLACK,
       text: '昇順',
-      onPress: () => onSortPress('up'),
+      onPress: () => onSortPress(SORT.UP),
     },
     {
       type: 'fontAwesome5',
@@ -60,7 +64,7 @@ const TagUpdateScreen = () => {
       size: 18,
       color: COLORS.BLACK,
       text: '降順',
-      onPress: () => onSortPress('down'),
+      onPress: () => onSortPress(SORT.DOWN),
     },
   ];
 
