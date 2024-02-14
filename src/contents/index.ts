@@ -383,6 +383,10 @@ export const settingData: SettingData[] = [
           data: [],
         },
         {
+          label: 'お知らせ',
+          data: [],
+        },
+        {
           label: LOG_AUTO,
           data: [],
         },

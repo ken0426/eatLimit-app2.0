@@ -1,5 +1,5 @@
 /** React */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   Alert,
   FlatList,
@@ -63,7 +63,28 @@ const SettingScreen = () => {
     } else {
       setData([...settingData]);
     }
-  }, [tagList]);
+  }, [tagList, auth.currentUser?.emailVerified]);
+
+  /** 最終的に設定画面で表示するデータ */
+  const settingListData = useMemo(() => {
+    const newData = data.map((item) => {
+      if (item.account && auth.currentUser?.emailVerified) {
+        const newAccountItem = item.account.item.filter(
+          (itm) => itm.label !== 'お知らせ'
+        );
+        return {
+          ...item,
+          account: {
+            ...item.account,
+            item: newAccountItem,
+          },
+        };
+      } else {
+        return item;
+      }
+    });
+    return newData;
+  }, [data]);
 
   const renderItem: ListRenderItem<SettingData> = ({ item, index }) => {
     const key = getKey(item);
@@ -146,7 +167,7 @@ const SettingScreen = () => {
       </MolHeader>
 
       <FlatList
-        data={data}
+        data={settingListData}
         renderItem={renderItem}
         keyExtractor={(_, index) => index.toString()}
       />
