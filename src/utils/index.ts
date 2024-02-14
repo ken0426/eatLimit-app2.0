@@ -531,6 +531,11 @@ export const mailAddressValidationCheck = (
         key: item.key,
         error: MAIL_ADDRESS_VALIDATION_MESSAGE.INVALID_EMAIL,
       };
+    } else if (data[0].value === data[1].value) {
+      return {
+        key: item.key,
+        error: MAIL_ADDRESS_VALIDATION_MESSAGE.SAME_MAIL_ADDRESS,
+      };
     } else {
       return { key: item.key, error: '' };
     }

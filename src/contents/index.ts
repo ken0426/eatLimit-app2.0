@@ -29,6 +29,7 @@ export const MAIL_ADDRESS_VALIDATION_MESSAGE = {
   INVALID_EMAIL_ADDRESS: 'メールアドレスが正しくありません',
   SUCCESS:
     'メールを送信しました\nメール内のリンクからパスワードの再設定を行ってください。',
+  SAME_MAIL_ADDRESS: '同じメールアドレスです',
 };
 
 /** パスワード変更のエラーメッセージ */
