@@ -10,7 +10,10 @@ import {
 } from 'firebase/firestore';
 import {
   EmailAuthProvider,
+  createUserWithEmailAndPassword,
   reauthenticateWithCredential,
+  sendEmailVerification,
+  signInWithEmailAndPassword,
   updatePassword,
 } from 'firebase/auth';
 import { auth, db, storage } from '../firebase';
@@ -40,6 +43,26 @@ import {
   PASSWORD_UPDATE_INPUT_KEY,
   SAVE_TYPE,
 } from '../contents';
+
+/** アカウントの新規登録 */
+export const createNewAccount = async (
+  mailAddress: string,
+  password: string
+) => {
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    mailAddress,
+    password
+  );
+
+  // 登録者にメールを送信する
+  await sendEmailVerification(userCredential.user);
+};
+
+/** アカウントにログイン */
+export const accessAccount = async (mailAddress: string, password: string) => {
+  await signInWithEmailAndPassword(auth, mailAddress, password);
+};
 
 /** ユーザーが保存しているタグのデータを取得 */
 export const fetchTag = async (userId: string) => {

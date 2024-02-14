@@ -29,6 +29,7 @@ import { auth } from '../firebase';
 import moment from 'moment';
 import store from '../redux/store/store';
 import { setUserEmail } from '../redux/slices/loginSlice';
+import { accessAccount, createNewAccount } from '../api';
 
 type Data = {
   data: {
@@ -213,7 +214,7 @@ export const handleLogin = async ({
         alphanumericAndSymbolsRegex.test(password) &&
         letterAndNumberRegex.test(password)
       ) {
-        await signInWithEmailAndPassword(auth, mailAddress, password);
+        await accessAccount(mailAddress, password);
         store.dispatch(setUserEmail(mailAddress));
       }
     } else {
@@ -273,15 +274,7 @@ export const handleLogin = async ({
           alphanumericAndSymbolsRegex.test(password) &&
           letterAndNumberRegex.test(password)
         ) {
-          const userCredential = await createUserWithEmailAndPassword(
-            auth,
-            mailAddress,
-            password
-          );
-
-          /** 登録者にメールを送信する */
-          await sendEmailVerification(userCredential.user);
-
+          await createNewAccount(mailAddress, password);
           store.dispatch(setUserEmail(mailAddress));
         }
       } else {
