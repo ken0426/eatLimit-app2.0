@@ -57,6 +57,9 @@ const PasswordUpdateScreen = () => {
         </MolHeader>
         <View style={styles.inputArea}>
           <Text style={styles.title}>パスワード変更</Text>
+          <Text style={styles.massage}>
+            パスワードは大文字小文字、数字または記号を含む7文字以上である必要があります。
+          </Text>
           <View style={styles.passwordInputArea}>
             <AtomAuthInput
               text={'現在のパスワード'}
@@ -127,7 +130,6 @@ const PasswordUpdateScreen = () => {
                 }
 
                 // TODO ここでパスワードの変更が完了したら完了した旨をユーザーに伝える
-                navigation.goBack();
               } catch (error) {
                 throw error;
               }
@@ -164,7 +166,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: FONTSIZE.SIZE25PX,
-    marginBottom: SIZE.BASE_WP * 4.4,
+    marginBottom: SIZE.BASE_WP * 2.4,
+  },
+  massage: {
+    fontSize: FONTSIZE.SIZE15PX,
+    marginBottom: SIZE.BASE_WP * 2.2,
   },
   passwordInputArea: {
     height: '30%',
