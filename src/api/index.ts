@@ -370,3 +370,6 @@ export const saveUpdatePassword = async (
     }
   }
 };
+
+/** パスワードの更新 */
+export const saveUpdateMailAddress = async () => {};

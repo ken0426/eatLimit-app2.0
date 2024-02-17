@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ApiData, PostData, StackPramList } from '../types';
-import { LABEL_NAME } from '../contents';
+import { LABEL_NAME, MANAGEMENT_SELECTED_TEXT } from '../contents';
 import { RouteProp, useRoute } from '@react-navigation/native';
 
 type RouteItem = {
@@ -69,7 +69,10 @@ export const useCopyEdit = (
           })
         );
 
-        if (data.management === '購入日' || data.management === '登録日')
+        if (
+          data.management === MANAGEMENT_SELECTED_TEXT.PURCHASE_DATE ||
+          data.management === MANAGEMENT_SELECTED_TEXT.REGISTRATION_DATE
+        )
           setLabel(data.management);
 
         setIsRoute(false);
