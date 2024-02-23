@@ -371,6 +371,10 @@ export const settingData: SettingData[] = [
       headline: 'ユーザー設定',
       item: [
         {
+          label: 'アカウント',
+          data: [],
+        },
+        {
           label: 'テーマカラー',
           data: [],
         },
