@@ -252,6 +252,8 @@ export const LABEL = {
   PASSWORD_CHANGE: 'パスワード変更',
   /** メールアドレス変更 */
   MAIL_ADDRESS_UPDATE: 'メールアドレス変更',
+  /** テーマカラー */
+  THEME_COLOR: 'テーマカラー',
 };
 
 /** 設定項目で選択するID */
@@ -292,6 +294,30 @@ export const MODAL_MESSAGE = {
   QUANTITY: '個数は999までです',
   TAG_DELETE: `タグを削除します。\nよろしいですか？`,
 };
+
+// TODO IDのナンバーをマジックナンバーから定数化したナンバーに変更して定数名からわかるようにする
+const THEME_COLOR = [
+  {
+    text: 'ホワイト（デフォルト）',
+    id: 1,
+  },
+  {
+    text: 'ダーク',
+    id: 2,
+  },
+  {
+    text: 'ブルー',
+    id: 3,
+  },
+  {
+    text: 'レッド',
+    id: 4,
+  },
+  {
+    text: 'グリーン',
+    id: 5,
+  },
+];
 
 /** 設定の情報 */
 export const settingData: SettingData[] = [
@@ -375,8 +401,8 @@ export const settingData: SettingData[] = [
           data: [],
         },
         {
-          label: 'テーマカラー',
-          data: [],
+          label: LABEL.THEME_COLOR,
+          data: THEME_COLOR,
         },
         {
           label: 'メールアドレス変更',
